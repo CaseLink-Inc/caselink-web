@@ -14,7 +14,7 @@
   --color-green: #3DBD6B;
   --color-tile: #F7FAFA;
   --color-tint: #EDF2FB;
-  --font-sans: var(--font-jakarta), system-ui, sans-serif;
+  --font-sans: var(--font-satoshi), system-ui, sans-serif;
 }
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -68,7 +68,7 @@ nav.site-nav{
 }
 .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 32px;max-width:1240px;margin:0 auto}
 .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;color:#1A1F1E;cursor:pointer}
-.logo img{width:30px;height:30px}
+.logo img{height:32px;width:auto;display:block}
 .nav-links{display:flex;gap:30px}
 .nav-links a{font-size:13.5px;color:#4A5250;font-weight:500;transition:color .2s;cursor:pointer}
 .nav-links a:hover,.nav-links a.active{color:#1A1F1E}
@@ -905,7 +905,7 @@ body.mob-open{overflow:hidden}
   .wrap{padding:0 20px}
   .nav-inner{padding:12px 20px}
   .logo{font-size:16px}
-  .logo img{width:26px;height:26px}
+  .logo img{height:26px;width:auto}
 
   section{padding:50px 0}
   .hero{padding:100px 0 50px}

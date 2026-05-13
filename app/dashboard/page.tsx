@@ -27,7 +27,7 @@ export default function DashboardPage() {
         <div className="dash-shell">
           <aside className="dash-side">
             <div className="ds-logo">
-              <Image src="/caselink-logo.svg" width={24} height={24} alt="" />
+              <Image src="/logo-mark.svg" width={24} height={24} alt="" />
               CaseLink
             </div>
             <div className="ds-nav">

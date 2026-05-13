@@ -57,9 +57,8 @@ export default function Nav() {
     <>
       <nav className="site-nav">
         <div className="nav-inner">
-          <Link href="/" className="logo">
-            <Image src="/caselink-logo.svg" width={30} height={30} alt="CaseLink" />
-            <span>CaseLink</span>
+          <Link href="/" className="logo" aria-label="CaseLink">
+            <Image src="/logo-primary.svg" width={142} height={32} alt="CaseLink" priority />
           </Link>
           <div className="nav-links">
             {links.map((l) => (

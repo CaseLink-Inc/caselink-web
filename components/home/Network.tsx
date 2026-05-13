@@ -85,18 +85,18 @@ export default function Network() {
             <g><circle className="pin-pulse p2" cx="380" cy="200" r="8" /><circle className="pin-dot gp" cx="380" cy="200" r="6" /></g>
             <g><circle className="pin-pulse p5" cx="200" cy="360" r="8" /><circle className="pin-dot spec" cx="200" cy="360" r="6" /></g>
             <circle cx="300" cy="280" r="26" fill="#3E8EFF" stroke="#fff" strokeWidth="3" />
-            <text x="300" y="285" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="700" fontFamily="'Plus Jakarta Sans'">CL</text>
+            <text x="300" y="285" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="700" fontFamily="'Satoshi'">CL</text>
             <circle r="4" fill="#3E8EFF"><animateMotion dur="3.5s" repeatCount="indefinite" path="M 110 150 Q 200 220 300 280" /></circle>
             <circle r="4" fill="#FFA940"><animateMotion dur="3.2s" repeatCount="indefinite" begin="0.6s" path="M 480 130 Q 400 210 300 280" /></circle>
             <circle r="4" fill="#3DBD6B"><animateMotion dur="4s" repeatCount="indefinite" begin="1.4s" path="M 130 410 Q 220 350 300 280" /></circle>
             <circle r="4" fill="#3E8EFF"><animateMotion dur="3.6s" repeatCount="indefinite" begin="2.2s" path="M 220 100 Q 260 190 300 280" /></circle>
             <circle r="4" fill="#FFA940"><animateMotion dur="3.8s" repeatCount="indefinite" begin="0.9s" path="M 380 460 Q 340 370 300 280" /></circle>
-            <text x="110" y="138" textAnchor="middle" fill="#7A8886" fontSize="9" fontFamily="'Plus Jakarta Sans'" fontWeight="500">Logan Circle</text>
-            <text x="480" y="118" textAnchor="middle" fill="#7A8886" fontSize="9" fontFamily="'Plus Jakarta Sans'" fontWeight="500">Capitol Hill</text>
-            <text x="130" y="428" textAnchor="middle" fill="#7A8886" fontSize="9" fontFamily="'Plus Jakarta Sans'" fontWeight="500">Georgetown</text>
-            <text x="480" y="440" textAnchor="middle" fill="#7A8886" fontSize="9" fontFamily="'Plus Jakarta Sans'" fontWeight="500">Navy Yard</text>
-            <text x="90" y="278" textAnchor="middle" fill="#7A8886" fontSize="9" fontFamily="'Plus Jakarta Sans'" fontWeight="500">Foggy Bottom</text>
-            <text x="510" y="278" textAnchor="middle" fill="#7A8886" fontSize="9" fontFamily="'Plus Jakarta Sans'" fontWeight="500">H Street</text>
+            <text x="110" y="138" textAnchor="middle" fill="#7A8886" fontSize="9" fontFamily="'Satoshi'" fontWeight="500">Logan Circle</text>
+            <text x="480" y="118" textAnchor="middle" fill="#7A8886" fontSize="9" fontFamily="'Satoshi'" fontWeight="500">Capitol Hill</text>
+            <text x="130" y="428" textAnchor="middle" fill="#7A8886" fontSize="9" fontFamily="'Satoshi'" fontWeight="500">Georgetown</text>
+            <text x="480" y="440" textAnchor="middle" fill="#7A8886" fontSize="9" fontFamily="'Satoshi'" fontWeight="500">Navy Yard</text>
+            <text x="90" y="278" textAnchor="middle" fill="#7A8886" fontSize="9" fontFamily="'Satoshi'" fontWeight="500">Foggy Bottom</text>
+            <text x="510" y="278" textAnchor="middle" fill="#7A8886" fontSize="9" fontFamily="'Satoshi'" fontWeight="500">H Street</text>
           </svg>
           <div className="map-feed">
             <div className="feed-title">Recent referrals</div>

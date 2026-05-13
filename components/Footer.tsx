@@ -7,9 +7,8 @@ export default function Footer() {
       <div className="wrap">
         <div className="foot">
           <div>
-            <Link href="/" className="logo">
-              <Image src="/caselink-logo.svg" width={28} height={28} alt="" />
-              <span>CaseLink</span>
+            <Link href="/" className="logo" aria-label="CaseLink">
+              <Image src="/logo-primary.svg" width={150} height={34} alt="CaseLink" />
             </Link>
             <p className="foot-tag">
               A secure referral and collaboration network for general dentists

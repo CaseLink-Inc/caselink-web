@@ -183,7 +183,7 @@ export default function HowItWorks() {
             <div className="demo-screen">
               <div className="demo-sidebar">
                 <div className="ds-logo">
-                  <Image src="/caselink-logo.svg" width={22} height={22} alt="" />
+                  <Image src="/logo-mark.svg" width={22} height={22} alt="" />
                   CaseLink
                 </div>
                 <div className="ds-nav">

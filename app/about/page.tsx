@@ -181,7 +181,7 @@ export default function AboutPage() {
               <circle cx="360" cy="300" r="6" fill="#3DBD6B" />
               <circle cx="240" cy="330" r="6" fill="#FFA940" />
               <circle cx="280" cy="220" r="18" fill="#3E8EFF" stroke="#fff" strokeWidth="3" />
-              <text x="280" y="225" textAnchor="middle" fill="#fff" fontSize="11" fontWeight="700" fontFamily="'Plus Jakarta Sans'">DC</text>
+              <text x="280" y="225" textAnchor="middle" fill="#fff" fontSize="11" fontWeight="700" fontFamily="'Satoshi'">DC</text>
               <circle cx="280" cy="220" r="40" fill="none" stroke="#3E8EFF" strokeWidth="1.5" opacity="0.3">
                 <animate attributeName="r" from="20" to="60" dur="3s" repeatCount="indefinite" />
                 <animate attributeName="opacity" from="0.5" to="0" dur="3s" repeatCount="indefinite" />
@@ -190,13 +190,13 @@ export default function AboutPage() {
               <circle cx="280" cy="220" r="100" fill="none" stroke="#3E8EFF" strokeWidth="0.7" opacity="0.15" />
               <g opacity="0.5">
                 <circle cx="80" cy="60" r="4" fill="#7A8886" />
-                <text x="80" y="50" textAnchor="middle" fill="#7A8886" fontSize="9" fontFamily="'Plus Jakarta Sans'">Boston</text>
+                <text x="80" y="50" textAnchor="middle" fill="#7A8886" fontSize="9" fontFamily="'Satoshi'">Boston</text>
                 <circle cx="100" cy="120" r="4" fill="#7A8886" />
-                <text x="100" y="110" textAnchor="middle" fill="#7A8886" fontSize="9" fontFamily="'Plus Jakarta Sans'">Philadelphia</text>
+                <text x="100" y="110" textAnchor="middle" fill="#7A8886" fontSize="9" fontFamily="'Satoshi'">Philadelphia</text>
                 <circle cx="420" cy="380" r="4" fill="#7A8886" />
-                <text x="420" y="402" textAnchor="middle" fill="#7A8886" fontSize="9" fontFamily="'Plus Jakarta Sans'">Charlotte</text>
+                <text x="420" y="402" textAnchor="middle" fill="#7A8886" fontSize="9" fontFamily="'Satoshi'">Charlotte</text>
                 <circle cx="380" cy="410" r="4" fill="#7A8886" />
-                <text x="380" y="432" textAnchor="middle" fill="#7A8886" fontSize="9" fontFamily="'Plus Jakarta Sans'">Atlanta</text>
+                <text x="380" y="432" textAnchor="middle" fill="#7A8886" fontSize="9" fontFamily="'Satoshi'">Atlanta</text>
               </g>
             </svg>
           </div>
