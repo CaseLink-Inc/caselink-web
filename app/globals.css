@@ -190,6 +190,7 @@ section{position:relative;padding:120px 0}
 .problem-sub{text-align:center;color:#7A8886;max-width:540px;margin:0 auto 64px;font-size:16px}
 .problem .eyebrow-wrap{text-align:center;margin-bottom:14px}
 .problem-stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:36px}
+.problem-stats-row.cols-2{grid-template-columns:repeat(2,1fr);max-width:880px;margin-left:auto;margin-right:auto}
 .big-stat{
   background:#fff;border-radius:24px;padding:36px 32px;
   border:1px solid #E8EEF8;transition:transform .35s ease,box-shadow .35s ease;
@@ -516,13 +517,13 @@ section{position:relative;padding:120px 0}
 .trust{background:#1A1F1E;padding:140px 0;color:#F2F4F4}
 .trust h2,.trust h3,.trust h4{color:#F2F4F4}
 .trust-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
-.trust-viz{position:relative;height:380px;display:flex;align-items:center;justify-content:center}
-.shield{position:relative;width:220px;height:220px}
+.trust-viz{position:relative;height:440px;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:32px}
+.shield{position:relative;width:180px;height:180px}
 .shield svg{width:100%;height:100%;filter:drop-shadow(0 0 40px rgba(62,142,255,0.4))}
 .shield .ring{position:absolute;border-radius:50%;border:1px solid rgba(62,142,255,0.25);top:50%;left:50%;transform:translate(-50%,-50%)}
-.shield .ring1{width:280px;height:280px;animation:spin 24s linear infinite}
-.shield .ring2{width:360px;height:360px;animation:spin 36s linear infinite reverse}
-.shield .ring3{width:440px;height:440px;animation:spin 48s linear infinite}
+.shield .ring1{width:240px;height:240px;animation:spin 24s linear infinite}
+.shield .ring2{width:300px;height:300px;animation:spin 36s linear infinite reverse}
+.shield .ring3{width:360px;height:360px;animation:spin 48s linear infinite}
 .shield .ring::before{content:'';position:absolute;width:8px;height:8px;border-radius:50%;background:#3E8EFF;top:-4px;left:50%;transform:translateX(-50%);box-shadow:0 0 12px #3E8EFF}
 .shield .ring2::before{background:#FFC794;box-shadow:0 0 12px #FFC794}
 .shield .ring3::before{background:#90F0C5;box-shadow:0 0 12px #90F0C5}

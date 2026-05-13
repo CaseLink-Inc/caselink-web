@@ -30,7 +30,7 @@ export default function Footer() {
             <ul>
               <li><Link href="/about">About</Link></li>
               <li><Link href="/contact">Contact</Link></li>
-              <li><a href="mailto:hello@caselink.net">hello@caselink.net</a></li>
+              <li><a href="mailto:support@caselink.net">support@caselink.net</a></li>
             </ul>
           </div>
         </div>

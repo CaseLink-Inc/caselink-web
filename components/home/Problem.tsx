@@ -7,7 +7,7 @@ export default function Problem() {
         <p className="problem-sub reveal">
           A paper slip, a phone call, an email nobody opens. The cost shows up in patients, partnerships, and revenue.
         </p>
-        <div className="problem-stats-row">
+        <div className="problem-stats-row cols-2">
           <div className="big-stat reveal">
             <div className="num">30%</div>
             <h4>of referrals never reach treatment</h4>
@@ -19,12 +19,6 @@ export default function Problem() {
             <h4>use a dedicated referral tool</h4>
             <p>The category exists for medical referrals. In dentistry, it is wide open.</p>
             <div className="src">US dental practices</div>
-          </div>
-          <div className="big-stat alt2 reveal" style={{ transitionDelay: ".2s" }}>
-            <div className="num">$1B</div>
-            <h4>dental software market in 2025</h4>
-            <p>A growing market with the referral layer still under-served.</p>
-            <div className="src">US market size</div>
           </div>
         </div>
       </div>

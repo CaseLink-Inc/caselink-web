@@ -28,7 +28,7 @@ export default function Pricing() {
         <div className="pricing-grid">
           <div className="price-card reveal">
             <div className="price-plan-name">General dentist</div>
-            <h3>Free, forever</h3>
+            <h3>Free</h3>
             <p className="desc">Built for GPs who want full visibility into every referral they send.</p>
             <div className="price-amt"><span className="num">$0</span><span className="per">per month</span></div>
             <div className="price-bill">No card required</div>
