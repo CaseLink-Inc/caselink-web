@@ -514,20 +514,20 @@ section{position:relative;padding:120px 0}
 .who-card:hover .arr svg{transform:translateX(4px)}
 
 /* TRUST */
-.trust{background:#1A1F1E;padding:140px 0;color:#F2F4F4}
+.trust{background:#1A1F1E;padding:140px 0;color:#F2F4F4;overflow:hidden}
 .trust h2,.trust h3,.trust h4{color:#F2F4F4}
 .trust-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
-.trust-viz{position:relative;height:440px;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:32px}
-.shield{position:relative;width:180px;height:180px}
-.shield svg{width:100%;height:100%;filter:drop-shadow(0 0 40px rgba(62,142,255,0.4))}
-.shield .ring{position:absolute;border-radius:50%;border:1px solid rgba(62,142,255,0.25);top:50%;left:50%;transform:translate(-50%,-50%)}
-.shield .ring1{width:240px;height:240px;animation:spin 24s linear infinite}
-.shield .ring2{width:300px;height:300px;animation:spin 36s linear infinite reverse}
-.shield .ring3{width:360px;height:360px;animation:spin 48s linear infinite}
-.shield .ring::before{content:'';position:absolute;width:8px;height:8px;border-radius:50%;background:#3E8EFF;top:-4px;left:50%;transform:translateX(-50%);box-shadow:0 0 12px #3E8EFF}
-.shield .ring2::before{background:#FFC794;box-shadow:0 0 12px #FFC794}
-.shield .ring3::before{background:#90F0C5;box-shadow:0 0 12px #90F0C5}
-@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.trust-viz{position:relative;height:420px;display:flex;align-items:center;justify-content:center}
+.shield{position:relative;width:200px;height:200px}
+.shield svg{width:100%;height:100%;filter:drop-shadow(0 0 40px rgba(62,142,255,0.4));position:relative;z-index:2}
+.shield .ring{position:absolute;border-radius:50%;border:1px solid rgba(62,142,255,0.22);pointer-events:none}
+.shield .ring1{width:260px;height:260px;top:-30px;left:-30px;animation:spin 28s linear infinite}
+.shield .ring2{width:320px;height:320px;top:-60px;left:-60px;animation:spin 44s linear infinite reverse;border-color:rgba(255,199,148,0.18)}
+.shield .ring3{width:380px;height:380px;top:-90px;left:-90px;animation:spin 60s linear infinite;border-color:rgba(144,240,197,0.16)}
+.shield .ring::before{content:'';position:absolute;width:6px;height:6px;border-radius:50%;background:#3E8EFF;top:-3px;left:50%;margin-left:-3px;box-shadow:0 0 8px rgba(62,142,255,0.7)}
+.shield .ring2::before{background:#FFC794;box-shadow:0 0 8px rgba(255,199,148,0.7)}
+.shield .ring3::before{background:#90F0C5;box-shadow:0 0 8px rgba(144,240,197,0.7)}
+@keyframes spin{to{transform:rotate(360deg)}}
 .trust .eyebrow{color:#90F0C5}
 .trust .eyebrow::before{background:#90F0C5}
 .trust h2{font-size:48px;margin:18px 0 14px}
