@@ -9,7 +9,7 @@ export default function SignupPage() {
         <div className="contact-form-wrap" style={{ marginTop: 64 }}>
           <span className="eyebrow">Join CaseLink</span>
           <h3 style={{ marginTop: 18 }}>Create your practice account</h3>
-          <p className="sub">Free for general dentists. 14-day trial for specialists.</p>
+          <p className="sub">Free for general dentists. One month free for specialists.</p>
           <form action="/dashboard">
             <div className="form-row">
               <div className="form-group">

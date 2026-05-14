@@ -1,4 +1,19 @@
-import { Lock, Shield, Clock } from "@/components/icons";
+import { Lock, Clock } from "@/components/icons";
+import type { SVGProps } from "react";
+
+const Eye = (props: SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" {...props}>
+    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+    <circle cx="12" cy="12" r="3" />
+  </svg>
+);
+
+const ShieldDental = (props: SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" {...props}>
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+    <path d="M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
 
 export default function Trust() {
   return (
@@ -23,28 +38,43 @@ export default function Trust() {
           </div>
         </div>
         <div className="reveal">
-          <span className="eyebrow">Built on trust</span>
-          <h2>Compliant by <span className="grad-text">design.</span></h2>
-          <p className="lead">
-            Every referral, every message, every record is encrypted and
-            audited. Compliance is not a feature we added later.
-          </p>
+          <span className="eyebrow">HIPAA compliance</span>
+          <h2>HIPAA compliance you can <span className="grad-text">trust.</span></h2>
+          <p className="lead">We don&apos;t just meet standards. We build on them.</p>
           <div className="trust-list">
             <div className="trust-item">
               <div className="trust-item-icon"><Lock width={18} height={18} stroke="#3E8EFF" /></div>
-              <div><h4>End-to-end encryption</h4><p>AES-256 at rest. TLS 1.3 in transit.</p></div>
-            </div>
-            <div className="trust-item">
-              <div className="trust-item-icon" style={{ background: "rgba(255,199,148,0.15)" }}>
-                <Shield width={18} height={18} stroke="#FFC794" />
+              <div>
+                <h4>End-to-end encryption</h4>
+                <p>Every referral, every message, every file encrypted in transit and at rest.</p>
               </div>
-              <div><h4>HIPAA, BAA, SOC 2</h4><p>Annual audits. BAA signed with every practice.</p></div>
             </div>
             <div className="trust-item">
               <div className="trust-item-icon" style={{ background: "rgba(144,240,197,0.15)" }}>
                 <Clock width={18} height={18} stroke="#90F0C5" />
               </div>
-              <div><h4>Audit trail by default</h4><p>Every action timestamped. Every record traceable.</p></div>
+              <div>
+                <h4>Audit logs for every action</h4>
+                <p>Every login, every change, every download timestamped and traceable.</p>
+              </div>
+            </div>
+            <div className="trust-item">
+              <div className="trust-item-icon" style={{ background: "rgba(255,199,148,0.15)" }}>
+                <Eye width={18} height={18} stroke="#FFC794" />
+              </div>
+              <div>
+                <h4>Role-based access with auto timeouts</h4>
+                <p>Staff see only what they need. Sessions end when they should.</p>
+              </div>
+            </div>
+            <div className="trust-item">
+              <div className="trust-item-icon" style={{ background: "rgba(62,142,255,0.15)" }}>
+                <ShieldDental width={18} height={18} stroke="#3E8EFF" />
+              </div>
+              <div>
+                <h4>Designed for dental privacy from day one</h4>
+                <p>Built around HIPAA from the first line of code. Never retrofitted.</p>
+              </div>
             </div>
           </div>
         </div>

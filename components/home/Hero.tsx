@@ -31,7 +31,7 @@ export default function Hero() {
           </div>
           <div className="hero-meta">
             <div className="hero-meta-item"><strong>HIPAA</strong>compliant by design</div>
-            <div className="hero-meta-item"><strong>5 min</strong>to send your first referral</div>
+            <div className="hero-meta-item"><strong>Under 2 min</strong>to send a referral</div>
             <div className="hero-meta-item"><strong>Free</strong>for general dentists</div>
           </div>
         </div>
@@ -42,11 +42,11 @@ export default function Hero() {
           </div>
           <div className="float-chip fc2">
             <div className="ic"><ChatBubble width={16} height={16} stroke="#FFA940" /></div>
-            <div className="txt"><strong>Dr. Lee replied</strong><span>Accepting, booking now</span></div>
+            <div className="txt"><strong>Dr. Lee replied</strong><span>Reviewing the case</span></div>
           </div>
           <div className="float-chip fc3">
-            <div className="ic"><Check width={16} height={16} stroke="#3DBD6B" /></div>
-            <div className="txt"><strong>Appointment confirmed</strong><span>Maria Santos, Tue 9:30 am</span></div>
+            <div className="ic"><File width={16} height={16} stroke="#3DBD6B" /></div>
+            <div className="txt"><strong>Case update</strong><span>Treatment notes from Dr. Lee</span></div>
           </div>
           <div className="case-card">
             <div className="cc-header">
@@ -77,7 +77,7 @@ export default function Hero() {
                 <div className="cc-att"><CreditCard />Insurance</div>
               </div>
               <div className="cc-status">
-                <span className="cc-status-pill">Active, scheduled</span>
+                <span className="cc-status-pill">In progress</span>
                 <span className="cc-time">Updated 2 min ago</span>
               </div>
             </div>

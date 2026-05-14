@@ -58,7 +58,7 @@ export default function Pricing() {
               <li>Case timelines</li>
               <li>Scheduling integration coming soon</li>
             </ul>
-            <a href={SIGNUP_URL} className="price-cta">Start 14-day trial</a>
+            <a href={SIGNUP_URL} className="price-cta">Start 1 month free</a>
           </div>
           <div className="price-card reveal" style={{ transitionDelay: ".2s" }}>
             <div className="price-plan-name">DSO and multi-location</div>

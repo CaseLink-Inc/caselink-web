@@ -70,7 +70,7 @@ export default function HowItWorks() {
         <div className="how-head reveal">
           <span className="eyebrow">How it works</span>
           <h2>One workspace for your<br /><span className="grad-text">whole referral day.</span></h2>
-          <p>Send a referral, message the specialist, see appointments, and watch your numbers. All in the same place.</p>
+          <p>Send a referral, grow your network, message the specialist, and watch your numbers. All in the same place.</p>
         </div>
 
         <div ref={frameRef} className="demo-frame reveal">
@@ -146,7 +146,7 @@ export default function HowItWorks() {
           <div className="dben reveal" style={{ transitionDelay: ".2s" }}>
             <div className="dben-ic"><ChatBubble width={18} height={18} stroke="#3DBD6B" /></div>
             <h4>Patient and network threads</h4>
-            <p>Encrypted messaging in context, never in the inbox.</p>
+            <p>Encrypted messaging organised by patient and by practice.</p>
           </div>
           <div className="dben reveal" style={{ transitionDelay: ".3s" }}>
             <div className="dben-ic"><Check width={18} height={18} stroke="#90F0C5" /></div>
@@ -264,7 +264,7 @@ function TabNetwork() {
 /* ---------------- TAB 3: MESSAGES ---------------- */
 function TabMessages() {
   const threads = [
-    { active: true, unread: true, initials: "SC", av: "a1", name: "Dr. Sarah Chen", practice: "Capital Smile", preview: "X-rays received. Scheduling Maria for Tuesday", time: "9:24a" },
+    { active: true, unread: true, initials: "SC", av: "a1", name: "Dr. Sarah Chen", practice: "Capital Smile", preview: "X-rays received. Treatment plan looks good.", time: "9:24a" },
     { initials: "MC", av: "a2", name: "Dr. M. Chen", practice: "DC Oral Surgery", preview: "Got the panoramic, thanks", time: "8:51a" },
     { initials: "PP", av: "a3", name: "Dr. P. Patel", practice: "District Perio", preview: "Following up on Mr. Reyes", time: "Yest" },
     { initials: "JW", av: "a4", name: "Dr. J. Wu", practice: "Root & Branch Endo", preview: "Treatment complete, report attached", time: "Mon" },
@@ -312,7 +312,7 @@ function TabMessages() {
               <span className="msg-bub-t">9:18 am</span>
             </div>
             <div className="msg-bub them">
-              <div>X-rays received. Scheduling Maria for Tuesday at 9:30 am.</div>
+              <div>Got it. Treatment plan looks good. I&apos;ll loop back with the next steps shortly.</div>
               <span className="msg-bub-t">9:24 am</span>
             </div>
           </div>

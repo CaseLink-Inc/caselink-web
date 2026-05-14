@@ -12,8 +12,8 @@ export default function ForWho() {
       body: "Keep your patients and your specialist relationships in one place.",
       points: [
         "See every case status at a glance",
-        "Get outcome reports back automatically",
-        "Free to use, forever",
+        "See case progress and outcome reports as they come back",
+        "Free for general dentists",
       ],
       cta: "Start as a GP",
       href: SIGNUP_URL,
@@ -26,14 +26,14 @@ export default function ForWho() {
       body: "Triage incoming cases in seconds with full clinical context attached.",
       points: [
         "Pre-filled patient details and x-rays",
-        "Reply in the case thread, not over the phone",
+        "Reply right in the case thread instead of over the phone",
         "One additional case per month covers the plan",
       ],
       cta: "Start as a specialist",
       href: SIGNUP_URL,
     },
     {
-      iconClass: "who-anim-orbit",
+      iconClass: "who-anim-sway",
       icon: <Users width={26} height={26} stroke="#3DBD6B" />,
       role: "For office managers",
       title: "Coordinate without the calls.",
@@ -61,12 +61,6 @@ export default function ForWho() {
             <div key={c.role} className="who-card reveal" style={{ transitionDelay: `${i * 0.1}s` }}>
               <div>
                 <div className={`who-icon ${c.iconClass}`}>
-                  {c.iconClass === "who-anim-orbit" && (
-                    <>
-                      <span className="orbit-dot orbit-dot-1" />
-                      <span className="orbit-dot orbit-dot-2" />
-                    </>
-                  )}
                   <span className="who-icon-inner">{c.icon}</span>
                 </div>
                 <div className="role">{c.role}</div>

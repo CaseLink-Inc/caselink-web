@@ -20,7 +20,7 @@ export default function HomePage() {
       <Pricing />
       <CtaBand
         title={<>Better referrals<br />start with one signup.</>}
-        body="Free forever for general dentists. Free 14-day trial for specialists. No setup fee, no contract, and your first referral can go out the same afternoon."
+        body="Free for general dentists. Specialists get one month free. No setup fee, no contract, and your first referral can go out the same afternoon."
         primary={{ href: SIGNUP_URL, label: "Get started free", external: true }}
         secondary={{ href: LOGIN_URL, label: "Login now", external: true }}
       />
