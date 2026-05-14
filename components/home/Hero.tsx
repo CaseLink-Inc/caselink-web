@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, Image as ImageIc, ChatBubble, Check, File, CreditCard } from "@/components/icons";
+import { SIGNUP_URL } from "@/lib/urls";
 
 export default function Hero() {
   return (
@@ -22,10 +23,10 @@ export default function Hero() {
             outcome in one workspace your team will actually use.
           </p>
           <div className="hero-cta">
-            <Link href="/contact" className="btn btn-primary">
+            <a href={SIGNUP_URL} className="btn btn-primary">
               Get started free
               <ArrowRight width={14} height={14} />
-            </Link>
+            </a>
             <Link href="/#how" className="btn btn-ghost">See how it works</Link>
           </div>
           <div className="hero-meta">

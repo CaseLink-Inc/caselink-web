@@ -29,13 +29,12 @@ export default function Footer() {
             <ul>
               <li><Link href="/about">About</Link></li>
               <li><Link href="/contact">Contact</Link></li>
-              <li><a href="mailto:support@caselink.net">support@caselink.net</a></li>
+              <li><a href="mailto:hello@caselink.net">hello@caselink.net</a></li>
             </ul>
           </div>
         </div>
         <div className="foot-bot">
           <span>© 2026 CaseLink, Inc.</span>
-          <span>Made with care for dentistry</span>
         </div>
       </div>
     </footer>

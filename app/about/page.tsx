@@ -132,6 +132,37 @@ export default function AboutPage() {
         </div>
       </section>
 
+      <section className="about-market">
+        <div className="wrap">
+          <div className="market-head reveal">
+            <span className="eyebrow">Why now</span>
+            <h2>The space is wide open.</h2>
+            <p>
+              Three numbers describe both the size of the problem inside
+              dental practices today, and the size of the opportunity for the
+              category that finally closes it.
+            </p>
+          </div>
+          <div className="market-grid">
+            <div className="market-stat reveal">
+              <div className="num">30%</div>
+              <h4>of referrals never reach treatment</h4>
+              <p>Patients drop off between the GP and the specialist, often without anyone knowing.</p>
+            </div>
+            <div className="market-stat alt reveal" style={{ transitionDelay: ".1s" }}>
+              <div className="num">&lt;2%</div>
+              <h4>of dental practices use a dedicated referral tool</h4>
+              <p>The category exists for medical referrals. In dentistry, it is still wide open.</p>
+            </div>
+            <div className="market-stat alt2 reveal" style={{ transitionDelay: ".2s" }}>
+              <div className="num">$1B</div>
+              <h4>US dental software market in 2025</h4>
+              <p>A growing market with the referral layer still under-served.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="about-where">
         <div className="wrap where-grid">
           <div className="reveal">

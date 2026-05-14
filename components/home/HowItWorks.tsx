@@ -3,112 +3,26 @@
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
-  ArrowRight, Lock, Plus, Grid, ChatBubble, CheckList, Image as ImageIc,
-  File, CreditCard, Clock, Bolt, Check,
+  ArrowRight, Lock, Plus, Grid, ChatBubble, CheckList, Clock, Bolt, Check,
 } from "@/components/icons";
 
-const STAGE_MS = 4200;
-
-type Stage1State = {
-  patient: string;
-  specialty: string;
-  refer: string;
-  priority: string;
-  typing: 0 | 1 | 2 | 3 | 4;
-  attachIn: [boolean, boolean, boolean];
-  ctaReady: boolean;
-};
-
-const emptyStage1: Stage1State = {
-  patient: "",
-  specialty: "",
-  refer: "",
-  priority: "",
-  typing: 0,
-  attachIn: [false, false, false],
-  ctaReady: false,
-};
-
-function useTypingSequence(active: boolean) {
-  const [state, setState] = useState<Stage1State>(emptyStage1);
-
-  useEffect(() => {
-    if (!active) {
-      setState(emptyStage1);
-      return;
-    }
-    let cancelled = false;
-    const timeouts: ReturnType<typeof setTimeout>[] = [];
-
-    const typeInto = (
-      field: "patient" | "specialty" | "refer" | "priority",
-      text: string,
-      speed: number,
-      typingId: 1 | 2 | 3 | 4
-    ) => new Promise<void>((resolve) => {
-      let i = 0;
-      setState((s) => ({ ...s, typing: typingId }));
-      const tick = () => {
-        if (cancelled) return resolve();
-        i++;
-        setState((s) => ({ ...s, [field]: text.slice(0, i) }));
-        if (i >= text.length) {
-          setState((s) => ({ ...s, typing: 0 }));
-          resolve();
-        } else {
-          timeouts.push(setTimeout(tick, speed));
-        }
-      };
-      timeouts.push(setTimeout(tick, speed));
-    });
-
-    (async () => {
-      await typeInto("patient", "Maria Santos", 40, 1);
-      if (cancelled) return;
-      await typeInto("specialty", "Orthodontics", 35, 2);
-      if (cancelled) return;
-      await typeInto("refer", "Dr. Lee, Capital Smile Ortho", 28, 3);
-      if (cancelled) return;
-      await typeInto("priority", "Routine", 60, 4);
-      if (cancelled) return;
-      [0, 1, 2].forEach((idx) => {
-        timeouts.push(setTimeout(() => {
-          setState((s) => {
-            const a: [boolean, boolean, boolean] = [...s.attachIn];
-            a[idx] = true;
-            return { ...s, attachIn: a };
-          });
-        }, idx * 180));
-      });
-      timeouts.push(setTimeout(() => setState((s) => ({ ...s, ctaReady: true })), 700));
-    })();
-
-    return () => {
-      cancelled = true;
-      timeouts.forEach(clearTimeout);
-    };
-  }, [active]);
-
-  return state;
-}
+const STAGE_MS = 5200;
+const TABS = ["Referrals", "Network", "Messages", "Analytics"] as const;
 
 export default function HowItWorks() {
-  const [stage, setStage] = useState(0);
+  const [tab, setTab] = useState(0);
   const [progress, setProgress] = useState(0);
   const [started, setStarted] = useState(false);
   const frameRef = useRef<HTMLDivElement>(null);
   const stageStartRef = useRef<number>(Date.now());
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  const stage1 = useTypingSequence(started && stage === 0);
-
   const advance = useCallback(() => {
-    setStage((s) => (s + 1) % 4);
+    setTab((t) => (t + 1) % 4);
     stageStartRef.current = Date.now();
     setProgress(0);
   }, []);
 
-  // Start demo when in view
   useEffect(() => {
     const el = frameRef.current;
     if (!el) return;
@@ -117,6 +31,9 @@ export default function HowItWorks() {
         if (entry.isIntersecting && !started) {
           setStarted(true);
           stageStartRef.current = Date.now();
+        } else if (!entry.isIntersecting && timerRef.current) {
+          clearInterval(timerRef.current);
+          timerRef.current = null;
         }
       });
     }, { threshold: 0.2 });
@@ -124,7 +41,6 @@ export default function HowItWorks() {
     return () => obs.disconnect();
   }, [started]);
 
-  // Auto-advance + progress
   useEffect(() => {
     if (!started) return;
     if (timerRef.current) clearInterval(timerRef.current);
@@ -143,7 +59,7 @@ export default function HowItWorks() {
   }, [started, advance]);
 
   const goTo = (i: number) => {
-    setStage(i);
+    setTab(i);
     stageStartRef.current = Date.now();
     setProgress(0);
   };
@@ -153,16 +69,16 @@ export default function HowItWorks() {
       <div className="wrap">
         <div className="how-head reveal">
           <span className="eyebrow">How it works</span>
-          <h2>Send a referral in<br />under <span className="grad-text">ninety seconds.</span></h2>
-          <p>Watch a real workflow move through CaseLink from start to finish.</p>
+          <h2>One workspace for your<br /><span className="grad-text">whole referral day.</span></h2>
+          <p>Send a referral, message the specialist, see appointments, and watch your numbers. All in the same place.</p>
         </div>
 
         <div ref={frameRef} className="demo-frame reveal">
           <div className="demo-stepper">
-            {["Send", "Track", "Talk", "Close"].map((label, i) => (
+            {TABS.map((label, i) => (
               <div
                 key={label}
-                className={`demo-step ${stage === i ? "active" : ""}`}
+                className={`demo-step ${tab === i ? "active" : ""}`}
                 onClick={() => goTo(i)}
               >
                 <span className="num">{i + 1}</span>
@@ -187,66 +103,30 @@ export default function HowItWorks() {
                   CaseLink
                 </div>
                 <div className="ds-nav">
-                  <div className={`ds-nav-item ${stage === 0 ? "on" : ""}`}><Plus />New referral</div>
-                  <div className={`ds-nav-item ${stage === 1 ? "on" : ""}`}>
-                    <Grid />Referrals<span className="badge">12</span>
+                  <div className={`ds-nav-item ${tab === 0 ? "on" : ""}`}><Plus />New referral</div>
+                  <div className={`ds-nav-item ${tab === 1 ? "on" : ""}`}>
+                    <Grid />Network<span className="badge">8</span>
                   </div>
-                  <div className={`ds-nav-item ${stage === 2 ? "on" : ""}`}>
-                    <ChatBubble />Messages<span className="badge">2</span>
+                  <div className={`ds-nav-item ${tab === 2 ? "on" : ""}`}>
+                    <ChatBubble />Messages<span className="badge">3</span>
                   </div>
-                  <div className={`ds-nav-item ${stage === 3 ? "on" : ""}`}><CheckList />Outcomes</div>
+                  <div className={`ds-nav-item ${tab === 3 ? "on" : ""}`}><CheckList />Analytics</div>
                 </div>
               </div>
 
               <div className="demo-content">
-                {/* Stage 1: SEND */}
-                <div className={`demo-stage ${stage === 0 ? "live" : ""}`}>
-                  <div className="demo-stage-title">New referral</div>
-                  <div className="demo-stage-sub">Pre-filled from your patient records</div>
-                  <div className="demo-form">
-                    <div className="dform-row">
-                      <div className="dform-field">
-                        <label>Patient</label>
-                        <div className={`dform-input ${stage1.typing === 1 ? "typing" : ""} ${stage1.patient && stage1.typing !== 1 ? "filled" : ""}`}>{stage1.patient}</div>
-                      </div>
-                      <div className="dform-field">
-                        <label>Specialty</label>
-                        <div className={`dform-input ${stage1.typing === 2 ? "typing" : ""} ${stage1.specialty && stage1.typing !== 2 ? "filled" : ""}`}>{stage1.specialty}</div>
-                      </div>
-                    </div>
-                    <div className="dform-row">
-                      <div className="dform-field">
-                        <label>Refer to</label>
-                        <div className={`dform-input ${stage1.typing === 3 ? "typing" : ""} ${stage1.refer && stage1.typing !== 3 ? "filled" : ""}`}>{stage1.refer}</div>
-                      </div>
-                      <div className="dform-field">
-                        <label>Priority</label>
-                        <div className={`dform-input ${stage1.typing === 4 ? "typing" : ""} ${stage1.priority && stage1.typing !== 4 ? "filled" : ""}`}>{stage1.priority}</div>
-                      </div>
-                    </div>
-                    <div className="dform-field">
-                      <label>Attachments</label>
-                      <div className="dform-attach">
-                        <div className={`dform-att ${stage1.attachIn[0] ? "in" : ""}`}><ImageIc />Panoramic x-ray</div>
-                        <div className={`dform-att ${stage1.attachIn[1] ? "in" : ""}`}><File />Clinical notes</div>
-                        <div className={`dform-att ${stage1.attachIn[2] ? "in" : ""}`}><CreditCard />Insurance card</div>
-                      </div>
-                    </div>
-                    <div className={`dform-cta ${stage1.ctaReady ? "ready" : ""}`}>
-                      Send referral
-                      <ArrowRight width={14} height={14} />
-                    </div>
-                  </div>
+                <div className={`demo-stage ${tab === 0 ? "live" : ""}`}>
+                  <TabReferrals />
                 </div>
-
-                {/* Stage 2: TRACK */}
-                <Stage2 active={stage === 1} />
-
-                {/* Stage 3: TALK */}
-                <Stage3 active={stage === 2} />
-
-                {/* Stage 4: CLOSE */}
-                <Stage4 active={stage === 3} />
+                <div className={`demo-stage ${tab === 1 ? "live" : ""}`}>
+                  <TabNetwork />
+                </div>
+                <div className={`demo-stage ${tab === 2 ? "live" : ""}`}>
+                  <TabMessages />
+                </div>
+                <div className={`demo-stage ${tab === 3 ? "live" : ""}`}>
+                  <TabAnalytics />
+                </div>
               </div>
             </div>
           </div>
@@ -255,23 +135,23 @@ export default function HowItWorks() {
         <div className="demo-benefits">
           <div className="dben reveal">
             <div className="dben-ic"><Clock width={18} height={18} stroke="#3E8EFF" /></div>
-            <h4>90 seconds</h4>
-            <p>Average time to send a referral</p>
+            <h4>Three-step referrals</h4>
+            <p>Practice, patient, notes. Send in under two minutes.</p>
           </div>
           <div className="dben reveal" style={{ transitionDelay: ".1s" }}>
             <div className="dben-ic"><Bolt width={18} height={18} stroke="#FFA940" /></div>
-            <h4>Real-time tracking</h4>
-            <p>Status updates the moment they change</p>
+            <h4>A network you grow</h4>
+            <p>Find specialists nearby, invite the ones you trust.</p>
           </div>
           <div className="dben reveal" style={{ transitionDelay: ".2s" }}>
             <div className="dben-ic"><ChatBubble width={18} height={18} stroke="#3DBD6B" /></div>
-            <h4>Encrypted chat</h4>
-            <p>HIPAA compliant messaging in context</p>
+            <h4>Patient and network threads</h4>
+            <p>Encrypted messaging in context, never in the inbox.</p>
           </div>
           <div className="dben reveal" style={{ transitionDelay: ".3s" }}>
             <div className="dben-ic"><Check width={18} height={18} stroke="#90F0C5" /></div>
-            <h4>Closed loop</h4>
-            <p>Outcomes flow back automatically</p>
+            <h4>Numbers that move</h4>
+            <p>Volume, response time, conversion, revenue impact.</p>
           </div>
         </div>
       </div>
@@ -279,154 +159,218 @@ export default function HowItWorks() {
   );
 }
 
-function Stage2({ active }: { active: boolean }) {
-  const [shown, setShown] = useState<boolean[]>([false, false, false, false]);
-  useEffect(() => {
-    if (!active) {
-      setShown([false, false, false, false]);
-      return;
-    }
-    const timeouts: ReturnType<typeof setTimeout>[] = [];
-    [0, 1, 2, 3].forEach((i) => {
-      timeouts.push(setTimeout(() => {
-        setShown((arr) => {
-          const next = [...arr];
-          next[i] = true;
-          return next;
-        });
-      }, i * 150));
-    });
-    return () => timeouts.forEach(clearTimeout);
-  }, [active]);
-
-  const items = [
-    { av: "a1", initials: "MS", name: "Maria Santos", meta: "→ Dr. Lee, Orthodontics", pill: "active", pillLabel: "Active", time: "2 min ago", activeBorder: true },
-    { av: "a2", initials: "JR", name: "James Reyes", meta: "→ Dr. Adams, Endodontics", pill: "sent", pillLabel: "Sent", time: "14 min ago" },
-    { av: "a3", initials: "EP", name: "Emma Park", meta: "→ Dr. Singh, Periodontics", pill: "done", pillLabel: "Complete", time: "1 hour ago" },
-    { av: "a4", initials: "DK", name: "David Kim", meta: "→ Dr. Murphy, Oral surgery", pill: "done", pillLabel: "Complete", time: "Yesterday" },
-  ];
-
+/* ---------------- TAB 1: REFERRALS ---------------- */
+function TabReferrals() {
   return (
-    <div className={`demo-stage ${active ? "live" : ""}`}>
-      <div className="demo-stage-title">Your referrals</div>
-      <div className="demo-stage-sub">Every case, every status, one place</div>
-      <div className="demo-cards">
-        {items.map((it, i) => (
-          <div key={it.name} className={`dcard ${shown[i] ? "in" : ""} ${it.activeBorder ? "active" : ""}`}>
-            <div className={`dcard-av ${it.av}`}>{it.initials}</div>
-            <div className="dcard-info">
-              <div className="nm">{it.name}</div>
-              <div className="meta">{it.meta}</div>
+    <div className="tab-pad">
+      <div className="ref-stepper">
+        <div className="ref-step done"><span className="rs-dot">1</span>Practice</div>
+        <div className="ref-step active"><span className="rs-dot">2</span>Patient</div>
+        <div className="ref-step"><span className="rs-dot">3</span>Notes</div>
+      </div>
+      <div className="ref-to">
+        <span className="ref-to-lbl">Referring to</span>
+        <span className="ref-to-name">Capital Smile Orthodontics · Dr. R. Park</span>
+        <Check width={14} height={14} stroke="#fff" strokeWidth={2.5} />
+      </div>
+      <div className="ref-form">
+        <div className="ref-row">
+          <div className="ref-field">
+            <label>First name</label>
+            <div className="ref-input filled">Maria</div>
+          </div>
+          <div className="ref-field">
+            <label>Last name</label>
+            <div className="ref-input filled">Santos</div>
+          </div>
+        </div>
+        <div className="ref-row">
+          <div className="ref-field">
+            <label>Date of birth</label>
+            <div className="ref-input filled">04 / 11 / 1989</div>
+          </div>
+          <div className="ref-field">
+            <label>Phone</label>
+            <div className="ref-input filled">(202) 555-0184</div>
+          </div>
+        </div>
+        <div className="ref-row">
+          <div className="ref-field">
+            <label>Email</label>
+            <div className="ref-input filled">m.santos@email.com</div>
+          </div>
+          <div className="ref-field">
+            <label>Insurance</label>
+            <div className="ref-input filled">Delta Dental</div>
+          </div>
+        </div>
+      </div>
+      <div className="ref-foot">
+        <button className="ref-back">Back</button>
+        <button className="ref-next">Continue<ArrowRight width={12} height={12} /></button>
+      </div>
+    </div>
+  );
+}
+
+/* ---------------- TAB 2: NETWORK ---------------- */
+function TabNetwork() {
+  const practices = [
+    { initials: "CS", av: "a1", name: "Capital Smile Orthodontics", spec: "Orthodontics", doc: "Dr. R. Park", refs: 34 },
+    { initials: "DC", av: "a2", name: "DC Oral Surgery Center", spec: "Oral Surgery", doc: "Dr. M. Chen", refs: 21 },
+    { initials: "DP", av: "a3", name: "District Perio", spec: "Periodontics", doc: "Dr. P. Patel", refs: 18 },
+    { initials: "RB", av: "a4", name: "Root & Branch Endo", spec: "Endodontics", doc: "Dr. J. Wu", refs: 15 },
+  ];
+  return (
+    <div className="tab-pad">
+      <div className="net-head">
+        <div>
+          <div className="net-title">Your network</div>
+          <div className="net-sub">8 connected practices across 4 specialties</div>
+        </div>
+      </div>
+      <div className="net-subtabs">
+        <span className="net-subtab on">Connected</span>
+        <span className="net-subtab">Discover</span>
+      </div>
+      <div className="net-grid">
+        {practices.map((p) => (
+          <div key={p.name} className="net-card">
+            <div className={`net-av ${p.av}`}>{p.initials}</div>
+            <div className="net-info">
+              <div className="net-name">{p.name}</div>
+              <div className="net-meta">{p.spec} · {p.doc}</div>
             </div>
-            <span className={`dcard-pill ${it.pill}`}>{it.pillLabel}</span>
-            <span className="dcard-time">{it.time}</span>
+            <div className="net-refs">
+              <span className="net-refs-n">{p.refs}</span>
+              <span className="net-refs-l">refs</span>
+            </div>
           </div>
         ))}
       </div>
-    </div>
-  );
-}
-
-function Stage3({ active }: { active: boolean }) {
-  const [m1, setM1] = useState(false);
-  const [m2, setM2] = useState(false);
-  const [showTyping, setShowTyping] = useState(false);
-  const [m4, setM4] = useState(false);
-
-  useEffect(() => {
-    if (!active) {
-      setM1(false); setM2(false); setShowTyping(false); setM4(false);
-      return;
-    }
-    const ts: ReturnType<typeof setTimeout>[] = [];
-    ts.push(setTimeout(() => setM1(true), 200));
-    ts.push(setTimeout(() => setM2(true), 1100));
-    ts.push(setTimeout(() => setShowTyping(true), 1900));
-    ts.push(setTimeout(() => { setShowTyping(false); setM4(true); }, 3100));
-    return () => ts.forEach(clearTimeout);
-  }, [active]);
-
-  return (
-    <div className={`demo-stage ${active ? "live" : ""}`}>
-      <div className="demo-stage-title">Case messages</div>
-      <div className="demo-stage-sub">Encrypted chat threaded to Maria Santos</div>
-      <div className="demo-chat">
-        <div className={`dchat-msg me ${m1 ? "in" : ""}`}>
-          <div className="dchat-av me">CH</div>
-          <div>
-            <div className="dchat-bubble">Records look good. Anything else you need from us?</div>
-            <div className="dchat-time" style={{ textAlign: "right" }}>9:14 am</div>
-          </div>
-        </div>
-        <div className={`dchat-msg them ${m2 ? "in" : ""}`}>
-          <div className="dchat-av them">LE</div>
-          <div>
-            <div className="dchat-bubble">Got everything. Booking her in for Tuesday morning.</div>
-            <div className="dchat-time">9:16 am</div>
-          </div>
-        </div>
-        {showTyping && (
-          <div className="dchat-msg them in">
-            <div className="dchat-av them">LE</div>
-            <div>
-              <div className="dchat-typing"><span /><span /><span /></div>
-            </div>
-          </div>
-        )}
-        <div className={`dchat-msg them ${m4 ? "in" : ""}`}>
-          <div className="dchat-av them">LE</div>
-          <div>
-            <div className="dchat-bubble">Sending appointment confirmation now. Thanks Dr. Chen.</div>
-            <div className="dchat-time">9:17 am</div>
-          </div>
-        </div>
+      <div className="net-foot">
+        12 more practices nearby on CaseLink.
+        <a className="net-discover">Discover
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <circle cx="11" cy="11" r="8" />
+            <path d="M21 21l-4.35-4.35" />
+          </svg>
+        </a>
       </div>
     </div>
   );
 }
 
-function Stage4({ active }: { active: boolean }) {
-  const [s1, setS1] = useState(false);
-  const [s2, setS2] = useState(false);
-  const [s3, setS3] = useState(false);
-  useEffect(() => {
-    if (!active) { setS1(false); setS2(false); setS3(false); return; }
-    const ts: ReturnType<typeof setTimeout>[] = [];
-    ts.push(setTimeout(() => setS1(true), 200));
-    ts.push(setTimeout(() => setS2(true), 700));
-    ts.push(setTimeout(() => setS3(true), 1300));
-    return () => ts.forEach(clearTimeout);
-  }, [active]);
+/* ---------------- TAB 3: MESSAGES ---------------- */
+function TabMessages() {
+  const threads = [
+    { active: true, unread: true, initials: "SC", av: "a1", name: "Dr. Sarah Chen", practice: "Capital Smile", preview: "X-rays received. Scheduling Maria for Tuesday", time: "9:24a" },
+    { initials: "MC", av: "a2", name: "Dr. M. Chen", practice: "DC Oral Surgery", preview: "Got the panoramic, thanks", time: "8:51a" },
+    { initials: "PP", av: "a3", name: "Dr. P. Patel", practice: "District Perio", preview: "Following up on Mr. Reyes", time: "Yest" },
+    { initials: "JW", av: "a4", name: "Dr. J. Wu", practice: "Root & Branch Endo", preview: "Treatment complete, report attached", time: "Mon" },
+  ];
+  return (
+    <div className="tab-pad msg-pad">
+      <div className="msg-grid">
+        <aside className="msg-list">
+          <div className="msg-filters">
+            <span className="msg-filter on">All active</span>
+            <span className="msg-filter">Unread</span>
+            <span className="msg-filter">Patient</span>
+            <span className="msg-filter">Network</span>
+          </div>
+          {threads.map((t, i) => (
+            <div key={i} className={`msg-thread ${t.active ? "on" : ""}`}>
+              <div className={`msg-av ${t.av}`}>{t.initials}</div>
+              <div className="msg-thread-info">
+                <div className="msg-thread-top">
+                  <span className="msg-thread-name">{t.name}</span>
+                  <span className="msg-thread-time">{t.time}</span>
+                </div>
+                <div className="msg-thread-practice">{t.practice}</div>
+                <div className="msg-thread-preview">{t.preview}</div>
+              </div>
+              {t.unread && <span className="msg-unread" aria-label="unread" />}
+            </div>
+          ))}
+        </aside>
+        <main className="msg-pane">
+          <div className="msg-pane-head">
+            <div className="msg-pane-av a1">SC</div>
+            <div>
+              <div className="msg-pane-name">Dr. Sarah Chen</div>
+              <div className="msg-pane-meta">Maria Santos · Orthodontics</div>
+            </div>
+          </div>
+          <div className="msg-bubbles">
+            <div className="msg-bub them">
+              <div>Hi, just received the x-rays. Looks like a good candidate for Invisalign.</div>
+              <span className="msg-bub-t">9:14 am</span>
+            </div>
+            <div className="msg-bub me">
+              <div>Great. She mentioned crowding on the lower arch, anything we should add?</div>
+              <span className="msg-bub-t">9:18 am</span>
+            </div>
+            <div className="msg-bub them">
+              <div>X-rays received. Scheduling Maria for Tuesday at 9:30 am.</div>
+              <span className="msg-bub-t">9:24 am</span>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  );
+}
+
+/* ---------------- TAB 4: ANALYTICS ---------------- */
+function TabAnalytics() {
+  const stats = [
+    { big: "428", lbl: "Total referrals", delta: "+18%", positive: true },
+    { big: "85%", lbl: "Conversion rate", delta: "+4 pts", positive: true },
+    { big: "2.4h", lbl: "Avg response", delta: "-32 min", positive: true },
+    { big: "$186k", lbl: "Revenue impact", delta: "+22%", positive: true },
+  ];
+  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const data = [
+    { r: 28, c: 22 }, { r: 32, c: 28 }, { r: 30, c: 26 }, { r: 38, c: 32 },
+    { r: 42, c: 36 }, { r: 40, c: 35 }, { r: 45, c: 40 }, { r: 48, c: 42 },
+    { r: 50, c: 44 }, { r: 54, c: 48 }, { r: 58, c: 52 }, { r: 62, c: 56 },
+  ];
+  const maxBar = 70;
 
   return (
-    <div className={`demo-stage ${active ? "live" : ""}`}>
-      <div className="demo-stage-title">Outcome received</div>
-      <div className="demo-stage-sub">Post-op report from Dr. Lee, automatically</div>
-      <div className="demo-outcome">
-        <div className={`doc-success ${s1 ? "in" : ""}`}>
-          <div className="doc-check">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="3">
-              <polyline points="20 6 9 17 4 12" />
-            </svg>
+    <div className="tab-pad">
+      <div className="ana-head">
+        <div className="ana-title">Performance</div>
+        <div className="ana-sub">Trends across referrals, response time, and revenue · Last 12 months</div>
+      </div>
+      <div className="ana-stats">
+        {stats.map((s, i) => (
+          <div key={i} className="ana-stat">
+            <div className="ana-stat-big">{s.big}</div>
+            <div className="ana-stat-lbl">{s.lbl}</div>
+            <div className={`ana-stat-delta ${s.positive ? "up" : ""}`}>{s.delta}</div>
           </div>
-          <div>
-            <h4>Treatment complete</h4>
-            <p>Maria Santos returned to you for follow-up</p>
+        ))}
+      </div>
+      <div className="ana-chart-wrap">
+        <div className="ana-chart-head">
+          <div className="ana-chart-title">Referrals over time</div>
+          <div className="ana-legend">
+            <span><span className="leg-sw" style={{ background: "#3E8EFF" }} />Received</span>
+            <span><span className="leg-sw" style={{ background: "#90F0C5" }} />Completed</span>
           </div>
         </div>
-        <div className={`doc-report ${s2 ? "in" : ""}`}>
-          <div className="doc-report-head">
-            <h5>Post-op report · Dr. Lee</h5>
-            <span className="badge">Signed</span>
-          </div>
-          <div className="doc-line w90" />
-          <div className="doc-line w70" />
-          <div className="doc-line w55" />
-        </div>
-        <div className={`doc-stats ${s3 ? "in" : ""}`}>
-          <div className="doc-stat"><div className="big">0</div><div className="lbl">Phone calls</div></div>
-          <div className="doc-stat"><div className="big">0</div><div className="lbl">Faxes</div></div>
-          <div className="doc-stat"><div className="big">100%</div><div className="lbl">Tracked</div></div>
+        <div className="ana-chart">
+          {data.map((d, i) => (
+            <div key={i} className="ana-bar-group">
+              <div className="ana-bars">
+                <div className="ana-bar received" style={{ height: `${(d.r / maxBar) * 100}%` }} />
+                <div className="ana-bar completed" style={{ height: `${(d.c / maxBar) * 100}%` }} />
+              </div>
+              <div className="ana-bar-lbl">{months[i]}</div>
+            </div>
+          ))}
         </div>
       </div>
     </div>

@@ -1,9 +1,11 @@
-import Link from "next/link";
-import { Briefcase, Smile, Heart, ArrowRight } from "@/components/icons";
+import { Briefcase, Smile, ArrowRight } from "@/components/icons";
+import { Users } from "@/components/icons";
+import { SIGNUP_URL } from "@/lib/urls";
 
 export default function ForWho() {
   const cards = [
     {
+      iconClass: "who-anim-float",
       icon: <Briefcase width={26} height={26} stroke="#3E8EFF" />,
       role: "For general dentists",
       title: "Refer with confidence.",
@@ -14,8 +16,10 @@ export default function ForWho() {
         "Free to use, forever",
       ],
       cta: "Start as a GP",
+      href: SIGNUP_URL,
     },
     {
+      iconClass: "who-anim-pulse",
       icon: <Smile width={26} height={26} stroke="#FFA940" />,
       role: "For specialists",
       title: "Receive without chaos.",
@@ -26,18 +30,21 @@ export default function ForWho() {
         "One additional case per month covers the plan",
       ],
       cta: "Start as a specialist",
+      href: SIGNUP_URL,
     },
     {
-      icon: <Heart width={26} height={26} stroke="#3DBD6B" />,
-      role: "For patients",
-      title: "Continuity by design.",
-      body: "Arrive at the specialist already known, with records already shared.",
+      iconClass: "who-anim-orbit",
+      icon: <Users width={26} height={26} stroke="#3DBD6B" />,
+      role: "For office managers",
+      title: "Coordinate without the calls.",
+      body: "Run the daily flow of referrals across the whole practice without chasing anyone.",
       points: [
-        "No repeating symptoms across visits",
-        "No re-shooting x-rays",
-        "Care that feels coordinated",
+        "Every case visible to your front desk team",
+        "One thread per patient, all history attached",
+        "Multiple staff seats included on every plan",
       ],
-      cta: "Learn more",
+      cta: "Start with your team",
+      href: SIGNUP_URL,
     },
   ];
 
@@ -53,7 +60,15 @@ export default function ForWho() {
           {cards.map((c, i) => (
             <div key={c.role} className="who-card reveal" style={{ transitionDelay: `${i * 0.1}s` }}>
               <div>
-                <div className="who-icon">{c.icon}</div>
+                <div className={`who-icon ${c.iconClass}`}>
+                  {c.iconClass === "who-anim-orbit" && (
+                    <>
+                      <span className="orbit-dot orbit-dot-1" />
+                      <span className="orbit-dot orbit-dot-2" />
+                    </>
+                  )}
+                  <span className="who-icon-inner">{c.icon}</span>
+                </div>
                 <div className="role">{c.role}</div>
                 <h3>{c.title}</h3>
                 <p className="body">{c.body}</p>
@@ -61,10 +76,10 @@ export default function ForWho() {
                   {c.points.map((p) => <li key={p}>{p}</li>)}
                 </ul>
               </div>
-              <Link href="/contact" className="arr">
+              <a href={c.href} className="arr">
                 {c.cta}
                 <ArrowRight width={16} height={16} />
-              </Link>
+              </a>
             </div>
           ))}
         </div>

@@ -92,11 +92,12 @@ export default function ContactForm() {
             </div>
             <div className="form-group">
               <label>What can we help with</label>
-              <select className="form-select" name="topic" defaultValue="Book a 15 minute demo">
-                <option>Book a 15 minute demo</option>
+              <select className="form-select" name="topic" defaultValue="Book a 15 minute walkthrough">
+                <option>Book a 15 minute walkthrough</option>
                 <option>Get pricing details</option>
                 <option>Pilot program inquiry</option>
                 <option>Integration questions</option>
+                <option>Investor inquiry</option>
                 <option>Press or partnership</option>
                 <option>Something else</option>
               </select>

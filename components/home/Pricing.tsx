@@ -2,17 +2,21 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { SIGNUP_URL } from "@/lib/urls";
 
 export default function Pricing() {
   const [annual, setAnnual] = useState(false);
-  const specPrice = annual ? "$239" : "$299";
+  const specPrice = annual ? "$269" : "$299";
+  const specBill = annual
+    ? "Yearly billing, save $358"
+    : "Monthly billing, cancel anytime";
 
   return (
     <section id="pricing" className="pricing-sec">
       <div className="wrap">
         <div className="pricing-head reveal">
           <span className="eyebrow">Pricing</span>
-          <h2>Simple plans for<br />every kind of practice.</h2>
+          <h2>Flexible plans for<br />every kind of practice.</h2>
           <p>
             General dentists send referrals for free. Specialists pay a flat
             monthly fee that is typically covered by a single new case per
@@ -21,7 +25,7 @@ export default function Pricing() {
           <div className="bill-toggle">
             <button className={!annual ? "on" : ""} onClick={() => setAnnual(false)}>Monthly</button>
             <button className={annual ? "on" : ""} onClick={() => setAnnual(true)}>
-              Annual<span className="save">Save 20%</span>
+              Yearly<span className="save">10% off, save $358</span>
             </button>
           </div>
         </div>
@@ -33,13 +37,12 @@ export default function Pricing() {
             <div className="price-amt"><span className="num">$0</span><span className="per">per month</span></div>
             <div className="price-bill">No card required</div>
             <ul className="price-features">
-              <li>Unlimited outbound referrals</li>
-              <li>Real-time case tracking</li>
-              <li>Secure messaging with specialists</li>
-              <li>Up to 3 staff users</li>
-              <li>Standard email support</li>
+              <li>Unlimited referrals</li>
+              <li>Secure file sharing</li>
+              <li>Real-time updates</li>
+              <li>HIPAA compliance</li>
             </ul>
-            <Link href="/contact" className="price-cta">Get started</Link>
+            <a href={SIGNUP_URL} className="price-cta">Get started</a>
           </div>
           <div className="price-card featured reveal" style={{ transitionDelay: ".1s" }}>
             <span className="price-tag-badge">Most popular</span>
@@ -47,32 +50,27 @@ export default function Pricing() {
             <h3>For receiving practices</h3>
             <p className="desc">Triage, accept, and close referrals from any GP on the network.</p>
             <div className="price-amt"><span className="num">{specPrice}</span><span className="per">per month</span></div>
-            <div className="price-bill">
-              {annual ? "$2,870 per year, two months free" : "Monthly billing, cancel anytime"}
-            </div>
+            <div className="price-bill">{specBill}</div>
             <ul className="price-features">
-              <li>Unlimited inbound referrals</li>
-              <li>Smart routing and triage</li>
-              <li>Advanced analytics and reporting</li>
-              <li>Unlimited staff users</li>
-              <li>Custom practice branding</li>
-              <li>Priority support</li>
+              <li>Everything in the General Dentist plan</li>
+              <li>Referral inbox</li>
+              <li>Analytics dashboard</li>
+              <li>Case timelines</li>
+              <li>Scheduling integration coming soon</li>
             </ul>
-            <Link href="/contact" className="price-cta">Start 14-day trial</Link>
+            <a href={SIGNUP_URL} className="price-cta">Start 14-day trial</a>
           </div>
           <div className="price-card reveal" style={{ transitionDelay: ".2s" }}>
-            <div className="price-plan-name">Enterprise</div>
+            <div className="price-plan-name">DSO and multi-location</div>
             <h3>For groups and DSOs</h3>
             <p className="desc">Multi-location support with the controls a larger organization needs.</p>
             <div className="price-amt"><span className="num">Custom</span></div>
             <div className="price-bill">Annual contract</div>
             <ul className="price-features">
-              <li>Multi-location and DSO support</li>
-              <li>Single sign-on and SAML</li>
-              <li>Dentrix and Open Dental integration</li>
-              <li>Dedicated account manager</li>
-              <li>Service level agreement</li>
-              <li>Volume pricing</li>
+              <li>Team permissions</li>
+              <li>Multi-location analytics</li>
+              <li>API access</li>
+              <li>Dedicated success manager</li>
             </ul>
             <Link href="/contact" className="price-cta">Talk to sales</Link>
           </div>
