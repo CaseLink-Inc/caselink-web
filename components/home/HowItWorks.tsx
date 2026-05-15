@@ -94,7 +94,7 @@ export default function HowItWorks() {
               <div className="dots"><span /><span /><span /></div>
               <div className="demo-url">
                 <Lock stroke="#3DBD6B" strokeWidth={2.5} />
-                app.caselink.net
+                app.CaseLink.net
               </div>
             </div>
             <div className="demo-screen">
