@@ -3,13 +3,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Facebook, XLogo, Instagram, LinkedIn } from "@/components/icons";
+import { Facebook, Instagram, LinkedIn } from "@/components/icons";
 
 const socials = [
-  { href: "https://facebook.com", label: "Facebook", Icon: Facebook },
-  { href: "https://x.com", label: "X", Icon: XLogo },
-  { href: "https://instagram.com", label: "Instagram", Icon: Instagram },
-  { href: "https://linkedin.com", label: "LinkedIn", Icon: LinkedIn },
+  { href: "https://www.facebook.com/caselink.net", label: "Facebook", Icon: Facebook },
+  { href: "https://www.instagram.com/caselinkinc/", label: "Instagram", Icon: Instagram },
+  { href: "https://www.linkedin.com/company/caselinknet/", label: "LinkedIn", Icon: LinkedIn },
 ];
 
 export default function Footer() {
