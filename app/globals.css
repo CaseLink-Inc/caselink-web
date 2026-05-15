@@ -818,8 +818,29 @@ section{position:relative;padding:80px 0}
 .portrait-tag .pt-txt strong{display:block;font-weight:700;font-size:13px}
 .portrait-tag .pt-txt span{font-size:11px;color:#7A8886}
 
-.portrait-orbits{position:absolute;top:50%;left:50%;width:1800px;height:700px;margin:-350px 0 0 -900px;pointer-events:none;z-index:1;overflow:visible}
-.portrait-orbits circle{filter:drop-shadow(0 0 6px currentColor)}
+.portrait-orbit{
+  position:absolute;inset:-40px;border-radius:50%;
+  border:1px dashed rgba(62,142,255,0.3);
+  animation:spin 40s linear infinite;
+  pointer-events:none;z-index:1;
+}
+.portrait-orbit::before{
+  content:'';position:absolute;top:-6px;left:50%;
+  width:12px;height:12px;border-radius:50%;
+  background:#3E8EFF;box-shadow:0 0 12px rgba(62,142,255,0.6);
+  transform:translateX(-50%);
+}
+.portrait-orbit2{
+  position:absolute;inset:-70px;border-radius:50%;
+  border:1px dashed rgba(255,169,64,0.25);
+  animation:spin 60s linear infinite reverse;
+  pointer-events:none;z-index:1;
+}
+.portrait-orbit2::before{
+  content:'';position:absolute;bottom:-6px;left:35%;
+  width:10px;height:10px;border-radius:50%;
+  background:#FFA940;box-shadow:0 0 12px rgba(255,169,64,0.6);
+}
 
 .about-story{padding:80px 0;background:#FBFBF9;position:relative;overflow:hidden}
 .about-story-inner{max-width:900px;margin:0 auto;text-align:center}
@@ -1203,7 +1224,8 @@ body.mob-open{overflow:hidden}
   .legend{top:50px;right:12px;padding:8px 10px;font-size:10px}
 
   .portrait-frame img{width:380px;max-width:100%;height:auto}
-  .portrait-orbits{width:1100px;height:460px;margin:-230px 0 0 -550px}
+  .portrait-orbit{inset:-32px}
+  .portrait-orbit2{inset:-56px}
 
   .shield .ring3{display:none}
   .trust-viz{height:320px}
@@ -1308,7 +1330,7 @@ body.mob-open{overflow:hidden}
   .price-cta{padding:13px}
 
   .portrait-frame img{width:300px;max-width:100%;height:auto}
-  .portrait-orbits{display:none}
+  .portrait-orbit,.portrait-orbit2{display:none}
   .portrait-tag{padding:8px 12px}
   .story-body{gap:24px}
   .story-quote{font-size:18px;padding:0 16px}

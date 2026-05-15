@@ -33,54 +33,8 @@ export default function AboutPage() {
             </div>
           </div>
           <div className="portrait-wrap">
-            <svg
-              className="portrait-orbits"
-              viewBox="0 0 1800 700"
-              preserveAspectRatio="xMidYMid meet"
-              aria-hidden="true"
-            >
-              <defs>
-                {/* Big wide ellipses centered at (900, 350), unrotated.
-                    Each enclosing <g> handles the tilt so animateMotion's
-                    coordinates line up with the rendered curve. */}
-                <path
-                  id="orb-a"
-                  d="M 80 350 a 820 210 0 1 0 1640 0 a 820 210 0 1 0 -1640 0"
-                />
-                <path
-                  id="orb-b"
-                  d="M 140 350 a 760 175 0 1 0 1520 0 a 760 175 0 1 0 -1520 0"
-                />
-              </defs>
-              <g transform="rotate(-18 900 350)">
-                <use
-                  href="#orb-a"
-                  fill="none"
-                  stroke="rgba(62,142,255,0.32)"
-                  strokeWidth="1.4"
-                  strokeDasharray="6 8"
-                />
-                <circle r="7" fill="#3E8EFF">
-                  <animateMotion dur="20s" repeatCount="indefinite">
-                    <mpath href="#orb-a" />
-                  </animateMotion>
-                </circle>
-              </g>
-              <g transform="rotate(24 900 350)">
-                <use
-                  href="#orb-b"
-                  fill="none"
-                  stroke="rgba(255,169,64,0.30)"
-                  strokeWidth="1.4"
-                  strokeDasharray="6 8"
-                />
-                <circle r="6" fill="#FFA940">
-                  <animateMotion dur="24s" repeatCount="indefinite">
-                    <mpath href="#orb-b" />
-                  </animateMotion>
-                </circle>
-              </g>
-            </svg>
+            <div className="portrait-orbit2" aria-hidden="true" />
+            <div className="portrait-orbit" aria-hidden="true" />
             <div className="portrait-frame">
               <Image
                 src="/portrait.png"
