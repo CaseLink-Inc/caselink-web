@@ -38,8 +38,8 @@ export default function AboutPage() {
               <Image
                 src="/portrait.png"
                 alt="Nick Campbell, Co-Founder and CEO of CaseLink"
-                width={440}
-                height={440}
+                width={555}
+                height={800}
                 priority
               />
               <div className="portrait-tag">

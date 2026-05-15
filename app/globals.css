@@ -808,20 +808,19 @@ section{position:relative;padding:80px 0}
 .about-hero h1{font-size:72px;margin:24px 0 28px;letter-spacing:-0.03em;line-height:1.04}
 .about-hero p.lead{font-size:18px;color:#4A5250;line-height:1.55;max-width:520px;margin-bottom:36px}
 
-.portrait-wrap{position:relative;display:flex;align-items:center;justify-content:center;animation:fadeUp 1s .3s both}
-.portrait-frame{position:relative;width:440px;height:440px;border-radius:32px;overflow:hidden;box-shadow:0 40px 80px rgba(26,31,30,0.15),0 12px 30px rgba(26,31,30,0.06);animation:portraitBob 8s ease-in-out infinite}
+.portrait-wrap{position:relative;display:flex;align-items:center;justify-content:center;min-height:560px;animation:fadeUp 1s .3s both}
+.portrait-frame{position:relative;display:inline-flex;z-index:2;animation:portraitBob 8s ease-in-out infinite;filter:drop-shadow(0 36px 70px rgba(26,31,30,0.18))}
 @keyframes portraitBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-.portrait-frame img{width:100%;height:100%;object-fit:cover;display:block}
-.portrait-frame::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,31,30,0.18) 100%);pointer-events:none}
-.portrait-tag{position:absolute;bottom:24px;left:24px;padding:10px 14px;background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);border-radius:14px;display:flex;align-items:center;gap:10px;box-shadow:0 8px 24px rgba(26,31,30,0.08);z-index:3}
+.portrait-frame img{display:block;width:auto;height:auto;max-width:380px;max-height:520px}
+.portrait-tag{position:absolute;bottom:0;left:50%;transform:translateX(-50%);padding:10px 16px;background:rgba(255,255,255,0.96);backdrop-filter:blur(10px);border-radius:14px;display:flex;align-items:center;gap:10px;box-shadow:0 12px 28px rgba(26,31,30,0.12);z-index:3;white-space:nowrap}
 .portrait-tag .pt-dot{width:8px;height:8px;border-radius:50%;background:#3DBD6B;box-shadow:0 0 0 0 rgba(61,189,107,0.5);animation:pulseDot 2s ease-out infinite}
 .portrait-tag .pt-txt{font-size:12px;color:#1A1F1E}
 .portrait-tag .pt-txt strong{display:block;font-weight:700;font-size:13px}
 .portrait-tag .pt-txt span{font-size:11px;color:#7A8886}
 
-.portrait-orbit{position:absolute;inset:-40px;border-radius:50%;border:1px dashed rgba(62,142,255,0.3);animation:spin 40s linear infinite;pointer-events:none}
-.portrait-orbit::before{content:'';position:absolute;top:-6px;left:50%;width:12px;height:12px;border-radius:50%;background:#3E8EFF;box-shadow:0 0 12px rgba(62,142,255,0.6);transform:translateX(-50%)}
-.portrait-orbit2{position:absolute;inset:-70px;border-radius:50%;border:1px dashed rgba(255,169,64,0.25);animation:spin 60s linear infinite reverse;pointer-events:none}
+.portrait-orbit{position:absolute;top:50%;left:50%;width:500px;height:500px;margin:-250px 0 0 -250px;border-radius:50%;border:1px dashed rgba(62,142,255,0.3);animation:spin 40s linear infinite;pointer-events:none;z-index:1}
+.portrait-orbit::before{content:'';position:absolute;top:-6px;left:50%;width:12px;height:12px;border-radius:50%;background:#3E8EFF;box-shadow:0 0 12px rgba(62,142,255,0.6);margin-left:-6px}
+.portrait-orbit2{position:absolute;top:50%;left:50%;width:600px;height:600px;margin:-300px 0 0 -300px;border-radius:50%;border:1px dashed rgba(255,169,64,0.25);animation:spin 60s linear infinite reverse;pointer-events:none;z-index:1}
 .portrait-orbit2::before{content:'';position:absolute;bottom:-6px;left:35%;width:10px;height:10px;border-radius:50%;background:#FFA940;box-shadow:0 0 12px rgba(255,169,64,0.6)}
 
 .about-story{padding:80px 0;background:#FBFBF9;position:relative;overflow:hidden}
@@ -1187,9 +1186,10 @@ body.mob-open{overflow:hidden}
   .map-viz{height:440px}
   .legend{top:50px;right:12px;padding:8px 10px;font-size:10px}
 
-  .portrait-frame{width:360px;height:360px}
-  .portrait-orbit{inset:-32px}
-  .portrait-orbit2{inset:-56px}
+  .portrait-wrap{min-height:480px}
+  .portrait-frame img{max-width:320px;max-height:440px}
+  .portrait-orbit{width:420px;height:420px;margin:-210px 0 0 -210px}
+  .portrait-orbit2{width:520px;height:520px;margin:-260px 0 0 -260px}
 
   .shield .ring3{display:none}
   .trust-viz{height:320px}
@@ -1293,9 +1293,10 @@ body.mob-open{overflow:hidden}
   .price-features li{font-size:13px;padding-left:22px}
   .price-cta{padding:13px}
 
-  .portrait-frame{width:280px;height:280px;border-radius:24px}
+  .portrait-wrap{min-height:400px}
+  .portrait-frame img{max-width:260px;max-height:360px}
   .portrait-orbit,.portrait-orbit2{display:none}
-  .portrait-tag{bottom:16px;left:16px;padding:8px 12px}
+  .portrait-tag{padding:8px 12px}
   .story-body{gap:24px}
   .story-quote{font-size:18px;padding:0 16px}
   .story-quote::before,.story-quote::after{font-size:44px}
