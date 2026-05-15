@@ -9,39 +9,53 @@ const roles = [
   { value: "dso", label: "DSO or group", small: "Multi-location" },
 ];
 
-// FormSubmit.co forwards submissions to support@caselink.net.
-// The first submission triggers an email confirmation that the address owner
-// must click; after that, every subsequent submission lands in their inbox.
-const FORM_ENDPOINT = "https://formsubmit.co/support@caselink.net";
+// FormSubmit.co AJAX endpoint. The first submission triggers an activation
+// email to support@caselink.net; once the owner clicks the link inside that
+// email (check the Spam/Junk folder if it doesn't arrive within a minute),
+// every subsequent submission is forwarded to their inbox.
+const FORM_ENDPOINT = "https://formsubmit.co/ajax/support@caselink.net";
 
 export default function ContactForm() {
   const [role, setRole] = useState("gp");
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [errored, setErrored] = useState(false);
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (submitting) return;
     setSubmitting(true);
+    setErrored(false);
 
-    const formData = new FormData(e.currentTarget);
-    // Disable FormSubmit's own captcha + thank-you redirect so we can show
-    // our own confirmation card inline.
-    formData.append("_captcha", "false");
-    formData.append("_subject", "New CaseLink contact form submission");
-    formData.append("_template", "table");
+    // Build a plain object from the form, plus the FormSubmit control fields.
+    const fd = new FormData(e.currentTarget);
+    const payload: Record<string, string> = {};
+    fd.forEach((v, k) => {
+      payload[k] = typeof v === "string" ? v : v.name;
+    });
+    payload._subject = "New CaseLink contact form submission";
+    payload._template = "table";
+    payload._captcha = "false";
 
     try {
-      await fetch(FORM_ENDPOINT, {
+      const res = await fetch(FORM_ENDPOINT, {
         method: "POST",
-        body: formData,
-        headers: { Accept: "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(payload),
       });
-    } catch {
-      // Even if the network call fails the user still sees the success card;
-      // their submission will retry via the browser's offline queue if any.
-    } finally {
+      const data = await res.json().catch(() => null);
+      // FormSubmit returns { success: "true" | "false", message: "..." }.
+      // A "false" success usually means the endpoint needs to be activated.
+      const ok = res.ok && (!data || data.success === "true" || data.success === true);
       setSubmitted(true);
+      if (!ok) setErrored(true);
+    } catch {
+      setSubmitted(true);
+      setErrored(true);
+    } finally {
       setSubmitting(false);
       setTimeout(() => {
         window.scrollTo({ top: Math.max(0, window.scrollY - 80), behavior: "smooth" });
