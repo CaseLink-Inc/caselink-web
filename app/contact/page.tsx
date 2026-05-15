@@ -30,7 +30,7 @@ export default function ContactPage() {
                 <div><h4>Email</h4><div className="info-sub">For everything</div></div>
               </div>
               <p>The fastest way to reach a real person on our team.</p>
-              <a href="mailto:hello@caselink.net">hello@caselink.net</a>
+              <a href="mailto:support@caselink.net">support@caselink.net</a>
             </div>
             <div className="info-card">
               <div className="info-card-head">
