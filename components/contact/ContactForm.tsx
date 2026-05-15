@@ -9,11 +9,12 @@ const roles = [
   { value: "dso", label: "DSO or group", small: "Multi-location" },
 ];
 
-// FormSubmit.co AJAX endpoint. The first submission triggers an activation
-// email to support@caselink.net; once the owner clicks the link inside that
-// email (check the Spam/Junk folder if it doesn't arrive within a minute),
-// every subsequent submission is forwarded to their inbox.
-const FORM_ENDPOINT = "https://formsubmit.co/ajax/support@caselink.net";
+// Web3Forms public API. Submissions are POSTed with a domain-locked access
+// key; Web3Forms forwards them to the email tied to that key (support@
+// caselink.net once the user generates a key for that address). No
+// activation step is required.
+const WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
+const WEB3FORMS_ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ?? "";
 
 export default function ContactForm() {
   const [role, setRole] = useState("gp");
@@ -27,18 +28,33 @@ export default function ContactForm() {
     setSubmitting(true);
     setErrored(false);
 
-    // Build a plain object from the form, plus the FormSubmit control fields.
+    // Build a plain object from the form, plus the Web3Forms control fields.
     const fd = new FormData(e.currentTarget);
     const payload: Record<string, string> = {};
     fd.forEach((v, k) => {
       payload[k] = typeof v === "string" ? v : v.name;
     });
-    payload._subject = "New CaseLink contact form submission";
-    payload._template = "table";
-    payload._captcha = "false";
+    payload.access_key = WEB3FORMS_ACCESS_KEY;
+    payload.subject = "New CaseLink contact form submission";
+    payload.from_name = "CaseLink contact form";
+
+    // If the access key hasn't been configured yet, fall straight to the
+    // mailto fallback so the user still has a way to reach us.
+    if (!WEB3FORMS_ACCESS_KEY) {
+      const body = Object.entries(payload)
+        .filter(([k]) => !["access_key", "subject", "from_name"].includes(k))
+        .map(([k, v]) => `${k}: ${v}`)
+        .join("\n");
+      window.location.href = `mailto:support@caselink.net?subject=${encodeURIComponent(
+        "New CaseLink contact form submission"
+      )}&body=${encodeURIComponent(body)}`;
+      setSubmitted(true);
+      setSubmitting(false);
+      return;
+    }
 
     try {
-      const res = await fetch(FORM_ENDPOINT, {
+      const res = await fetch(WEB3FORMS_ENDPOINT, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -47,9 +63,7 @@ export default function ContactForm() {
         body: JSON.stringify(payload),
       });
       const data = await res.json().catch(() => null);
-      // FormSubmit returns { success: "true" | "false", message: "..." }.
-      // A "false" success usually means the endpoint needs to be activated.
-      const ok = res.ok && (!data || data.success === "true" || data.success === true);
+      const ok = res.ok && data && (data.success === true || data.success === "true");
       setSubmitted(true);
       if (!ok) setErrored(true);
     } catch {
