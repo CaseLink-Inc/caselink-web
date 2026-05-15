@@ -1376,6 +1376,19 @@ body.mob-open{overflow:hidden}
   .foot-bot{text-align:center}
 
   .mob-drawer{padding:80px 20px 28px}
+
+  /* Product Tour - Messages tab: stack the thread list above the chat
+     pane so neither gets squeezed at narrow widths. */
+  .msg-grid{grid-template-columns:1fr;grid-template-rows:auto;gap:10px;overflow:hidden}
+  .msg-list{border-right:none;padding-right:0;border-bottom:1px solid #F4F7FB;padding-bottom:8px}
+  .msg-list .msg-thread:nth-child(n+5){display:none}
+  .msg-pane{display:none}
+
+  /* Calendly floating badge is designed for desktop and was covering
+     the bottom of every section. Hide on mobile; the Book a call
+     button on /about and the Pick a time link on /contact already
+     point users to the same Calendly popup. */
+  .calendly-badge-widget{display:none !important}
 }
 
 @media (max-width:420px){
