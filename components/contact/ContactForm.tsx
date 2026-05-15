@@ -40,7 +40,13 @@ export default function ContactForm() {
     });
     payload.access_key = WEB3FORMS_ACCESS_KEY;
     payload.subject = "New CaseLink contact form submission";
-    payload.from_name = "CaseLink contact form";
+    payload.from_name = "CaseLink";
+    // When you hit Reply in Gmail, it should go to the person who submitted
+    // the form rather than to Web3Forms. We pull their email straight from
+    // the form payload.
+    if (payload.email) {
+      payload.replyto = payload.email;
+    }
 
     // If the access key hasn't been configured yet, fall straight to the
     // mailto fallback so the user still has a way to reach us.
