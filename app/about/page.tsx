@@ -35,43 +35,47 @@ export default function AboutPage() {
           <div className="portrait-wrap">
             <svg
               className="portrait-orbits"
-              viewBox="0 0 700 700"
+              viewBox="0 0 1180 580"
+              preserveAspectRatio="xMidYMid meet"
               aria-hidden="true"
             >
               <defs>
+                {/* Wide ellipses centered at (590, 290), unrotated. The
+                    enclosing <g> handles the tilt so animateMotion's path
+                    coordinates match the rendered curve. */}
                 <path
                   id="orb-a"
-                  d="M 30 350 a 320 110 0 1 0 640 0 a 320 110 0 1 0 -640 0"
+                  d="M 50 290 a 540 170 0 1 0 1080 0 a 540 170 0 1 0 -1080 0"
                 />
                 <path
                   id="orb-b"
-                  d="M 80 350 a 270 90 0 1 0 540 0 a 270 90 0 1 0 -540 0"
+                  d="M 90 290 a 500 145 0 1 0 1000 0 a 500 145 0 1 0 -1000 0"
                 />
               </defs>
-              <g transform="rotate(-22 350 350)">
+              <g transform="rotate(-16 590 290)">
                 <use
                   href="#orb-a"
                   fill="none"
-                  stroke="rgba(62,142,255,0.35)"
+                  stroke="rgba(62,142,255,0.32)"
                   strokeWidth="1"
                   strokeDasharray="4 6"
                 />
                 <circle r="6" fill="#3E8EFF">
-                  <animateMotion dur="14s" repeatCount="indefinite">
+                  <animateMotion dur="18s" repeatCount="indefinite">
                     <mpath href="#orb-a" />
                   </animateMotion>
                 </circle>
               </g>
-              <g transform="rotate(28 350 350)">
+              <g transform="rotate(22 590 290)">
                 <use
                   href="#orb-b"
                   fill="none"
-                  stroke="rgba(255,169,64,0.32)"
+                  stroke="rgba(255,169,64,0.30)"
                   strokeWidth="1"
                   strokeDasharray="4 6"
                 />
                 <circle r="5" fill="#FFA940">
-                  <animateMotion dur="18s" repeatCount="indefinite">
+                  <animateMotion dur="22s" repeatCount="indefinite">
                     <mpath href="#orb-b" />
                   </animateMotion>
                 </circle>

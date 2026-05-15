@@ -818,7 +818,7 @@ section{position:relative;padding:80px 0}
 .portrait-tag .pt-txt strong{display:block;font-weight:700;font-size:13px}
 .portrait-tag .pt-txt span{font-size:11px;color:#7A8886}
 
-.portrait-orbits{position:absolute;top:50%;left:50%;width:820px;height:820px;margin:-410px 0 0 -410px;pointer-events:none;z-index:1;overflow:visible}
+.portrait-orbits{position:absolute;top:50%;left:50%;width:1180px;height:580px;margin:-290px 0 0 -590px;pointer-events:none;z-index:1;overflow:visible}
 .portrait-orbits circle{filter:drop-shadow(0 0 6px currentColor)}
 
 .about-story{padding:80px 0;background:#FBFBF9;position:relative;overflow:hidden}
@@ -1203,7 +1203,7 @@ body.mob-open{overflow:hidden}
   .legend{top:50px;right:12px;padding:8px 10px;font-size:10px}
 
   .portrait-frame img{width:380px;max-width:100%;height:auto}
-  .portrait-orbits{width:580px;height:580px;margin:-290px 0 0 -290px}
+  .portrait-orbits{width:860px;height:430px;margin:-215px 0 0 -430px}
 
   .shield .ring3{display:none}
   .trust-viz{height:320px}
