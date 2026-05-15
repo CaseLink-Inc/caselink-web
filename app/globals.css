@@ -1250,11 +1250,11 @@ body.mob-open{overflow:hidden}
   section{padding:50px 0}
   .hero{padding:100px 0 50px}
   .problem,.how-sec,.network-sec,.trust,.pricing-sec,.about-story,.timeline-sec,.about-mission,.about-where,.for-who{padding:60px 0}
-  /* CTA sections need extra breathing room so the buttons read as
-     centered, and so the gap below the CTA matches the gap above it
-     (which is 60 of prev-section bottom + 60 of CTA top). 110 here
-     gives a roughly symmetric feel above and below the CTA block. */
-  .cta-sec{padding:110px 0}
+  /* CTA sections need clearly more breathing room than ordinary
+     sections so the call-to-action reads as a deliberate moment.
+     Bumped to 150 (vs the 60 used everywhere else on mobile) and
+     symmetric top/bottom so the buttons feel centred. */
+  .cta-sec{padding:150px 0}
   .about-hero{padding:100px 0 50px}
   .contact-hero{padding:100px 0 40px}
   .contact-main{padding:40px 0 80px}
