@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { ArrowRight } from "@/components/icons";
 import Timeline from "@/components/about/Timeline";
@@ -5,6 +6,20 @@ import MarketStat from "@/components/about/MarketStat";
 import CtaBand from "@/components/home/CtaBand";
 import BookCallButton from "@/components/BookCallButton";
 import { SIGNUP_URL } from "@/lib/urls";
+
+export const metadata: Metadata = {
+  title: "About CaseLink · Building the link dentistry has been missing",
+  description:
+    "CaseLink began with a simple observation. Dentists are some of the most connected professionals in healthcare, yet the digital tools connecting their practices have not caught up. Meet Nick Campbell and the team building the network.",
+  alternates: { canonical: "/about" },
+  openGraph: {
+    title: "About CaseLink",
+    description:
+      "Why CaseLink exists, who is building it, and where the network is heading next.",
+    url: "https://www.caselink.net/about",
+    type: "website",
+  },
+};
 
 export default function AboutPage() {
   return (

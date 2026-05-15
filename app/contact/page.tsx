@@ -1,6 +1,21 @@
+import type { Metadata } from "next";
 import ContactForm from "@/components/contact/ContactForm";
 import { Mail, Phone, Calendar } from "@/components/icons";
 import BookCallButton from "@/components/BookCallButton";
+
+export const metadata: Metadata = {
+  title: "Contact CaseLink · Talk to our team",
+  description:
+    "Book a 15-minute walkthrough, send a message, or call us. CaseLink is based in Washington, DC, and replies to most enquiries the same business day.",
+  alternates: { canonical: "/contact" },
+  openGraph: {
+    title: "Contact CaseLink",
+    description:
+      "Book a 15-minute walkthrough or send the team a message. We reply same day.",
+    url: "https://www.caselink.net/contact",
+    type: "website",
+  },
+};
 
 export default function ContactPage() {
   return (

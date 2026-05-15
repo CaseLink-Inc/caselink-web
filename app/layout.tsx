@@ -31,8 +31,36 @@ const siteDescription =
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: siteTitle,
+  title: {
+    default: siteTitle,
+    template: "%s · CaseLink",
+  },
   description: siteDescription,
+  alternates: { canonical: "/" },
+  applicationName: siteName,
+  keywords: [
+    "dental referrals",
+    "dental referral network",
+    "HIPAA compliant referrals",
+    "general dentist software",
+    "specialist referrals",
+    "dental practice management",
+    "encrypted dental messaging",
+  ],
+  authors: [{ name: "CaseLink, Inc.", url: siteUrl }],
+  creator: "CaseLink, Inc.",
+  publisher: "CaseLink, Inc.",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   openGraph: {
     type: "website",
     url: siteUrl,
@@ -48,11 +76,74 @@ export const metadata: Metadata = {
   },
 };
 
+// JSON-LD lets Google (and AI answer engines) render rich brand info in
+// search results — logo, social handles, contact details.
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: siteName,
+  legalName: "CaseLink, Inc.",
+  url: siteUrl,
+  logo: `${siteUrl}/logo-primary.svg`,
+  description: siteDescription,
+  foundingDate: "2025",
+  founders: [
+    {
+      "@type": "Person",
+      name: "Nick Campbell",
+      jobTitle: "Co-Founder and CEO",
+    },
+  ],
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Washington",
+    addressRegion: "DC",
+    addressCountry: "US",
+  },
+  contactPoint: [
+    {
+      "@type": "ContactPoint",
+      contactType: "customer support",
+      email: "support@caselink.net",
+      telephone: "+1-703-554-3449",
+      areaServed: "US",
+      availableLanguage: ["English"],
+    },
+  ],
+  sameAs: [
+    "https://www.facebook.com/caselink.net",
+    "https://www.instagram.com/caselinkinc/",
+    "https://www.linkedin.com/company/caselinknet/",
+  ],
+};
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: siteName,
+  url: siteUrl,
+  description: siteDescription,
+  inLanguage: "en-US",
+  publisher: { "@type": "Organization", name: siteName, url: siteUrl },
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={satoshi.variable} data-scroll-behavior="smooth">
+      <head>
+        <script
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
+      </head>
       <body>
         <Nav />
         {children}

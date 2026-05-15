@@ -1,0 +1,60 @@
+# CaseLink
+
+> A secure referral and collaboration network for general dentists and specialists. HIPAA compliant by design.
+
+CaseLink is a marketing site at https://www.caselink.net. The product itself lives at https://app.caselink.net.
+
+CaseLink is built around one belief: the relationships that already exist between dental practices deserve infrastructure that respects them. The patient deserves continuity. The practice deserves growth, not friction.
+
+## What CaseLink does
+
+- General dentists send patient referrals to specialists in under three minutes.
+- Specialists receive cases with full clinical context attached (patient details, x-rays, insurance).
+- Both sides see status updates and outcome reports without phone tag or fax.
+- Encrypted messaging is organized by patient and by practice.
+- Practice owners track conversion, response time, and revenue impact.
+
+## Who it is for
+
+- General dentists who want full visibility into every referral they send.
+- Specialists (orthodontics, endodontics, periodontics, oral surgery, prosthodontics) who want pre-filled clinical context with each incoming case.
+- Office managers who coordinate referral flow across a practice.
+
+## Pricing
+
+- General dentist plan: free, unlimited referrals, secure file sharing, HIPAA compliance, real-time updates.
+- Specialist plan: $299/month (or $269/month on yearly billing, saving $358 per year). Adds referral inbox, analytics dashboard, case timelines.
+- DSO and multi-location: custom pricing with team permissions, API access, dedicated success manager.
+
+All plans include HIPAA compliance, BAA on signup, and unlimited case storage.
+
+## Compliance and security
+
+- End-to-end encryption: every referral, every message, every file encrypted in transit and at rest.
+- Audit logs for every action: every login, every change, every download timestamped and traceable.
+- Role-based access with automatic session timeouts.
+- Designed for dental privacy from day one. HIPAA built into the foundation, not retrofitted.
+
+## Founder
+
+CaseLink was founded by Nick Campbell, Co-Founder and CEO, based in Washington, DC. The company began with a simple observation: dentists are some of the most connected professionals in healthcare, yet the digital tools connecting their practices have not caught up.
+
+## Key pages
+
+- Home: https://www.caselink.net
+- About: https://www.caselink.net/about
+- Contact: https://www.caselink.net/contact
+
+## Contact
+
+- Email: support@caselink.net
+- Phone: +1 (703) 554-3449
+- Book a 15-minute walkthrough: https://calendly.com/nick-caselink/15min
+- Sign up for the product: https://app.caselink.net/app/CaseLink/signup
+- Sign in to the product: https://app.caselink.net/login
+
+## Industry context
+
+- Around 30% of dental referrals never reach treatment. Patients drop off between the general practitioner and the specialist, often without either side knowing.
+- Fewer than 2% of US dental practices use a tool built specifically for referrals. In dentistry, the category is still wide open.
+- Outcome reports between dental practices typically take days, not minutes, because they still travel by fax or phone.
