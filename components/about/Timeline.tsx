@@ -10,10 +10,20 @@ const steps = [
   { when: "Next", title: "Beyond DC", desc: "Bringing the model to Boston, Philadelphia, Charlotte, and Atlanta." },
 ];
 
+// Where each step's dot sits along the line, as a percentage of the line width.
+// 5 steps in a 5-col grid -> dots sit at roughly 10%, 30%, 50%, 70%, 90%.
+const dotPercents = [10, 30, 50, 70, 90];
+
+// We're actively running DC pilots, so the progress line should land just
+// past the 4th dot (DC pilots) but not yet reach the 5th (Beyond DC).
+const TARGET_PROGRESS = 78;
+const ANIMATION_DURATION_MS = 2200;
+
 export default function Timeline() {
   const gridRef = useRef<HTMLDivElement>(null);
   const [shown, setShown] = useState(Array(steps.length).fill(false));
   const [progress, setProgress] = useState(0);
+  const [glowing, setGlowing] = useState<boolean[]>(Array(steps.length).fill(false));
 
   useEffect(() => {
     const el = gridRef.current;
@@ -21,6 +31,7 @@ export default function Timeline() {
     const obs = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
+          // Fade in each step card.
           steps.forEach((_, i) => {
             setTimeout(() => {
               setShown((arr) => {
@@ -30,7 +41,24 @@ export default function Timeline() {
               });
             }, i * 150);
           });
-          setTimeout(() => setProgress(90), 200);
+
+          // Animate the gradient progress line from 0 to TARGET_PROGRESS%
+          // and glow each dot the moment the line crosses it.
+          const start = performance.now();
+          const tick = (now: number) => {
+            const elapsed = now - start;
+            const t = Math.min(1, elapsed / ANIMATION_DURATION_MS);
+            // ease-out cubic so the leading edge slows as it approaches DC.
+            const eased = 1 - Math.pow(1 - t, 3);
+            const pct = eased * TARGET_PROGRESS;
+            setProgress(pct);
+            setGlowing((arr) =>
+              arr.map((g, i) => g || pct >= dotPercents[i] - 0.5)
+            );
+            if (t < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+
           obs.unobserve(entry.target);
         }
       });
@@ -51,7 +79,7 @@ export default function Timeline() {
           <div ref={gridRef} className="tl-grid">
             {steps.map((s, i) => (
               <div key={s.title} className={`tl-step ${shown[i] ? "in" : ""}`}>
-                <div className="tl-dot" />
+                <div className={`tl-dot ${glowing[i] ? "lit" : ""}`} />
                 <div className="tl-when">{s.when}</div>
                 <h4 className="tl-title">{s.title}</h4>
                 <p className="tl-desc">{s.desc}</p>
