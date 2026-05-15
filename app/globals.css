@@ -1264,7 +1264,7 @@ body.mob-open{overflow:hidden}
   .contact-hero{padding:100px 0 40px}
   .contact-main{padding:40px 0 80px}
 
-  .hero h1{font-size:38px}
+  .hero h1{font-size:48px;margin:18px 0 22px}
   .hero p.sub{font-size:15px;margin-bottom:24px}
   .hero-tag{font-size:11px}
   .about-hero h1{font-size:34px}
@@ -1414,7 +1414,7 @@ body.mob-open{overflow:hidden}
 }
 
 @media (max-width:420px){
-  .hero h1{font-size:32px}
+  .hero h1{font-size:40px}
   .about-hero h1{font-size:30px}
   .contact-hero h1{font-size:28px}
   .section-head h2,.how-head h2,.pricing-head h2,.problem h2,.about-story h2,.about-mission h2,.about-where h2,.network-inner h2,.timeline-sec h2{font-size:26px}
