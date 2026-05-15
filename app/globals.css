@@ -296,9 +296,16 @@ section{position:relative;padding:80px 0}
   overflow:hidden;min-height:540px;
 }
 .demo-progress{
-  position:absolute;top:0;left:0;height:3px;
-  background:linear-gradient(90deg,#3E8EFF,#90F0C5);
-  width:0;z-index:10;transition:width .1s linear;
+  position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,#3E8EFF,#90F0C5,#FFC794);
+  z-index:10;
+  transform-origin:left center;transform:scaleX(0);
+  will-change:transform;
+}
+.demo-progress.go{animation:demoProgressFill 5.2s linear forwards}
+@keyframes demoProgressFill{
+  from{transform:scaleX(0)}
+  to{transform:scaleX(1)}
 }
 .demo-browser{
   display:flex;align-items:center;gap:10px;padding:14px 20px;

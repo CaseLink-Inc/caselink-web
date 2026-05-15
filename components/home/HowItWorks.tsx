@@ -11,57 +11,55 @@ const TABS = ["Referrals", "Network", "Messages", "Analytics"] as const;
 
 export default function HowItWorks() {
   const [tab, setTab] = useState(0);
-  const [progress, setProgress] = useState(0);
-  const [started, setStarted] = useState(false);
+  // `round` increments every time we advance or jump, which is used as
+  // the React key on the progress bar element to restart its CSS animation.
+  const [round, setRound] = useState(0);
+  const [running, setRunning] = useState(false);
   const frameRef = useRef<HTMLDivElement>(null);
-  const stageStartRef = useRef<number>(Date.now());
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const advance = useCallback(() => {
     setTab((t) => (t + 1) % 4);
-    stageStartRef.current = Date.now();
-    setProgress(0);
+    setRound((r) => r + 1);
   }, []);
 
+  // IntersectionObserver: start when the frame enters the viewport,
+  // pause when it leaves, resume when it comes back.
   useEffect(() => {
     const el = frameRef.current;
     if (!el) return;
     const obs = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting && !started) {
-          setStarted(true);
-          stageStartRef.current = Date.now();
-        } else if (!entry.isIntersecting && timerRef.current) {
-          clearInterval(timerRef.current);
-          timerRef.current = null;
-        }
+        setRunning(entry.isIntersecting);
       });
     }, { threshold: 0.2 });
     obs.observe(el);
     return () => obs.disconnect();
-  }, [started]);
+  }, []);
 
+  // Drive the auto-advance interval, gated on `running`.
   useEffect(() => {
-    if (!started) return;
-    if (timerRef.current) clearInterval(timerRef.current);
+    if (!running) {
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+        timerRef.current = null;
+      }
+      return;
+    }
     timerRef.current = setInterval(advance, STAGE_MS);
-    let raf = 0;
-    const tick = () => {
-      const elapsed = Date.now() - stageStartRef.current;
-      setProgress(Math.min(100, (elapsed / STAGE_MS) * 100));
-      raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
-      cancelAnimationFrame(raf);
     };
-  }, [started, advance]);
+  }, [running, advance]);
 
   const goTo = (i: number) => {
     setTab(i);
-    stageStartRef.current = Date.now();
-    setProgress(0);
+    setRound((r) => r + 1);
+    // Reset the auto-advance timer so the new stage gets its full 5.2s.
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+      timerRef.current = setInterval(advance, STAGE_MS);
+    }
   };
 
   return (
@@ -88,7 +86,10 @@ export default function HowItWorks() {
           </div>
 
           <div className="demo-mockup">
-            <div className="demo-progress" style={{ width: `${progress}%` }} />
+            <div
+              key={`progress-${round}`}
+              className={`demo-progress ${running ? "go" : ""}`}
+            />
             <div className="demo-browser">
               <div className="dots"><span /><span /><span /></div>
               <div className="demo-url">
