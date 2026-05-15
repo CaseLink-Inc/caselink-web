@@ -28,7 +28,12 @@ export default function Hero() {
             outcome in one workspace your team will actually use.
           </p>
           <div className="hero-cta">
-            <a href={SIGNUP_URL} className="btn btn-primary">
+            <a
+              href={SIGNUP_URL}
+              className="btn btn-primary"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Get started free
               <ArrowRight width={14} height={14} />
             </a>
@@ -36,7 +41,7 @@ export default function Hero() {
           </div>
           <div className="hero-meta">
             <div className="hero-meta-item"><strong>HIPAA</strong>compliant by design</div>
-            <div className="hero-meta-item"><strong>Under 2 min</strong>to send a referral</div>
+            <div className="hero-meta-item"><strong>Under 3 min</strong>to send a referral</div>
             <div className="hero-meta-item"><strong>Free</strong>for general dentists</div>
           </div>
         </div>

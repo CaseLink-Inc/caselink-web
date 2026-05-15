@@ -70,7 +70,12 @@ export default function ForWho() {
                   {c.points.map((p) => <li key={p}>{p}</li>)}
                 </ul>
               </div>
-              <a href={c.href} className="arr">
+              <a
+                href={c.href}
+                className="arr"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 {c.cta}
                 <ArrowRight width={16} height={16} />
               </a>

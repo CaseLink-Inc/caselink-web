@@ -7,7 +7,7 @@ const steps = [
   { when: "Listening", title: "First conversations", desc: "Months of listening to GPs, specialists, and front desk teams about what truly breaks." },
   { when: "Building", title: "The first prototype", desc: "An MVP narrow enough to be useful. Referrals, status, secure chat, outcomes." },
   { when: "Right now", title: "DC pilots", desc: "Founding member practices going live with full support and shared learnings." },
-  { when: "Next", title: "Beyond DC", desc: "Bringing the model to Boston, Philadelphia, Charlotte, and Atlanta." },
+  { when: "Next", title: "Across US", desc: "Opening the network to practices nationwide, one referral relationship at a time." },
 ];
 
 // Where each step's dot sits along the line, as a percentage.

@@ -67,8 +67,8 @@ export default function HowItWorks() {
       <div className="wrap">
         <div className="how-head reveal">
           <span className="eyebrow">How it works</span>
-          <h2>One workspace for your<br /><span className="grad-text">whole referral day.</span></h2>
-          <p>Send a referral, grow your network, message the specialist, and watch your numbers. All in the same place.</p>
+          <h2>One workspace to manage and<br />grow your <span className="grad-text">referral network.</span></h2>
+          <p>Send referrals, grow your network, message providers, and track progress. All in the same place.</p>
         </div>
 
         <div ref={frameRef} className="demo-frame reveal">
@@ -137,7 +137,7 @@ export default function HowItWorks() {
           <div className="dben reveal">
             <div className="dben-ic"><Clock width={18} height={18} stroke="#3E8EFF" /></div>
             <h4>Three-step referrals</h4>
-            <p>Practice, patient, notes. Send in under two minutes.</p>
+            <p>Practice, patient, notes. Send in under three minutes.</p>
           </div>
           <div className="dben reveal" style={{ transitionDelay: ".1s" }}>
             <div className="dben-ic"><Bolt width={18} height={18} stroke="#FFA940" /></div>
@@ -147,12 +147,12 @@ export default function HowItWorks() {
           <div className="dben reveal" style={{ transitionDelay: ".2s" }}>
             <div className="dben-ic"><ChatBubble width={18} height={18} stroke="#3DBD6B" /></div>
             <h4>Patient and network threads</h4>
-            <p>Encrypted messaging organised by patient and by practice.</p>
+            <p>Encrypted messaging organized by patient and by practice.</p>
           </div>
           <div className="dben reveal" style={{ transitionDelay: ".3s" }}>
             <div className="dben-ic"><Check width={18} height={18} stroke="#90F0C5" /></div>
-            <h4>Numbers that move</h4>
-            <p>Volume, response time, conversion, revenue impact.</p>
+            <h4>Track progress</h4>
+            <p>See every case move through your practice from referral to outcome.</p>
           </div>
         </div>
       </div>

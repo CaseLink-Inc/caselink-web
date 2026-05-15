@@ -1,5 +1,6 @@
 import ContactForm from "@/components/contact/ContactForm";
-import { Mail, Phone, MapPin, Calendar } from "@/components/icons";
+import { Mail, Phone, Calendar } from "@/components/icons";
+import BookCallButton from "@/components/BookCallButton";
 
 export default function ContactPage() {
   return (
@@ -38,23 +39,15 @@ export default function ContactPage() {
                 <div><h4>Phone</h4><div className="info-sub">Office hours, ET</div></div>
               </div>
               <p>Prefer a call. Reach our team Monday through Friday, 9 to 5.</p>
-              <a href="tel:+12025551234">+1 (202) 555-1234</a>
-            </div>
-            <div className="info-card">
-              <div className="info-card-head">
-                <div className="info-card-icon"><MapPin width={20} height={20} stroke="#3DBD6B" /></div>
-                <div><h4>Office</h4><div className="info-sub">Washington, DC</div></div>
-              </div>
-              <p>Based in DC and happy to meet in person if you are local.</p>
-              <a>1100 H Street NW<br />Washington, DC 20005</a>
+              <a href="tel:+17035543449">+1 (703) 554-3449</a>
             </div>
             <div className="info-card">
               <div className="info-card-head">
                 <div className="info-card-icon"><Calendar width={20} height={20} stroke="#3DBD6B" /></div>
-                <div><h4>Demo</h4><div className="info-sub">15 minutes, online</div></div>
+                <div><h4>CaseLink Overview</h4><div className="info-sub">15 minutes, online</div></div>
               </div>
               <p>Pick a time that works for you. We will walk through a real referral end to end.</p>
-              <a href="#">Pick a time</a>
+              <BookCallButton className="info-card-link">Pick a time</BookCallButton>
             </div>
           </div>
         </div>

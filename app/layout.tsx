@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import RevealInit from "@/components/RevealInit";
+import Calendly from "@/components/Calendly";
 import "./globals.css";
 
 const satoshi = localFont({
@@ -38,6 +39,7 @@ export default function RootLayout({
         {children}
         <Footer />
         <RevealInit />
+        <Calendly />
       </body>
     </html>
   );

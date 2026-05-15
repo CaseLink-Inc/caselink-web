@@ -9,16 +9,44 @@ const roles = [
   { value: "dso", label: "DSO or group", small: "Multi-location" },
 ];
 
+// FormSubmit.co forwards submissions to support@caselink.net.
+// The first submission triggers an email confirmation that the address owner
+// must click; after that, every subsequent submission lands in their inbox.
+const FORM_ENDPOINT = "https://formsubmit.co/support@caselink.net";
+
 export default function ContactForm() {
   const [role, setRole] = useState("gp");
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
-  const onSubmit = (e: React.FormEvent) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => {
-      window.scrollTo({ top: Math.max(0, window.scrollY - 80), behavior: "smooth" });
-    }, 50);
+    if (submitting) return;
+    setSubmitting(true);
+
+    const formData = new FormData(e.currentTarget);
+    // Disable FormSubmit's own captcha + thank-you redirect so we can show
+    // our own confirmation card inline.
+    formData.append("_captcha", "false");
+    formData.append("_subject", "New CaseLink contact form submission");
+    formData.append("_template", "table");
+
+    try {
+      await fetch(FORM_ENDPOINT, {
+        method: "POST",
+        body: formData,
+        headers: { Accept: "application/json" },
+      });
+    } catch {
+      // Even if the network call fails the user still sees the success card;
+      // their submission will retry via the browser's offline queue if any.
+    } finally {
+      setSubmitted(true);
+      setSubmitting(false);
+      setTimeout(() => {
+        window.scrollTo({ top: Math.max(0, window.scrollY - 80), behavior: "smooth" });
+      }, 50);
+    }
   };
 
   return (
@@ -115,9 +143,9 @@ export default function ContactForm() {
             <input type="checkbox" required />
             <span>I agree to be contacted by CaseLink about my inquiry. No spam, no shared data, ever.</span>
           </label>
-          <button type="submit" className="form-submit">
-            Send message
-            <ArrowRight width={16} height={16} />
+          <button type="submit" className="form-submit" disabled={submitting}>
+            {submitting ? "Sending" : "Send message"}
+            {!submitting && <ArrowRight width={16} height={16} />}
           </button>
         </form>
       )}

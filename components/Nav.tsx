@@ -73,7 +73,7 @@ export default function Nav() {
             ))}
           </div>
           <div className="nav-cta">
-            <a href={LOGIN_URL} className="btn btn-primary">
+            <a href={LOGIN_URL} className="btn btn-primary" target="_blank" rel="noopener noreferrer">
               Login now
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M5 12h14M13 5l7 7-7 7" />
@@ -109,7 +109,7 @@ export default function Nav() {
             </li>
           ))}
         </ul>
-        <a href={LOGIN_URL} className="mob-cta">Login now</a>
+        <a href={LOGIN_URL} className="mob-cta" target="_blank" rel="noopener noreferrer">Login now</a>
       </aside>
     </>
   );

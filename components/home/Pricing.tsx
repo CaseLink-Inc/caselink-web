@@ -42,7 +42,7 @@ export default function Pricing() {
               <li>Real-time updates</li>
               <li>HIPAA compliance</li>
             </ul>
-            <a href={SIGNUP_URL} className="price-cta">Get started</a>
+            <a href={SIGNUP_URL} className="price-cta" target="_blank" rel="noopener noreferrer">Get started</a>
           </div>
           <div className="price-card featured reveal" style={{ transitionDelay: ".1s" }}>
             <span className="price-tag-badge">Most popular</span>
@@ -58,7 +58,7 @@ export default function Pricing() {
               <li>Case timelines</li>
               <li>Scheduling integration coming soon</li>
             </ul>
-            <a href={SIGNUP_URL} className="price-cta">Start 1 month free</a>
+            <a href={SIGNUP_URL} className="price-cta" target="_blank" rel="noopener noreferrer">Start 1 month free</a>
           </div>
           <div className="price-card reveal" style={{ transitionDelay: ".2s" }}>
             <div className="price-plan-name">DSO and multi-location</div>

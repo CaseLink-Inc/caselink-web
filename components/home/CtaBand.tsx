@@ -9,8 +9,10 @@ type Props = {
 };
 
 export default function CtaBand({ title, body, primary, secondary }: Props) {
-  const Primary = primary.external ? "a" : Link;
-  const Secondary = secondary.external ? "a" : Link;
+  const externalProps = {
+    target: "_blank",
+    rel: "noopener noreferrer",
+  } as const;
 
   return (
     <section className="cta-sec">
@@ -19,11 +21,26 @@ export default function CtaBand({ title, body, primary, secondary }: Props) {
         <h2 className="reveal">{title}</h2>
         <p className="reveal">{body}</p>
         <div className="cta-buttons reveal">
-          <Primary href={primary.href} className="btn btn-primary">
-            {primary.label}
-            <ArrowRight width={14} height={14} />
-          </Primary>
-          <Secondary href={secondary.href} className="btn btn-ghost">{secondary.label}</Secondary>
+          {primary.external ? (
+            <a href={primary.href} className="btn btn-primary" {...externalProps}>
+              {primary.label}
+              <ArrowRight width={14} height={14} />
+            </a>
+          ) : (
+            <Link href={primary.href} className="btn btn-primary">
+              {primary.label}
+              <ArrowRight width={14} height={14} />
+            </Link>
+          )}
+          {secondary.external ? (
+            <a href={secondary.href} className="btn btn-ghost" {...externalProps}>
+              {secondary.label}
+            </a>
+          ) : (
+            <Link href={secondary.href} className="btn btn-ghost">
+              {secondary.label}
+            </Link>
+          )}
         </div>
       </div>
     </section>

@@ -5,16 +5,6 @@ export default function Network() {
         <div className="reveal">
           <span className="eyebrow">The network effect</span>
           <h2>A network<br />that grows itself.</h2>
-          <p>
-            CaseLink starts in Washington, DC, where dentist density is among
-            the highest in the country. Every practice we add makes the next
-            referral easier.
-          </p>
-          <div className="network-stats">
-            <div className="network-stat"><div className="big">1,400+</div><div className="lbl">Practices in network</div></div>
-            <div className="network-stat"><div className="big">7</div><div className="lbl">Dental specialties</div></div>
-            <div className="network-stat"><div className="big">2.4h</div><div className="lbl">Average response</div></div>
-          </div>
         </div>
         <div className="map-viz reveal">
           <div className="map-header">

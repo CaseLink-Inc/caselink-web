@@ -1,10 +1,9 @@
-import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "@/components/icons";
 import Timeline from "@/components/about/Timeline";
-import DcMap from "@/components/about/DcMap";
 import MarketStat from "@/components/about/MarketStat";
 import CtaBand from "@/components/home/CtaBand";
+import BookCallButton from "@/components/BookCallButton";
 import { SIGNUP_URL } from "@/lib/urls";
 
 export default function AboutPage() {
@@ -25,11 +24,18 @@ export default function AboutPage() {
               tools connecting their practices have not caught up.
             </p>
             <div className="hero-cta">
-              <Link href="/contact" className="btn btn-primary">
-                Get in touch
+              <BookCallButton className="btn btn-primary">
+                Book a call
                 <ArrowRight width={14} height={14} />
-              </Link>
-              <a href={SIGNUP_URL} className="btn btn-ghost">See the product</a>
+              </BookCallButton>
+              <a
+                href={SIGNUP_URL}
+                className="btn btn-ghost"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                See the product
+              </a>
             </div>
           </div>
           <div className="portrait-wrap">
@@ -163,32 +169,6 @@ export default function AboutPage() {
               <p>Outcome reports travel back by fax or phone, when they travel back at all.</p>
             </div>
           </div>
-        </div>
-      </section>
-
-      <section className="about-where">
-        <div className="wrap where-grid">
-          <div className="reveal">
-            <span className="eyebrow">Why DC, why now</span>
-            <h2>The right place to<br />prove the model.</h2>
-            <p>
-              Washington, DC has one of the highest dentist densities in the
-              country. Specialists and general dentists already know each
-              other. Referrals already flow between them.
-            </p>
-            <p>
-              By starting where the network is informal, we can prove what
-              becomes possible when it gets a proper digital home.
-            </p>
-            <div className="where-cities">
-              <span className="where-city now"><span className="dot" />Washington, DC</span>
-              <span className="where-city"><span className="dot" />Boston</span>
-              <span className="where-city"><span className="dot" />Philadelphia</span>
-              <span className="where-city"><span className="dot" />Charlotte</span>
-              <span className="where-city"><span className="dot" />Atlanta</span>
-            </div>
-          </div>
-          <DcMap />
         </div>
       </section>
 

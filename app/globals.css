@@ -1074,6 +1074,8 @@ footer.site-footer{padding:72px 0 28px;background:#1A1F1E;color:#A8B0AE}
 .info-card .info-sub{font-size:11.5px;color:#7A8886;text-transform:uppercase;letter-spacing:0.06em;font-weight:600}
 .info-card p{font-size:14px;color:#4A5250;line-height:1.6}
 .info-card a{color:#3E8EFF;font-weight:600;font-size:14px;display:inline-block;margin-top:4px}
+.info-card .info-card-link{color:#3E8EFF;font-weight:600;font-size:14px;display:inline-block;margin-top:4px;background:none;padding:0;border:0;cursor:pointer;font-family:inherit}
+.info-card .info-card-link:hover{text-decoration:underline}
 
 /* DASHBOARD */
 .dash{background:#FBFBF9;padding:120px 0 80px;min-height:100vh}
