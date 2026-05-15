@@ -5,7 +5,12 @@ import { SIGNUP_URL } from "@/lib/urls";
 export default function Hero() {
   return (
     <section className="hero">
-      <div className="hero-bg" />
+      <div className="hero-bg">
+        <span className="blob blob-tl" />
+        <span className="blob blob-tr" />
+        <span className="blob blob-br" />
+        <span className="blob blob-bl" />
+      </div>
       <div className="hero-grid" />
       <div className="wrap hero-inner">
         <div>
