@@ -67,7 +67,7 @@ export default function HowItWorks() {
       <div className="wrap">
         <div className="how-head reveal">
           <span className="eyebrow">How it works</span>
-          <h2>One workspace to manage and<br />grow your <span className="grad-text">referral network.</span></h2>
+          <h2>One workspace to manage and grow your <span className="grad-text">referral network.</span></h2>
           <p>Send referrals, grow your network, message providers, and track progress. All in the same place.</p>
         </div>
 
@@ -100,8 +100,12 @@ export default function HowItWorks() {
             <div className="demo-screen">
               <div className="demo-sidebar">
                 <div className="ds-logo">
-                  <Image src="/logo-mark.svg" width={22} height={22} alt="" />
-                  CaseLink
+                  <Image
+                    src="/logo-primary.svg"
+                    width={130}
+                    height={28}
+                    alt="CaseLink"
+                  />
                 </div>
                 <div className="ds-nav">
                   <div className={`ds-nav-item ${tab === 0 ? "on" : ""}`}><Plus />New referral</div>

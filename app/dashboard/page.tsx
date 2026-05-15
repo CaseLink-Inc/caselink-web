@@ -27,8 +27,12 @@ export default function DashboardPage() {
         <div className="dash-shell">
           <aside className="dash-side">
             <div className="ds-logo">
-              <Image src="/logo-mark.svg" width={24} height={24} alt="" />
-              CaseLink
+              <Image
+                src="/logo-primary.svg"
+                width={140}
+                height={30}
+                alt="CaseLink"
+              />
             </div>
             <div className="ds-nav">
               <div className="ds-nav-item on"><Grid />Referrals<span className="badge">12</span></div>
