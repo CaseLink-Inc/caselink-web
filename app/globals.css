@@ -711,9 +711,13 @@ section{position:relative;padding:80px 0}
 .shield{position:relative;width:200px;height:200px}
 .shield svg{width:100%;height:100%;filter:drop-shadow(0 0 40px rgba(62,142,255,0.4));position:relative;z-index:2}
 .shield .ring{position:absolute;border-radius:50%;border:1px solid rgba(62,142,255,0.22);pointer-events:none}
-.shield .ring1{width:260px;height:260px;top:-30px;left:-30px;animation:spin 28s linear infinite}
-.shield .ring2{width:320px;height:320px;top:-60px;left:-60px;animation:spin 44s linear infinite reverse;border-color:rgba(255,199,148,0.18)}
-.shield .ring3{width:380px;height:380px;top:-90px;left:-90px;animation:spin 60s linear infinite;border-color:rgba(144,240,197,0.16)}
+/* inset offsets expand the ring outward from the shield by a fixed
+   margin on every side. Because the shield element is square at every
+   breakpoint, each ring stays a perfect circle and stays centered no
+   matter what size the shield itself becomes. */
+.shield .ring1{inset:-30px;animation:spin 28s linear infinite}
+.shield .ring2{inset:-60px;animation:spin 44s linear infinite reverse;border-color:rgba(255,199,148,0.18)}
+.shield .ring3{inset:-90px;animation:spin 60s linear infinite;border-color:rgba(144,240,197,0.16)}
 .shield .ring::before{content:'';position:absolute;width:6px;height:6px;border-radius:50%;background:#3E8EFF;top:-3px;left:50%;margin-left:-3px;box-shadow:0 0 8px rgba(62,142,255,0.7)}
 .shield .ring2::before{background:#FFC794;box-shadow:0 0 8px rgba(255,199,148,0.7)}
 .shield .ring3::before{background:#90F0C5;box-shadow:0 0 8px rgba(144,240,197,0.7)}
@@ -1376,6 +1380,14 @@ body.mob-open{overflow:hidden}
   .foot-bot{text-align:center}
 
   .mob-drawer{padding:80px 20px 28px}
+
+  /* Hero gradient blobs read too saturated on narrow viewports because
+     they occupy a much larger share of the visible canvas. Pull every
+     blob's opacity down so the headline keeps its contrast. */
+  .hero-bg .blob-tl{opacity:.55}
+  .hero-bg .blob-tr{opacity:.16}
+  .hero-bg .blob-br{opacity:.18}
+  .hero-bg .blob-bl{opacity:.20}
 
   /* Product Tour - Messages tab: stack the thread list above the chat
      pane so neither gets squeezed at narrow widths. */
