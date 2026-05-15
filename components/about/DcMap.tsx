@@ -3,10 +3,12 @@
 import { useEffect, useRef, useState } from "react";
 
 // East Coast wide view, ranging from Boston (top-left) down to Atlanta (bottom-right).
-const WIDE_BOX = "0 0 500 440";
+const WIDE_BOX: Box = [0, 0, 500, 440];
 // Closer DC view, framing the cluster of CaseLink referral pins around DC.
-const CLOSE_BOX = "200 145 180 160";
+const CLOSE_BOX: Box = [200, 145, 180, 160];
 const ANIM_DURATION = 1800; // ms
+
+type Box = [number, number, number, number];
 
 // Pins inside the DC zoom (in the same 500x440 coordinate system).
 // Mix of GP (deep green) and Specialist (warm orange) so we read as a real network.
@@ -36,44 +38,61 @@ const DC_BEAMS = [
   { from: { x: 330, y: 260 }, to: { x: 280, y: 220 } },
 ];
 
-// Parse an SVG viewBox string into 4 numbers.
-function parseBox(s: string) {
-  return s.split(" ").map(Number) as [number, number, number, number];
+function lerpBox(a: Box, b: Box, t: number): string {
+  return a.map((v, i) => v + (b[i] - v) * t).join(" ");
 }
 
-function lerpBox(a: [number, number, number, number], b: [number, number, number, number], t: number) {
-  return a.map((v, i) => v + (b[i] - v) * t).join(" ");
+// ease-in-out cubic
+function easeInOut(t: number) {
+  return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 }
 
 export default function DcMap() {
   const ref = useRef<SVGSVGElement>(null);
-  const [box, setBox] = useState<string>(WIDE_BOX);
+  const [box, setBox] = useState<string>(WIDE_BOX.join(" "));
   const [zoomedIn, setZoomedIn] = useState(false);
+  // Hold the current numeric box separately so animations always lerp from
+  // the actual current pose, not from the previous target.
+  const currentBoxRef = useRef<Box>([...WIDE_BOX]);
 
+  // Watch whether the map is in view. No unobserve — we want both
+  // directions of the transition.
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting && !zoomedIn) {
-          setZoomedIn(true);
-          const start = performance.now();
-          const a = parseBox(WIDE_BOX);
-          const b = parseBox(CLOSE_BOX);
-          const tick = (now: number) => {
-            const t = Math.min(1, (now - start) / ANIM_DURATION);
-            // ease-in-out cubic
-            const eased = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-            setBox(lerpBox(a, b, eased));
-            if (t < 1) requestAnimationFrame(tick);
-          };
-          requestAnimationFrame(tick);
-          obs.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.35 });
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setZoomedIn(entry.isIntersecting);
+        });
+      },
+      { threshold: 0.45 }
+    );
     obs.observe(el);
     return () => obs.disconnect();
+  }, []);
+
+  // Whenever zoom state flips, animate the viewBox toward the new target.
+  // We re-read currentBoxRef so a mid-flight reversal continues smoothly
+  // instead of snapping back to the previous start.
+  useEffect(() => {
+    const target: Box = zoomedIn ? CLOSE_BOX : WIDE_BOX;
+    const startBox: Box = [...currentBoxRef.current];
+    const startTime = performance.now();
+    let raf = 0;
+
+    const tick = (now: number) => {
+      const t = Math.min(1, (now - startTime) / ANIM_DURATION);
+      const eased = easeInOut(t);
+      const next: Box = startBox.map(
+        (v, i) => v + (target[i] - v) * eased
+      ) as Box;
+      currentBoxRef.current = next;
+      setBox(next.join(" "));
+      if (t < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
   }, [zoomedIn]);
 
   return (
@@ -91,6 +110,7 @@ export default function DcMap() {
           </linearGradient>
         </defs>
         <rect x="0" y="0" width="500" height="440" fill="url(#mapBg)" rx="20" />
+
         {/* Coastline outline */}
         <path
           d="M 120 80 L 380 60 L 440 220 L 360 380 L 140 360 L 80 200 Z"
@@ -99,6 +119,7 @@ export default function DcMap() {
           strokeWidth="1.5"
           opacity="0.4"
         />
+
         {/* Grid */}
         <g stroke="#3E8EFF" strokeWidth="0.4" opacity="0.25" fill="none">
           <line x1="120" y1="150" x2="440" y2="150" />
@@ -111,8 +132,9 @@ export default function DcMap() {
           <line x1="440" y1="80" x2="120" y2="380" strokeDasharray="3 4" />
         </g>
 
-        {/* Distant city markers — fade out once we zoom in. */}
-        <g className="dc-far" opacity="0.5">
+        {/* WIDE-VIEW layer — original animation. Fades out when zoomed in,
+            fades back in when zoomed out. */}
+        <g className="dc-far">
           <circle cx="80" cy="60" r="4" fill="#7A8886" />
           <text x="80" y="50" textAnchor="middle" fill="#7A8886" fontSize="9" fontFamily="'Satoshi'">Boston</text>
           <circle cx="100" cy="120" r="4" fill="#7A8886" />
@@ -130,7 +152,8 @@ export default function DcMap() {
           <circle cx="240" cy="330" r="6" fill="#FFA940" />
         </g>
 
-        {/* Detailed DC network — fades in as we zoom in. */}
+        {/* CLOSE-VIEW layer — detailed DC referral network. Each pin and
+            beam fades in via opacity+transform, and reverses on zoom-out. */}
         <g className="dc-close">
           {DC_BEAMS.map((b, i) => (
             <line
@@ -142,13 +165,16 @@ export default function DcMap() {
               stroke="#3E8EFF"
               strokeWidth="0.8"
               strokeDasharray="3 3"
-              opacity="0.45"
-              style={{ animationDelay: `${i * 0.18}s` }}
               className="dc-beam"
+              style={{ transitionDelay: `${0.4 + i * 0.05}s` }}
             />
           ))}
           {DC_PINS.map((p, i) => (
-            <g key={`pin-${i}`} className="dc-pin" style={{ animationDelay: `${i * 0.08}s` }}>
+            <g
+              key={`pin-${i}`}
+              className="dc-pin"
+              style={{ transitionDelay: `${0.5 + i * 0.04}s`, transformOrigin: `${p.x}px ${p.y}px` }}
+            >
               <circle
                 cx={p.x}
                 cy={p.y}
@@ -167,7 +193,8 @@ export default function DcMap() {
           <text x="245" y="187" textAnchor="middle" fill="#7A8886" fontSize="4" fontFamily="'Satoshi'" fontWeight="600">Foggy Bottom</text>
         </g>
 
-        {/* DC hub */}
+        {/* DC hub — always visible. The pulsing rings ride along with the
+            zoom and read clearly in both states. */}
         <g>
           <circle cx="280" cy="220" r="40" fill="none" stroke="#3E8EFF" strokeWidth="1.5" opacity="0.3">
             <animate attributeName="r" from="20" to="60" dur="3s" repeatCount="indefinite" />
