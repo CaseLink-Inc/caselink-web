@@ -23,10 +23,29 @@ const satoshi = localFont({
   ],
 });
 
+const siteUrl = "https://www.caselink.net";
+const siteName = "CaseLink";
+const siteTitle = "CaseLink · Your link to better patient care";
+const siteDescription =
+  "A secure referral and collaboration network for general dentists and specialists. HIPAA compliant by design.";
+
 export const metadata: Metadata = {
-  title: "CaseLink · Your link to better patient care",
-  description:
-    "A secure referral and collaboration network for general dentists and specialists. HIPAA compliant by design.",
+  metadataBase: new URL(siteUrl),
+  title: siteTitle,
+  description: siteDescription,
+  openGraph: {
+    type: "website",
+    url: siteUrl,
+    siteName,
+    title: siteTitle,
+    description: siteDescription,
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteTitle,
+    description: siteDescription,
+  },
 };
 
 export default function RootLayout({
