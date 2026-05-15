@@ -1133,7 +1133,7 @@ footer.site-footer{padding:72px 0 28px;background:#1A1F1E;color:#A8B0AE}
 /* NOT FOUND */
 .notfound-sec{
   position:relative;min-height:calc(100vh - 200px);
-  padding:140px 0 100px;
+  padding:120px 0 100px;
   display:flex;align-items:center;justify-content:center;text-align:center;
   background:
     radial-gradient(ellipse at 50% 0%, rgba(62,142,255,0.10) 0%, transparent 55%),
@@ -1142,22 +1142,38 @@ footer.site-footer{padding:72px 0 28px;background:#1A1F1E;color:#A8B0AE}
     linear-gradient(180deg,#FBFBF9 0%,#F4F7FB 100%);
   overflow:hidden;
 }
-.notfound-inner{max-width:640px;text-align:center}
-.notfound-code{font-size:160px;font-weight:800;line-height:1;letter-spacing:-0.06em;margin-bottom:18px}
-.notfound-sec h1{font-size:48px;margin:0 0 18px;letter-spacing:-0.03em;line-height:1.06}
+.notfound-inner{max-width:720px;text-align:center;margin:0 auto}
+
+.nf-stage{
+  position:relative;width:100%;max-width:640px;margin:0 auto 28px;
+}
+.nf-viz{width:100%;height:auto;display:block}
+
+/* dashed beam segments shimmering between the pins and the gap */
+.nf-beam{animation:nfBeamShift 1.8s linear infinite}
+.nf-beam-delay{animation-delay:.9s}
+@keyframes nfBeamShift{
+  from{stroke-dashoffset:0}
+  to{stroke-dashoffset:-28}
+}
+
+.nf-code{font-size:88px;font-weight:800;line-height:1;letter-spacing:-0.05em;margin-bottom:14px}
+.notfound-sec h1{font-size:42px;margin:0 0 16px;letter-spacing:-0.03em;line-height:1.08}
 .notfound-sec p.lead{font-size:16.5px;color:#4A5250;line-height:1.55;max-width:520px;margin:0 auto 32px}
-.notfound-sec .hero-cta{justify-content:center}
+.notfound-sec .hero-cta{justify-content:center;flex-wrap:wrap}
 
 @media (max-width:900px){
   .notfound-sec{padding:100px 0 80px;min-height:calc(100vh - 160px)}
-  .notfound-code{font-size:120px}
-  .notfound-sec h1{font-size:36px}
+  .nf-stage{max-width:520px;margin-bottom:22px}
+  .nf-code{font-size:72px}
+  .notfound-sec h1{font-size:34px}
 }
 @media (max-width:640px){
-  .notfound-sec{padding:80px 0 60px}
-  .notfound-code{font-size:96px}
-  .notfound-sec h1{font-size:32px}
-  .notfound-sec p.lead{font-size:15px}
+  .notfound-sec{padding:90px 0 70px}
+  .nf-stage{max-width:420px}
+  .nf-code{font-size:60px;margin-bottom:10px}
+  .notfound-sec h1{font-size:28px}
+  .notfound-sec p.lead{font-size:15px;line-height:1.5}
   .notfound-sec .hero-cta{flex-direction:column}
   .notfound-sec .hero-cta .btn{width:100%;justify-content:center}
 }
