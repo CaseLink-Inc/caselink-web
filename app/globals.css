@@ -1269,8 +1269,9 @@ body.mob-open{overflow:hidden}
   .hero-tag{font-size:11px}
   .about-hero h1{font-size:34px}
   .contact-hero h1{font-size:30px}
-  .section-head h2,.how-head h2,.pricing-head h2,.problem h2,.about-story h2,.about-mission h2,.about-where h2,.network-inner h2,.timeline-sec h2{font-size:28px;line-height:1.15}
-  .cta-sec h2{font-size:32px}
+  /* Unified mobile section title size. Every section heading lands at
+     32/1.15 regardless of which class is on it. */
+  .section-head h2,.how-head h2,.pricing-head h2,.problem h2,.about-story h2,.about-mission h2,.about-where h2,.network-inner h2,.timeline-sec h2,.market-head h2,.roi-head h2,.trust h2,.cta-sec h2,.where-grid h2{font-size:32px;line-height:1.15}
   .problem-sub{margin-bottom:36px;font-size:14px}
 
   .problem-stats-row,.who-grid,.pricing-grid,.mission-grid,.demo-benefits,.tl-grid,.market-grid{grid-template-columns:1fr;gap:16px}
@@ -1336,7 +1337,6 @@ body.mob-open{overflow:hidden}
   .trust-viz{height:240px}
   .shield{width:160px;height:160px}
   .shield .ring2{display:none}
-  .trust h2{font-size:30px}
   .trust-item{padding:14px;gap:12px}
   .trust-item-icon{width:34px;height:34px}
 
@@ -1417,8 +1417,8 @@ body.mob-open{overflow:hidden}
   .hero h1{font-size:40px}
   .about-hero h1{font-size:30px}
   .contact-hero h1{font-size:28px}
-  .section-head h2,.how-head h2,.pricing-head h2,.problem h2,.about-story h2,.about-mission h2,.about-where h2,.network-inner h2,.timeline-sec h2{font-size:26px}
-  .cta-sec h2{font-size:28px}
+  /* Unified small-mobile section title size. */
+  .section-head h2,.how-head h2,.pricing-head h2,.problem h2,.about-story h2,.about-mission h2,.about-where h2,.network-inner h2,.timeline-sec h2,.market-head h2,.roi-head h2,.trust h2,.cta-sec h2,.where-grid h2{font-size:28px}
   .case-card{width:260px}
   .hero-visual{min-height:380px}
   .hero-meta{gap:14px}
