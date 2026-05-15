@@ -10,11 +10,15 @@ const roles = [
 ];
 
 // Web3Forms public API. Submissions are POSTed with a domain-locked access
-// key; Web3Forms forwards them to the email tied to that key (support@
-// caselink.net once the user generates a key for that address). No
-// activation step is required.
+// key; Web3Forms forwards them to the email tied to that key
+// (support@caselink.net). The key is safe to ship in client code because
+// Web3Forms only accepts submissions originating from the configured
+// domain. Setting NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY in Vercel will override
+// this fallback if you ever rotate the key without a code change.
 const WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
-const WEB3FORMS_ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ?? "";
+const WEB3FORMS_ACCESS_KEY =
+  process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ??
+  "fbc67ad1-a32f-4d04-a870-82d7b6e2084d";
 
 export default function ContactForm() {
   const [role, setRole] = useState("gp");
