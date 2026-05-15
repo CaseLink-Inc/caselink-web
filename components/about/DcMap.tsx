@@ -55,23 +55,6 @@ export default function DcMap() {
   // the actual current pose, not from the previous target.
   const currentBoxRef = useRef<Box>([...WIDE_BOX]);
 
-  // Watch whether the map is in view. No unobserve — we want both
-  // directions of the transition.
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          setZoomedIn(entry.isIntersecting);
-        });
-      },
-      { threshold: 0.45 }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-
   // Whenever zoom state flips, animate the viewBox toward the new target.
   // We re-read currentBoxRef so a mid-flight reversal continues smoothly
   // instead of snapping back to the previous start.
@@ -96,7 +79,16 @@ export default function DcMap() {
   }, [zoomedIn]);
 
   return (
-    <div className="where-viz reveal">
+    <div
+      className="where-viz reveal"
+      onMouseEnter={() => setZoomedIn(true)}
+      onMouseLeave={() => setZoomedIn(false)}
+      onFocus={() => setZoomedIn(true)}
+      onBlur={() => setZoomedIn(false)}
+      tabIndex={0}
+      role="img"
+      aria-label="DC referral network map"
+    >
       <svg
         ref={ref}
         viewBox={box}
@@ -209,6 +201,14 @@ export default function DcMap() {
       <div className={`dc-map-badge ${zoomedIn ? "show" : ""}`}>
         <span className="live-dot" />
         Active network · DC
+      </div>
+      <div className="dc-hint">
+        <svg viewBox="0 0 24 24" fill="none" strokeWidth="2" strokeLinecap="round">
+          <circle cx="11" cy="11" r="7" />
+          <path d="M11 8v6M8 11h6" />
+          <path d="M21 21l-4.35-4.35" />
+        </svg>
+        Hover to zoom in on DC
       </div>
     </div>
   );

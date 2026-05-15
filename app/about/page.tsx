@@ -3,6 +3,7 @@ import Image from "next/image";
 import { ArrowRight } from "@/components/icons";
 import Timeline from "@/components/about/Timeline";
 import DcMap from "@/components/about/DcMap";
+import MarketStat from "@/components/about/MarketStat";
 import CtaBand from "@/components/home/CtaBand";
 import { SIGNUP_URL } from "@/lib/urls";
 
@@ -32,8 +33,50 @@ export default function AboutPage() {
             </div>
           </div>
           <div className="portrait-wrap">
-            <div className="portrait-orbit2" />
-            <div className="portrait-orbit" />
+            <svg
+              className="portrait-orbits"
+              viewBox="0 0 700 700"
+              aria-hidden="true"
+            >
+              <defs>
+                <path
+                  id="orb-a"
+                  d="M 30 350 a 320 110 0 1 0 640 0 a 320 110 0 1 0 -640 0"
+                />
+                <path
+                  id="orb-b"
+                  d="M 80 350 a 270 90 0 1 0 540 0 a 270 90 0 1 0 -540 0"
+                />
+              </defs>
+              <g transform="rotate(-22 350 350)">
+                <use
+                  href="#orb-a"
+                  fill="none"
+                  stroke="rgba(62,142,255,0.35)"
+                  strokeWidth="1"
+                  strokeDasharray="4 6"
+                />
+                <circle r="6" fill="#3E8EFF">
+                  <animateMotion dur="14s" repeatCount="indefinite">
+                    <mpath href="#orb-a" />
+                  </animateMotion>
+                </circle>
+              </g>
+              <g transform="rotate(28 350 350)">
+                <use
+                  href="#orb-b"
+                  fill="none"
+                  stroke="rgba(255,169,64,0.32)"
+                  strokeWidth="1"
+                  strokeDasharray="4 6"
+                />
+                <circle r="5" fill="#FFA940">
+                  <animateMotion dur="18s" repeatCount="indefinite">
+                    <mpath href="#orb-b" />
+                  </animateMotion>
+                </circle>
+              </g>
+            </svg>
             <div className="portrait-frame">
               <Image
                 src="/portrait.png"
@@ -141,17 +184,23 @@ export default function AboutPage() {
           </div>
           <div className="market-grid">
             <div className="market-stat reveal">
-              <div className="num">30%</div>
+              <div className="num">
+                <MarketStat target={30} suffix="%" />
+              </div>
               <h4>of referrals never reach treatment</h4>
               <p>Patients drop off between the GP and the specialist, often without either side knowing.</p>
             </div>
             <div className="market-stat alt reveal" style={{ transitionDelay: ".1s" }}>
-              <div className="num">&lt;2%</div>
+              <div className="num">
+                <MarketStat prefix="<" target={2} start={50} suffix="%" />
+              </div>
               <h4>of practices use a dedicated referral tool</h4>
               <p>The category exists for medical referrals. In dentistry it is still wide open.</p>
             </div>
             <div className="market-stat alt2 reveal" style={{ transitionDelay: ".2s" }}>
-              <div className="num">Days</div>
+              <div className="num">
+                <MarketStat text="Days" />
+              </div>
               <h4>not minutes, to close the loop</h4>
               <p>Outcome reports travel back by fax or phone, when they travel back at all.</p>
             </div>

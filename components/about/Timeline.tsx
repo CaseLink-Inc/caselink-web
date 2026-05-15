@@ -10,61 +10,100 @@ const steps = [
   { when: "Next", title: "Beyond DC", desc: "Bringing the model to Boston, Philadelphia, Charlotte, and Atlanta." },
 ];
 
-// Where each step's dot sits along the line, as a percentage of the line width.
-// 5 steps in a 5-col grid -> dots sit at roughly 10%, 30%, 50%, 70%, 90%.
+// Where each step's dot sits along the line, as a percentage.
 const dotPercents = [10, 30, 50, 70, 90];
 
-// We're actively running DC pilots, so the progress line should land just
-// past the 4th dot (DC pilots) but not yet reach the 5th (Beyond DC).
+// We're actively running DC pilots, so the leading edge lands just past
+// the 4th dot but never reaches the 5th.
 const TARGET_PROGRESS = 78;
-const ANIMATION_DURATION_MS = 2200;
+// Cycle phases (ms):
+//  - fill    : 0 -> TARGET_PROGRESS (ease-out)
+//  - hold-in : stay at peak
+//  - retreat : TARGET_PROGRESS -> 0 (ease-in)
+//  - hold-out: stay at 0 before the next sweep
+const FILL_MS = 2400;
+const HOLD_IN_MS = 1600;
+const RETREAT_MS = 1200;
+const HOLD_OUT_MS = 600;
+const CYCLE_MS = FILL_MS + HOLD_IN_MS + RETREAT_MS + HOLD_OUT_MS;
+
+function progressForCycle(t: number): number {
+  if (t < FILL_MS) {
+    const u = t / FILL_MS;
+    const eased = 1 - Math.pow(1 - u, 3);
+    return eased * TARGET_PROGRESS;
+  }
+  if (t < FILL_MS + HOLD_IN_MS) return TARGET_PROGRESS;
+  if (t < FILL_MS + HOLD_IN_MS + RETREAT_MS) {
+    const u = (t - FILL_MS - HOLD_IN_MS) / RETREAT_MS;
+    const eased = u * u * u; // ease-in
+    return TARGET_PROGRESS * (1 - eased);
+  }
+  return 0;
+}
 
 export default function Timeline() {
   const gridRef = useRef<HTMLDivElement>(null);
-  const [shown, setShown] = useState(Array(steps.length).fill(false));
+  const [shown, setShown] = useState<boolean[]>(Array(steps.length).fill(false));
   const [progress, setProgress] = useState(0);
   const [glowing, setGlowing] = useState<boolean[]>(Array(steps.length).fill(false));
 
   useEffect(() => {
     const el = gridRef.current;
     if (!el) return;
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          // Fade in each step card.
-          steps.forEach((_, i) => {
-            setTimeout(() => {
-              setShown((arr) => {
-                const next = [...arr];
-                next[i] = true;
-                return next;
-              });
-            }, i * 150);
-          });
 
-          // Animate the gradient progress line from 0 to TARGET_PROGRESS%
-          // and glow each dot the moment the line crosses it.
-          const start = performance.now();
-          const tick = (now: number) => {
-            const elapsed = now - start;
-            const t = Math.min(1, elapsed / ANIMATION_DURATION_MS);
-            // ease-out cubic so the leading edge slows as it approaches DC.
-            const eased = 1 - Math.pow(1 - t, 3);
-            const pct = eased * TARGET_PROGRESS;
-            setProgress(pct);
-            setGlowing((arr) =>
-              arr.map((g, i) => g || pct >= dotPercents[i] - 0.5)
-            );
-            if (t < 1) requestAnimationFrame(tick);
-          };
-          requestAnimationFrame(tick);
+    let raf = 0;
+    let running = false;
+    let cycleStart = 0;
 
-          obs.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.25 });
+    const tick = (now: number) => {
+      const t = (now - cycleStart) % CYCLE_MS;
+      const pct = progressForCycle(t);
+      setProgress(pct);
+      setGlowing(dotPercents.map((dotAt) => pct >= dotAt - 0.5));
+      if (running) raf = requestAnimationFrame(tick);
+    };
+
+    const start = () => {
+      if (running) return;
+      running = true;
+      cycleStart = performance.now();
+      raf = requestAnimationFrame(tick);
+    };
+    const stop = () => {
+      running = false;
+      cancelAnimationFrame(raf);
+    };
+
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Stagger the step cards in on first reveal (one-shot, the text
+            // doesn't need to keep fading in and out).
+            steps.forEach((_, i) => {
+              setTimeout(() => {
+                setShown((arr) => {
+                  if (arr[i]) return arr;
+                  const next = [...arr];
+                  next[i] = true;
+                  return next;
+                });
+              }, i * 150);
+            });
+            start();
+          } else {
+            stop();
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
     obs.observe(el);
-    return () => obs.disconnect();
+    return () => {
+      stop();
+      obs.disconnect();
+    };
   }, []);
 
   return (

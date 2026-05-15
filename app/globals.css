@@ -808,20 +808,18 @@ section{position:relative;padding:80px 0}
 .about-hero h1{font-size:72px;margin:24px 0 28px;letter-spacing:-0.03em;line-height:1.04}
 .about-hero p.lead{font-size:18px;color:#4A5250;line-height:1.55;max-width:520px;margin-bottom:36px}
 
-.portrait-wrap{position:relative;display:flex;align-items:center;justify-content:center;min-height:680px;animation:fadeUp 1s .3s both}
+.portrait-wrap{position:relative;display:flex;align-items:center;justify-content:center;animation:fadeUp 1s .3s both}
 .portrait-frame{position:relative;display:inline-flex;z-index:2;animation:portraitBob 8s ease-in-out infinite;filter:drop-shadow(0 36px 70px rgba(26,31,30,0.18))}
 @keyframes portraitBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-.portrait-frame img{display:block;width:auto;height:auto;max-width:460px;max-height:640px}
+.portrait-frame img{display:block;width:auto;height:auto;max-width:100%;height:auto;width:540px}
 .portrait-tag{position:absolute;bottom:0;left:50%;transform:translateX(-50%);padding:10px 16px;background:rgba(255,255,255,0.96);backdrop-filter:blur(10px);border-radius:14px;display:flex;align-items:center;gap:10px;box-shadow:0 12px 28px rgba(26,31,30,0.12);z-index:3;white-space:nowrap}
 .portrait-tag .pt-dot{width:8px;height:8px;border-radius:50%;background:#3DBD6B;box-shadow:0 0 0 0 rgba(61,189,107,0.5);animation:pulseDot 2s ease-out infinite}
 .portrait-tag .pt-txt{font-size:12px;color:#1A1F1E}
 .portrait-tag .pt-txt strong{display:block;font-weight:700;font-size:13px}
 .portrait-tag .pt-txt span{font-size:11px;color:#7A8886}
 
-.portrait-orbit{position:absolute;top:50%;left:50%;width:600px;height:600px;margin:-300px 0 0 -300px;border-radius:50%;border:1px dashed rgba(62,142,255,0.3);animation:spin 40s linear infinite;pointer-events:none;z-index:1}
-.portrait-orbit::before{content:'';position:absolute;top:-6px;left:50%;width:12px;height:12px;border-radius:50%;background:#3E8EFF;box-shadow:0 0 12px rgba(62,142,255,0.6);margin-left:-6px}
-.portrait-orbit2{position:absolute;top:50%;left:50%;width:720px;height:720px;margin:-360px 0 0 -360px;border-radius:50%;border:1px dashed rgba(255,169,64,0.25);animation:spin 60s linear infinite reverse;pointer-events:none;z-index:1}
-.portrait-orbit2::before{content:'';position:absolute;bottom:-6px;left:35%;width:10px;height:10px;border-radius:50%;background:#FFA940;box-shadow:0 0 12px rgba(255,169,64,0.6)}
+.portrait-orbits{position:absolute;top:50%;left:50%;width:760px;height:760px;margin:-380px 0 0 -380px;pointer-events:none;z-index:1;overflow:visible}
+.portrait-orbits circle{filter:drop-shadow(0 0 6px currentColor)}
 
 .about-story{padding:80px 0;background:#FBFBF9;position:relative;overflow:hidden}
 .about-story-inner{max-width:900px;margin:0 auto;text-align:center}
@@ -913,7 +911,9 @@ section{position:relative;padding:80px 0}
 .market-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1080px;margin:0 auto}
 .market-stat{background:#fff;border:1px solid #E8EEF8;border-radius:24px;padding:36px 32px;transition:transform .35s ease,box-shadow .35s ease}
 .market-stat:hover{transform:translateY(-6px);box-shadow:0 24px 50px rgba(26,31,30,0.08)}
-.market-stat .num{font-size:64px;font-weight:700;letter-spacing:-0.04em;line-height:1;background:linear-gradient(135deg,#3E8EFF,#90F0C5);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:14px}
+.market-stat .num{font-size:64px;font-weight:700;letter-spacing:-0.04em;line-height:1;background:linear-gradient(135deg,#3E8EFF,#90F0C5);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:14px;min-height:1em}
+.market-stat-num{display:inline-block;opacity:0;transform:translateY(8px);transition:opacity .5s ease,transform .5s ease}
+.market-stat-num.in{opacity:1;transform:translateY(0)}
 .market-stat.alt .num{background:linear-gradient(135deg,#FFA940,#FFC794);-webkit-background-clip:text;background-clip:text;color:transparent}
 .market-stat.alt2 .num{background:linear-gradient(135deg,#3DBD6B,#90F0C5);-webkit-background-clip:text;background-clip:text;color:transparent}
 .market-stat h4{font-size:17px;margin-bottom:8px;line-height:1.25}
@@ -929,8 +929,21 @@ section{position:relative;padding:80px 0}
 .where-city.now{background:#1A1F1E;color:#fff;border-color:#1A1F1E}
 .where-city .dot{width:6px;height:6px;border-radius:50%;background:#7A8886}
 .where-city.now .dot{background:#90F0C5;box-shadow:0 0 6px rgba(144,240,197,0.6)}
-.where-viz{position:relative;height:440px;background:linear-gradient(135deg,#EBF3FF,#FEF0F2);border-radius:24px;overflow:hidden;border:1px solid #E8EEF8}
+.where-viz{position:relative;height:440px;background:linear-gradient(135deg,#EBF3FF,#FEF0F2);border-radius:24px;overflow:hidden;border:1px solid #E8EEF8;cursor:zoom-in;outline:none}
+.where-viz:focus-visible{box-shadow:0 0 0 3px rgba(62,142,255,0.25)}
+.where-viz:hover .dc-hint,.where-viz:focus .dc-hint{opacity:0}
 .where-viz svg{width:100%;height:100%}
+.dc-hint{
+  position:absolute;bottom:14px;right:14px;
+  display:inline-flex;align-items:center;gap:6px;
+  padding:6px 11px;border-radius:999px;
+  background:rgba(255,255,255,0.94);backdrop-filter:blur(10px);
+  border:1px solid #E8EEF8;
+  font-size:11px;font-weight:600;color:#4A5250;
+  pointer-events:none;
+  transition:opacity .35s ease;
+}
+.dc-hint svg{width:11px;height:11px;stroke:#3E8EFF}
 /* Wide-view layer is visible by default and fades out as we zoom in. */
 .dc-map .dc-far{opacity:1;transition:opacity .6s ease}
 .dc-map.zoomed .dc-far{opacity:0;transition:opacity .5s ease}
@@ -1182,10 +1195,8 @@ body.mob-open{overflow:hidden}
   .map-viz{height:440px}
   .legend{top:50px;right:12px;padding:8px 10px;font-size:10px}
 
-  .portrait-wrap{min-height:480px}
-  .portrait-frame img{max-width:320px;max-height:440px}
-  .portrait-orbit{width:420px;height:420px;margin:-210px 0 0 -210px}
-  .portrait-orbit2{width:520px;height:520px;margin:-260px 0 0 -260px}
+  .portrait-frame img{width:380px;max-width:100%;height:auto}
+  .portrait-orbits{width:580px;height:580px;margin:-290px 0 0 -290px}
 
   .shield .ring3{display:none}
   .trust-viz{height:320px}
@@ -1289,9 +1300,8 @@ body.mob-open{overflow:hidden}
   .price-features li{font-size:13px;padding-left:22px}
   .price-cta{padding:13px}
 
-  .portrait-wrap{min-height:400px}
-  .portrait-frame img{max-width:260px;max-height:360px}
-  .portrait-orbit,.portrait-orbit2{display:none}
+  .portrait-frame img{width:300px;max-width:100%;height:auto}
+  .portrait-orbits{display:none}
   .portrait-tag{padding:8px 12px}
   .story-body{gap:24px}
   .story-quote{font-size:18px;padding:0 16px}
