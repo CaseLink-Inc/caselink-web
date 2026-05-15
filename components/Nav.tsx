@@ -102,14 +102,26 @@ export default function Nav() {
         <ul>
           {links.map((l) => (
             <li key={l.href}>
-              <Link href={l.href}>
+              {/* Close the drawer on every tap. The pathname-based effect
+                  only fires when the route changes, so links like /#how
+                  (same path, different hash) or 'Home' while already on
+                  / would leave the drawer open without this. */}
+              <Link href={l.href} onClick={() => setOpen(false)}>
                 {l.label}
                 {arrowSvg}
               </Link>
             </li>
           ))}
         </ul>
-        <a href={LOGIN_URL} className="mob-cta" target="_blank" rel="noopener noreferrer">Login now</a>
+        <a
+          href={LOGIN_URL}
+          className="mob-cta"
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => setOpen(false)}
+        >
+          Login now
+        </a>
       </aside>
     </>
   );
