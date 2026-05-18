@@ -127,6 +127,20 @@ Vercel picks it up in ~30 seconds.
 
 ## Recent significant changes (most recent first)
 
+- **AEO + SEO pass (home page)**: home page now renders four JSON-LD
+  blocks in the server HTML — Organization and WebSite from the root
+  layout, plus SoftwareApplication and FAQPage scoped to the home page
+  itself. SoftwareApplication declares `applicationCategory:
+  BusinessApplication`, `operatingSystem: Web`, an AggregateOffer
+  spanning the free GP plan and the $299/month specialist plan, and a
+  featureList. FAQPage mirrors the visible accordion at
+  `components/home/Faq.tsx` (six Q&As covering HIPAA, fax/email
+  comparison, pricing, free GP plan, attachable clinical info, BAA).
+  The accordion uses native `<details>`/`<summary>` so every answer is
+  in the DOM without JS interaction. `public/llms.txt` refreshed to
+  add `/privacy` to Key pages and to reflect the verified Arlington VA
+  headquarters address. Phone number kept in llms.txt by design for
+  consistency with the contact page and Organization JSON-LD.
 - **Privacy policy page** at `/privacy`. Server component with per-page
   metadata + canonical, hero (eyebrow + h1 + lead + effective date),
   TOC card with 14 anchored sections, body sections with full legal

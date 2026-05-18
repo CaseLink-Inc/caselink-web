@@ -37,13 +37,14 @@ All plans include HIPAA compliance, BAA on signup, and unlimited case storage.
 
 ## Founder
 
-CaseLink was founded by Nick Campbell, Co-Founder and CEO, based in Washington, DC. The company began with a simple observation: dentists are some of the most connected professionals in healthcare, yet the digital tools connecting their practices have not caught up.
+CaseLink was founded by Nick Campbell, Co-Founder and CEO. CaseLink, Inc. is headquartered at 124 S Wise St, Arlington, VA 22204, in the Washington, DC metro area. The company began with a simple observation: dentists are some of the most connected professionals in healthcare, yet the digital tools connecting their practices have not caught up.
 
 ## Key pages
 
 - Home: https://www.caselink.net
 - About: https://www.caselink.net/about
 - Contact: https://www.caselink.net/contact
+- Privacy Policy: https://www.caselink.net/privacy
 
 ## Contact
 
@@ -52,6 +53,7 @@ CaseLink was founded by Nick Campbell, Co-Founder and CEO, based in Washington, 
 - Book a 15-minute walkthrough: https://calendly.com/nick-caselink/15min
 - Sign up for the product: https://app.caselink.net/app/CaseLink/signup
 - Sign in to the product: https://app.caselink.net/login
+- Headquarters: 124 S Wise St, Arlington, VA 22204, United States
 
 ## Industry context
 
