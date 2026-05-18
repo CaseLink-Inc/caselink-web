@@ -127,6 +127,15 @@ Vercel picks it up in ~30 seconds.
 
 ## Recent significant changes (most recent first)
 
+- **Search Console + Bing Webmaster Tools**: `sitemap.xml` submitted to
+  both on 2026-05-18.
+- **Contact form spam protection**: hCaptcha wired into the contact
+  form via Web3Forms's hosted widget (no external site key needed).
+  Submissions without a solved `h-captcha-response` token are blocked
+  both client-side (clear inline error) and at the Web3Forms layer.
+  CSP in `next.config.ts` extended to allow `hcaptcha.com`,
+  `*.hcaptcha.com`, and `web3forms.com` for script, style, frame, and
+  connect sources. Dashboard toggle confirmed on 2026-05-18.
 - **Email auth live**: SPF (`v=spf1 include:_spf.google.com ~all`), DKIM
   (2048-bit key at `google._domainkey.caselink.net`, activated in Google
   Admin 2026-05-18 — first test email returned `DKIM: PASS with domain
@@ -177,11 +186,9 @@ Vercel picks it up in ~30 seconds.
 ### Recommended but not started
 
 - **Privacy policy page** at `/privacy`, linked from the footer. Site
-  uses Calendly (sets cookies) and Web3Forms (no persistent cookies).
-  Disclosure is cheap insurance, no cookie banner needed.
-- **Web3Forms reCAPTCHA**: toggle in the Web3Forms dashboard for spam
-  protection on the contact form.
-- **Submit sitemap** to Google Search Console + Bing Webmaster Tools.
+  uses Calendly (sets cookies), Web3Forms (no persistent cookies), and
+  hCaptcha (sets cookies for challenge state). Disclosure is cheap
+  insurance, no cookie banner needed.
 - **Content strategy / blog** at `/resources` or `/blog`: the single
   biggest organic-traffic lever the site has. Target dental-referral
   long-tail queries.
