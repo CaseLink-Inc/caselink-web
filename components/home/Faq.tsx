@@ -34,13 +34,13 @@ export default function Faq() {
         <div className="faq-head reveal">
           <span className="eyebrow">FAQ</span>
           <h2>
-            Common questions,
+            The questions we hear most,
             <br />
-            <span className="grad-text">plain answers.</span>
+            <span className="grad-text">answered.</span>
           </h2>
           <p className="faq-lede">
-            Short answers to what we hear most often. If yours is not here,
-            we are one email away.
+            Short answers to what comes up first. If yours is not here, we
+            are one email away.
           </p>
         </div>
 
