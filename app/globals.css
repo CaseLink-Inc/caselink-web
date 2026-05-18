@@ -1606,6 +1606,56 @@ body.mob-open{overflow:hidden}
 }
 
 /* =====================================================================
+   Tablet portrait (641-900px)
+   At these widths the mobile single-column layout (from the 900px
+   breakpoint above) used to stretch the full viewport, leaving a wide
+   strip of awkward whitespace on the right of every section. The
+   stacked content reads best in a centered, narrower column. This
+   block constrains the obvious offenders to ~720px max-width and
+   centers them with auto margins, so iPad-portrait users see a
+   deliberate, balanced layout instead of a stretched-out phone view.
+   Mobile (<=640px) and tablet-landscape / desktop (>900px) untouched.
+   ===================================================================== */
+@media (min-width:641px) and (max-width:900px){
+  .hero-inner,
+  .about-hero-inner,
+  .network-inner,
+  .trust-inner,
+  .story-body,
+  .where-grid,
+  .contact-grid{
+    max-width:720px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .demo-mockup,
+  .problem-stats-row,
+  .who-grid,
+  .pricing-grid,
+  .mission-grid,
+  .demo-benefits,
+  .market-grid,
+  .tl-grid,
+  .faq-list,
+  .contact-info{
+    max-width:720px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  /* Hero visual feels orphaned at tablet width when centered with a
+     case-card 340px wide inside a 720px column. Pull width down.
+     Needs explicit width:100% because the visual's children are all
+     position:absolute and would otherwise collapse the intrinsic
+     width to 0, leaving the case-card pinned at the column edge. */
+  .hero-visual{
+    width:100%;
+    max-width:520px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+}
+
+/* =====================================================================
    Mobile LCP perf
    PageSpeed measured mobile LCP at 5.0s pre-fix. Root cause was the
    chain of hero entrance animations (h1 line rise, sub fadeUp, CTA
