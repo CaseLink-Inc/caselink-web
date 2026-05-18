@@ -42,16 +42,16 @@ const securityHeaders = [
     value: [
       "default-src 'self'",
       // Next.js + JSON-LD + Calendly widget all need inline + eval'd code.
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://assets.calendly.com https://calendly.com https://va.vercel-scripts.com",
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://assets.calendly.com https://calendly.com https://va.vercel-scripts.com https://web3forms.com https://*.hcaptcha.com https://hcaptcha.com",
       // Fonts and stylesheets — self-hosted Satoshi + Calendly widget CSS.
-      "style-src 'self' 'unsafe-inline' https://assets.calendly.com",
+      "style-src 'self' 'unsafe-inline' https://assets.calendly.com https://*.hcaptcha.com https://hcaptcha.com",
       "font-src 'self' data:",
       // Images: site assets, Web3Forms badge, Vercel-optimised images, social previews.
       "img-src 'self' data: blob: https:",
-      // Calendly popup runs in an iframe.
-      "frame-src 'self' https://calendly.com https://*.calendly.com",
-      // Web3Forms POST endpoint + Calendly tracking.
-      "connect-src 'self' https://api.web3forms.com https://calendly.com https://*.calendly.com https://assets.calendly.com",
+      // Calendly popup runs in an iframe. hCaptcha challenge also iframed.
+      "frame-src 'self' https://calendly.com https://*.calendly.com https://*.hcaptcha.com https://hcaptcha.com",
+      // Web3Forms POST endpoint + Calendly tracking + hCaptcha verification.
+      "connect-src 'self' https://api.web3forms.com https://calendly.com https://*.calendly.com https://assets.calendly.com https://*.hcaptcha.com https://hcaptcha.com",
       // Stop the site from being framed by anyone else.
       "frame-ancestors 'none'",
       "base-uri 'self'",

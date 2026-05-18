@@ -127,9 +127,13 @@ Vercel picks it up in ~30 seconds.
 
 ## Recent significant changes (most recent first)
 
-- **Email auth in progress**: SPF (`v=spf1 include:_spf.google.com ~all`)
-  confirmed live on `caselink.net`. DKIM + DMARC pending. See "Pending"
-  below.
+- **Email auth live**: SPF (`v=spf1 include:_spf.google.com ~all`), DKIM
+  (2048-bit key at `google._domainkey.caselink.net`, activated in Google
+  Admin 2026-05-18 — first test email returned `DKIM: PASS with domain
+  caselink.net`), and DMARC at `_dmarc.caselink.net` in monitor mode
+  (`p=none` with strict alignment, aggregate + forensic reports to
+  `support@caselink.net`) all in place as of 2026-05-18. Tighten to
+  `p=quarantine` then `p=reject` after 2 to 4 weeks of clean reports.
 - **SEO + AIO + Security pass**: added `app/sitemap.ts`, `app/robots.ts`,
   `public/llms.txt`, JSON-LD Organization + WebSite schemas in the root
   layout, per-page metadata + canonicals for About and Contact, full
@@ -163,16 +167,12 @@ Vercel picks it up in ~30 seconds.
 
 ### Immediate
 
-- **DKIM** at Google Admin → DNS → Activate. After ~48 hours the status
-  in Google Admin will flip from "Authenticating" to "Authenticated".
-- **DMARC** after DKIM is authenticated. Start in `p=none` monitor mode:
-
-  ```
-  v=DMARC1; p=none; rua=mailto:support@caselink.net; ruf=mailto:support@caselink.net; fo=1; adkim=s; aspf=s; pct=100
-  ```
-
-  Tighten to `p=quarantine` then `p=reject` after 2 to 4 weeks of clean
-  reports.
+- **DMARC tightening** — DMARC is currently in `p=none` monitor mode
+  (deployed 2026-05-18). Watch the daily aggregate reports landing in
+  `support@caselink.net`. After 2 weeks of clean reports (no legitimate
+  mail failing alignment), edit the `_dmarc` TXT record in IONOS and
+  change `p=none` to `p=quarantine`. After another 2 weeks clean, change
+  to `p=reject`. Earliest tightening date: 2026-06-01.
 
 ### Recommended but not started
 

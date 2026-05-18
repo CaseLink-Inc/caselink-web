@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Script from "next/script";
 import { ArrowRight, Check } from "@/components/icons";
 
 const roles = [
@@ -25,12 +26,14 @@ export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [errored, setErrored] = useState(false);
+  const [captchaMissing, setCaptchaMissing] = useState(false);
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (submitting) return;
     setSubmitting(true);
     setErrored(false);
+    setCaptchaMissing(false);
 
     // Build a plain object from the form, plus the Web3Forms control fields.
     const fd = new FormData(e.currentTarget);
@@ -41,6 +44,16 @@ export default function ContactForm() {
     payload.access_key = WEB3FORMS_ACCESS_KEY;
     payload.subject = "New CaseLink contact form submission";
     payload.from_name = "CaseLink";
+
+    // hCaptcha (enabled in the Web3Forms dashboard) injects an `h-captcha-response`
+    // hidden input once the challenge is solved. If the user submits before solving
+    // it, Web3Forms would reject the request with a generic 400, so we catch it
+    // client-side and surface a clearer message.
+    if (!payload["h-captcha-response"]) {
+      setCaptchaMissing(true);
+      setSubmitting(false);
+      return;
+    }
     // When you hit Reply in Gmail, it should go to the person who submitted
     // the form rather than to Web3Forms. We pull their email straight from
     // the form payload.
@@ -181,12 +194,32 @@ export default function ContactForm() {
             <input type="checkbox" required />
             <span>I agree to be contacted by CaseLink about my inquiry. No spam, no shared data, ever.</span>
           </label>
+          <div className="h-captcha" data-captcha="true" />
+          {captchaMissing && (
+            <p
+              role="alert"
+              style={{
+                color: "#B4231A",
+                fontSize: 13,
+                marginTop: -4,
+                marginBottom: 4,
+              }}
+            >
+              Please complete the captcha before sending.
+            </p>
+          )}
           <button type="submit" className="form-submit" disabled={submitting}>
             {submitting ? "Sending" : "Send message"}
             {!submitting && <ArrowRight width={16} height={16} />}
           </button>
         </form>
       )}
+      <Script
+        src="https://web3forms.com/client/script.js"
+        strategy="afterInteractive"
+        async
+        defer
+      />
     </div>
   );
 }
