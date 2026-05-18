@@ -1062,6 +1062,11 @@ footer.site-footer{padding:72px 0 28px;background:#1A1F1E;color:#A8B0AE}
 .check-row{display:flex;align-items:flex-start;gap:10px;margin:18px 0 22px;font-size:13px;color:#4A5250;line-height:1.45}
 .check-row input{margin-top:3px;accent-color:#3E8EFF}
 .check-row a{color:#3E8EFF;font-weight:600}
+/* hCaptcha widget sits between the consent checkbox and the submit button.
+   The widget's own 76px-tall card has no outer margin, so it ends up flush
+   against the button. 24px below gives the same visual rhythm the rest of
+   the form uses between blocks. */
+.h-captcha{margin:0 0 24px}
 .form-submit{width:100%;padding:16px;border-radius:999px;background:#1A1F1E;color:#fff;font-size:15px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:transform .2s,box-shadow .2s}
 .form-submit:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(26,31,30,0.25)}
 .form-success{display:none;padding:18px;background:#E6FAF1;border:1px solid #90F0C5;border-radius:12px;color:#1A1F1E;font-size:14px;align-items:center;gap:10px}
