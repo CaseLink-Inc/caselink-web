@@ -127,6 +127,25 @@ Vercel picks it up in ~30 seconds.
 
 ## Recent significant changes (most recent first)
 
+- **Privacy policy page** at `/privacy`. Server component with per-page
+  metadata + canonical, hero (eyebrow + h1 + lead + effective date),
+  TOC card with 14 anchored sections, body sections with full legal
+  copy, and a contact card at the bottom listing the Arlington office.
+  Styles added to `globals.css` under the `.privacy-*` namespace.
+  Footer in `components/Footer.tsx` now exposes the link in the More
+  pages column. `app/sitemap.ts` lists `/privacy` at priority 0.3.
+  Cookie section (§6) names hCaptcha and Calendly explicitly so the
+  disclosure matches what the site actually loads.
+- **Google Business Profile**: created and verified on 2026-05-18.
+  Listed as **CaseLink, Inc.**, category "Software company", at 124 S
+  Wise St, Arlington, VA 22204. Hours: open 24 hours. CID
+  `12643817021776002590`. Direct Maps URL:
+  `https://www.google.com/maps?cid=12643817021776002590`. Profile
+  strength reads "Looks good!" in the dashboard. Phone number not yet
+  added — pending follow-up to surface `+1 (703) 554-3449` on the GBP
+  so mobile users can tap-to-call from the Maps card. Verified-but-new
+  listings rank near zero for unbranded local queries; branded
+  searches (e.g. `CaseLink`) surface the knowledge panel already.
 - **Search Console + Bing Webmaster Tools**: `sitemap.xml` submitted to
   both on 2026-05-18.
 - **Contact form spam protection**: hCaptcha wired into the contact
@@ -185,17 +204,14 @@ Vercel picks it up in ~30 seconds.
 
 ### Recommended but not started
 
-- **Privacy policy page** at `/privacy`, linked from the footer. Site
-  uses Calendly (sets cookies), Web3Forms (no persistent cookies), and
-  hCaptcha (sets cookies for challenge state). Disclosure is cheap
-  insurance, no cookie banner needed.
 - **Content strategy / blog** at `/resources` or `/blog`: the single
   biggest organic-traffic lever the site has. Target dental-referral
   long-tail queries.
-- **Google Business Profile**: free, ~15 minutes, important for DC local
-  dental searches.
 - **Customer testimonials with `Review` JSON-LD**: when pilot practices
   go live and have quotes, this adds star ratings to search results.
+- **Terms of Service page** at `/terms`. Currently no link to it
+  anywhere (the privacy policy was scoped to drop the `/terms`
+  reference to avoid a dead link). Worth adding when ready.
 
 ## Don'ts
 

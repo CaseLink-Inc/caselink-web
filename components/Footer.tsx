@@ -59,6 +59,7 @@ export default function Footer() {
             <ul>
               <li><Link href="/#how">How it works</Link></li>
               <li><Link href="/#pricing">Pricing</Link></li>
+              <li><Link href="/privacy" className={isActive("/privacy") ? "on" : ""}>Privacy</Link></li>
               <li><a href="mailto:support@caselink.net">support@CaseLink.net</a></li>
             </ul>
           </div>

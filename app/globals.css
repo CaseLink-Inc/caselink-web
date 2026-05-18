@@ -1481,3 +1481,71 @@ body.mob-open{overflow:hidden}
   .hero-cta{flex-direction:column}
   .hero-cta .btn{width:100%}
 }
+
+/* =====================================================================
+   Privacy Policy (/privacy)
+   Mirrors the contact-hero pattern. Single column body capped at 760px
+   so legal copy stays readable. Mobile breakpoints embedded below to
+   keep this feature self-contained.
+   ===================================================================== */
+.privacy-hero{padding:120px 0 50px;background:linear-gradient(180deg,#FBFBF9,#EDF2FB);position:relative;overflow:hidden}
+.privacy-hero-bg{position:absolute;inset:0;background:radial-gradient(circle at 80% 20%,rgba(62,142,255,0.08),transparent 50%),radial-gradient(circle at 20% 80%,rgba(255,199,148,0.10),transparent 50%);pointer-events:none}
+.privacy-hero-inner{position:relative;max-width:760px;margin:0 auto}
+.privacy-hero h1{font-size:54px;margin:18px 0 18px;line-height:1.05}
+.privacy-hero p.lead{font-size:18px;color:#4A5250;line-height:1.55;max-width:640px;margin:0 0 22px}
+.privacy-effective{font-size:13px;color:#7A8886;margin:0}
+.privacy-effective strong{color:#4A5250;font-weight:600}
+
+.privacy-main{padding:40px 0 120px;background:#FBFBF9}
+.privacy-inner{max-width:760px;margin:0 auto}
+
+.privacy-toc{margin-bottom:48px}
+.privacy-toc-card{background:#fff;border:1px solid #E8EEF8;border-radius:18px;padding:24px 28px}
+.privacy-toc-label{font-size:11.5px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#7A8886;margin:0 0 14px}
+.privacy-toc-list{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:6px 24px}
+.privacy-toc-list a{display:block;padding:6px 0;font-size:14.5px;color:#4A5250;border:none;transition:color .15s ease}
+.privacy-toc-list a:hover{color:#3E8EFF}
+.privacy-toc-num{color:#7A8886;display:inline-block;width:24px;font-variant-numeric:tabular-nums}
+
+.privacy-body > p:first-child{font-size:16px;color:#4A5250;line-height:1.7;margin:0 0 8px}
+.privacy-body a{color:#3E8EFF;border-bottom:1px solid rgba(62,142,255,0.25);transition:border-color .15s ease}
+.privacy-body a:hover{border-bottom-color:#3E8EFF}
+.privacy-section{padding-top:48px;scroll-margin-top:80px}
+.privacy-section h2{font-size:24px;font-weight:700;letter-spacing:-0.01em;margin:0 0 14px;color:#1A1F1E}
+.privacy-section h3{font-size:16px;font-weight:700;margin:24px 0 10px;color:#1A1F1E}
+.privacy-section p,.privacy-section ul{margin:12px 0;color:#4A5250;line-height:1.7;font-size:15.5px}
+.privacy-section ul{padding-left:24px}
+.privacy-section li{margin:6px 0}
+.privacy-section li strong,.privacy-section p strong{color:#1A1F1E;font-weight:600}
+
+.privacy-callout{background:rgba(62,142,255,0.08);border:1px solid rgba(62,142,255,0.18);border-radius:14px;padding:18px 22px;font-size:15px;color:#4A5250;line-height:1.6;margin:18px 0}
+.privacy-callout strong{color:#1A1F1E}
+
+.privacy-contact-card{margin-top:14px;padding:22px 26px;background:#fff;border:1px solid #E8EEF8;border-radius:18px}
+.privacy-contact-card .name{font-weight:700;color:#1A1F1E;margin:0 0 8px;font-size:16px}
+.privacy-contact-card p{margin:4px 0;font-size:15px;color:#4A5250}
+.privacy-contact-card a{color:#3E8EFF}
+
+@media (max-width:900px){
+  .privacy-hero h1{font-size:44px}
+}
+
+@media (max-width:640px){
+  .privacy-hero{padding:100px 0 36px}
+  .privacy-hero h1{font-size:32px;margin:14px 0 16px}
+  .privacy-hero p.lead{font-size:15px}
+  .privacy-main{padding:24px 0 80px}
+  .privacy-toc{margin-bottom:36px}
+  .privacy-toc-card{padding:20px 22px}
+  .privacy-toc-list{grid-template-columns:1fr;gap:2px 0}
+  .privacy-section{padding-top:40px}
+  .privacy-section h2{font-size:21px}
+  .privacy-section h3{font-size:15px}
+  .privacy-section p,.privacy-section ul{font-size:15px}
+  .privacy-contact-card{padding:20px 22px}
+}
+
+@media (max-width:420px){
+  .privacy-hero h1{font-size:28px}
+  .privacy-section h2{font-size:19px}
+}
