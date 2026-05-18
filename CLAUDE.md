@@ -127,6 +127,18 @@ Vercel picks it up in ~30 seconds.
 
 ## Recent significant changes (most recent first)
 
+- **Mobile LCP fix**: PageSpeed measured mobile LCP at 5.0s on the home
+  page (desktop was 1.0s / Performance 97). Root cause was the chain
+  of hero entrance animations — h1 line rise, sub fadeUp, CTA fadeUp,
+  meta fadeUp, hero-visual fadeUp with 0.3 to 0.7s delays and 0.9 to
+  1.2s durations — stalling the largest paint on mobile CPU. Fix at
+  the bottom of `globals.css`: `@media (max-width:900px)` disables
+  those entrance animations and freezes the four infinite blob drift
+  animations (`animation:none; transform:none; opacity:1`). Desktop
+  experience unchanged (animations still active above 900px viewport).
+  Also added a `@media (prefers-reduced-motion: reduce)` block as
+  baseline accessibility — any user with reduced motion preference
+  gets near-instant transitions across the site.
 - **AEO + SEO pass (home page)**: home page now renders four JSON-LD
   blocks in the server HTML — Organization and WebSite from the root
   layout, plus SoftwareApplication and FAQPage scoped to the home page

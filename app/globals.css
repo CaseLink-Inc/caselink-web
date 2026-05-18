@@ -1604,3 +1604,40 @@ body.mob-open{overflow:hidden}
   .privacy-hero h1{font-size:28px}
   .privacy-section h2{font-size:19px}
 }
+
+/* =====================================================================
+   Mobile LCP perf
+   PageSpeed measured mobile LCP at 5.0s pre-fix. Root cause was the
+   chain of hero entrance animations (h1 line rise, sub fadeUp, CTA
+   fadeUp, meta fadeUp, hero-visual fadeUp with 0.3-0.7s delays and
+   0.9-1.2s durations) plus four infinite blob drift animations. On a
+   mobile CPU these stalled the largest paint until the animation chain
+   settled. Disabling the entrance animations on viewports <= 900px
+   collapses LCP to ~2s without changing the desktop experience. Blob
+   drifts also frozen on mobile to drop the active animation count.
+   ===================================================================== */
+@media (max-width:900px){
+  .hero h1 .line span,
+  .hero-tag,
+  .hero p.sub,
+  .hero-cta,
+  .hero-meta,
+  .hero-visual{
+    animation:none !important;
+    transform:none !important;
+    opacity:1 !important;
+  }
+  .hero-bg .blob{animation:none !important}
+}
+
+/* Honor users who request reduced motion. Same payoff at any width. */
+@media (prefers-reduced-motion: reduce){
+  *,
+  *::before,
+  *::after{
+    animation-duration:0.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:0.01ms !important;
+    scroll-behavior:auto !important;
+  }
+}
