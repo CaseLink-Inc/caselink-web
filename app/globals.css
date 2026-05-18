@@ -1637,7 +1637,8 @@ body.mob-open{overflow:hidden}
   .market-grid,
   .tl-grid,
   .faq-list,
-  .contact-info{
+  .contact-info,
+  .roi-row{
     max-width:720px;
     margin-left:auto;
     margin-right:auto;
