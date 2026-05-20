@@ -127,6 +127,22 @@ Vercel picks it up in ~30 seconds.
 
 ## Recent significant changes (most recent first)
 
+- **Investor brief at `/investors`** (unlisted): pitch-deck-style page for
+  Nick to share with investors and use in meetings. Twelve numbered
+  sections: hero with $500K ask card, TL;DR (30%/$1.8M/$2.4M/$500K),
+  problem, math equation, before/after shift, four product pillars,
+  market sizing with collapsible competitive table, traction grid +
+  horizontal timeline, financial bar chart with collapsible metrics
+  table, the big ask card with use-of-funds and Year 1 milestones,
+  team cards (Nick reuses `/portrait.png`, Laura uses an LC initials
+  avatar — replace by dropping a file in `/public` and updating the
+  page), backers row, contact card, and confidential fineprint. Page
+  metadata is `robots: { index: false, follow: false, nocache: true }`
+  plus matching googleBot directives. Not in nav, footer, sitemap, or
+  llms.txt — only reachable via direct URL. CSS lives in globals.css
+  under the `.inv-*` namespace with 1100 / 900 / 640 breakpoints. Uses
+  a monospaced ui font (ui-monospace / SF Mono) for section labels and
+  tabular numbers; everything else stays in Satoshi.
 - **Mobile LCP fix**: PageSpeed measured mobile LCP at 5.0s on the home
   page (desktop was 1.0s / Performance 97). Root cause was the chain
   of hero entrance animations — h1 line rise, sub fadeUp, CTA fadeUp,
