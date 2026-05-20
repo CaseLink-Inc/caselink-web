@@ -3,96 +3,54 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import ReferralJourney from "@/components/investors/ReferralJourney";
+import BookCallButton from "@/components/BookCallButton";
 
-/* ===============================================================
-   COUNTER — counts up from 0 to target on every viewport entry.
-   =============================================================== */
-type CounterProps = {
-  to: number;
-  prefix?: string;
-  suffix?: string;
-  decimals?: number;
-  duration?: number;
-  className?: string;
-  separator?: boolean;
-};
-
-function Counter({ to, prefix = "", suffix = "", decimals = 0, duration = 1600, className, separator = false }: CounterProps) {
+/* ===== COUNTER ===== */
+function Counter({ to, decimals = 0, duration = 1600, separator = false, suffix = "", prefix = "" }: { to: number; decimals?: number; duration?: number; separator?: boolean; suffix?: string; prefix?: string }) {
   const [val, setVal] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
   const rafRef = useRef<number | null>(null);
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    if (typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) {
-      setVal(to);
-      return;
-    }
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            if (rafRef.current) cancelAnimationFrame(rafRef.current);
-            setVal(0);
-            const start = performance.now();
-            const step = (now: number) => {
-              const t = Math.min(1, (now - start) / duration);
-              const eased = 1 - Math.pow(1 - t, 3);
-              setVal(to * eased);
-              if (t < 1) rafRef.current = requestAnimationFrame(step);
-            };
-            rafRef.current = requestAnimationFrame(step);
-          } else if (rafRef.current) {
-            cancelAnimationFrame(rafRef.current);
-          }
-        });
-      },
-      { threshold: 0.4 }
-    );
+    if (typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) { setVal(to); return; }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          if (rafRef.current) cancelAnimationFrame(rafRef.current);
+          setVal(0);
+          const start = performance.now();
+          const step = (now: number) => {
+            const t = Math.min(1, (now - start) / duration);
+            const eased = 1 - Math.pow(1 - t, 3);
+            setVal(to * eased);
+            if (t < 1) rafRef.current = requestAnimationFrame(step);
+          };
+          rafRef.current = requestAnimationFrame(step);
+        } else if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      });
+    }, { threshold: 0.4 });
     io.observe(el);
-    return () => {
-      io.disconnect();
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
-    };
+    return () => { io.disconnect(); if (rafRef.current) cancelAnimationFrame(rafRef.current); };
   }, [to, duration]);
   const formatted = separator ? Math.round(val).toLocaleString() : val.toFixed(decimals);
-  return (
-    <span ref={ref} className={className}>
-      {prefix}{formatted}{suffix}
-    </span>
-  );
+  return <span ref={ref}>{prefix}{formatted}{suffix}</span>;
 }
 
-function AnimatedBar({
-  targetPct,
-  className,
-  axis = "height",
-  delay = 0,
-}: {
-  targetPct: number;
-  className?: string;
-  axis?: "height" | "width";
-  delay?: number;
-}) {
+/* ===== ANIMATED BAR ===== */
+function AnimatedBar({ targetPct, className, axis = "height", delay = 0 }: { targetPct: number; className?: string; axis?: "height" | "width"; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const [val, setVal] = useState(0);
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    if (typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) {
-      setVal(targetPct);
-      return;
-    }
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) setTimeout(() => setVal(targetPct), 80 + delay);
-          else setVal(0);
-        });
-      },
-      { threshold: 0.25 }
-    );
+    if (typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) { setVal(targetPct); return; }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) setTimeout(() => setVal(targetPct), 80 + delay);
+        else setVal(0);
+      });
+    }, { threshold: 0.25 });
     io.observe(el);
     return () => io.disconnect();
   }, [targetPct, delay]);
@@ -100,93 +58,63 @@ function AnimatedBar({
   return <div ref={ref} className={className} style={style} />;
 }
 
-function CircleProgress({ targetPct, color }: { targetPct: number; color: string }) {
-  const r = 36;
-  const c = 2 * Math.PI * r;
-  const ref = useRef<SVGSVGElement>(null);
-  const [progress, setProgress] = useState(0);
+/* ===== MOUSE-FOLLOW PANEL ===== */
+/* Adds a soft radial spotlight that follows the cursor inside a panel.
+   Sets --x / --y CSS variables which the panel uses to position the
+   gradient. Gives the page a live, responsive feel. */
+function useMouseFollow() {
+  const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    if (typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) {
-      setProgress(targetPct);
-      return;
-    }
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) setTimeout(() => setProgress(targetPct), 80);
-          else setProgress(0);
-        });
-      },
-      { threshold: 0.4 }
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, [targetPct]);
-  const offset = c - (c * progress) / 100;
-  return (
-    <svg ref={ref} viewBox="0 0 90 90" className="inv-circ">
-      <circle cx="45" cy="45" r={r} fill="none" stroke="rgba(26,31,30,0.08)" strokeWidth="6" />
-      <circle
-        cx="45"
-        cy="45"
-        r={r}
-        fill="none"
-        stroke={color}
-        strokeWidth="6"
-        strokeLinecap="round"
-        strokeDasharray={c}
-        strokeDashoffset={offset}
-        transform="rotate(-90 45 45)"
-        style={{ transition: "stroke-dashoffset 1.6s cubic-bezier(0.16, 1, 0.3, 1)" }}
-      />
-    </svg>
-  );
+    const onMove = (e: MouseEvent) => {
+      const rect = el.getBoundingClientRect();
+      el.style.setProperty("--mx", `${e.clientX - rect.left}px`);
+      el.style.setProperty("--my", `${e.clientY - rect.top}px`);
+    };
+    el.addEventListener("mousemove", onMove);
+    return () => el.removeEventListener("mousemove", onMove);
+  }, []);
+  return ref;
 }
 
-function PracticeDots({ count = 12 }: { count?: number }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [shown, setShown] = useState(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    if (typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) {
-      setShown(true);
-      return;
-    }
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => setShown(e.isIntersecting));
-    }, { threshold: 0.4 });
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
+function Panel({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  const ref = useMouseFollow();
   return (
-    <div ref={ref} className={`inv-dots ${shown ? "shown" : ""}`}>
-      {Array.from({ length: count }).map((_, i) => (
-        <span key={i} className="inv-dot" style={{ transitionDelay: `${i * 60}ms` }} />
-      ))}
+    <div ref={ref} className={`inv-panel reveal ${className}`}>
+      <div className="inv-panel-spot" aria-hidden="true" />
+      {children}
     </div>
   );
 }
 
 function Reveal({ as: Tag = "div", className = "", children, delay }: any) {
+  return <Tag className={`reveal ${className}`} style={delay ? { transitionDelay: `${delay}ms` } : undefined}>{children}</Tag>;
+}
+
+/* ===== SPARKLINE ===== */
+/* Tiny inline sparkline SVG. Path animates in on scroll-into-view. */
+function Sparkline({ points, color }: { points: number[]; color: string }) {
+  const w = 120, h = 30;
+  const max = Math.max(...points), min = Math.min(...points);
+  const range = max - min || 1;
+  const path = points
+    .map((p, i) => `${(i / (points.length - 1)) * w},${h - ((p - min) / range) * h}`)
+    .join(" L ");
   return (
-    <Tag
-      className={`reveal ${className}`}
-      style={delay ? { transitionDelay: `${delay}ms` } : undefined}
-    >
-      {children}
-    </Tag>
+    <svg viewBox={`0 0 ${w} ${h}`} className="inv-spark" preserveAspectRatio="none" aria-hidden="true">
+      <path d={`M ${path}`} fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <circle cx={w} cy={h - ((points[points.length - 1] - min) / range) * h} r="3" fill={color}>
+        <animate attributeName="opacity" values="1;0.3;1" dur="1.8s" repeatCount="indefinite" />
+      </circle>
+    </svg>
   );
 }
 
 export default function InvestorsContent() {
   useEffect(() => {
     document.body.dataset.invPage = "true";
-    return () => {
-      delete document.body.dataset.invPage;
-    };
+    return () => { delete document.body.dataset.invPage; };
   }, []);
 
   return (
@@ -198,7 +126,7 @@ export default function InvestorsContent() {
             <Link href="/" className="inv-topnav-logo" aria-label="CaseLink home">
               <Image src="/logo-primary.svg" alt="CaseLink" width={170} height={38} priority />
             </Link>
-            <Link href="/" className="inv-topnav-home" aria-label="Back to caselink.net">
+            <Link href="/" className="inv-topnav-home">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M3 12 L12 3 L21 12" />
                 <path d="M5 10 V20 H19 V10" />
@@ -206,9 +134,7 @@ export default function InvestorsContent() {
               caselink.net
             </Link>
           </div>
-          <a href="mailto:nick@caselink.net?subject=CaseLink%20investor%20call" className="btn inv-cta">
-            Talk to Nick
-          </a>
+          <BookCallButton className="btn inv-cta">Talk to Nick</BookCallButton>
         </div>
       </header>
 
@@ -216,43 +142,36 @@ export default function InvestorsContent() {
       <section className="inv-hero" id="top">
         <div className="inv-hero-bg" aria-hidden="true" />
         <div className="wrap inv-hero-inner">
-          <div className="inv-hero-text">
-            <Reveal as="span" className="inv-eyebrow">
-              Investor snapshot · May 2026 · Confidential
-            </Reveal>
-            <Reveal as="h1" delay={80}>
-              <span className="inv-amount-line">
-                $<Counter to={500} separator />,000 <span className="inv-amount-sub">pre-seed.</span>
-              </span>
-              <span className="inv-amount-line">
-                <span className="grad-text">$4M cap.</span>{" "}
-                <Counter to={12} /> practices live.
-              </span>
-            </Reveal>
-            <Reveal as="div" className="inv-hero-cta" delay={200}>
-              <a className="btn inv-cta" href="mailto:nick@caselink.net?subject=CaseLink%20investor%20call">
-                Talk to Nick
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M5 12h14M13 5l7 7-7 7" />
-                </svg>
-              </a>
-              <Link href="/" className="btn inv-cta-ghost">Back to caselink.net</Link>
-            </Reveal>
-          </div>
-          <div className="inv-hero-flow">
-            <ReferralJourney />
-          </div>
+          <Reveal as="div" className="inv-hero-live">
+            <span className="inv-hero-live-dot" />
+            <span className="inv-hero-live-txt">12 practices live in the DMV</span>
+          </Reveal>
+          <Reveal as="h1" className="inv-hero-h" delay={80}>
+            $<Counter to={500} separator />,000 pre-seed.
+            <br />
+            <span className="inv-hero-h-sub">$4M cap. V1 shipped. Round open.</span>
+          </Reveal>
+          <Reveal as="p" className="inv-hero-lede" delay={160}>
+            A six-section snapshot of CaseLink, the referral and collaboration
+            network for general dentists and specialists.
+          </Reveal>
+          <Reveal as="div" className="inv-hero-cta" delay={240}>
+            <BookCallButton className="btn inv-cta inv-cta-lg">
+              Talk to Nick
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 5l7 7-7 7" /></svg>
+            </BookCallButton>
+            <Link href="/" className="btn inv-cta-ghost inv-cta-lg">Back to caselink.net</Link>
+          </Reveal>
         </div>
       </section>
 
       {/* ===== 2. THE ROUND ===== */}
-      <section className="inv-sec inv-round" aria-labelledby="round-h">
-        <div className="inv-sec-tint" aria-hidden="true" />
+      <section className="inv-sec inv-round">
         <div className="wrap">
-          <Reveal className="inv-panel">
+          <Panel className="inv-panel-round">
             <header className="inv-panel-head">
               <span className="inv-panel-num">02</span>
-              <h2 id="round-h" className="inv-panel-title">The round</h2>
+              <h2 className="inv-panel-title">The round</h2>
               <span className="inv-panel-status">
                 <span className="inv-panel-status-dot" />
                 Open
@@ -263,104 +182,98 @@ export default function InvestorsContent() {
                 <div className="inv-round-amount">
                   $<Counter to={500} separator />,000
                 </div>
-                <div className="inv-round-sub">YC Standard SAFE</div>
+                <div className="inv-round-sub">YC Standard SAFE · Pre-seed</div>
+                <BookCallButton className="btn inv-cta inv-round-cta">
+                  Talk to Nick
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 5l7 7-7 7" /></svg>
+                </BookCallButton>
               </div>
               <dl className="inv-round-metrics">
-                <div className="inv-round-metric">
-                  <dt>Valuation cap</dt>
-                  <dd>$4,000,000<span className="inv-round-metric-small"> post</span></dd>
-                </div>
-                <div className="inv-round-metric">
-                  <dt>Discount</dt>
-                  <dd>20%</dd>
-                </div>
-                <div className="inv-round-metric">
-                  <dt>Equity at cap</dt>
-                  <dd>~20%</dd>
-                </div>
-                <div className="inv-round-metric">
-                  <dt>Year 3 ARR</dt>
-                  <dd>$2.4M</dd>
-                </div>
+                <div className="inv-round-metric"><dt>Valuation cap</dt><dd>$4,000,000<span className="inv-round-metric-small"> post</span></dd></div>
+                <div className="inv-round-metric"><dt>Discount</dt><dd>20%</dd></div>
+                <div className="inv-round-metric"><dt>Equity at cap</dt><dd>~20%</dd></div>
+                <div className="inv-round-metric"><dt>Year 3 ARR</dt><dd>$2.4M</dd></div>
               </dl>
             </div>
-          </Reveal>
+          </Panel>
         </div>
       </section>
 
       {/* ===== 3. TODAY ===== */}
-      <section className="inv-sec inv-today" aria-labelledby="today-h">
+      <section className="inv-sec inv-today">
+        <div className="inv-sec-mesh inv-sec-mesh-today" aria-hidden="true" />
         <div className="wrap">
-          <Reveal className="inv-panel">
+          <Panel className="inv-panel-today">
             <header className="inv-panel-head">
               <span className="inv-panel-num">03</span>
-              <h2 id="today-h" className="inv-panel-title">Today</h2>
+              <h2 className="inv-panel-title">Today</h2>
               <span className="inv-panel-status inv-panel-status-live">
                 <span className="inv-panel-status-dot" />
                 Live
               </span>
             </header>
             <div className="inv-panel-body inv-today-body">
-              <div className="inv-today-col">
-                <div className="inv-today-col-lbl">Practices live</div>
-                <div className="inv-today-col-val">
-                  <Counter to={12} />
+              <div className="inv-tcell inv-tcell-blue">
+                <div className="inv-tcell-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="9" cy="7" r="3.5" /><circle cx="17" cy="9" r="2.5" /><path d="M3 20c1-3.5 3-5.5 6-5.5s5 2 6 5.5" /><path d="M15 18c0.7-2 2-3 3.5-3s2.5 1 3 3" />
+                  </svg>
                 </div>
-                <PracticeDots count={12} />
-                <div className="inv-today-col-foot">DMV network</div>
+                <div className="inv-tcell-num"><Counter to={12} /></div>
+                <div className="inv-tcell-lbl">Practices live</div>
+                <div className="inv-tcell-spark"><Sparkline points={[1, 2, 3, 5, 7, 9, 12]} color="#3E8EFF" /></div>
+                <div className="inv-tcell-foot">DMV network · +12 this year</div>
               </div>
-              <div className="inv-today-col">
-                <div className="inv-today-col-lbl">Pilot retention</div>
-                <div className="inv-today-col-ring">
-                  <CircleProgress targetPct={100} color="#3DBD6B" />
-                  <div className="inv-today-col-ring-val">
-                    <Counter to={100} suffix="%" />
-                  </div>
+
+              <div className="inv-tcell inv-tcell-green">
+                <div className="inv-tcell-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M3 17l6-6 4 4 8-8" /><polyline points="14 7 20 7 20 13" /></svg>
                 </div>
-                <div className="inv-today-col-foot">Across all pilots</div>
+                <div className="inv-tcell-num"><Counter to={100} suffix="%" /></div>
+                <div className="inv-tcell-lbl">Pilot retention</div>
+                <div className="inv-tcell-spark"><Sparkline points={[100, 100, 100, 100, 100, 100, 100]} color="#3DBD6B" /></div>
+                <div className="inv-tcell-foot">Across all pilots</div>
               </div>
-              <div className="inv-today-col">
-                <div className="inv-today-col-lbl">Pilot churn</div>
-                <div className="inv-today-col-ring">
-                  <CircleProgress targetPct={0} color="#FFA940" />
-                  <div className="inv-today-col-ring-val">
-                    <Counter to={0} suffix="%" />
-                  </div>
+
+              <div className="inv-tcell inv-tcell-warm">
+                <div className="inv-tcell-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12h18" /><circle cx="12" cy="12" r="9" /></svg>
                 </div>
-                <div className="inv-today-col-foot">No losses to date</div>
+                <div className="inv-tcell-num"><Counter to={0} suffix="%" /></div>
+                <div className="inv-tcell-lbl">Pilot churn</div>
+                <div className="inv-tcell-spark"><Sparkline points={[0, 0, 0, 0, 0, 0, 0]} color="#FFA940" /></div>
+                <div className="inv-tcell-foot">No losses to date</div>
               </div>
-              <div className="inv-today-col">
-                <div className="inv-today-col-lbl">Platform</div>
-                <div className="inv-today-col-val">V1</div>
-                <div className="inv-today-col-meta">
-                  <span className="inv-today-col-tag">Shipped</span>
-                  <span className="inv-today-col-tag inv-today-col-tag-mute">Dec 2025</span>
+
+              <div className="inv-tcell inv-tcell-ink">
+                <div className="inv-tcell-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M5 7l7-3 7 3v10l-7 3-7-3V7z" /><path d="M5 7l7 3 7-3" /><path d="M12 10v10" /></svg>
                 </div>
-                <div className="inv-today-col-foot">Web platform, mobile next</div>
+                <div className="inv-tcell-num">V1</div>
+                <div className="inv-tcell-lbl">Platform</div>
+                <div className="inv-tcell-spark"><Sparkline points={[0, 0, 0, 1, 1, 1, 1]} color="#1A1F1E" /></div>
+                <div className="inv-tcell-foot">Shipped December 2025</div>
               </div>
             </div>
             <footer className="inv-panel-foot">
               Pre-revenue today. Paid conversion begins Q3 2026.
             </footer>
-          </Reveal>
+          </Panel>
         </div>
       </section>
 
       {/* ===== 4. THE PLAN ===== */}
-      <section className="inv-sec inv-plan" aria-labelledby="plan-h">
-        <div className="inv-sec-tint" aria-hidden="true" />
+      <section className="inv-sec inv-plan">
         <div className="wrap">
-          <Reveal className="inv-panel">
+          <Panel className="inv-panel-plan">
             <header className="inv-panel-head">
               <span className="inv-panel-num">04</span>
-              <h2 id="plan-h" className="inv-panel-title">Three-year trajectory</h2>
-              <span className="inv-panel-status-meta">2026 — 2028</span>
+              <h2 className="inv-panel-title">Three-year trajectory</h2>
+              <span className="inv-panel-status-meta">2026 – 2028</span>
             </header>
             <div className="inv-panel-body inv-plan-body">
               <div className="inv-plan-chart">
-                <div className="inv-plan-chart-grid">
-                  <span /><span /><span /><span />
-                </div>
+                <div className="inv-plan-chart-grid"><span /><span /><span /><span /></div>
                 <div className="inv-plan-chart-area">
                   {[
                     { yr: "2026", v: "$610K", h: 25, cls: "inv-bar-1" },
@@ -378,143 +291,156 @@ export default function InvestorsContent() {
                 </div>
               </div>
               <table className="inv-plan-table">
-                <thead>
-                  <tr>
-                    <th></th>
-                    <th>2026</th>
-                    <th>2027</th>
-                    <th>2028</th>
-                  </tr>
-                </thead>
+                <thead><tr><th></th><th>2026</th><th>2027</th><th>2028</th></tr></thead>
                 <tbody>
-                  <tr className="inv-plan-arr">
-                    <th scope="row">ARR</th>
-                    <td>$610K</td>
-                    <td>$1.5M</td>
-                    <td>$2.4M</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">MRR</th>
-                    <td>$51K</td>
-                    <td>$126K</td>
-                    <td>$200K</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Specialists</th>
-                    <td>170</td>
-                    <td>420</td>
-                    <td>670</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">GPs (free)</th>
-                    <td>340</td>
-                    <td>840</td>
-                    <td>1,340</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Gross margin</th>
-                    <td>70%</td>
-                    <td>75%</td>
-                    <td>78%</td>
-                  </tr>
+                  <tr className="inv-plan-arr"><th>ARR</th><td>$610K</td><td>$1.5M</td><td>$2.4M</td></tr>
+                  <tr><th>MRR</th><td>$51K</td><td>$126K</td><td>$200K</td></tr>
+                  <tr><th>Specialists</th><td>170</td><td>420</td><td>670</td></tr>
+                  <tr><th>GPs (free)</th><td>340</td><td>840</td><td>1,340</td></tr>
+                  <tr><th>Gross margin</th><td>70%</td><td>75%</td><td>78%</td></tr>
                 </tbody>
               </table>
             </div>
-          </Reveal>
+          </Panel>
         </div>
       </section>
 
       {/* ===== 5. WHERE IT GOES ===== */}
-      <section className="inv-sec inv-where" aria-labelledby="where-h">
+      <section className="inv-sec inv-where">
+        <div className="inv-sec-mesh inv-sec-mesh-where" aria-hidden="true" />
         <div className="wrap">
-          <Reveal className="inv-panel">
+          <Panel className="inv-panel-where">
             <header className="inv-panel-head">
               <span className="inv-panel-num">05</span>
-              <h2 id="where-h" className="inv-panel-title">Where it goes</h2>
-              <span className="inv-panel-status-meta">$500K · 50 / 50 split</span>
+              <h2 className="inv-panel-title">Where it goes</h2>
+              <span className="inv-panel-status-meta">$500K · 12 months</span>
             </header>
             <div className="inv-panel-body inv-where-body">
-              <div className="inv-alloc">
-                <div className="inv-alloc-row">
-                  <div className="inv-alloc-lbl">
-                    <span className="inv-alloc-pct">50%</span>
-                    Product
-                  </div>
-                  <div className="inv-alloc-track">
-                    <AnimatedBar targetPct={50} axis="width" className="inv-alloc-fill inv-alloc-fill-blue" />
-                  </div>
-                  <div className="inv-alloc-amt">$250K</div>
+              <div className="inv-flow-viz">
+                <div className="inv-flow-source">
+                  <div className="inv-flow-source-lbl">Investment</div>
+                  <div className="inv-flow-source-amt">$500K</div>
                 </div>
-                <p className="inv-alloc-desc">PMS integrations (Dentrix, Cloud 9). Onboarding. Analytics.</p>
-
-                <div className="inv-alloc-row">
-                  <div className="inv-alloc-lbl">
-                    <span className="inv-alloc-pct">50%</span>
-                    Go-to-market
+                <svg className="inv-flow-lines" viewBox="0 0 200 200" preserveAspectRatio="none" aria-hidden="true">
+                  <defs>
+                    <linearGradient id="invFlowBlue" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="#3E8EFF" stopOpacity="0.5" /><stop offset="100%" stopColor="#3E8EFF" stopOpacity="0.15" /></linearGradient>
+                    <linearGradient id="invFlowMint" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="#90F0C5" stopOpacity="0.5" /><stop offset="100%" stopColor="#90F0C5" stopOpacity="0.15" /></linearGradient>
+                  </defs>
+                  <path d="M 0 100 C 80 100, 100 50, 200 50" fill="none" stroke="url(#invFlowBlue)" strokeWidth="22" strokeLinecap="round" />
+                  <path d="M 0 100 C 80 100, 100 150, 200 150" fill="none" stroke="url(#invFlowMint)" strokeWidth="22" strokeLinecap="round" />
+                  <circle r="4" fill="#3E8EFF" opacity="0.9">
+                    <animateMotion path="M 0 100 C 80 100, 100 50, 200 50" dur="3s" repeatCount="indefinite" />
+                  </circle>
+                  <circle r="4" fill="#90F0C5" opacity="0.9">
+                    <animateMotion path="M 0 100 C 80 100, 100 150, 200 150" dur="3s" begin="0.6s" repeatCount="indefinite" />
+                  </circle>
+                  <circle r="4" fill="#3E8EFF" opacity="0.6">
+                    <animateMotion path="M 0 100 C 80 100, 100 50, 200 50" dur="3s" begin="1.2s" repeatCount="indefinite" />
+                  </circle>
+                  <circle r="4" fill="#90F0C5" opacity="0.6">
+                    <animateMotion path="M 0 100 C 80 100, 100 150, 200 150" dur="3s" begin="1.8s" repeatCount="indefinite" />
+                  </circle>
+                </svg>
+                <div className="inv-flow-dests">
+                  <div className="inv-flow-dest inv-flow-dest-blue">
+                    <div className="inv-flow-dest-pct">50%</div>
+                    <div className="inv-flow-dest-t">Product</div>
+                    <div className="inv-flow-dest-amt">$250K</div>
+                    <p>PMS integrations (Dentrix, Cloud 9). Onboarding. Analytics.</p>
                   </div>
-                  <div className="inv-alloc-track">
-                    <AnimatedBar targetPct={50} axis="width" className="inv-alloc-fill inv-alloc-fill-mint" delay={140} />
+                  <div className="inv-flow-dest inv-flow-dest-mint">
+                    <div className="inv-flow-dest-pct">50%</div>
+                    <div className="inv-flow-dest-t">Go-to-market</div>
+                    <div className="inv-flow-dest-amt">$250K</div>
+                    <p>First paid push. Conference presence. East Coast expansion.</p>
                   </div>
-                  <div className="inv-alloc-amt">$250K</div>
                 </div>
-                <p className="inv-alloc-desc">First paid push. Conference presence. East Coast expansion.</p>
               </div>
 
               <div className="inv-targets-block">
                 <div className="inv-targets-block-h">Year 1 targets</div>
                 <ul className="inv-targets">
                   {[
-                    "170 specialists onboarded",
-                    "$610K ARR by Q4 2026",
-                    "Two PMS integrations live",
-                    "Breakeven trajectory by month 18",
-                  ].map((item, i) => (
-                    <li key={item} className="inv-target" style={{ transitionDelay: `${i * 80}ms` }}>
-                      <span className="inv-target-check" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                          <polyline points="20 6 9 17 4 12" />
-                        </svg>
-                      </span>
-                      {item}
+                    ["170", "specialists onboarded"],
+                    ["$610K", "ARR by Q4 2026"],
+                    ["2", "PMS integrations live"],
+                    ["18 mo", "to breakeven trajectory"],
+                  ].map(([n, lbl], i) => (
+                    <li key={lbl} className="inv-target" style={{ transitionDelay: `${i * 80}ms` }}>
+                      <span className="inv-target-n">{n}</span>
+                      <span className="inv-target-lbl">{lbl}</span>
                     </li>
                   ))}
                 </ul>
               </div>
             </div>
-          </Reveal>
+          </Panel>
         </div>
       </section>
 
       {/* ===== 6. CONTACT ===== */}
-      <section className="inv-sec inv-contact" aria-labelledby="contact-h">
-        <div className="inv-sec-tint inv-sec-tint-contact" aria-hidden="true" />
+      <section className="inv-sec inv-contact">
+        <div className="inv-sec-mesh inv-sec-mesh-contact" aria-hidden="true" />
         <div className="wrap">
-          <Reveal className="inv-panel inv-panel-contact">
-            <header className="inv-panel-head">
-              <span className="inv-panel-num">06</span>
-              <h2 id="contact-h" className="inv-panel-title">Contact</h2>
-            </header>
-            <div className="inv-panel-body inv-contact-body">
-              <div className="inv-contact-name">Nicholas Campbell</div>
-              <div className="inv-contact-role">Co-founder and CEO</div>
-              <div className="inv-contact-lines">
-                <a href="mailto:nick@caselink.net?subject=CaseLink%20investor%20call" className="inv-contact-line">
-                  <span className="inv-contact-line-lbl">Email</span>
-                  <span className="inv-contact-line-val">nick@caselink.net</span>
-                </a>
-                <a href="tel:+17035543449" className="inv-contact-line">
-                  <span className="inv-contact-line-lbl">Phone</span>
-                  <span className="inv-contact-line-val">(703) 554-3449</span>
-                </a>
-              </div>
-              <a className="btn inv-cta inv-cta-sheen" href="mailto:nick@caselink.net?subject=CaseLink%20investor%20call">
-                Talk to Nick
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M5 12h14M13 5l7 7-7 7" />
-                </svg>
-              </a>
+          <Panel className="inv-panel-contact">
+            <div className="inv-contact-body">
+              <Reveal className="inv-contact-portrait-wrap">
+                <div className="inv-contact-orbit-1" aria-hidden="true" />
+                <div className="inv-contact-orbit-2" aria-hidden="true" />
+                <div className="inv-contact-portrait">
+                  <Image src="/portrait.png" alt="Nicholas Campbell" width={555} height={800} priority />
+                </div>
+              </Reveal>
+              <Reveal className="inv-contact-text" delay={120}>
+                <div className="inv-contact-eyebrow">
+                  <span className="inv-panel-status-dot" />
+                  Available for investor conversations
+                </div>
+                <h2 className="inv-contact-h">
+                  Talk to <span className="grad-text">Nick.</span>
+                </h2>
+                <p className="inv-contact-lede">
+                  Nick handles every investor conversation directly. Pick the
+                  one that fits how you want to start.
+                </p>
+                <div className="inv-contact-grid">
+                  <BookCallButton className="inv-contact-btn inv-contact-btn-primary">
+                    <span className="inv-contact-btn-ic">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M3 9h18M8 3v4M16 3v4" /></svg>
+                    </span>
+                    <span className="inv-contact-btn-t">Book a call</span>
+                    <span className="inv-contact-btn-s">15 min walkthrough</span>
+                  </BookCallButton>
+                  <a className="inv-contact-btn" href="https://app.caselink.net" target="_blank" rel="noopener noreferrer">
+                    <span className="inv-contact-btn-ic">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="14" rx="2" /><path d="M8 20h8M12 18v2" /></svg>
+                    </span>
+                    <span className="inv-contact-btn-t">Platform</span>
+                    <span className="inv-contact-btn-s">app.caselink.net</span>
+                  </a>
+                  <Link className="inv-contact-btn" href="/">
+                    <span className="inv-contact-btn-ic">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18" /></svg>
+                    </span>
+                    <span className="inv-contact-btn-t">Website</span>
+                    <span className="inv-contact-btn-s">caselink.net</span>
+                  </Link>
+                  <a className="inv-contact-btn" href="mailto:nick@caselink.net?subject=CaseLink%20pitch%20deck%20request">
+                    <span className="inv-contact-btn-ic">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" /><path d="M14 2v6h6" /><path d="M9 13h6M9 17h4" /></svg>
+                    </span>
+                    <span className="inv-contact-btn-t">Pitch deck</span>
+                    <span className="inv-contact-btn-s">Request via email</span>
+                  </a>
+                </div>
+                <div className="inv-contact-direct">
+                  <a href="mailto:nick@caselink.net">nick@caselink.net</a>
+                  <span className="inv-contact-direct-sep" />
+                  <a href="tel:+17035543449">(703) 554-3449</a>
+                </div>
+              </Reveal>
             </div>
-          </Reveal>
+          </Panel>
         </div>
       </section>
 
