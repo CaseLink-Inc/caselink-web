@@ -53,7 +53,7 @@ export default function ReferralJourney() {
           <text textAnchor="middle" y="3" fontSize="9" fontWeight="700" fill="#1A1F1E" letterSpacing="0.4">GP</text>
         </g>
 
-        {/* Hub */}
+        {/* Hub — white circle with CaseLink mark */}
         <g transform="translate(260, 70)">
           <circle r="38" fill="none" stroke="#3E8EFF" strokeWidth="1" strokeDasharray="4 5" opacity="0.5">
             <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="14s" repeatCount="indefinite" />
@@ -61,8 +61,8 @@ export default function ReferralJourney() {
           <circle r="28" fill="none" stroke="#90F0C5" strokeWidth="1" strokeDasharray="2 4" opacity="0.6">
             <animateTransform attributeName="transform" type="rotate" from="360" to="0" dur="10s" repeatCount="indefinite" />
           </circle>
-          <circle r="18" fill="#1A1F1E" />
-          <text textAnchor="middle" y="3" fontSize="8" fontWeight="800" fill="#fff" letterSpacing="0.5">CL</text>
+          <circle r="20" fill="#fff" stroke="rgba(26,31,30,0.08)" strokeWidth="1" />
+          <image href="/logo-mark.svg" x="-14" y="-14" width="28" height="28" />
         </g>
 
         {/* Specialist */}
@@ -74,12 +74,12 @@ export default function ReferralJourney() {
           <text textAnchor="middle" y="3" fontSize="9" fontWeight="700" fill="#1A1F1E" letterSpacing="0.4">SP</text>
         </g>
 
-        {/* Traveling case pill */}
+        {/* Traveling case — tiny triangle */}
         <g>
-          <rect x="-18" y="-7" width="36" height="14" rx="7" fill="#3E8EFF">
+          <polygon points="-5,-5 6,0 -5,5" fill="#3E8EFF">
             <animate attributeName="fill" values="#3E8EFF;#3E8EFF;#90F0C5;#3DBD6B;#3DBD6B" keyTimes="0;0.30;0.50;0.70;1" dur="6s" repeatCount="indefinite" />
             <animate attributeName="opacity" values="0;1;1;1;0" keyTimes="0;0.10;0.50;0.90;1" dur="6s" repeatCount="indefinite" />
-          </rect>
+          </polygon>
           <animateMotion dur="6s" repeatCount="indefinite" path="M 70 70 Q 180 30 260 70 Q 340 110 450 70" rotate="auto" />
         </g>
       </svg>

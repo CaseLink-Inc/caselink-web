@@ -1729,12 +1729,13 @@ body[data-inv-page="true"] .calendly-badge-widget{display:none !important}
 .inv-topnav-home{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--inv-text-2);padding:8px 14px;border-radius:999px;text-decoration:none;transition:color .2s ease,background .2s ease}
 .inv-topnav-home:hover{color:var(--inv-text);background:rgba(26,31,30,0.04)}
 
-/* Top-nav CTA: gradient body with rotating conic outline */
+/* Top-nav CTA: light-touch outlined button with a thin rotating
+   gradient stroke (no heavy gradient body, no shadow). */
 .inv-nav-cta{position:relative;display:inline-flex;align-items:center;border-radius:999px;padding:0;background:transparent;border:none;cursor:pointer;font-family:inherit;isolation:isolate;transition:transform .2s ease}
-.inv-nav-cta:hover{transform:translateY(-2px)}
-.inv-nav-cta-glow{position:absolute;inset:-1.5px;border-radius:999px;background:conic-gradient(from var(--inv-angle,0deg),#3E8EFF,#90F0C5,#FFC794,#FFA940,#3E8EFF);animation:invSpin 4s linear infinite;z-index:-1}
-.inv-nav-cta-inner{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:999px;background:linear-gradient(135deg,#3E8EFF 0%,#5BB0FF 100%);color:#fff;font-weight:700;font-size:13.5px;letter-spacing:-0.005em;box-shadow:0 8px 24px rgba(62,142,255,0.30)}
-.inv-nav-cta:hover .inv-nav-cta-inner{box-shadow:0 12px 30px rgba(62,142,255,0.40)}
+.inv-nav-cta:hover{transform:translateY(-1px)}
+.inv-nav-cta-glow{position:absolute;inset:0;border-radius:999px;padding:1px;background:conic-gradient(from var(--inv-angle,0deg),rgba(62,142,255,0.5),rgba(144,240,197,0.5),rgba(255,199,148,0.4),rgba(62,142,255,0.5));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask-composite:exclude;animation:invSpin 6s linear infinite;pointer-events:none}
+.inv-nav-cta-inner{display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:999px;background:rgba(255,255,255,0.6);backdrop-filter:blur(8px);color:var(--inv-text);font-weight:600;font-size:13px;letter-spacing:-0.005em}
+.inv-nav-cta:hover .inv-nav-cta-inner{background:#fff;color:var(--inv-blue)}
 
 /* CTAs */
 .inv-page .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:999px;font-weight:600;font-size:14px;font-family:var(--font-sans);transition:transform .2s ease,box-shadow .2s ease,background .2s ease;cursor:pointer;text-decoration:none;border:none}
@@ -1799,7 +1800,7 @@ body[data-inv-page="true"] .calendly-badge-widget{display:none !important}
 .inv-round-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
 .inv-round-tile{position:relative;padding:36px 30px;border-right:1px solid var(--inv-border);display:flex;flex-direction:column;gap:12px;transition:background .25s ease,transform .25s ease}
 .inv-round-tile:last-child{border-right:none}
-.inv-round-tile::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#4A5250,#7A8886);opacity:0;transition:opacity .35s ease}
+.inv-round-tile::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,#4A5250,#7A8886);opacity:0;transition:opacity .35s ease}
 .inv-round-tile-blue::before{background:linear-gradient(90deg,#3E8EFF,#5BB0FF);opacity:1}
 .inv-round-tile-mint::before{background:linear-gradient(90deg,#5CD68B,#90F0C5);opacity:1}
 .inv-round-tile:hover{background:var(--inv-surface-2)}
@@ -1824,7 +1825,7 @@ body[data-inv-page="true"] .calendly-badge-widget{display:none !important}
 .inv-today-body{display:grid;grid-template-columns:repeat(4,1fr);padding:0}
 .inv-tcell{position:relative;padding:32px 28px;border-right:1px solid var(--inv-border);display:flex;flex-direction:column;gap:14px;transition:background .3s ease,transform .3s ease}
 .inv-tcell:last-child{border-right:none}
-.inv-tcell::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;transform-origin:center;transform:scaleX(0.4);transition:transform .4s cubic-bezier(0.16,1,0.3,1)}
+.inv-tcell::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;transform-origin:center;transform:scaleX(0.4);transition:transform .4s cubic-bezier(0.16,1,0.3,1)}
 .inv-tcell-blue::before{background:linear-gradient(90deg,#3E8EFF,#5BB0FF)}
 .inv-tcell-green::before{background:linear-gradient(90deg,#3DBD6B,#90F0C5)}
 .inv-tcell-warm::before{background:linear-gradient(90deg,#FFC794,#FFA940)}
@@ -1899,7 +1900,7 @@ body[data-inv-page="true"] .calendly-badge-widget{display:none !important}
 .inv-target-ic svg{width:18px;height:18px}
 .inv-target-body{display:flex;flex-direction:column;gap:2px;min-width:0}
 .inv-target-n{font-size:22px;font-weight:800;letter-spacing:-0.025em;color:var(--inv-text);font-variant-numeric:tabular-nums;line-height:1;display:inline-flex;align-items:baseline}
-.inv-target-unit{font-size:13px;font-weight:700;color:var(--inv-text-3);margin-left:2px;letter-spacing:0}
+.inv-target-unit{font-size:22px;font-weight:800;color:var(--inv-text);margin-left:3px;letter-spacing:-0.02em}
 .inv-target-lbl{font-size:12.5px;color:var(--inv-text-2);line-height:1.4;letter-spacing:0.01em}
 
 /* CONTACT — portrait + grid CTAs */

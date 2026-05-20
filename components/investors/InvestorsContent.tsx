@@ -254,7 +254,6 @@ export default function InvestorsContent() {
                 </div>
                 <div className="inv-tcell-num"><Counter to={12} /></div>
                 <div className="inv-tcell-lbl">Practices live</div>
-                <div className="inv-tcell-spark"><Sparkline points={[1, 2, 3, 5, 7, 9, 12]} color="#3E8EFF" /></div>
                 <div className="inv-tcell-foot">DMV network · +12 this year</div>
               </div>
 
@@ -264,7 +263,6 @@ export default function InvestorsContent() {
                 </div>
                 <div className="inv-tcell-num"><Counter to={100} suffix="%" /></div>
                 <div className="inv-tcell-lbl">Pilot retention</div>
-                <div className="inv-tcell-spark"><Sparkline points={[100, 100, 100, 100, 100, 100, 100]} color="#3DBD6B" /></div>
                 <div className="inv-tcell-foot">Across all pilots</div>
               </div>
 
@@ -274,7 +272,6 @@ export default function InvestorsContent() {
                 </div>
                 <div className="inv-tcell-num"><Counter to={0} suffix="%" /></div>
                 <div className="inv-tcell-lbl">Pilot churn</div>
-                <div className="inv-tcell-spark"><Sparkline points={[0, 0, 0, 0, 0, 0, 0]} color="#FFA940" /></div>
                 <div className="inv-tcell-foot">No losses to date</div>
               </div>
 
@@ -284,7 +281,6 @@ export default function InvestorsContent() {
                 </div>
                 <div className="inv-tcell-num">V1</div>
                 <div className="inv-tcell-lbl">Platform</div>
-                <div className="inv-tcell-spark"><Sparkline points={[0, 0, 0, 1, 1, 1, 1]} color="#1A1F1E" /></div>
                 <div className="inv-tcell-foot">Shipped December 2025</div>
               </div>
             </div>
@@ -361,16 +357,16 @@ export default function InvestorsContent() {
                   </defs>
                   <path d="M 0 100 C 120 100, 180 50, 400 50" fill="none" stroke="url(#invFlowBlue)" strokeWidth="2" strokeDasharray="3 4" strokeLinecap="round" />
                   <path d="M 0 100 C 120 100, 180 150, 400 150" fill="none" stroke="url(#invFlowMint)" strokeWidth="2" strokeDasharray="3 4" strokeLinecap="round" />
-                  <circle r="4" fill="#3E8EFF">
+                  <circle r="2.5" fill="#3E8EFF">
                     <animateMotion path="M 0 100 C 120 100, 180 50, 400 50" dur="3s" repeatCount="indefinite" />
                   </circle>
-                  <circle r="4" fill="#5CD68B">
+                  <circle r="2.5" fill="#5CD68B">
                     <animateMotion path="M 0 100 C 120 100, 180 150, 400 150" dur="3s" begin="0.6s" repeatCount="indefinite" />
                   </circle>
-                  <circle r="3" fill="#3E8EFF" opacity="0.6">
+                  <circle r="2" fill="#3E8EFF" opacity="0.6">
                     <animateMotion path="M 0 100 C 120 100, 180 50, 400 50" dur="3s" begin="1.2s" repeatCount="indefinite" />
                   </circle>
-                  <circle r="3" fill="#5CD68B" opacity="0.6">
+                  <circle r="2" fill="#5CD68B" opacity="0.6">
                     <animateMotion path="M 0 100 C 120 100, 180 150, 400 150" dur="3s" begin="1.8s" repeatCount="indefinite" />
                   </circle>
                 </svg>
