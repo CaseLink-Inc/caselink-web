@@ -2,8 +2,11 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowRight } from "@/components/icons";
 import BookCallButton from "@/components/BookCallButton";
+import HeroFlow from "@/components/investors/HeroFlow";
+import MarketViz from "@/components/investors/MarketViz";
 
 /* ===============================================================
    COUNTER — counts up from 0 to target on scroll-into-view.
@@ -21,7 +24,7 @@ type CounterProps = {
 function Counter({ to, prefix = "", suffix = "", decimals = 0, duration = 1600, className }: CounterProps) {
   const [val, setVal] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
-  const fired = useRef(false);
+  const rafRef = useRef<number | null>(null);
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
@@ -32,22 +35,32 @@ function Counter({ to, prefix = "", suffix = "", decimals = 0, duration = 1600, 
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
-          if (!e.isIntersecting || fired.current) return;
-          fired.current = true;
-          const start = performance.now();
-          const step = (now: number) => {
-            const t = Math.min(1, (now - start) / duration);
-            const eased = 1 - Math.pow(1 - t, 3);
-            setVal(to * eased);
-            if (t < 1) requestAnimationFrame(step);
-          };
-          requestAnimationFrame(step);
+          if (e.isIntersecting) {
+            // Re-trigger every time the element enters the viewport.
+            // Cancels any in-flight animation and starts fresh from 0.
+            if (rafRef.current) cancelAnimationFrame(rafRef.current);
+            setVal(0);
+            const start = performance.now();
+            const step = (now: number) => {
+              const t = Math.min(1, (now - start) / duration);
+              const eased = 1 - Math.pow(1 - t, 3);
+              setVal(to * eased);
+              if (t < 1) rafRef.current = requestAnimationFrame(step);
+            };
+            rafRef.current = requestAnimationFrame(step);
+          } else {
+            // Reset when scrolled out so the next entry animates again.
+            if (rafRef.current) cancelAnimationFrame(rafRef.current);
+          }
         });
       },
       { threshold: 0.4 }
     );
     io.observe(el);
-    return () => io.disconnect();
+    return () => {
+      io.disconnect();
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
   }, [to, duration]);
   return (
     <span ref={ref} className={className}>
@@ -219,6 +232,33 @@ export default function InvestorsContent() {
     <div className="inv-page">
       <SideNav />
 
+      {/* ============ TOP NAV ============ */}
+      <header className="inv-topnav">
+        <div className="wrap inv-topnav-inner">
+          <Link href="/" className="inv-topnav-logo" aria-label="CaseLink home">
+            <Image
+              src="/logo-primary-white.svg"
+              alt="CaseLink"
+              width={170}
+              height={38}
+              priority
+            />
+          </Link>
+          <nav className="inv-topnav-actions">
+            <Link href="/" className="inv-topnav-link">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M3 12 L12 3 L21 12" />
+                <path d="M5 10 V20 H19 V10" />
+              </svg>
+              Back to home
+            </Link>
+            <BookCallButton className="btn btn-primary inv-topnav-cta">
+              Talk to Nick
+            </BookCallButton>
+          </nav>
+        </div>
+      </header>
+
       {/* ============ HERO ============ */}
       <section className="inv-hero" id="top">
         <div className="inv-hero-bg">
@@ -230,14 +270,6 @@ export default function InvestorsContent() {
         </div>
         <div className="wrap inv-hero-inner">
           <div className="inv-hero-text">
-            <span className="inv-hero-bracket inv-hero-bracket-tl" aria-hidden="true" />
-            <span className="inv-hero-bracket inv-hero-bracket-tr" aria-hidden="true" />
-            <span className="inv-hero-bracket inv-hero-bracket-bl" aria-hidden="true" />
-            <span className="inv-hero-bracket inv-hero-bracket-br" aria-hidden="true" />
-            <div className="inv-hero-logo">
-              <span className="inv-hero-logo-mark" aria-hidden="true" />
-              <span className="inv-hero-logo-wm">CaseLink</span>
-            </div>
             <span className="inv-tag">
               <span className="inv-tag-dot" />
               Investor brief · Pre-seed · May 2026
@@ -262,30 +294,9 @@ export default function InvestorsContent() {
             </div>
           </div>
 
-          <aside className="inv-ask-card">
-            <div className="inv-ask-glow" aria-hidden="true" />
-            <div className="inv-ask-head">
-              <span className="inv-ask-tag">The Round</span>
-              <span className="inv-ask-status">
-                <span className="inv-ask-dot" />
-                Open
-              </span>
-            </div>
-            <div className="inv-ask-amount">
-              <Counter to={500} prefix="$" suffix="K" />
-              <span className="sub">pre-seed SAFE</span>
-            </div>
-            <p className="inv-ask-sub">
-              Raising on standard YC terms. Currently being filled with
-              strategic investors and clinical partners.
-            </p>
-            <div className="inv-ask-terms">
-              <div className="inv-term-row"><span className="lbl">Cap</span><span className="val">$4M post</span></div>
-              <div className="inv-term-row"><span className="lbl">Discount</span><span className="val">20%</span></div>
-              <div className="inv-term-row"><span className="lbl">Equity at cap</span><span className="val">~20%</span></div>
-              <div className="inv-term-row"><span className="lbl">Year 3 ARR</span><span className="val grad-text">$2.4M</span></div>
-            </div>
-          </aside>
+          <div className="inv-hero-flow">
+            <HeroFlow />
+          </div>
         </div>
 
         <div className="wrap inv-marquee-wrap">
@@ -311,6 +322,61 @@ export default function InvestorsContent() {
                 </span>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============ THE ROUND ============ */}
+      <section className="inv-sec inv-round-sec">
+        <div className="wrap">
+          <div className="inv-round-grid">
+            <div className="inv-round-text">
+              <div className="inv-secnum">The Round</div>
+              <h2 className="inv-round-h">
+                <span className="grad-text">$500K</span> pre-seed SAFE,
+                currently filling.
+              </h2>
+              <p className="inv-round-lede">
+                Standard YC terms with a $4M post-money cap and a 20% discount.
+                Raising from strategic investors and clinical partners. The
+                round funds 12 months of operations toward 170 paying
+                specialists and $610K ARR.
+              </p>
+              <div className="inv-hero-actions">
+                <a className="btn btn-primary" href="#ask">
+                  See the ask
+                  <ArrowRight width={14} height={14} />
+                </a>
+                <BookCallButton className="btn btn-ghost">
+                  Talk to Nick
+                </BookCallButton>
+              </div>
+            </div>
+
+            <aside className="inv-ask-card inv-ask-card-standalone">
+              <div className="inv-ask-glow" aria-hidden="true" />
+              <div className="inv-ask-head">
+                <span className="inv-ask-tag">The Round</span>
+                <span className="inv-ask-status">
+                  <span className="inv-ask-dot" />
+                  Open
+                </span>
+              </div>
+              <div className="inv-ask-amount">
+                <Counter to={500} prefix="$" suffix="K" />
+                <span className="sub">pre-seed SAFE</span>
+              </div>
+              <p className="inv-ask-sub">
+                Raising on standard YC terms. Currently being filled with
+                strategic investors and clinical partners.
+              </p>
+              <div className="inv-ask-terms">
+                <div className="inv-term-row"><span className="lbl">Cap</span><span className="val">$4M post</span></div>
+                <div className="inv-term-row"><span className="lbl">Discount</span><span className="val">20%</span></div>
+                <div className="inv-term-row"><span className="lbl">Equity at cap</span><span className="val">~20%</span></div>
+                <div className="inv-term-row"><span className="lbl">Year 3 ARR</span><span className="val grad-text">$2.4M</span></div>
+              </div>
+            </aside>
           </div>
         </div>
       </section>
@@ -567,27 +633,11 @@ export default function InvestorsContent() {
           </Reveal>
 
           <div className="inv-market-shell">
-            <Reveal className="inv-market-bars">
-              <div className="inv-market-bar-col">
-                <div className="inv-market-bar-val">$2.8B</div>
-                <AnimatedBar targetPct={51} className="inv-market-bar inv-market-bar-2024" />
-                <div className="inv-market-bar-yr">2024</div>
-              </div>
-              <div className="inv-market-bar-col">
-                <div className="inv-market-bar-val grad-text">$5.5B</div>
-                <AnimatedBar targetPct={100} className="inv-market-bar inv-market-bar-2030" />
-                <div className="inv-market-bar-yr">2030</div>
-              </div>
-              <div className="inv-market-arrow" aria-hidden="true">
-                <svg viewBox="0 0 80 60" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M5 50 C 20 50, 30 30, 40 25 S 65 10, 75 8" />
-                  <path d="M70 4 L75 8 L71 13" />
-                </svg>
-              </div>
+            <Reveal className="inv-market-vizwrap">
+              <MarketViz />
               <p className="inv-market-caption">
-                The US SaaS dental market, doubling by 2030. CaseLink is
-                positioned in the highest-yield, lowest-adoption corner of
-                it.
+                The US SaaS dental market doubles by 2030. CaseLink sits in
+                the high-yield, low-adoption corner at the centre.
               </p>
             </Reveal>
 
@@ -789,13 +839,11 @@ export default function InvestorsContent() {
                     <span className="inv-bigask-pulse" />
                     Pre-seed SAFE · now filling
                   </div>
-                  <h2 className="inv-bigask-h">
-                    <span className="inv-bigask-amount">$<Counter to={500} />K</span>
-                    <span className="inv-bigask-sub">
-                      to take CaseLink from twelve live practices to a hundred
-                      and seventy paying specialists in twelve months.
-                    </span>
-                  </h2>
+                  <div className="inv-bigask-amount">$<Counter to={500} />K</div>
+                  <p className="inv-bigask-sub">
+                    to take CaseLink from twelve live practices to a hundred
+                    and seventy paying specialists in twelve months.
+                  </p>
                   <div className="inv-progress">
                     <div className="inv-progress-row">
                       <span>Specialists onboarded</span>
