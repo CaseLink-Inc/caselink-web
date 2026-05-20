@@ -237,7 +237,7 @@ export default function InvestorsContent() {
         <div className="wrap inv-topnav-inner">
           <Link href="/" className="inv-topnav-logo" aria-label="CaseLink home">
             <Image
-              src="/logo-primary-white.svg"
+              src="/logo-primary.svg"
               alt="CaseLink"
               width={170}
               height={38}
