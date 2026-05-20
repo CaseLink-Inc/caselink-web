@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import BookCallButton from "@/components/BookCallButton";
+import ReferralJourney from "@/components/investors/ReferralJourney";
 
 /* ===== COUNTER ===== */
 function Counter({ to, decimals = 0, duration = 1600, separator = false, suffix = "", prefix = "" }: { to: number; decimals?: number; duration?: number; separator?: boolean; suffix?: string; prefix?: string }) {
@@ -134,13 +135,21 @@ export default function InvestorsContent() {
               caselink.net
             </Link>
           </div>
-          <BookCallButton className="btn inv-cta">Talk to Nick</BookCallButton>
+          <BookCallButton className="inv-nav-cta">
+            <span className="inv-nav-cta-glow" aria-hidden="true" />
+            <span className="inv-nav-cta-inner">
+              Talk to Nick
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 5l7 7-7 7" /></svg>
+            </span>
+          </BookCallButton>
         </div>
       </header>
 
       {/* ===== 1. HERO ===== */}
       <section className="inv-hero" id="top">
-        <div className="inv-hero-bg" aria-hidden="true" />
+        <div className="inv-hero-bg" aria-hidden="true">
+          <div className="inv-hero-grid" />
+        </div>
         <div className="wrap inv-hero-inner">
           <Reveal as="div" className="inv-hero-live">
             <span className="inv-hero-live-dot" />
@@ -178,23 +187,44 @@ export default function InvestorsContent() {
               </span>
             </header>
             <div className="inv-panel-body inv-round-body">
-              <div className="inv-round-headline">
-                <div className="inv-round-amount">
-                  $<Counter to={500} separator />,000
+              <div className="inv-round-grid">
+                <div className="inv-round-tile inv-round-tile-blue">
+                  <div className="inv-round-tile-lbl">Valuation cap</div>
+                  <div className="inv-round-tile-val">
+                    $<Counter to={4} />M
+                  </div>
+                  <div className="inv-round-tile-foot">Post-money</div>
                 </div>
-                <div className="inv-round-sub">YC Standard SAFE · Pre-seed</div>
-                <BookCallButton className="btn inv-cta inv-round-cta">
-                  Talk to Nick
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 5l7 7-7 7" /></svg>
-                </BookCallButton>
+                <div className="inv-round-tile">
+                  <div className="inv-round-tile-lbl">Discount</div>
+                  <div className="inv-round-tile-val">
+                    <Counter to={20} />%
+                  </div>
+                  <div className="inv-round-tile-foot">YC standard SAFE</div>
+                </div>
+                <div className="inv-round-tile">
+                  <div className="inv-round-tile-lbl">Equity at cap</div>
+                  <div className="inv-round-tile-val">
+                    ~<Counter to={20} />%
+                  </div>
+                  <div className="inv-round-tile-foot">Diluted post-round</div>
+                </div>
+                <div className="inv-round-tile inv-round-tile-mint">
+                  <div className="inv-round-tile-lbl">Year 3 ARR</div>
+                  <div className="inv-round-tile-val">
+                    $<Counter to={2.4} decimals={1} />M
+                  </div>
+                  <div className="inv-round-tile-foot">Projection · 2028</div>
+                </div>
               </div>
-              <dl className="inv-round-metrics">
-                <div className="inv-round-metric"><dt>Valuation cap</dt><dd>$4,000,000<span className="inv-round-metric-small"> post</span></dd></div>
-                <div className="inv-round-metric"><dt>Discount</dt><dd>20%</dd></div>
-                <div className="inv-round-metric"><dt>Equity at cap</dt><dd>~20%</dd></div>
-                <div className="inv-round-metric"><dt>Year 3 ARR</dt><dd>$2.4M</dd></div>
-              </dl>
             </div>
+            <footer className="inv-panel-foot inv-round-foot">
+              <span>Instrument</span>
+              <strong>YC standard SAFE, pre-seed</strong>
+              <span className="inv-round-foot-sep" />
+              <span>Raise</span>
+              <strong>$500,000</strong>
+            </footer>
           </Panel>
         </div>
       </section>
@@ -212,6 +242,9 @@ export default function InvestorsContent() {
                 Live
               </span>
             </header>
+            <div className="inv-today-strip">
+              <ReferralJourney />
+            </div>
             <div className="inv-panel-body inv-today-body">
               <div className="inv-tcell inv-tcell-blue">
                 <div className="inv-tcell-icon" aria-hidden="true">
@@ -321,24 +354,24 @@ export default function InvestorsContent() {
                   <div className="inv-flow-source-lbl">Investment</div>
                   <div className="inv-flow-source-amt">$500K</div>
                 </div>
-                <svg className="inv-flow-lines" viewBox="0 0 200 200" preserveAspectRatio="none" aria-hidden="true">
+                <svg className="inv-flow-lines" viewBox="0 0 400 200" preserveAspectRatio="none" aria-hidden="true">
                   <defs>
-                    <linearGradient id="invFlowBlue" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="#3E8EFF" stopOpacity="0.5" /><stop offset="100%" stopColor="#3E8EFF" stopOpacity="0.15" /></linearGradient>
-                    <linearGradient id="invFlowMint" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="#90F0C5" stopOpacity="0.5" /><stop offset="100%" stopColor="#90F0C5" stopOpacity="0.15" /></linearGradient>
+                    <linearGradient id="invFlowBlue" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="#3E8EFF" stopOpacity="0.8" /><stop offset="100%" stopColor="#3E8EFF" stopOpacity="0.30" /></linearGradient>
+                    <linearGradient id="invFlowMint" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="#5CD68B" stopOpacity="0.8" /><stop offset="100%" stopColor="#90F0C5" stopOpacity="0.30" /></linearGradient>
                   </defs>
-                  <path d="M 0 100 C 80 100, 100 50, 200 50" fill="none" stroke="url(#invFlowBlue)" strokeWidth="22" strokeLinecap="round" />
-                  <path d="M 0 100 C 80 100, 100 150, 200 150" fill="none" stroke="url(#invFlowMint)" strokeWidth="22" strokeLinecap="round" />
-                  <circle r="4" fill="#3E8EFF" opacity="0.9">
-                    <animateMotion path="M 0 100 C 80 100, 100 50, 200 50" dur="3s" repeatCount="indefinite" />
+                  <path d="M 0 100 C 120 100, 180 50, 400 50" fill="none" stroke="url(#invFlowBlue)" strokeWidth="2" strokeDasharray="3 4" strokeLinecap="round" />
+                  <path d="M 0 100 C 120 100, 180 150, 400 150" fill="none" stroke="url(#invFlowMint)" strokeWidth="2" strokeDasharray="3 4" strokeLinecap="round" />
+                  <circle r="4" fill="#3E8EFF">
+                    <animateMotion path="M 0 100 C 120 100, 180 50, 400 50" dur="3s" repeatCount="indefinite" />
                   </circle>
-                  <circle r="4" fill="#90F0C5" opacity="0.9">
-                    <animateMotion path="M 0 100 C 80 100, 100 150, 200 150" dur="3s" begin="0.6s" repeatCount="indefinite" />
+                  <circle r="4" fill="#5CD68B">
+                    <animateMotion path="M 0 100 C 120 100, 180 150, 400 150" dur="3s" begin="0.6s" repeatCount="indefinite" />
                   </circle>
-                  <circle r="4" fill="#3E8EFF" opacity="0.6">
-                    <animateMotion path="M 0 100 C 80 100, 100 50, 200 50" dur="3s" begin="1.2s" repeatCount="indefinite" />
+                  <circle r="3" fill="#3E8EFF" opacity="0.6">
+                    <animateMotion path="M 0 100 C 120 100, 180 50, 400 50" dur="3s" begin="1.2s" repeatCount="indefinite" />
                   </circle>
-                  <circle r="4" fill="#90F0C5" opacity="0.6">
-                    <animateMotion path="M 0 100 C 80 100, 100 150, 200 150" dur="3s" begin="1.8s" repeatCount="indefinite" />
+                  <circle r="3" fill="#5CD68B" opacity="0.6">
+                    <animateMotion path="M 0 100 C 120 100, 180 150, 400 150" dur="3s" begin="1.8s" repeatCount="indefinite" />
                   </circle>
                 </svg>
                 <div className="inv-flow-dests">
@@ -358,17 +391,30 @@ export default function InvestorsContent() {
               </div>
 
               <div className="inv-targets-block">
-                <div className="inv-targets-block-h">Year 1 targets</div>
+                <div className="inv-targets-block-head">
+                  <span className="inv-targets-block-lbl">Year 1 targets</span>
+                  <span className="inv-targets-block-meta">By Q4 2026</span>
+                </div>
                 <ul className="inv-targets">
                   {[
-                    ["170", "specialists onboarded"],
-                    ["$610K", "ARR by Q4 2026"],
-                    ["2", "PMS integrations live"],
-                    ["18 mo", "to breakeven trajectory"],
-                  ].map(([n, lbl], i) => (
-                    <li key={lbl} className="inv-target" style={{ transitionDelay: `${i * 80}ms` }}>
-                      <span className="inv-target-n">{n}</span>
-                      <span className="inv-target-lbl">{lbl}</span>
+                    { n: "170", unit: "", lbl: "Specialists onboarded", icon: "user" },
+                    { n: "$610", unit: "K", lbl: "ARR by Q4 2026", icon: "chart" },
+                    { n: "2", unit: "", lbl: "PMS integrations live", icon: "plug" },
+                    { n: "18", unit: "mo", lbl: "To breakeven trajectory", icon: "flag" },
+                  ].map((t, i) => (
+                    <li key={t.lbl} className="inv-target" style={{ transitionDelay: `${i * 80}ms` }}>
+                      <span className="inv-target-ic" aria-hidden="true">
+                        {t.icon === "user" && <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="4" /><path d="M4 21c0-4 4-7 8-7s8 3 8 7" /></svg>}
+                        {t.icon === "chart" && <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M3 17l5-5 4 4 8-8" /><polyline points="14 8 20 8 20 14" /></svg>}
+                        {t.icon === "plug" && <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M9 2v6M15 2v6M6 8h12v4a6 6 0 01-12 0z" /><path d="M12 18v4" /></svg>}
+                        {t.icon === "flag" && <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 3v18M4 4h12l-2 4 2 4H4" /></svg>}
+                      </span>
+                      <span className="inv-target-body">
+                        <span className="inv-target-n">
+                          {t.n}<span className="inv-target-unit">{t.unit}</span>
+                        </span>
+                        <span className="inv-target-lbl">{t.lbl}</span>
+                      </span>
                     </li>
                   ))}
                 </ul>
