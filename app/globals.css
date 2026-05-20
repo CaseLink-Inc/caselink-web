@@ -1939,11 +1939,14 @@ body[data-inv-page="true"] .calendly-badge-widget{display:none !important}
 .inv-footer p{font-size:12px;color:var(--inv-text-3);line-height:1.7;text-align:center;max-width:720px;margin:0 auto;letter-spacing:0.01em}
 
 /* RESPONSIVE */
+/* ===== RESPONSIVE ===== */
 @media (max-width:1100px){
   .inv-hero-h{font-size:60px}
-  .inv-round-amount{font-size:64px}
   .inv-contact-h{font-size:42px}
+  .inv-round-tile-val{font-size:40px}
+  .inv-tcell-num{font-size:48px}
 }
+
 @media (max-width:900px){
   .inv-topnav-inner{padding:14px 20px;gap:12px}
   .inv-topnav-home{display:none}
@@ -1952,40 +1955,96 @@ body[data-inv-page="true"] .calendly-badge-widget{display:none !important}
   .inv-hero-lede{font-size:15px}
   .inv-sec{padding:50px 0}
   .inv-panel-body{padding:28px}
-  .inv-round-body{grid-template-columns:1fr;gap:32px;padding:32px}
-  .inv-round-metrics{border-left:none;border-top:1px solid var(--inv-border)}
+
+  /* Round: 4 tiles → 2x2 */
+  .inv-round-grid{grid-template-columns:1fr 1fr}
+  .inv-round-tile{border-right:none;border-bottom:1px solid var(--inv-border)}
+  .inv-round-tile:nth-child(odd){border-right:1px solid var(--inv-border)}
+  .inv-round-tile:nth-last-child(-n+2){border-bottom:none}
+  .inv-round-foot{flex-direction:column;gap:8px;text-align:center}
+  .inv-round-foot-sep{display:none}
+
+  /* Today: strip stacks, 4 cells → 2x2 */
+  .inv-today-strip{padding:20px 24px}
+  .inv-flow-strip{flex-direction:column;align-items:stretch;gap:14px}
+  .inv-flow-strip-meta{text-align:center}
   .inv-today-body{grid-template-columns:1fr 1fr}
   .inv-tcell{border-right:none;border-bottom:1px solid var(--inv-border)}
   .inv-tcell:nth-child(odd){border-right:1px solid var(--inv-border)}
   .inv-tcell:nth-last-child(-n+2){border-bottom:none}
+
+  /* Plan */
   .inv-plan-chart{padding:24px 22px}
+  .inv-plan-chart-grid{inset:24px 22px 60px}
   .inv-plan-chart-area{gap:24px;height:260px}
-  .inv-plan-table thead th,.inv-plan-table tbody th,.inv-plan-table tbody td{padding:12px 22px}
+  .inv-plan-table thead th,.inv-plan-table tbody th,.inv-plan-table tbody td{padding:12px 18px}
+
+  /* Where: 3-column flow → stacked. Source on top (full-width card),
+     short downward arrow in the middle, two dest cards in a 2-col
+     row below. The horizontal SVG path doesn't make sense stacked
+     so it's hidden; a simple chevron suggests the flow. */
   .inv-where-body{grid-template-columns:1fr}
-  .inv-flow-viz{border-right:none;border-bottom:1px solid var(--inv-border);padding:32px 24px}
+  .inv-flow-viz{grid-template-columns:1fr;gap:18px;padding:28px 24px;border-right:none;border-bottom:1px solid var(--inv-border);min-height:0;text-align:center}
+  .inv-flow-source{max-width:none}
+  .inv-flow-lines{display:none}
+  .inv-flow-viz::after{content:"";display:block;width:1px;height:32px;background:linear-gradient(180deg,rgba(62,142,255,0.4),transparent);margin:0 auto;justify-self:center;grid-column:1 / -1}
+  .inv-flow-dests{flex-direction:row;gap:14px;min-width:0}
+  .inv-flow-dest{flex:1;min-width:0}
   .inv-targets-block{padding:28px}
+
+  /* Contact */
   .inv-contact-body{grid-template-columns:1fr;gap:32px;padding:32px;text-align:center}
   .inv-contact-portrait-wrap{max-width:240px}
   .inv-contact-h{font-size:36px}
   .inv-contact-grid{text-align:left}
+  .inv-contact-lede{margin-left:auto;margin-right:auto}
+  .inv-contact-direct{justify-content:center}
 }
+
 @media (max-width:640px){
+  .inv-hero{padding:40px 0 60px}
   .inv-hero-h{font-size:34px}
-  .inv-panel-head{padding:14px 20px;flex-wrap:wrap}
-  .inv-panel-body{padding:22px}
-  .inv-round-amount{font-size:52px}
-  .inv-round-metrics{grid-template-columns:1fr}
-  .inv-round-metric{border-right:none}
+  .inv-hero-cta{flex-direction:column;width:100%}
+  .inv-hero-cta .btn{justify-content:center;width:100%}
+  .inv-panel-head{padding:14px 18px;flex-wrap:wrap;gap:10px}
+  .inv-panel-num{font-size:10px}
+  .inv-panel-title{font-size:13.5px;flex:1 1 auto}
+  .inv-panel-body{padding:20px}
+
+  /* Round: 2x2 → 1 column */
+  .inv-round-grid{grid-template-columns:1fr}
+  .inv-round-tile{border-right:none;border-bottom:1px solid var(--inv-border);padding:24px 22px}
+  .inv-round-tile:nth-child(odd){border-right:none}
+  .inv-round-tile:last-child{border-bottom:none}
+  .inv-round-tile-val{font-size:38px}
+
+  /* Today: 2x2 → 1 column */
+  .inv-today-strip{padding:16px 18px}
+  .inv-flow-strip-meta-val{font-size:18px}
   .inv-today-body{grid-template-columns:1fr}
-  .inv-tcell{border-right:none;border-bottom:1px solid var(--inv-border)}
+  .inv-tcell{border-right:none;border-bottom:1px solid var(--inv-border);padding:24px 22px}
+  .inv-tcell:nth-child(odd){border-right:none}
   .inv-tcell:last-child{border-bottom:none}
-  .inv-tcell-num{font-size:46px}
+  .inv-tcell-num{font-size:44px}
+
+  /* Plan */
+  .inv-plan-chart{padding:20px 16px}
+  .inv-plan-chart-grid{inset:20px 16px 60px}
   .inv-plan-chart-area{height:200px;gap:12px}
+  .inv-bar-val{font-size:18px}
   .inv-plan-table{font-size:12.5px}
   .inv-plan-table thead th,.inv-plan-table tbody th,.inv-plan-table tbody td{padding:10px 14px}
+
+  /* Where: dest cards stack */
+  .inv-flow-viz{padding:24px 18px}
+  .inv-flow-dests{flex-direction:column}
+  .inv-targets-block{padding:22px 18px}
+
+  /* Contact */
+  .inv-contact-body{padding:28px 22px}
   .inv-contact-grid{grid-template-columns:1fr}
-  .inv-contact-h{font-size:30px}
-  .inv-flow-dests{grid-template-columns:1fr}
+  .inv-contact-h{font-size:28px}
+  .inv-contact-portrait-wrap{max-width:200px}
 }
 
 /* Honor users who request reduced motion. Same payoff at any width. */
