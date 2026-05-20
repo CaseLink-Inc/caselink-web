@@ -117,21 +117,31 @@ function SideNav() {
 
 /* ===============================================================
    ANIMATED BAR — grows from 0 to targetPct on scroll-into-view.
+   axis="height" (default) for vertical bars, "width" for horizontal
+   progress bars.
    =============================================================== */
-function AnimatedBar({ targetPct, className }: { targetPct: number; className?: string }) {
+function AnimatedBar({
+  targetPct,
+  className,
+  axis = "height",
+}: {
+  targetPct: number;
+  className?: string;
+  axis?: "height" | "width";
+}) {
   const ref = useRef<HTMLDivElement>(null);
-  const [h, setH] = useState(0);
+  const [val, setVal] = useState(0);
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
     if (typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) {
-      setH(targetPct);
+      setVal(targetPct);
       return;
     }
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
-          if (e.isIntersecting) setTimeout(() => setH(targetPct), 80);
+          if (e.isIntersecting) setTimeout(() => setVal(targetPct), 80);
         });
       },
       { threshold: 0.3 }
@@ -139,7 +149,8 @@ function AnimatedBar({ targetPct, className }: { targetPct: number; className?: 
     io.observe(el);
     return () => io.disconnect();
   }, [targetPct]);
-  return <div ref={ref} className={className} style={{ height: `${h}%` }} />;
+  const style = axis === "width" ? { width: `${val}%` } : { height: `${val}%` };
+  return <div ref={ref} className={className} style={style} />;
 }
 
 /* ===============================================================
@@ -195,8 +206,17 @@ const IconZap = () => (
    PAGE
    =============================================================== */
 export default function InvestorsContent() {
+  // Mark the body so we can hide the light marketing Nav + Footer
+  // on this dark pitch-deck route without affecting the rest of the site.
+  useEffect(() => {
+    document.body.dataset.invPage = "true";
+    return () => {
+      delete document.body.dataset.invPage;
+    };
+  }, []);
+
   return (
-    <>
+    <div className="inv-page">
       <SideNav />
 
       {/* ============ HERO ============ */}
@@ -210,6 +230,14 @@ export default function InvestorsContent() {
         </div>
         <div className="wrap inv-hero-inner">
           <div className="inv-hero-text">
+            <span className="inv-hero-bracket inv-hero-bracket-tl" aria-hidden="true" />
+            <span className="inv-hero-bracket inv-hero-bracket-tr" aria-hidden="true" />
+            <span className="inv-hero-bracket inv-hero-bracket-bl" aria-hidden="true" />
+            <span className="inv-hero-bracket inv-hero-bracket-br" aria-hidden="true" />
+            <div className="inv-hero-logo">
+              <span className="inv-hero-logo-mark" aria-hidden="true" />
+              <span className="inv-hero-logo-wm">CaseLink</span>
+            </div>
             <span className="inv-tag">
               <span className="inv-tag-dot" />
               Investor brief · Pre-seed · May 2026
@@ -768,6 +796,15 @@ export default function InvestorsContent() {
                       and seventy paying specialists in twelve months.
                     </span>
                   </h2>
+                  <div className="inv-progress">
+                    <div className="inv-progress-row">
+                      <span>Specialists onboarded</span>
+                      <strong>12 / 170</strong>
+                    </div>
+                    <div className="inv-progress-track">
+                      <AnimatedBar targetPct={7} axis="width" className="inv-progress-fill" />
+                    </div>
+                  </div>
                   <div className="inv-bigask-cta">
                     <BookCallButton className="btn btn-primary">
                       Talk to Nick
@@ -887,10 +924,23 @@ export default function InvestorsContent() {
 
           <Reveal className="inv-backers">
             <div className="inv-backers-lbl">Backed by people from</div>
-            <div className="inv-backers-row">
-              {["nxtMOVE", "NEWHOLD", "VISA", "KASU", "Blaze Technologies"].map((b) => (
-                <span key={b} className="inv-backer">{b}</span>
-              ))}
+            <div className="inv-backers-marquee">
+              <div className="inv-backers-track">
+                {[
+                  "nxtMOVE",
+                  "NEWHOLD",
+                  "VISA",
+                  "KASU",
+                  "Blaze Technologies",
+                  "nxtMOVE",
+                  "NEWHOLD",
+                  "VISA",
+                  "KASU",
+                  "Blaze Technologies",
+                ].map((b, i) => (
+                  <span key={`${b}-${i}`} className="inv-backer">{b}</span>
+                ))}
+              </div>
             </div>
           </Reveal>
         </div>
@@ -940,6 +990,6 @@ export default function InvestorsContent() {
           </p>
         </div>
       </section>
-    </>
+    </div>
   );
 }
