@@ -127,22 +127,67 @@ Vercel picks it up in ~30 seconds.
 
 ## Recent significant changes (most recent first)
 
-- **Investor brief at `/investors`** (unlisted): pitch-deck-style page for
-  Nick to share with investors and use in meetings. Twelve numbered
-  sections: hero with $500K ask card, TL;DR (30%/$1.8M/$2.4M/$500K),
-  problem, math equation, before/after shift, four product pillars,
-  market sizing with collapsible competitive table, traction grid +
-  horizontal timeline, financial bar chart with collapsible metrics
-  table, the big ask card with use-of-funds and Year 1 milestones,
-  team cards (Nick reuses `/portrait.png`, Laura uses an LC initials
-  avatar — replace by dropping a file in `/public` and updating the
-  page), backers row, contact card, and confidential fineprint. Page
-  metadata is `robots: { index: false, follow: false, nocache: true }`
-  plus matching googleBot directives. Not in nav, footer, sitemap, or
-  llms.txt — only reachable via direct URL. CSS lives in globals.css
-  under the `.inv-*` namespace with 1100 / 900 / 640 breakpoints. Uses
-  a monospaced ui font (ui-monospace / SF Mono) for section labels and
-  tabular numbers; everything else stays in Satoshi.
+- **Investor snapshot at `/investors`** (unlisted, fully rebuilt): six
+  cohesive panels — Hero / The round / Today / Three-year trajectory /
+  Where it goes / Contact — plus a sticky top nav and a confidential
+  footer. The 12-section pitch-deck-style version is gone. Page is
+  light-theme only, Satoshi-only (no monospaced font), with subtle
+  ambient gradient meshes alternating across sections instead of
+  flat-white. Panel chrome is unified across all sections: 1px border,
+  20px radius, soft drop shadow, header bar with a section number pill
+  + sentence-case title + optional status badge (Open / Live / meta).
+  Every panel has a mouse-follow blue radial spotlight on hover (sets
+  `--mx` / `--my` CSS vars, see `<Panel>` in `InvestorsContent.tsx`).
+  Top nav: sticky, transparent, real `logo-primary.svg` lockup on
+  left, small "caselink.net" home link, light-touch translucent-white
+  "Talk to Nick" pill on the right with a thin rotating conic-gradient
+  outline (`@property --inv-angle` keyframe). All "Talk to Nick" CTAs
+  page-wide route to Calendly via `BookCallButton`; mailto fallback
+  only on the Pitch-deck request. Hero is centred: live `● 12
+  practices live in the DMV` pill, tight headline `$500,000 pre-seed.
+  $4M cap. V1 shipped. Round open.`, lede, two CTAs. Hero has a 60px
+  grid overlay (5% alpha, masked radial). The round is a 4-tile grid
+  (Valuation cap, Discount, Equity at cap, Year 3 ARR), no big $500K
+  headline (that lives in the hero), 1px hairline accent on hover.
+  Today wears a "live activity" strip at the top — `ReferralJourney`
+  SVG component (GP → CaseLink hub → Specialist with a small triangle
+  that travels under the hub on a 6s loop, fill colour shifts blue →
+  mint → green; the hub centre is a generous white circle with the
+  CaseLink mark inside and one outer rotating dashed orbital ring;
+  the live revenue counter ticks $0 → $2,500 in sync). Below that,
+  4 metric cells with unified typography (icon + big number + label +
+  caption — no sparklines, no dots, no progress rings). The plan
+  panel shows a 3-bar ARR chart (`AnimatedBar` grows on scroll, bars
+  flex into available chart height) over the full metrics table; ARR
+  row is bold blue but no longer has a gradient tint. Where it goes
+  is a 3-column flow viz on desktop ($500K source on the left, two
+  thin dashed gradient pipes with small `r=2.5` dot particles
+  travelling left-to-right via `preserveAspectRatio="xMidYMid meet"`,
+  two destination cards stacked on the right). Year 1 targets are
+  card rows with brand-tinted icons and same-size number + unit
+  ($610K not $610<small>K</small>). Contact: two-column on desktop —
+  Nick's portrait (`object-position: center top` so the head doesn't
+  crop) inside a circular frame with two counter-rotating dashed
+  orbital rings, plus a 4-button grid (Book a call → Calendly,
+  Platform → app.caselink.net, Website → /, Pitch deck → mailto), and
+  a direct contact strip (email · phone) with no underlines. Page
+  hides marketing Nav and Footer via `body[data-inv-page="true"]`
+  set in `useEffect`. Metadata `robots: { index: false, follow: false,
+  nocache: true }` plus matching googleBot directives. Not in nav,
+  footer, sitemap, robots.ts, or llms.txt. Components:
+  `app/investors/page.tsx` (server, metadata) +
+  `components/investors/InvestorsContent.tsx` (client, ~600 lines
+  with Counter / AnimatedBar / CircleProgress / PracticeDots / Panel
+  / useMouseFollow inline helpers) + `components/investors/Refer
+  ralJourney.tsx`. CSS in `globals.css` under the `.inv-*` namespace
+  with 1100 / 900 / 640 responsive blocks (panel grids reflow to 2x2
+  and then 1-col, the Where flow SVG hides on mobile and is replaced
+  with a thin downward fade-line, hero CTAs go full-width). Heavily
+  iterated through ~10 visual rebuilds — current state is the result
+  of feedback "remove decorative shapes / no animated section breakers
+  / consistent panel chrome / mouse-follow spotlight / unified
+  typography in Today / thin hover lines / triangle passes under the
+  hub / dots not eggs / no underlines on contact links".
 - **Mobile LCP fix**: PageSpeed measured mobile LCP at 5.0s on the home
   page (desktop was 1.0s / Performance 97). Root cause was the chain
   of hero entrance animations — h1 line rise, sub fadeUp, CTA fadeUp,
@@ -246,14 +291,20 @@ Vercel picks it up in ~30 seconds.
 
 ## In progress / pending
 
-### Immediate
+### Scheduled / time-gated
 
-- **DMARC tightening** — DMARC is currently in `p=none` monitor mode
-  (deployed 2026-05-18). Watch the daily aggregate reports landing in
-  `support@caselink.net`. After 2 weeks of clean reports (no legitimate
-  mail failing alignment), edit the `_dmarc` TXT record in IONOS and
-  change `p=none` to `p=quarantine`. After another 2 weeks clean, change
-  to `p=reject`. Earliest tightening date: 2026-06-01.
+- **DMARC tightening (`p=none` → `p=quarantine`)** — scheduled remote
+  agent fires 2026-06-01 at 03:30 UTC (= 9:00am Asia/Colombo). Routine
+  ID `trig_01SpWhepFXXZgrETwU26mGHx`. Direct link:
+  https://claude.ai/code/routines/trig_01SpWhepFXXZgrETwU26mGHx . The
+  agent will read CLAUDE.md first, ask the user if aggregate reports
+  in `support@caselink.net` are clean, then walk through editing the
+  `_dmarc` TXT in IONOS to flip `p=none` → `p=quarantine`. Verifies
+  with `dig @ns1048.ui-dns.com` etc. First DMARC report on 2026-05-18
+  already confirmed DKIM aligns cleanly (see "DMARC first-day report"
+  entry above), so tightening is safe on current evidence. Earliest
+  follow-up to `p=reject`: 2026-06-15 (the agent reminds the user to
+  schedule that separately).
 
 ### Recommended but not started
 
@@ -262,6 +313,46 @@ Vercel picks it up in ~30 seconds.
   long-tail queries.
 - **Customer testimonials with `Review` JSON-LD**: when pilot practices
   go live and have quotes, this adds star ratings to search results.
+- **Terms of Service page** at `/terms`: currently no link to it
+  anywhere (the privacy policy was scoped to drop the `/terms`
+  reference to avoid a dead link). Worth adding when ready.
+- **Investor page polish items** (low priority, awaiting feedback):
+  Laura's real photo (currently LC initials avatar — replaced by an
+  inline JSX swap on `InvestorsContent.tsx`); real backer SVG/PNG
+  logos (currently text spans `nxtMOVE / NEWHOLD / VISA / KASU /
+  Blaze Technologies` in the older versions, now removed from the
+  6-section snapshot — re-add if Nick wants logos back); Google
+  Business Profile phone number is intentionally not added because
+  the public number attracts robocaller spam (user decision).
+
+### Decisions made this session worth remembering
+
+- **Public phone policy**: number is kept on the marketing contact
+  page and in the Organization JSON-LD, but intentionally NOT added
+  to the Google Business Profile (mass-scraped, drives robocaller
+  spam). Same number is in `llms.txt` by design for consistency.
+- **DMARC `rua` inbox**: aggregate reports go to `support@caselink.net`
+  by design. If the volume becomes annoying, three options for Nick:
+  (1) Gmail filter to skip-inbox + label "DMARC", (2) free dashboard
+  like dmarcian.com or dmarc.postmarkapp.com, (3) move `rua` to a
+  dedicated `dmarc@caselink.net` alias via an IONOS DNS edit.
+- **Investor page metaphor**: each section is one substantial PANEL
+  with consistent chrome (header bar with number / title / status),
+  NOT a scatter of decorative cards. Mouse-follow spotlight on every
+  panel for live feel. Light theme everywhere, no dark sections,
+  Satoshi only (the spec at `/Users/kasu/Downloads/CaseLink_Investor_
+  Snapshot_Content.md` was the source of truth — re-read it before
+  making structural changes).
+- **Top-nav CTA on `/investors`**: light-touch translucent-white pill
+  with thin rotating conic-gradient outline, NOT a heavy gradient
+  body. The user explicitly rejected the heavy variant.
+- **Where-it-goes flow viz**: must be small perfect dots (r=2.5 / r=2)
+  using `preserveAspectRatio="xMidYMid meet"`, NEVER stretched
+  ellipses. Lines are thin (1.5-2px dashed), NEVER thick blocks.
+- **Today hub centre**: must be a generous white circle with the real
+  `/logo-mark.svg` inside, with breathing room. NOT a dark sphere
+  with "CL" text. The traveling triangle must pass UNDER the hub
+  (hub is drawn LAST in SVG order).
 - **Terms of Service page** at `/terms`. Currently no link to it
   anywhere (the privacy policy was scoped to drop the `/terms`
   reference to avoid a dead link). Worth adding when ready.
