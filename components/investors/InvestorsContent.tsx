@@ -350,7 +350,7 @@ export default function InvestorsContent() {
                   <div className="inv-flow-source-lbl">Investment</div>
                   <div className="inv-flow-source-amt">$500K</div>
                 </div>
-                <svg className="inv-flow-lines" viewBox="0 0 400 200" preserveAspectRatio="none" aria-hidden="true">
+                <svg className="inv-flow-lines" viewBox="0 0 400 200" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
                   <defs>
                     <linearGradient id="invFlowBlue" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="#3E8EFF" stopOpacity="0.8" /><stop offset="100%" stopColor="#3E8EFF" stopOpacity="0.30" /></linearGradient>
                     <linearGradient id="invFlowMint" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="#5CD68B" stopOpacity="0.8" /><stop offset="100%" stopColor="#90F0C5" stopOpacity="0.30" /></linearGradient>

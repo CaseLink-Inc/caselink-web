@@ -53,16 +53,13 @@ export default function ReferralJourney() {
           <text textAnchor="middle" y="3" fontSize="9" fontWeight="700" fill="#1A1F1E" letterSpacing="0.4">GP</text>
         </g>
 
-        {/* Hub — white circle with CaseLink mark */}
+        {/* Hub — generous white circle, single rotating orbital ring */}
         <g transform="translate(260, 70)">
-          <circle r="38" fill="none" stroke="#3E8EFF" strokeWidth="1" strokeDasharray="4 5" opacity="0.5">
+          <circle r="46" fill="none" stroke="#3E8EFF" strokeWidth="1" strokeDasharray="4 5" opacity="0.5">
             <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="14s" repeatCount="indefinite" />
           </circle>
-          <circle r="28" fill="none" stroke="#90F0C5" strokeWidth="1" strokeDasharray="2 4" opacity="0.6">
-            <animateTransform attributeName="transform" type="rotate" from="360" to="0" dur="10s" repeatCount="indefinite" />
-          </circle>
-          <circle r="20" fill="#fff" stroke="rgba(26,31,30,0.08)" strokeWidth="1" />
-          <image href="/logo-mark.svg" x="-14" y="-14" width="28" height="28" />
+          <circle r="32" fill="#fff" stroke="rgba(26,31,30,0.08)" strokeWidth="1" />
+          <image href="/logo-mark.svg" x="-16" y="-16" width="32" height="32" />
         </g>
 
         {/* Specialist */}

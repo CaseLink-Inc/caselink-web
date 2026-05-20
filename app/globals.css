@@ -1879,7 +1879,7 @@ body[data-inv-page="true"] .calendly-badge-widget{display:none !important}
 .inv-flow-dests{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:0}
 .inv-flow-dest{position:relative;padding:24px 22px;border:1px solid var(--inv-border);border-radius:14px;background:#fff;overflow:hidden;transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}
 .inv-flow-dest:hover{transform:translateY(-3px);border-color:rgba(62,142,255,0.30);box-shadow:0 16px 36px rgba(26,31,30,0.07)}
-.inv-flow-dest::before{content:"";position:absolute;top:0;left:0;right:0;height:3px}
+.inv-flow-dest::before{content:"";position:absolute;top:0;left:0;right:0;height:1px}
 .inv-flow-dest-blue::before{background:linear-gradient(90deg,#3E8EFF,#5BB0FF)}
 .inv-flow-dest-mint::before{background:linear-gradient(90deg,#5CD68B,#90F0C5)}
 .inv-flow-dest-pct{font-size:32px;font-weight:800;letter-spacing:-0.025em;font-variant-numeric:tabular-nums;line-height:1;margin-bottom:6px}
@@ -1909,8 +1909,8 @@ body[data-inv-page="true"] .calendly-badge-widget{display:none !important}
 .inv-contact-orbit-1{position:absolute;inset:0;border-radius:50%;border:1px dashed rgba(62,142,255,0.30);animation:invOrbit 22s linear infinite}
 .inv-contact-orbit-2{position:absolute;inset:24px;border-radius:50%;border:1px dashed rgba(144,240,197,0.40);animation:invOrbit 28s linear infinite reverse}
 @keyframes invOrbit{from{transform:rotate(0)}to{transform:rotate(360deg)}}
-.inv-contact-portrait{position:relative;width:80%;aspect-ratio:1/1;border-radius:50%;overflow:hidden;background:linear-gradient(180deg,#EDF2FB,#F4F7FB);box-shadow:0 30px 80px rgba(26,31,30,0.18),0 0 0 6px #fff,0 0 0 7px rgba(62,142,255,0.20)}
-.inv-contact-portrait img{width:100%;height:100%;object-fit:cover;object-position:center 12%;display:block}
+.inv-contact-portrait{position:relative;width:88%;aspect-ratio:1/1;border-radius:50%;overflow:hidden;background:linear-gradient(180deg,#EDF2FB,#F4F7FB);box-shadow:0 30px 80px rgba(26,31,30,0.18),0 0 0 6px #fff,0 0 0 7px rgba(62,142,255,0.20)}
+.inv-contact-portrait img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
 .inv-contact-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11.5px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--inv-green);margin-bottom:18px;padding:6px 12px;border-radius:999px;background:rgba(61,189,107,0.10);border:1px solid rgba(61,189,107,0.20)}
 .inv-contact-h{font-size:52px;font-weight:800;letter-spacing:-0.035em;margin:0 0 14px;color:var(--inv-text);line-height:1.05}
 .inv-contact-lede{font-size:16px;color:var(--inv-text-2);line-height:1.55;margin:0 0 28px;max-width:480px}
@@ -1927,8 +1927,8 @@ body[data-inv-page="true"] .calendly-badge-widget{display:none !important}
 .inv-contact-btn-primary .inv-contact-btn-s{color:rgba(255,255,255,0.65)}
 .inv-contact-btn-primary:hover{box-shadow:0 18px 40px rgba(26,31,30,0.22)}
 .inv-contact-direct{display:flex;align-items:center;gap:14px;font-size:13px;color:var(--inv-text-2);flex-wrap:wrap}
-.inv-contact-direct a{font-weight:600;color:var(--inv-text);text-decoration:none;border-bottom:1px solid rgba(62,142,255,0.30);padding-bottom:1px;transition:border-color .15s ease,color .15s ease}
-.inv-contact-direct a:hover{color:var(--inv-blue);border-bottom-color:var(--inv-blue)}
+.inv-contact-direct a{font-weight:600;color:var(--inv-text);text-decoration:none;transition:color .15s ease}
+.inv-contact-direct a:hover{color:var(--inv-blue)}
 .inv-contact-direct-sep{width:3px;height:3px;border-radius:50%;background:var(--inv-text-3)}
 
 /* FOOTER */
