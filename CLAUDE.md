@@ -197,6 +197,17 @@ Vercel picks it up in ~30 seconds.
   CSP in `next.config.ts` extended to allow `hcaptcha.com`,
   `*.hcaptcha.com`, and `web3forms.com` for script, style, frame, and
   connect sources. Dashboard toggle confirmed on 2026-05-18.
+- **DMARC first-day report (2026-05-18)**: Microsoft Outlook aggregate
+  report observed 2 messages from `em110.caselink.net` (SendGrid
+  relay) → `nvorthodontics.com` with `header_from: caselink.net`. DKIM
+  signs cleanly with selector `s1` against `caselink.net` and aligns,
+  so DMARC PASSES end-to-end despite SPF alignment failing under
+  strict mode (envelope is a subdomain). The product app is using
+  SendGrid for transactional referral notifications — not Google
+  Workspace. Tightening to `p=quarantine` is safe on this evidence
+  because DKIM alignment is the load-bearing signal. If DKIM ever
+  breaks, consider flipping `aspf=s` to `aspf=r` so the SendGrid
+  subdomain counts as aligned for SPF too.
 - **Email auth live**: SPF (`v=spf1 include:_spf.google.com ~all`), DKIM
   (2048-bit key at `google._domainkey.caselink.net`, activated in Google
   Admin 2026-05-18 — first test email returned `DKIM: PASS with domain
