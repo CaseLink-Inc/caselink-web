@@ -53,15 +53,6 @@ export default function ReferralJourney() {
           <text textAnchor="middle" y="3" fontSize="9" fontWeight="700" fill="#1A1F1E" letterSpacing="0.4">GP</text>
         </g>
 
-        {/* Hub — generous white circle, single rotating orbital ring */}
-        <g transform="translate(260, 70)">
-          <circle r="46" fill="none" stroke="#3E8EFF" strokeWidth="1" strokeDasharray="4 5" opacity="0.5">
-            <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="14s" repeatCount="indefinite" />
-          </circle>
-          <circle r="32" fill="#fff" stroke="rgba(26,31,30,0.08)" strokeWidth="1" />
-          <image href="/logo-mark.svg" x="-16" y="-16" width="32" height="32" />
-        </g>
-
         {/* Specialist */}
         <g transform="translate(450, 70)">
           <circle r="22" fill="#fff" stroke="#3DBD6B" strokeWidth="1.4" />
@@ -71,13 +62,24 @@ export default function ReferralJourney() {
           <text textAnchor="middle" y="3" fontSize="9" fontWeight="700" fill="#1A1F1E" letterSpacing="0.4">SP</text>
         </g>
 
-        {/* Traveling case — tiny triangle */}
+        {/* Traveling case — tiny triangle (drawn BEFORE the hub so the
+            hub covers it as it crosses the centre) */}
         <g>
           <polygon points="-5,-5 6,0 -5,5" fill="#3E8EFF">
             <animate attributeName="fill" values="#3E8EFF;#3E8EFF;#90F0C5;#3DBD6B;#3DBD6B" keyTimes="0;0.30;0.50;0.70;1" dur="6s" repeatCount="indefinite" />
             <animate attributeName="opacity" values="0;1;1;1;0" keyTimes="0;0.10;0.50;0.90;1" dur="6s" repeatCount="indefinite" />
           </polygon>
           <animateMotion dur="6s" repeatCount="indefinite" path="M 70 70 Q 180 30 260 70 Q 340 110 450 70" rotate="auto" />
+        </g>
+
+        {/* Hub — generous white circle, single rotating orbital ring.
+            Drawn LAST so it sits on top of the traveling triangle. */}
+        <g transform="translate(260, 70)">
+          <circle r="46" fill="none" stroke="#3E8EFF" strokeWidth="1" strokeDasharray="4 5" opacity="0.5">
+            <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="14s" repeatCount="indefinite" />
+          </circle>
+          <circle r="32" fill="#fff" stroke="rgba(26,31,30,0.08)" strokeWidth="1" />
+          <image href="/logo-mark.svg" x="-16" y="-16" width="32" height="32" />
         </g>
       </svg>
 

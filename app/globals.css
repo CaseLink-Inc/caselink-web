@@ -1869,14 +1869,17 @@ body[data-inv-page="true"] .calendly-badge-widget{display:none !important}
 .inv-plan-arr th,.inv-plan-arr td{font-weight:800;color:var(--inv-text)}
 .inv-plan-arr th{color:var(--inv-blue)}
 
-/* WHERE — flow viz */
-.inv-where-body{display:grid;grid-template-columns:1.4fr 1fr;gap:0;padding:0}
-.inv-flow-viz{padding:36px;border-right:1px solid var(--inv-border);position:relative}
-.inv-flow-source{display:flex;flex-direction:column;align-items:flex-start;margin-bottom:0;padding:18px 22px;border:1px solid var(--inv-border);border-radius:14px;background:linear-gradient(135deg,#fff,#F4F7FB);max-width:200px}
+/* WHERE — flow viz: source on left, animated flow lines in the middle,
+   two destination cards stacked on the right (the lines visually
+   connect the $500K source to each 50% card). */
+.inv-where-body{display:grid;grid-template-columns:1.5fr 1fr;gap:0;padding:0}
+.inv-flow-viz{padding:36px;border-right:1px solid var(--inv-border);position:relative;display:grid;grid-template-columns:auto 1fr auto;gap:0;align-items:center;min-height:300px}
+.inv-flow-source{padding:22px 26px;border:1px solid var(--inv-border);border-radius:14px;background:linear-gradient(135deg,#fff,#F4F7FB);box-shadow:0 8px 24px rgba(26,31,30,0.04);min-width:160px}
 .inv-flow-source-lbl{font-size:10.5px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--inv-text-3);margin-bottom:6px}
-.inv-flow-source-amt{font-size:32px;font-weight:800;letter-spacing:-0.025em;color:var(--inv-text);font-variant-numeric:tabular-nums}
-.inv-flow-lines{width:100%;height:120px;display:block;margin:18px 0}
-.inv-flow-dests{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:0}
+.inv-flow-source-amt{font-size:32px;font-weight:800;letter-spacing:-0.025em;color:var(--inv-text);font-variant-numeric:tabular-nums;line-height:1;margin-bottom:6px}
+.inv-flow-source-foot{font-size:11px;font-weight:600;color:var(--inv-text-3);letter-spacing:0.02em}
+.inv-flow-lines{width:100%;min-width:140px;height:220px;display:block}
+.inv-flow-dests{display:flex;flex-direction:column;gap:12px;min-width:180px}
 .inv-flow-dest{position:relative;padding:24px 22px;border:1px solid var(--inv-border);border-radius:14px;background:#fff;overflow:hidden;transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}
 .inv-flow-dest:hover{transform:translateY(-3px);border-color:rgba(62,142,255,0.30);box-shadow:0 16px 36px rgba(26,31,30,0.07)}
 .inv-flow-dest::before{content:"";position:absolute;top:0;left:0;right:0;height:1px}

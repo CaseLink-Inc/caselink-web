@@ -349,25 +349,26 @@ export default function InvestorsContent() {
                 <div className="inv-flow-source">
                   <div className="inv-flow-source-lbl">Investment</div>
                   <div className="inv-flow-source-amt">$500K</div>
+                  <div className="inv-flow-source-foot">12-month deployment</div>
                 </div>
-                <svg className="inv-flow-lines" viewBox="0 0 400 200" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                <svg className="inv-flow-lines" viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
                   <defs>
-                    <linearGradient id="invFlowBlue" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="#3E8EFF" stopOpacity="0.8" /><stop offset="100%" stopColor="#3E8EFF" stopOpacity="0.30" /></linearGradient>
-                    <linearGradient id="invFlowMint" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="#5CD68B" stopOpacity="0.8" /><stop offset="100%" stopColor="#90F0C5" stopOpacity="0.30" /></linearGradient>
+                    <linearGradient id="invFlowBlue" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="#3E8EFF" stopOpacity="0.85" /><stop offset="100%" stopColor="#3E8EFF" stopOpacity="0.40" /></linearGradient>
+                    <linearGradient id="invFlowMint" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="#5CD68B" stopOpacity="0.85" /><stop offset="100%" stopColor="#90F0C5" stopOpacity="0.40" /></linearGradient>
                   </defs>
-                  <path d="M 0 100 C 120 100, 180 50, 400 50" fill="none" stroke="url(#invFlowBlue)" strokeWidth="2" strokeDasharray="3 4" strokeLinecap="round" />
-                  <path d="M 0 100 C 120 100, 180 150, 400 150" fill="none" stroke="url(#invFlowMint)" strokeWidth="2" strokeDasharray="3 4" strokeLinecap="round" />
-                  <circle r="2.5" fill="#3E8EFF">
-                    <animateMotion path="M 0 100 C 120 100, 180 50, 400 50" dur="3s" repeatCount="indefinite" />
+                  <path d="M 0 100 C 80 100, 120 30, 200 30" fill="none" stroke="url(#invFlowBlue)" strokeWidth="1.5" strokeDasharray="3 4" strokeLinecap="round" />
+                  <path d="M 0 100 C 80 100, 120 170, 200 170" fill="none" stroke="url(#invFlowMint)" strokeWidth="1.5" strokeDasharray="3 4" strokeLinecap="round" />
+                  <circle r="3" fill="#3E8EFF">
+                    <animateMotion path="M 0 100 C 80 100, 120 30, 200 30" dur="3s" repeatCount="indefinite" />
                   </circle>
-                  <circle r="2.5" fill="#5CD68B">
-                    <animateMotion path="M 0 100 C 120 100, 180 150, 400 150" dur="3s" begin="0.6s" repeatCount="indefinite" />
+                  <circle r="3" fill="#5CD68B">
+                    <animateMotion path="M 0 100 C 80 100, 120 170, 200 170" dur="3s" begin="0.6s" repeatCount="indefinite" />
                   </circle>
-                  <circle r="2" fill="#3E8EFF" opacity="0.6">
-                    <animateMotion path="M 0 100 C 120 100, 180 50, 400 50" dur="3s" begin="1.2s" repeatCount="indefinite" />
+                  <circle r="2.5" fill="#3E8EFF" opacity="0.6">
+                    <animateMotion path="M 0 100 C 80 100, 120 30, 200 30" dur="3s" begin="1.2s" repeatCount="indefinite" />
                   </circle>
-                  <circle r="2" fill="#5CD68B" opacity="0.6">
-                    <animateMotion path="M 0 100 C 120 100, 180 150, 400 150" dur="3s" begin="1.8s" repeatCount="indefinite" />
+                  <circle r="2.5" fill="#5CD68B" opacity="0.6">
+                    <animateMotion path="M 0 100 C 80 100, 120 170, 200 170" dur="3s" begin="1.8s" repeatCount="indefinite" />
                   </circle>
                 </svg>
                 <div className="inv-flow-dests">
