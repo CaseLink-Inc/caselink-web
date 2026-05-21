@@ -81,12 +81,12 @@ export const metadata: Metadata = {
 const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: siteName,
-  legalName: "CaseLink, Inc.",
+  name: "CaseLink, Inc.",
   url: siteUrl,
+  email: "support@caselink.net",
   logo: `${siteUrl}/logo-primary.svg`,
   description: siteDescription,
-  foundingDate: "2025",
+  foundingDate: "2024",
   founders: [
     {
       "@type": "Person",
@@ -96,16 +96,18 @@ const organizationJsonLd = {
   ],
   address: {
     "@type": "PostalAddress",
-    addressLocality: "Washington",
-    addressRegion: "DC",
+    streetAddress: "124 S Wise St",
+    addressLocality: "Arlington",
+    addressRegion: "VA",
+    postalCode: "22204",
     addressCountry: "US",
   },
+  areaServed: "Washington DC metropolitan area",
   contactPoint: [
     {
       "@type": "ContactPoint",
       contactType: "customer support",
       email: "support@caselink.net",
-      telephone: "+1-703-554-3449",
       areaServed: "US",
       availableLanguage: ["English"],
     },
@@ -114,6 +116,7 @@ const organizationJsonLd = {
     "https://www.facebook.com/caselink.net",
     "https://www.instagram.com/caselinkinc/",
     "https://www.linkedin.com/company/caselinknet/",
+    "https://www.google.com/maps?cid=12643817021776002590",
   ],
 };
 
