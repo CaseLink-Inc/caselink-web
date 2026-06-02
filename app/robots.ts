@@ -34,12 +34,12 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/dashboard", "/login", "/signup"],
+        disallow: ["/dashboard", "/login", "/signup", "/investors", "/caselink-deck-0a5e6b362c.pdf"],
       },
       ...aiBots.map((bot) => ({
         userAgent: bot,
         allow: "/",
-        disallow: ["/dashboard", "/login", "/signup"],
+        disallow: ["/dashboard", "/login", "/signup", "/investors", "/caselink-deck-0a5e6b362c.pdf"],
       })),
     ],
     sitemap: `${SITE}/sitemap.xml`,
