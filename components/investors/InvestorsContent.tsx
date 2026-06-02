@@ -6,36 +6,14 @@ import Link from "next/link";
 import BookCallButton from "@/components/BookCallButton";
 import ReferralJourney from "@/components/investors/ReferralJourney";
 
-/* ===== COUNTER ===== */
-function Counter({ to, decimals = 0, duration = 1600, separator = false, suffix = "", prefix = "" }: { to: number; decimals?: number; duration?: number; separator?: boolean; suffix?: string; prefix?: string }) {
-  const [val, setVal] = useState(0);
-  const ref = useRef<HTMLSpanElement>(null);
-  const rafRef = useRef<number | null>(null);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    if (typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) { setVal(to); return; }
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          if (rafRef.current) cancelAnimationFrame(rafRef.current);
-          setVal(0);
-          const start = performance.now();
-          const step = (now: number) => {
-            const t = Math.min(1, (now - start) / duration);
-            const eased = 1 - Math.pow(1 - t, 3);
-            setVal(to * eased);
-            if (t < 1) rafRef.current = requestAnimationFrame(step);
-          };
-          rafRef.current = requestAnimationFrame(step);
-        } else if (rafRef.current) cancelAnimationFrame(rafRef.current);
-      });
-    }, { threshold: 0.4 });
-    io.observe(el);
-    return () => { io.disconnect(); if (rafRef.current) cancelAnimationFrame(rafRef.current); };
-  }, [to, duration]);
-  const formatted = separator ? Math.round(val).toLocaleString() : val.toFixed(decimals);
-  return <span ref={ref}>{prefix}{formatted}{suffix}</span>;
+/* ===== COUNTER =====
+   Renders the real value at all times. No count-up animation: an investor
+   brief gets screenshotted, PDF'd, and printed, and a counter that animates
+   up from zero shows "$0,000" / "0%" in every static capture (that was the
+   advisor's "broken placeholder" finding). Real numbers always win here. */
+function Counter({ to, decimals = 0, separator = false, suffix = "", prefix = "" }: { to: number; decimals?: number; separator?: boolean; suffix?: string; prefix?: string }) {
+  const formatted = separator ? Math.round(to).toLocaleString() : to.toFixed(decimals);
+  return <span>{prefix}{formatted}{suffix}</span>;
 }
 
 /* ===== ANIMATED BAR ===== */

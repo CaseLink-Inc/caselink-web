@@ -2047,6 +2047,105 @@ body[data-inv-page="true"] .calendly-badge-widget{display:none !important}
   .inv-contact-portrait-wrap{max-width:200px}
 }
 
+/* ============================================================
+   INVESTOR BRIEF v2 DRAFT — additive .invv2-* layer.
+   Lives alongside the live .inv-* rules and never modifies them,
+   so /investors is unaffected. Delete this whole block when the
+   v2 draft is finalised or discarded.
+   ============================================================ */
+
+/* Hero proof line (replaces the financial headline's old job) */
+.invv2-hero-proof{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;margin:0 0 36px;font-size:13.5px;font-weight:700;letter-spacing:0.01em;color:var(--inv-text-2)}
+.invv2-hero-proof i{color:var(--inv-text-3);font-style:normal;font-weight:400}
+
+/* Generic prose panel content (problem / what we built / market) */
+.invv2-prose-lead{font-size:22px;font-weight:800;letter-spacing:-0.02em;color:var(--inv-text);line-height:1.25;margin:0 0 22px}
+.invv2-prose-close{font-size:15px;color:var(--inv-text-2);line-height:1.6;margin:22px 0 0;font-weight:600}
+.invv2-problem-list{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.invv2-problem-list li{position:relative;padding:0 0 0 26px;font-size:15px;color:var(--inv-text-2);line-height:1.55}
+.invv2-problem-list li::before{content:"";position:absolute;left:4px;top:9px;width:7px;height:7px;border-radius:50%;background:linear-gradient(135deg,#FFC794,#FFA940)}
+.invv2-feature-list{list-style:none;margin:0;padding:0;display:grid;gap:16px}
+.invv2-feature-list li{position:relative;padding:0 0 0 26px;font-size:14.5px;color:var(--inv-text-2);line-height:1.55}
+.invv2-feature-list li::before{content:"";position:absolute;left:3px;top:7px;width:9px;height:9px;border-radius:3px;background:linear-gradient(135deg,#3E8EFF,#90F0C5)}
+.invv2-feature-list strong{color:var(--inv-text);font-weight:700}
+
+/* Today: draft proof row (pilot mix + testimonial) */
+.invv2-proof-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:28px 36px;border-top:1px solid var(--inv-border)}
+
+/* Trajectory: visible assumptions block */
+.invv2-assume{padding:28px 36px;border-top:1px solid var(--inv-border);background:var(--inv-surface-2)}
+.invv2-assume-head{display:flex;align-items:baseline;justify-content:space-between;gap:14px;margin-bottom:18px}
+.invv2-assume-head-lbl{font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--inv-text-3)}
+.invv2-assume-head-meta{font-size:11px;font-weight:600;letter-spacing:0.06em;color:var(--inv-text-3)}
+.invv2-assume-list{list-style:none;margin:0 0 18px;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.invv2-assume-list li{display:grid;grid-template-columns:auto auto;align-items:baseline;gap:6px 12px;padding:14px 16px;background:#fff;border:1px solid var(--inv-border);border-radius:12px}
+.invv2-assume-k{font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--inv-text-3)}
+.invv2-assume-v{font-size:20px;font-weight:800;letter-spacing:-0.02em;color:var(--inv-text);font-variant-numeric:tabular-nums;text-align:right}
+.invv2-assume-note{grid-column:1 / -1;font-size:12.5px;font-style:normal;color:var(--inv-text-2);line-height:1.45}
+
+/* Round panel: use-of-funds sub-block */
+.invv2-fund{border-top:1px solid var(--inv-border)}
+.invv2-fund-head{display:flex;align-items:baseline;justify-content:space-between;gap:14px;padding:20px 36px 0}
+.invv2-fund-head-lbl{font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--inv-text-3)}
+.invv2-fund-head-meta{font-size:11px;font-weight:700;letter-spacing:0.06em;color:var(--inv-blue);font-variant-numeric:tabular-nums}
+
+/* Market sizing */
+.invv2-market-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:6px}
+.invv2-market-cell{padding:24px 22px;border:1px solid var(--inv-border);border-radius:14px;background:#fff}
+.invv2-market-cell-accent{background:linear-gradient(135deg,#fff,#F4F7FB);border-color:rgba(62,142,255,0.30)}
+.invv2-market-n{font-size:34px;font-weight:800;letter-spacing:-0.03em;color:var(--inv-text);font-variant-numeric:tabular-nums;line-height:1;margin-bottom:8px}
+.invv2-market-cell-accent .invv2-market-n{background:linear-gradient(135deg,#3E8EFF,#5BB0FF);-webkit-background-clip:text;background-clip:text;color:transparent}
+.invv2-market-lbl{font-size:12.5px;font-weight:700;color:var(--inv-text);letter-spacing:-0.005em;margin-bottom:4px}
+.invv2-market-foot{font-size:11.5px;color:var(--inv-text-3);letter-spacing:0.01em}
+
+/* Why Nick */
+.invv2-why-body{display:grid;grid-template-columns:0.7fr 1fr;gap:48px;align-items:center}
+.invv2-why-portrait{max-width:280px}
+.invv2-why-name{font-size:30px;font-weight:800;letter-spacing:-0.03em;color:var(--inv-text);margin:0 0 4px;line-height:1.05}
+.invv2-why-role{font-size:13px;font-weight:600;color:var(--inv-text-3);letter-spacing:0.02em;margin-bottom:18px}
+.invv2-why-links{margin:18px 0 0}
+.invv2-why-link{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:999px;border:1px solid var(--inv-border);background:#fff;font-size:13px;font-weight:600;color:var(--inv-text);text-decoration:none;transition:border-color .2s ease,color .2s ease}
+.invv2-why-link:hover{border-color:rgba(62,142,255,0.30);color:var(--inv-blue)}
+.invv2-why-link-todo{font-size:10.5px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#B45309;background:rgba(245,158,11,0.14);padding:3px 8px;border-radius:6px}
+.invv2-why-foot{font-size:14px;color:var(--inv-text-2);line-height:1.55;margin:18px 0 0;font-weight:600}
+
+/* CTA panel (08) */
+.invv2-cta-body{text-align:center}
+.invv2-cta-body .inv-contact-lede{margin:0 auto 28px}
+.invv2-cta-grid{max-width:680px;margin-left:auto;margin-right:auto;text-align:left}
+.invv2-cta-direct{justify-content:center}
+.invv2-updated{display:inline-flex;align-items:center;gap:9px;margin-top:26px;padding:8px 16px;border-radius:999px;background:rgba(61,189,107,0.08);border:1px solid rgba(61,189,107,0.18);font-size:12px;font-weight:600;color:var(--inv-text-2);letter-spacing:0.01em}
+.invv2-updated-dot{width:7px;height:7px;border-radius:50%;background:var(--inv-green);flex-shrink:0;box-shadow:0 0 0 0 rgba(61,189,107,0.5);animation:invStatusPulse 2s ease-out infinite}
+
+/* DRAFT NOTE — loud, dashed amber. Strip every one before sending. */
+.invv2-todo{position:relative;display:flex;gap:0;margin:22px 0 0;border:1.5px dashed #F59E0B;border-radius:12px;background:rgba(245,158,11,0.06);overflow:hidden}
+.invv2-todo-tag{flex-shrink:0;width:5px;background:linear-gradient(180deg,#F59E0B,#FBBF24)}
+.invv2-todo-inner{padding:14px 18px;flex:1;min-width:0}
+.invv2-todo-label{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#B45309;margin-bottom:6px}
+.invv2-todo-body{font-size:13px;color:var(--inv-text-2);line-height:1.55}
+
+/* v2 responsive */
+@media (max-width:900px){
+  .invv2-why-body{grid-template-columns:1fr;gap:28px;text-align:center}
+  .invv2-why-portrait{max-width:220px;margin:0 auto}
+  .invv2-market-grid{grid-template-columns:1fr 1fr 1fr;gap:10px}
+  .invv2-assume-list{grid-template-columns:1fr 1fr}
+  .invv2-proof-row{grid-template-columns:1fr;padding:24px 28px}
+  .invv2-fund-head{padding:18px 28px 0}
+  .invv2-assume{padding:24px 28px}
+}
+@media (max-width:640px){
+  .invv2-hero-proof{font-size:12.5px;gap:8px}
+  .invv2-prose-lead{font-size:18px}
+  .invv2-market-grid{grid-template-columns:1fr}
+  .invv2-market-n{font-size:30px}
+  .invv2-assume-list{grid-template-columns:1fr}
+  .invv2-assume{padding:20px 18px}
+  .invv2-proof-row{padding:20px 18px}
+  .invv2-fund-head{padding:16px 18px 0}
+  .invv2-why-name{font-size:26px}
+}
+
 /* Honor users who request reduced motion. Same payoff at any width. */
 @media (prefers-reduced-motion: reduce){
   *,

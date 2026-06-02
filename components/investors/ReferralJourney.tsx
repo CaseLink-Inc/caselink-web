@@ -10,7 +10,10 @@ import { useEffect, useRef, useState } from "react";
  * counter ticking in sync.
  */
 export default function ReferralJourney() {
-  const [revenue, setRevenue] = useState(0);
+  // Start at the real figure so first paint, SSR, and reduced-motion all
+  // show "$2,500 of $2,500" rather than "$0". The live ticker loop below
+  // takes over once it mounts for users who see motion.
+  const [revenue, setRevenue] = useState(2500);
   const rafRef = useRef<number | null>(null);
   useEffect(() => {
     if (typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) {
