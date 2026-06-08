@@ -2278,7 +2278,7 @@ body[data-inv-page="true"] .calendly-badge-widget{display:none !important}
 .res-sources a:hover{color:#3E8EFF}
 
 /* Category icon chip in article header */
-.res-cat-inline{display:inline-flex;align-items:center}
+.res-cat-inline{display:inline-flex;align-items:center;margin-left:16px}
 .res-cat-ic{display:inline-flex;align-items:center;justify-content:center;margin-right:6px;color:var(--accent,#3E8EFF)}
 
 /* Stats strip stacks on mobile */
