@@ -13,6 +13,7 @@ import {
 import CtaBand from "@/components/home/CtaBand";
 import ResourceCard from "@/components/resources/ResourceCard";
 import ArticleBody from "@/components/resources/ArticleBody";
+import ResourceFigure from "@/components/resources/ResourceFigure";
 import {
   resources,
   getResource,
@@ -144,6 +145,9 @@ export default async function ResourceArticlePage({
         </div>
 
         <div className="wrap res-article-body">
+          {/* Hero image (placeholder until real imagery lands) */}
+          <ResourceFigure variant="hero" accent={accent} />
+
           {/* Key stats */}
           {r.keyStats.length > 0 && (
             <div
@@ -161,7 +165,7 @@ export default async function ResourceArticlePage({
 
           <p className="lead res-article-lede">{r.excerpt}</p>
 
-          <ArticleBody markdown={body} />
+          <ArticleBody markdown={body} accent={accent} />
 
           {/* FAQ */}
           {r.faqs.length > 0 && (
