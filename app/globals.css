@@ -2205,7 +2205,7 @@ body[data-inv-page="true"] .calendly-badge-widget{display:none !important}
 .res-card-body p{font-size:14px;line-height:1.55;color:#4A5250;margin:0 0 18px;flex:1}
 
 /* ARTICLE */
-.res-article-head{position:relative;padding:88px 0 48px;background:
+.res-article-head{position:relative;padding:133px 0 32px;background:
   radial-gradient(ellipse 70% 95% at 12% -25%,color-mix(in srgb,var(--accent,#3E8EFF) 20%,transparent),transparent 62%),
   radial-gradient(ellipse 55% 75% at 96% -10%,color-mix(in srgb,var(--accent,#3E8EFF) 12%,transparent),transparent 60%),
   linear-gradient(180deg,color-mix(in srgb,var(--accent,#3E8EFF) 9%,#F4F7FB) 0%,#FBFBF9 100%)}
@@ -2217,7 +2217,7 @@ body[data-inv-page="true"] .calendly-badge-widget{display:none !important}
 .res-cat-inline{position:static;display:inline-block;background:#fff;border:1px solid #E8EEF8;margin-bottom:16px}
 .res-article-head h1{font-size:58px;line-height:1.06;letter-spacing:-0.035em;color:#1A1F1E;margin:0 0 22px;font-weight:800}
 .res-article-meta{font-size:14px}
-.res-article-body{max-width:760px;padding:40px 0 80px}
+.res-article-body{max-width:760px;padding:32px 0 80px}
 .res-article-lede{font-size:19px;line-height:1.6;color:#1A1F1E;font-weight:500;margin:0 0 8px}
 .res-prose{font-size:16.5px;line-height:1.75;color:#2B312F}
 .res-prose p{margin:0 0 20px}
@@ -2313,9 +2313,9 @@ body[data-inv-page="true"] .calendly-badge-widget{display:none !important}
   .res-featured-body{padding:30px 28px}
   .res-featured-body h2{font-size:26px}
   .res-grid{grid-template-columns:1fr 1fr;gap:20px}
-  .res-article-head{padding:72px 0 44px}
+  .res-article-head{padding:112px 0 28px}
   .res-article-head h1{font-size:40px}
-  .res-article-body{padding:36px 0 64px}
+  .res-article-body{padding:28px 0 64px}
   .res-prose{font-size:16px}
 }
 @media (max-width:640px){
