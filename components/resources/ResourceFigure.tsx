@@ -1,25 +1,27 @@
 import { Image as ImageIcon } from "@/components/icons";
 
 /**
- * Placeholder figure for article imagery. Renders a branded, accent-tinted
- * panel with an image glyph so it reads as an intentional visual rather than
- * a broken image. When real images arrive, swap the inner panel for a
- * <next/image> and keep the same wrapper/caption.
+ * Placeholder figure for article imagery. `wide` is a full-width band, `side`
+ * floats beside the body text (alternating left/right per article). Swap the
+ * inner panel for <next/image> when real images arrive.
  */
 export default function ResourceFigure({
   accent = "#3E8EFF",
-  variant = "inline",
+  variant = "wide",
+  side = "right",
   caption,
 }: {
   accent?: string;
-  variant?: "hero" | "inline";
+  variant?: "wide" | "side";
+  side?: "left" | "right";
   caption?: string;
 }) {
+  const cls =
+    variant === "side"
+      ? `res-figure res-figure-side res-figure-side-${side}`
+      : "res-figure res-figure-wide";
   return (
-    <figure
-      className={`res-figure res-figure-${variant}`}
-      style={{ "--accent": accent } as React.CSSProperties}
-    >
+    <figure className={cls} style={{ "--accent": accent } as React.CSSProperties}>
       <div className="res-figure-ph">
         <span className="res-figure-glyph" aria-hidden="true">
           <ImageIcon width={20} height={20} />

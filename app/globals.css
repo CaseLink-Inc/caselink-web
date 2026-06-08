@@ -2228,33 +2228,42 @@ body[data-inv-page="true"] .calendly-badge-widget{display:none !important}
 .res-prose a{color:#3E8EFF;text-decoration:underline;text-underline-offset:2px}
 .res-prose blockquote{margin:24px 0;padding:14px 22px;border-left:3px solid var(--accent,#3E8EFF);background:#F4F7FB;border-radius:0 10px 10px 0;color:#4A5250;font-style:italic}
 
-/* Key-stats strip */
-.res-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin:0 0 36px;border:1px solid #E8EEF8;border-radius:16px;overflow:hidden;background:#fff}
-.res-stat{padding:22px 24px;border-right:1px solid #E8EEF8;position:relative}
-.res-stat:last-child{border-right:none}
-.res-stat::before{content:"";position:absolute;top:0;left:0;width:100%;height:3px;background:var(--accent,#3E8EFF)}
-.res-stat-val{font-size:30px;font-weight:800;letter-spacing:-0.03em;color:#1A1F1E;line-height:1.05;margin-bottom:8px;font-variant-numeric:tabular-nums}
+/* Key-stats strip — editorial, not boxy */
+.res-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin:32px 0;border-top:2px solid var(--accent,#3E8EFF);border-bottom:1px solid #E8EEF8;background:transparent;clear:both}
+.res-stat{padding:20px 24px 20px 0}
+.res-stat + .res-stat{padding-left:24px;border-left:1px solid #E8EEF8}
+.res-stat-val{font-size:34px;font-weight:800;letter-spacing:-0.03em;color:#1A1F1E;line-height:1.05;margin-bottom:6px;font-variant-numeric:tabular-nums}
 .res-stat-lbl{font-size:12.5px;color:#4A5250;line-height:1.45}
 
-/* Highlighted point blocks (bold-led paragraphs) */
-.res-point{display:flex;gap:14px;align-items:flex-start;margin:0 0 18px;padding:16px 18px;background:#F7FAFA;border:1px solid #E8EEF8;border-radius:12px}
-.res-point-ic{flex-shrink:0;width:26px;height:26px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:color-mix(in srgb,var(--accent,#3E8EFF) 13%,#fff);color:var(--accent,#3E8EFF);margin-top:1px}
-.res-point-body{margin:0;font-size:15.5px;line-height:1.6;color:#4A5250}
-.res-point-body strong{color:#1A1F1E;font-weight:700}
+/* Bold lead-in paragraphs become clean accent-ruled notes (no icons, no box) */
+.res-point{margin:0 0 22px;padding:2px 0 2px 20px;border-left:3px solid color-mix(in srgb,var(--accent,#3E8EFF) 60%,#E8EEF8);font-size:16.5px;line-height:1.75;color:#2B312F}
+.res-point strong{color:#1A1F1E;font-weight:700}
 .res-prose strong{color:#1A1F1E;font-weight:700}
+.res-prose h2{clear:both}
 
-/* Section heading icon */
-.res-prose .res-h2{display:flex;align-items:center;gap:13px}
-.res-h2-ic{flex-shrink:0;width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;background:color-mix(in srgb,var(--accent,#3E8EFF) 12%,#fff);color:var(--accent,#3E8EFF)}
+/* Pull-quote — large editorial moment */
+.res-pullquote{margin:38px 0;padding:6px 0 6px 26px;border-left:4px solid var(--accent,#3E8EFF);font-size:26px;line-height:1.4;letter-spacing:-0.02em;font-weight:600;color:#1A1F1E;clear:both}
 
-/* Image figures (placeholders for now) */
+/* Card slider (horizontal scroll-snap, CSS-only) */
+.res-slider{margin:34px 0;clear:both}
+.res-slider-track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:2px 2px 18px;scrollbar-width:thin}
+.res-slider-card{scroll-snap-align:start;flex:0 0 auto;width:300px;max-width:82%;background:#fff;border:1px solid #E8EEF8;border-radius:16px;padding:24px;position:relative}
+.res-slider-card::before{content:"";position:absolute;top:0;left:24px;right:24px;height:3px;background:var(--accent,#3E8EFF);border-radius:3px}
+.res-slider-num{font-size:12px;font-weight:800;letter-spacing:0.12em;color:var(--accent,#3E8EFF);font-variant-numeric:tabular-nums}
+.res-slider-card h4{font-size:17px;font-weight:700;margin:10px 0 8px;color:#1A1F1E;letter-spacing:-0.01em}
+.res-slider-card p{font-size:14px;line-height:1.6;color:#4A5250;margin:0}
+
+/* Image figures (placeholders): wide band + side float */
 .res-figure{margin:0 0 30px}
-.res-figure-hero{margin:0 0 36px}
 .res-figure-ph{position:relative;display:flex;align-items:center;justify-content:center;border-radius:16px;overflow:hidden;background:
   radial-gradient(circle at 28% 22%,color-mix(in srgb,var(--accent,#3E8EFF) 34%,#fff),transparent 58%),
   linear-gradient(135deg,color-mix(in srgb,var(--accent,#3E8EFF) 80%,#1A1F1E) 0%,var(--accent,#3E8EFF) 54%,color-mix(in srgb,var(--accent,#3E8EFF) 52%,#90F0C5) 100%)}
-.res-figure-hero .res-figure-ph{aspect-ratio:16/9}
-.res-figure-inline .res-figure-ph{aspect-ratio:5/2}
+.res-figure-wide{clear:both}
+.res-figure-wide .res-figure-ph{aspect-ratio:16/7}
+.res-figure-side{width:44%;margin-top:6px;margin-bottom:14px}
+.res-figure-side-right{float:right;margin-left:30px}
+.res-figure-side-left{float:left;margin-right:30px}
+.res-figure-side .res-figure-ph{aspect-ratio:4/3}
 .res-figure-glyph{display:flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,0.18);color:rgba(255,255,255,0.85);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px)}
 .res-figure figcaption{margin-top:10px;font-size:12.5px;color:#7A8886;text-align:center}
 
@@ -2281,11 +2290,13 @@ body[data-inv-page="true"] .calendly-badge-widget{display:none !important}
 .res-cat-inline{display:inline-flex;align-items:center;margin-left:16px}
 .res-cat-ic{display:inline-flex;align-items:center;justify-content:center;margin-right:6px;color:var(--accent,#3E8EFF)}
 
-/* Stats strip stacks on mobile */
+/* Mobile: stack stats, drop side-image floats */
 @media (max-width:640px){
   .res-stats{grid-template-columns:1fr}
-  .res-stat{border-right:none;border-bottom:1px solid #E8EEF8}
-  .res-stat:last-child{border-bottom:none}
+  .res-stat{padding:16px 0}
+  .res-stat + .res-stat{padding-left:0;border-left:none;border-top:1px solid #E8EEF8}
+  .res-figure-side{float:none;width:100%;margin:0 0 24px}
+  .res-pullquote{font-size:21px;margin:28px 0}
   .res-faq-item summary{font-size:15px}
 }
 

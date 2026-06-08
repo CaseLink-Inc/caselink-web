@@ -10,12 +10,6 @@ Software built for dental referrals exists to close that gap. Here is what "free
 
 The word gets stretched. Before you evaluate anything, sort out which version is on the table.
 
-A **free trial** is a window, usually 14 to 30 days, after which you are billed or locked out. It costs nothing to test and solves nothing about long-term adoption. Most platforms lead with it.
-
-**Freemium with feature limits** gives you the basics and charges for the parts you actually need. Tracking, reporting, secure messaging, and clinical record sharing tend to sit behind the paywall.
-
-**Permanently free for one side of the network** is the model that matters for a GP practice. In a two-sided platform, the specialist is the paying customer and the general dentist sends referrals at no charge, because GP participation is what makes the network worth anything. CaseLink works this way. No time limit, no throttle on the core sending workflow, no card required.
-
 ## What to look for in a free tier
 
 Not every free tier earns the word. These criteria separate a genuine offering from a lead magnet with a short shelf life.

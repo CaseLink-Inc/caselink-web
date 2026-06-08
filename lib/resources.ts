@@ -18,12 +18,18 @@ export type ResourceFaq = { q: string; a: string };
 export type ResourceSource = { label: string; url?: string };
 export type ResourceLink = { href: string; label: string };
 
-// Per-article layout so the reading flow differs between articles instead of
-// every piece using the same template. `stats` decides where the key-number
-// block lands; `figures` lists the H2 indices that get a preceding image.
+// Per-article layout so each piece reads differently instead of sharing one
+// template. `stats` decides where the key-number block lands; `inserts` drops
+// editorial devices (pull-quote, side/wide image, card slider) before a given
+// H2 (1-based). Mix these differently per article so no two look alike.
+export type ResourceInsert =
+  | { before: number; kind: "quote"; text: string }
+  | { before: number; kind: "figure"; variant: "wide" | "side"; side?: "left" | "right" }
+  | { before: number; kind: "slider"; cards: { title: string; body: string }[] };
+
 export type ResourceLayout = {
   stats: "top" | "beforeFaq" | { beforeSection: number };
-  figures: number[];
+  inserts?: ResourceInsert[];
 };
 
 export type Resource = {
@@ -59,7 +65,17 @@ export const CATEGORY_COLOR: Record<ResourceCategory, string> = {
 export const resources: Resource[] = [
   {
     slug: "how-to-stop-losing-dental-referrals",
-    layout: { stats: "top", figures: [3] },
+    layout: {
+      stats: "top",
+      inserts: [
+        {
+          before: 2,
+          kind: "quote",
+          text: "Half the week's referrals, gone before lunch. There was simply no thread connecting the two offices once the patient walked out the door.",
+        },
+        { before: 3, kind: "figure", variant: "side", side: "right" },
+      ],
+    },
     title: "How to stop losing dental referrals to specialists",
     metaTitle: "How to stop losing dental referrals | CaseLink",
     excerpt:
@@ -113,7 +129,30 @@ export const resources: Resource[] = [
   },
   {
     slug: "free-dental-referral-software-for-general-dentists",
-    layout: { stats: { beforeSection: 2 }, figures: [4] },
+    layout: {
+      stats: "top",
+      inserts: [
+        {
+          before: 2,
+          kind: "slider",
+          cards: [
+            {
+              title: "Free trial",
+              body: "A window, usually 14 to 30 days, after which you are billed or locked out. Costs nothing to test, solves nothing about long-term adoption.",
+            },
+            {
+              title: "Freemium",
+              body: "The basics are free and the parts you actually need sit behind a paywall: tracking, reporting, secure messaging, record sharing.",
+            },
+            {
+              title: "Free for one side",
+              body: "In a two-sided network the specialist pays and the general dentist sends at no charge. No time limit, no throttle, no card. This is how CaseLink works.",
+            },
+          ],
+        },
+        { before: 4, kind: "figure", variant: "wide" },
+      ],
+    },
     title: "Free dental referral software for general dentists",
     metaTitle: "Free dental referral software for GPs | CaseLink",
     excerpt:
@@ -166,7 +205,18 @@ export const resources: Resource[] = [
   },
   {
     slug: "dental-referral-conversion-rate-benchmarks",
-    layout: { stats: { beforeSection: 3 }, figures: [2, 6] },
+    layout: {
+      stats: { beforeSection: 3 },
+      inserts: [
+        { before: 2, kind: "figure", variant: "side", side: "right" },
+        {
+          before: 5,
+          kind: "quote",
+          text: "The single most referenced number on dental referral completion is nearly two decades old. That gap is itself the finding.",
+        },
+        { before: 6, kind: "figure", variant: "wide" },
+      ],
+    },
     title: "What a healthy dental referral conversion rate actually looks like",
     metaTitle: "Dental referral conversion rate benchmarks | CaseLink",
     excerpt:
@@ -243,7 +293,17 @@ export const resources: Resource[] = [
   },
   {
     slug: "how-endodontists-track-and-manage-incoming-referrals",
-    layout: { stats: { beforeSection: 3 }, figures: [5] },
+    layout: {
+      stats: { beforeSection: 3 },
+      inserts: [
+        { before: 2, kind: "figure", variant: "side", side: "left" },
+        {
+          before: 5,
+          kind: "quote",
+          text: "The strongest endo practices share one trait: a reliable set of GPs who send cases consistently.",
+        },
+      ],
+    },
     title: "How endodontists track and manage incoming referrals",
     metaTitle: "Referral management for endodontists | CaseLink",
     excerpt:
@@ -296,7 +356,17 @@ export const resources: Resource[] = [
   },
   {
     slug: "automate-dental-referral-follow-up",
-    layout: { stats: { beforeSection: 2 }, figures: [4] },
+    layout: {
+      stats: { beforeSection: 2 },
+      inserts: [
+        {
+          before: 3,
+          kind: "quote",
+          text: "A referred patient who has not booked within a couple of days probably never will.",
+        },
+        { before: 5, kind: "figure", variant: "wide" },
+      ],
+    },
     title: "What changes when a dental practice automates referral follow-up",
     metaTitle: "Automate dental referral follow-up | CaseLink",
     excerpt:

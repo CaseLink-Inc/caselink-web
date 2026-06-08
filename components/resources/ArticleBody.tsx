@@ -1,59 +1,27 @@
+import { Fragment } from "react";
 import Markdown from "react-markdown";
-import {
-  Check,
-  CreditCard,
-  Clock,
-  Lock,
-  Users,
-  Grid,
-  Bolt,
-} from "@/components/icons";
-import ResourceFigure from "@/components/resources/ResourceFigure";
-import ResourceStats from "@/components/resources/ResourceStats";
-import { type ResourceStat } from "@/lib/resources";
 
-type IconType = React.ComponentType<{ width?: number; height?: number }>;
-
-// Pick a section icon from the heading text so each H2 carries a relevant glyph.
-function pickIcon(text: string): IconType {
-  const t = text.toLowerCase();
-  if (/cost|money|revenue|math|price|pay|worth|\$/.test(t)) return CreditCard;
-  if (/follow|time|timing|window|speed|fast/.test(t)) return Clock;
-  if (/secure|hipaa|complian|privacy|baa|safe/.test(t)) return Lock;
-  if (/network|relationship|gp|specialist|endodont|asset/.test(t)) return Users;
-  if (/measure|benchmark|conversion|rate|data|number|funnel|stage/.test(t))
-    return Grid;
-  return Bolt;
-}
-
-function headingText(children: React.ReactNode): string {
-  if (typeof children === "string") return children;
-  if (Array.isArray(children)) return children.map(headingText).join(" ");
-  return "";
-}
+export type ArticleInsert = {
+  section: number; // 1-based H2 index this insert attaches to
+  node: React.ReactNode;
+  after?: boolean; // render after the heading (e.g. side images) vs before it
+};
 
 /**
- * Renders an article's markdown body with CaseLink's design treatment:
- * - each H2 gets a relevant accent section icon,
- * - a paragraph that begins with bold text becomes a highlighted point block,
- * - image placeholders are inserted between longer sections,
- * - links open safely (external links in a new tab).
+ * Renders an article's markdown body. Editorial treatment, no icon chrome:
+ * - bold lead-in paragraphs become clean accent-ruled callouts (no icons),
+ * - inserts (pull-quotes, images, sliders) drop in before or after a given
+ *   H2 so each article's flow can differ,
+ * - external links open in a new tab.
  */
 export default function ArticleBody({
   markdown,
   accent = "#3E8EFF",
-  figures = [],
-  stats = null,
-  statsBeforeSection = null,
+  inserts = [],
 }: {
   markdown: string;
   accent?: string;
-  /** H2 indices (1-based) that get a preceding image placeholder. */
-  figures?: number[];
-  /** Stat block to render inline, or null if rendered elsewhere. */
-  stats?: ResourceStat[] | null;
-  /** H2 index (1-based) before which the stat block is rendered. */
-  statsBeforeSection?: number | null;
+  inserts?: ArticleInsert[];
 }) {
   let h2Index = 0;
 
@@ -63,22 +31,17 @@ export default function ArticleBody({
         components={{
           h2({ children }) {
             h2Index += 1;
-            const Icon = pickIcon(headingText(children));
-            const figureBefore = figures.includes(h2Index);
-            const statsBefore =
-              stats !== null && statsBeforeSection === h2Index;
+            const before = inserts.filter((i) => i.section === h2Index && !i.after);
+            const after = inserts.filter((i) => i.section === h2Index && i.after);
             return (
               <>
-                {statsBefore && <ResourceStats stats={stats} accent={accent} />}
-                {figureBefore && (
-                  <ResourceFigure variant="inline" accent={accent} />
-                )}
-                <h2 className="res-h2">
-                  <span className="res-h2-ic" aria-hidden="true">
-                    <Icon width={17} height={17} />
-                  </span>
-                  <span>{children}</span>
-                </h2>
+                {before.map((ins, k) => (
+                  <Fragment key={`b${k}`}>{ins.node}</Fragment>
+                ))}
+                <h2>{children}</h2>
+                {after.map((ins, k) => (
+                  <Fragment key={`a${k}`}>{ins.node}</Fragment>
+                ))}
               </>
             );
           },
@@ -88,17 +51,11 @@ export default function ArticleBody({
               | undefined;
             const isPoint =
               first?.type === "element" && first?.tagName === "strong";
-            if (isPoint) {
-              return (
-                <div className="res-point">
-                  <span className="res-point-ic" aria-hidden="true">
-                    <Check width={14} height={14} />
-                  </span>
-                  <p className="res-point-body">{children}</p>
-                </div>
-              );
-            }
-            return <p>{children}</p>;
+            return isPoint ? (
+              <p className="res-point">{children}</p>
+            ) : (
+              <p>{children}</p>
+            );
           },
           a({ href, children }) {
             const url = href ?? "#";

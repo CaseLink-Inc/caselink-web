@@ -1,41 +1,25 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import {
-  ArrowRight,
-  Clock,
-  Users,
-  Grid,
-  Bolt,
-  Briefcase,
-  Plus,
-} from "@/components/icons";
+import { ArrowRight, Clock, Plus } from "@/components/icons";
 import CtaBand from "@/components/home/CtaBand";
 import ResourceCard from "@/components/resources/ResourceCard";
-import ArticleBody from "@/components/resources/ArticleBody";
+import ArticleBody, { type ArticleInsert } from "@/components/resources/ArticleBody";
 import ResourceStats from "@/components/resources/ResourceStats";
+import ResourcePullQuote from "@/components/resources/ResourcePullQuote";
+import ResourceSlider from "@/components/resources/ResourceSlider";
+import ResourceFigure from "@/components/resources/ResourceFigure";
 import {
   resources,
   getResource,
   getResources,
   formatResourceDate,
   CATEGORY_COLOR,
-  type ResourceCategory,
 } from "@/lib/resources";
 import { getResourceBody } from "@/lib/resourceBody";
 import { SIGNUP_URL } from "@/lib/urls";
 
 const SITE = "https://www.caselink.net";
-
-type IconType = React.ComponentType<{ width?: number; height?: number }>;
-const CATEGORY_ICON: Record<ResourceCategory, IconType> = {
-  Referrals: Users,
-  Benchmarks: Grid,
-  Software: Bolt,
-  Specialists: Briefcase,
-  Operations: Clock,
-  "Getting started": Plus,
-};
 
 export function generateStaticParams() {
   return resources.map((r) => ({ slug: r.slug }));
@@ -73,13 +57,43 @@ export default async function ResourceArticlePage({
 
   const body = await getResourceBody(slug);
   const accent = CATEGORY_COLOR[r.category];
-  const Icon = CATEGORY_ICON[r.category];
   const more = getResources().filter((x) => x.slug !== r.slug).slice(0, 3);
 
   const statsTop = r.layout.stats === "top";
   const statsBeforeFaq = r.layout.stats === "beforeFaq";
   const statsBeforeSection =
     typeof r.layout.stats === "object" ? r.layout.stats.beforeSection : null;
+
+  // Build the in-body inserts (stat block, pull-quotes, images, sliders) from
+  // this article's layout recipe so the reading flow is unique per article.
+  const inserts: ArticleInsert[] = [];
+  if (statsBeforeSection !== null) {
+    inserts.push({
+      section: statsBeforeSection,
+      node: <ResourceStats stats={r.keyStats} accent={accent} />,
+    });
+  }
+  for (const ins of r.layout.inserts ?? []) {
+    if (ins.kind === "quote") {
+      inserts.push({
+        section: ins.before,
+        node: <ResourcePullQuote text={ins.text} accent={accent} />,
+      });
+    } else if (ins.kind === "slider") {
+      inserts.push({
+        section: ins.before,
+        node: <ResourceSlider cards={ins.cards} accent={accent} />,
+      });
+    } else if (ins.kind === "figure") {
+      inserts.push({
+        section: ins.before,
+        after: ins.variant === "side",
+        node: (
+          <ResourceFigure variant={ins.variant} side={ins.side} accent={accent} />
+        ),
+      });
+    }
+  }
 
   const articleLd = {
     "@context": "https://schema.org",
@@ -129,12 +143,7 @@ export default async function ResourceArticlePage({
               <ArrowRight width={14} height={14} className="res-back-arr" />
               All resources
             </Link>
-            <span className="res-cat res-cat-inline">
-              <span className="res-cat-ic" aria-hidden="true">
-                <Icon width={13} height={13} />
-              </span>
-              {r.category}
-            </span>
+            <span className="res-cat res-cat-inline">{r.category}</span>
             <h1>{r.title}</h1>
             <div className="res-meta res-article-meta">
               <span>{r.author}</span>
@@ -154,13 +163,7 @@ export default async function ResourceArticlePage({
 
           {statsTop && <ResourceStats stats={r.keyStats} accent={accent} />}
 
-          <ArticleBody
-            markdown={body}
-            accent={accent}
-            figures={r.layout.figures}
-            stats={statsBeforeSection !== null ? r.keyStats : null}
-            statsBeforeSection={statsBeforeSection}
-          />
+          <ArticleBody markdown={body} accent={accent} inserts={inserts} />
 
           {statsBeforeFaq && <ResourceStats stats={r.keyStats} accent={accent} />}
 
@@ -200,7 +203,6 @@ export default async function ResourceArticlePage({
               </ul>
             </aside>
           )}
-
         </div>
       </article>
 
