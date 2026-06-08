@@ -7,9 +7,21 @@ import {
   formatResourceDate,
 } from "@/lib/resources";
 
-export default function ResourceCard({ r }: { r: Resource }) {
+export default function ResourceCard({
+  r,
+  reveal = true,
+}: {
+  r: Resource;
+  // Scroll-reveal animation. Disable inside client-filtered grids, where cards
+  // re-render on filter change and the reveal observer never re-observes them
+  // (they'd stay invisible until a refresh).
+  reveal?: boolean;
+}) {
   return (
-    <Link href={`/resources/${r.slug}`} className="res-card reveal">
+    <Link
+      href={`/resources/${r.slug}`}
+      className={`res-card${reveal ? " reveal" : ""}`}
+    >
       <div
         className="res-thumb"
         style={{ "--accent": CATEGORY_COLOR[r.category] } as React.CSSProperties}

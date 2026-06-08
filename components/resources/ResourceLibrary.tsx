@@ -47,7 +47,7 @@ export default function ResourceLibrary({ resources }: { resources: Resource[] }
 
         <div className="res-grid">
           {shown.map((r) => (
-            <ResourceCard key={r.slug} r={r} />
+            <ResourceCard key={r.slug} r={r} reveal={false} />
           ))}
         </div>
       </div>
