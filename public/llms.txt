@@ -43,8 +43,20 @@ CaseLink was founded by Nick Campbell, Co-Founder and CEO. CaseLink, Inc. is hea
 
 - Home: https://www.caselink.net
 - About: https://www.caselink.net/about
+- Resources: https://www.caselink.net/resources
 - Contact: https://www.caselink.net/contact
 - Privacy Policy: https://www.caselink.net/privacy
+
+## Resources
+
+Guides on dental referrals, conversion benchmarks, HIPAA-compliant collaboration, and running a connected practice. From the CaseLink team.
+
+- How to stop losing dental referrals to specialists: https://www.caselink.net/resources/how-to-stop-losing-dental-referrals
+- Free dental referral software for general dentists: https://www.caselink.net/resources/free-dental-referral-software-for-general-dentists
+- What a healthy dental referral conversion rate actually looks like: https://www.caselink.net/resources/dental-referral-conversion-rate-benchmarks
+- Dental referral software that works alongside Dentrix: https://www.caselink.net/resources/dental-referral-software-that-works-alongside-dentrix
+- How endodontists track and manage incoming referrals: https://www.caselink.net/resources/how-endodontists-track-and-manage-incoming-referrals
+- What changes when a dental practice automates referral follow-up: https://www.caselink.net/resources/automate-dental-referral-follow-up
 
 ## Contact
 
