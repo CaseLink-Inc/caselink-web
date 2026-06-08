@@ -242,55 +242,6 @@ export const resources: Resource[] = [
     ],
   },
   {
-    slug: "dental-referral-software-that-works-alongside-dentrix",
-    layout: { stats: "beforeFaq", figures: [3] },
-    title: "Dental referral software that works alongside Dentrix",
-    metaTitle: "Referral software for Dentrix practices | CaseLink",
-    excerpt:
-      "CaseLink handles dental referrals alongside Dentrix without replacing your practice management system. Free for general dentists. $299/month for specialists.",
-    category: "Software",
-    author: "CaseLink Team",
-    date: "2026-05-28",
-    readMinutes: 6,
-    keyStats: [
-      { value: "No migration", label: "runs alongside Dentrix, not instead of it" },
-      { value: "2-3 min", label: "to create and send a referral" },
-      { value: "$0", label: "for general dentists" },
-    ],
-    faqs: [
-      {
-        q: "Does CaseLink integrate directly with Dentrix?",
-        a: "No. CaseLink works alongside Dentrix without a direct data integration. The systems run independently. Scheduling, charting, and billing stay in Dentrix. Referral coordination, case tracking, and messaging happen in CaseLink. Files like radiographs are exported from Dentrix and attached to cases.",
-      },
-      {
-        q: "Do I need to install anything on our Dentrix workstations?",
-        a: "No. CaseLink runs in the browser. No plugin, no installation, no configuration on the Dentrix side. Open a browser tab when you need to create or manage a referral.",
-      },
-      {
-        q: "Does it also work with Eaglesoft and Open Dental?",
-        a: "Yes. CaseLink is PMS-agnostic. It works alongside Eaglesoft, Open Dental, and others the same way it works alongside Dentrix. The referral workflow is independent of the clinical software.",
-      },
-      {
-        q: "Is CaseLink free for general dentists?",
-        a: "Yes. The GP tier is permanently free, with no trial, no card, and no feature limit on referral creation, status tracking, secure messaging, or file sharing.",
-      },
-      {
-        q: "How long does it take to get started?",
-        a: "A new practice can create an account and send its first referral in under 30 minutes. The CaseLink team is reachable at support@caselink.net for questions.",
-      },
-    ],
-    sources: [
-      {
-        label:
-          "US dental PMS market and vendor-share context: Grand View Research, Future Market Insights, Mordor Intelligence (Dentrix among the leading platforms; precise share varies by source)",
-      },
-    ],
-    related: [
-      { href: "/#how", label: "How it works" },
-      { href: "/#pricing", label: "Pricing" },
-    ],
-  },
-  {
     slug: "how-endodontists-track-and-manage-incoming-referrals",
     layout: { stats: { beforeSection: 3 }, figures: [5] },
     title: "How endodontists track and manage incoming referrals",

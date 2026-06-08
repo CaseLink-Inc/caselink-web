@@ -72,6 +72,18 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      {
+        // Dentrix referral-software article pulled until the integration
+        // ships. Temporary (the article will return), so not a 308.
+        // Remove this entry when the article is republished.
+        source: "/resources/dental-referral-software-that-works-alongside-dentrix",
+        destination: "/resources",
+        permanent: false,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
