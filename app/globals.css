@@ -2154,15 +2154,28 @@ body[data-inv-page="true"] .calendly-badge-widget{display:none !important}
    ============================================================ */
 
 /* HERO */
-.res-hero{position:relative;padding:96px 0 56px;overflow:hidden;background:
-  radial-gradient(ellipse 70% 60% at 50% 0%,rgba(62,142,255,0.12),transparent 60%),
-  linear-gradient(180deg,#FBFBF9 0%,#F4F7FB 100%)}
-.res-hero-bg{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(26,31,30,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(26,31,30,0.04) 1px,transparent 1px);background-size:56px 56px;mask:radial-gradient(ellipse at 50% 0%,rgba(0,0,0,0.6),transparent 70%);-webkit-mask:radial-gradient(ellipse at 50% 0%,rgba(0,0,0,0.6),transparent 70%)}
-.res-hero-inner{position:relative;max-width:720px}
-.res-hero-inner h1{font-size:54px;line-height:1.05;letter-spacing:-0.035em;margin:16px 0 18px;color:#1A1F1E;font-weight:800}
+/* Full-bleed image hero. The fixed nav sits over the top of it; the heading
+   is anchored to the bottom-left over a dark scrim. */
+.res-hero{position:relative;display:flex;align-items:flex-end;min-height:clamp(440px,68vh,640px);padding:124px 0 56px;overflow:hidden;background:#13201c}
+.res-hero-img{position:absolute;inset:0;z-index:0;background-size:cover;background-position:center;background-image:
+  linear-gradient(180deg,rgba(15,21,19,0.42) 0%,rgba(15,21,19,0.82) 100%),
+  radial-gradient(ellipse 80% 70% at 72% 18%,rgba(62,142,255,0.30),transparent 60%),
+  linear-gradient(135deg,#173150 0%,#13201c 55%,#1d2b24 100%)}
+/* When the real photo is ready, set ONE line on .res-hero-img, e.g.:
+   background-image: linear-gradient(180deg,rgba(15,21,19,.32),rgba(15,21,19,.78)), url('/resources-hero.jpg'); */
+.res-hero-inner{position:relative;z-index:1;max-width:820px}
+.res-hero-eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.72);margin-bottom:18px}
+.res-hero-inner h1{font-size:clamp(40px,6vw,72px);line-height:1.03;letter-spacing:-0.035em;margin:0;color:#fff;font-weight:800}
+.res-hero-sub{font-size:17px;line-height:1.55;color:rgba(255,255,255,0.84);margin:20px 0 0;max-width:560px}
 
 /* MAIN */
 .res-main{padding:8px 0 96px}
+
+/* Category filter tabs (under the hero) */
+.res-tabs{display:flex;flex-wrap:wrap;gap:6px;padding:34px 0 20px;border-bottom:1px solid #E8EEF8;margin-bottom:40px}
+.res-tab{appearance:none;border:none;background:transparent;font-family:inherit;font-size:15px;font-weight:600;color:#4A5250;padding:10px 18px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease}
+.res-tab:hover{color:#1A1F1E;background:#F4F7FB}
+.res-tab.is-active{background:#3E8EFF;color:#fff}
 
 /* Draft note — delete when the real articles replace the placeholders */
 .res-draftnote{display:block;border:1.5px dashed #F59E0B;background:rgba(245,158,11,0.07);color:#4A5250;border-radius:12px;padding:14px 18px;font-size:13.5px;line-height:1.5;margin-bottom:36px}
@@ -2313,12 +2326,10 @@ body[data-inv-page="true"] .calendly-badge-widget{display:none !important}
 
 /* RESPONSIVE */
 @media (max-width:1100px){
-  .res-hero-inner h1{font-size:46px}
   .res-article-head h1{font-size:50px}
 }
 @media (max-width:900px){
-  .res-hero{padding:72px 0 44px}
-  .res-hero-inner h1{font-size:38px}
+  .res-hero{padding:104px 0 40px;min-height:clamp(360px,58vh,520px)}
   .res-featured{grid-template-columns:1fr}
   .res-thumb-lg{min-height:220px}
   .res-featured-body{padding:30px 28px}
@@ -2330,7 +2341,6 @@ body[data-inv-page="true"] .calendly-badge-widget{display:none !important}
   .res-prose{font-size:16px}
 }
 @media (max-width:640px){
-  .res-hero-inner h1{font-size:32px}
   .res-main{padding:4px 0 72px}
   .res-grid{grid-template-columns:1fr}
   .res-featured-body h2{font-size:23px}

@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import Image from "next/image";
-import { ArrowRight, Clock } from "@/components/icons";
 import CtaBand from "@/components/home/CtaBand";
-import ResourceCard from "@/components/resources/ResourceCard";
-import { getResources, formatResourceDate, CATEGORY_COLOR } from "@/lib/resources";
+import ResourceLibrary from "@/components/resources/ResourceLibrary";
+import { getResources } from "@/lib/resources";
 import { SIGNUP_URL } from "@/lib/urls";
 
 const SITE = "https://www.caselink.net";
@@ -25,7 +22,6 @@ export const metadata: Metadata = {
 
 export default function ResourcesPage() {
   const all = getResources();
-  const [featured, ...rest] = all;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -51,66 +47,22 @@ export default function ResourcesPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
+      {/* Full-bleed image hero. Background photo drops into .res-hero-img
+          (see globals.css) — until then it shows a branded dark gradient. */}
       <section className="res-hero">
-        <div className="res-hero-bg" aria-hidden="true" />
+        <div className="res-hero-img" aria-hidden="true" />
         <div className="wrap res-hero-inner">
-          <span className="eyebrow">Resources</span>
+          <span className="res-hero-eyebrow">Resources</span>
           <h1>Insights for modern dental referrals</h1>
-          <p className="lead">
-            Practical guides on referrals, specialist growth, HIPAA-compliant
-            collaboration, and running a connected practice. Written by the
-            CaseLink team.
+          <p className="res-hero-sub">
+            Guides on referrals, specialist growth, HIPAA-compliant
+            collaboration, and running a connected practice. From the CaseLink
+            team.
           </p>
         </div>
       </section>
 
-      <section className="res-main">
-        <div className="wrap">
-          {/* Featured (newest) */}
-          <Link href={`/resources/${featured.slug}`} className="res-featured reveal">
-            <div
-              className="res-thumb res-thumb-lg"
-              style={{ "--accent": CATEGORY_COLOR[featured.category] } as React.CSSProperties}
-              aria-hidden="true"
-            >
-              <Image
-                src="/logo-mark-white.svg"
-                alt=""
-                width={72}
-                height={72}
-                className="res-thumb-mark"
-              />
-              <span className="res-cat">{featured.category}</span>
-            </div>
-            <div className="res-featured-body">
-              <span className="res-featured-tag">Featured</span>
-              <h2>{featured.title}</h2>
-              <p>{featured.excerpt}</p>
-              <div className="res-meta">
-                <span>{featured.author}</span>
-                <i aria-hidden="true">·</i>
-                <span>{formatResourceDate(featured.date)}</span>
-                <i aria-hidden="true">·</i>
-                <span className="res-rt">
-                  <Clock width={13} height={13} />
-                  {featured.readMinutes} min read
-                </span>
-              </div>
-              <span className="res-readmore">
-                Read article
-                <ArrowRight width={14} height={14} />
-              </span>
-            </div>
-          </Link>
-
-          {/* Grid of the rest */}
-          <div className="res-grid">
-            {rest.map((r) => (
-              <ResourceCard key={r.slug} r={r} />
-            ))}
-          </div>
-        </div>
-      </section>
+      <ResourceLibrary resources={all} />
 
       <CtaBand
         title={<>Ready to modernize your referrals?</>}
