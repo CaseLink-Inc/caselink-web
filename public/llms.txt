@@ -51,6 +51,7 @@ CaseLink was founded by Nick Campbell, Co-Founder and CEO. CaseLink, Inc. is hea
 
 Guides on dental referrals, conversion benchmarks, HIPAA-compliant collaboration, and running a connected practice. From the CaseLink team.
 
+- FHIR is coming to dental authorization workflows (CMS-0062-P explained): https://www.caselink.net/resources/cms-0062-p-fhir-dental-authorization
 - How to stop losing dental referrals to specialists: https://www.caselink.net/resources/how-to-stop-losing-dental-referrals
 - Free dental referral software for general dentists: https://www.caselink.net/resources/free-dental-referral-software-for-general-dentists
 - What a healthy dental referral conversion rate actually looks like: https://www.caselink.net/resources/dental-referral-conversion-rate-benchmarks

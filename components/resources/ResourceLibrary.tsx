@@ -10,6 +10,7 @@ const CATEGORY_ORDER: ResourceCategory[] = [
   "Specialists",
   "Operations",
   "Getting started",
+  "Policy",
 ];
 
 // Category-tab row + filtered grid (Gapstars-style). Tabs only show

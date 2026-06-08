@@ -11,7 +11,8 @@ export type ResourceCategory =
   | "Software"
   | "Specialists"
   | "Operations"
-  | "Getting started";
+  | "Getting started"
+  | "Policy";
 
 export type ResourceStat = { value: string; label: string };
 export type ResourceFaq = { q: string; a: string };
@@ -60,9 +61,81 @@ export const CATEGORY_COLOR: Record<ResourceCategory, string> = {
   Specialists: "#3E8EFF",
   Operations: "#FFA940",
   "Getting started": "#3DBD6B",
+  Policy: "#3DBD6B",
 };
 
 export const resources: Resource[] = [
+  {
+    slug: "cms-0062-p-fhir-dental-authorization",
+    layout: {
+      stats: { beforeSection: 2 },
+      inserts: [
+        { before: 3, kind: "figure", variant: "side", side: "left" },
+        { before: 4, kind: "figure", variant: "wide" },
+        {
+          before: 5,
+          kind: "quote",
+          text: "Once federal-program payers are required to support FHIR, commercial payers historically follow within roughly 18 to 24 months.",
+        },
+      ],
+    },
+    title:
+      "FHIR is coming to dental authorization workflows. Here is what CMS-0062-P actually proposes.",
+    metaTitle: "FHIR and dental authorization: CMS-0062-P explained | CaseLink",
+    excerpt:
+      "The federal direction on prior authorization and referral certification is FHIR. Here is what CMS-0062-P actually proposes, what it does not, and what dental practices should do before the comment period closes June 15.",
+    category: "Policy",
+    author: "CaseLink Team",
+    date: "2026-06-08",
+    readMinutes: 5,
+    keyStats: [
+      { value: "June 15", label: "comment period closes (2026)" },
+      { value: "Oct 2027", label: "proposed NCPDP compliance date" },
+      { value: "18-24 mo", label: "before commercial payers typically follow" },
+    ],
+    faqs: [
+      {
+        q: "What is CMS-0062-P?",
+        a: "It is a federal proposed rule, released April 10, 2026, titled the “2026 CMS Interoperability Standards and Prior Authorization for Drugs Proposed Rule.” Its headline is drug prior authorization, but it also proposes adopting HL7 FHIR implementation guides as HIPAA standards for prior authorization and referral certification transactions, including dental.",
+      },
+      {
+        q: "Does CMS-0062-P require dental practices to use a specific referral platform?",
+        a: "No. The rule does not endorse or require any platform. It standardizes how electronic prior authorization and referral certification data moves between HIPAA covered entities and names FHIR as that standard.",
+      },
+      {
+        q: "When does the comment period close?",
+        a: "June 15, 2026. Comments can be submitted through the ADA's process or directly through regulations.gov under file code CMS-0062-P.",
+      },
+      {
+        q: "How could this affect small or rural dental practices?",
+        a: "CMS is considering eliminating the Direct Data Entry exception that lets offices submit claims, benefit verification, and prior authorizations through payer web portals. Practices that rely on those portals would face a direct operational change.",
+      },
+      {
+        q: "What should a dental practice do now?",
+        a: "If you file prior authorizations electronically, review the ADA's three dental-specific concerns and decide whether to comment before June 15. If you are choosing a referral or authorization tool, ask vendors how they plan to support FHIR-based exchange and how their architecture handles structured authorization data.",
+      },
+    ],
+    sources: [
+      {
+        label:
+          "CMS, “2026 CMS Interoperability Standards and Prior Authorization for Drugs Proposed Rule” fact sheet, April 10, 2026.",
+        url: "https://www.cms.gov/newsroom/fact-sheets/2026-cms-interoperability-standards-prior-authorization-drugs-proposed-rule",
+      },
+      {
+        label:
+          "American Dental Association, “ADA seeks input on proposed CMS rule on interoperability, prior authorization,” May 2026.",
+        url: "https://adanews.ada.org/ada-news/2026/may/ada-seeks-input-on-proposed-cms-rule-on-interoperability-prior-authorization/",
+      },
+      {
+        label:
+          "Federal Register, Proposed Rule, document 2026-07205, April 14, 2026.",
+      },
+    ],
+    related: [
+      { href: "/#how", label: "How it works" },
+      { href: "/privacy", label: "HIPAA and privacy" },
+    ],
+  },
   {
     slug: "how-to-stop-losing-dental-referrals",
     layout: {
