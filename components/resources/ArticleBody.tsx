@@ -9,6 +9,8 @@ import {
   Bolt,
 } from "@/components/icons";
 import ResourceFigure from "@/components/resources/ResourceFigure";
+import ResourceStats from "@/components/resources/ResourceStats";
+import { type ResourceStat } from "@/lib/resources";
 
 type IconType = React.ComponentType<{ width?: number; height?: number }>;
 
@@ -40,9 +42,18 @@ function headingText(children: React.ReactNode): string {
 export default function ArticleBody({
   markdown,
   accent = "#3E8EFF",
+  figures = [],
+  stats = null,
+  statsBeforeSection = null,
 }: {
   markdown: string;
   accent?: string;
+  /** H2 indices (1-based) that get a preceding image placeholder. */
+  figures?: number[];
+  /** Stat block to render inline, or null if rendered elsewhere. */
+  stats?: ResourceStat[] | null;
+  /** H2 index (1-based) before which the stat block is rendered. */
+  statsBeforeSection?: number | null;
 }) {
   let h2Index = 0;
 
@@ -53,10 +64,12 @@ export default function ArticleBody({
           h2({ children }) {
             h2Index += 1;
             const Icon = pickIcon(headingText(children));
-            // Drop an image placeholder between longer sections.
-            const figureBefore = h2Index === 3 || h2Index === 5;
+            const figureBefore = figures.includes(h2Index);
+            const statsBefore =
+              stats !== null && statsBeforeSection === h2Index;
             return (
               <>
+                {statsBefore && <ResourceStats stats={stats} accent={accent} />}
                 {figureBefore && (
                   <ResourceFigure variant="inline" accent={accent} />
                 )}

@@ -13,6 +13,7 @@ import {
 import CtaBand from "@/components/home/CtaBand";
 import ResourceCard from "@/components/resources/ResourceCard";
 import ArticleBody from "@/components/resources/ArticleBody";
+import ResourceStats from "@/components/resources/ResourceStats";
 import {
   resources,
   getResource,
@@ -74,6 +75,11 @@ export default async function ResourceArticlePage({
   const accent = CATEGORY_COLOR[r.category];
   const Icon = CATEGORY_ICON[r.category];
   const more = getResources().filter((x) => x.slug !== r.slug).slice(0, 3);
+
+  const statsTop = r.layout.stats === "top";
+  const statsBeforeFaq = r.layout.stats === "beforeFaq";
+  const statsBeforeSection =
+    typeof r.layout.stats === "object" ? r.layout.stats.beforeSection : null;
 
   const articleLd = {
     "@context": "https://schema.org",
@@ -144,24 +150,19 @@ export default async function ResourceArticlePage({
         </div>
 
         <div className="wrap res-article-body">
-          {/* Key stats */}
-          {r.keyStats.length > 0 && (
-            <div
-              className="res-stats"
-              style={{ "--accent": accent } as React.CSSProperties}
-            >
-              {r.keyStats.map((s) => (
-                <div key={s.label} className="res-stat">
-                  <div className="res-stat-val">{s.value}</div>
-                  <div className="res-stat-lbl">{s.label}</div>
-                </div>
-              ))}
-            </div>
-          )}
-
           <p className="lead res-article-lede">{r.excerpt}</p>
 
-          <ArticleBody markdown={body} accent={accent} />
+          {statsTop && <ResourceStats stats={r.keyStats} accent={accent} />}
+
+          <ArticleBody
+            markdown={body}
+            accent={accent}
+            figures={r.layout.figures}
+            stats={statsBeforeSection !== null ? r.keyStats : null}
+            statsBeforeSection={statsBeforeSection}
+          />
+
+          {statsBeforeFaq && <ResourceStats stats={r.keyStats} accent={accent} />}
 
           {/* FAQ */}
           {r.faqs.length > 0 && (

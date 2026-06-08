@@ -18,6 +18,14 @@ export type ResourceFaq = { q: string; a: string };
 export type ResourceSource = { label: string; url?: string };
 export type ResourceLink = { href: string; label: string };
 
+// Per-article layout so the reading flow differs between articles instead of
+// every piece using the same template. `stats` decides where the key-number
+// block lands; `figures` lists the H2 indices that get a preceding image.
+export type ResourceLayout = {
+  stats: "top" | "beforeFaq" | { beforeSection: number };
+  figures: number[];
+};
+
 export type Resource = {
   slug: string;
   title: string;
@@ -34,6 +42,8 @@ export type Resource = {
   sources: ResourceSource[];
   /** Contextual internal links shown in the article's "Related" block. */
   related: ResourceLink[];
+  /** Controls per-article reading flow (stat-block + image positions). */
+  layout: ResourceLayout;
 };
 
 // Accent color per category, drawn from the marketing theme tokens.
@@ -49,6 +59,7 @@ export const CATEGORY_COLOR: Record<ResourceCategory, string> = {
 export const resources: Resource[] = [
   {
     slug: "how-to-stop-losing-dental-referrals",
+    layout: { stats: "top", figures: [3] },
     title: "How to stop losing dental referrals to specialists",
     metaTitle: "How to stop losing dental referrals | CaseLink",
     excerpt:
@@ -102,6 +113,7 @@ export const resources: Resource[] = [
   },
   {
     slug: "free-dental-referral-software-for-general-dentists",
+    layout: { stats: { beforeSection: 2 }, figures: [4] },
     title: "Free dental referral software for general dentists",
     metaTitle: "Free dental referral software for GPs | CaseLink",
     excerpt:
@@ -154,6 +166,7 @@ export const resources: Resource[] = [
   },
   {
     slug: "dental-referral-conversion-rate-benchmarks",
+    layout: { stats: { beforeSection: 3 }, figures: [2, 6] },
     title: "What a healthy dental referral conversion rate actually looks like",
     metaTitle: "Dental referral conversion rate benchmarks | CaseLink",
     excerpt:
@@ -230,6 +243,7 @@ export const resources: Resource[] = [
   },
   {
     slug: "dental-referral-software-that-works-alongside-dentrix",
+    layout: { stats: "beforeFaq", figures: [3] },
     title: "Dental referral software that works alongside Dentrix",
     metaTitle: "Referral software for Dentrix practices | CaseLink",
     excerpt:
@@ -278,6 +292,7 @@ export const resources: Resource[] = [
   },
   {
     slug: "how-endodontists-track-and-manage-incoming-referrals",
+    layout: { stats: { beforeSection: 3 }, figures: [5] },
     title: "How endodontists track and manage incoming referrals",
     metaTitle: "Referral management for endodontists | CaseLink",
     excerpt:
@@ -330,6 +345,7 @@ export const resources: Resource[] = [
   },
   {
     slug: "automate-dental-referral-follow-up",
+    layout: { stats: { beforeSection: 2 }, figures: [4] },
     title: "What changes when a dental practice automates referral follow-up",
     metaTitle: "Automate dental referral follow-up | CaseLink",
     excerpt:
