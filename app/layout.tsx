@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import localFont from "next/font/local";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
@@ -25,6 +26,8 @@ const satoshi = localFont({
 
 const siteUrl = "https://www.caselink.net";
 const siteName = "CaseLink";
+// Google Analytics 4 measurement ID for the caselink.net web stream.
+const GA_MEASUREMENT_ID = "G-L5HM3LDBHB";
 const siteTitle = "CaseLink · Your link to better patient care";
 const siteDescription =
   "A secure referral and collaboration network for general dentists and specialists. HIPAA compliant by design.";
@@ -153,6 +156,19 @@ export default function RootLayout({
         <Footer />
         <RevealInit />
         <Calendly />
+
+        {/* Google Analytics 4 (gtag.js). afterInteractive so it loads once
+            the page is interactive without blocking first paint. */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="ga4-init" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${GA_MEASUREMENT_ID}');`}
+        </Script>
       </body>
     </html>
   );

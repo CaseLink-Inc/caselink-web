@@ -340,8 +340,11 @@ export default function PrivacyPage() {
                   practices apply to those cookies.
                 </li>
                 <li>
-                  <strong>Analytics.</strong> Help us understand how the
-                  Website and the Service are used so we can improve them.
+                  <strong>Analytics.</strong> We use Google Analytics 4 to
+                  understand how the Website is used so we can improve it. Google
+                  sets cookies to measure traffic and engagement, and
+                  Google&rsquo;s privacy practices apply to those cookies. You
+                  can opt out using Google&rsquo;s available tools.
                 </li>
                 <li>
                   <strong>Preference.</strong> Remember your settings, such as
