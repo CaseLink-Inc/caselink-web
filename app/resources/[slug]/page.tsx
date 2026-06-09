@@ -89,7 +89,13 @@ export default async function ResourceArticlePage({
         section: ins.before,
         after: ins.variant === "side",
         node: (
-          <ResourceFigure variant={ins.variant} side={ins.side} accent={accent} />
+          <ResourceFigure
+            variant={ins.variant}
+            side={ins.side}
+            accent={accent}
+            src={ins.src}
+            alt={ins.alt}
+          />
         ),
       });
     }

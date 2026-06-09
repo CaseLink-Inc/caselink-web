@@ -2278,6 +2278,7 @@ body[data-inv-page="true"] .calendly-badge-widget{display:none !important}
 .res-figure-side-right{float:right;margin-left:30px}
 .res-figure-side-left{float:left;margin-right:30px}
 .res-figure-side .res-figure-ph{aspect-ratio:4/3}
+.res-figure-img{object-fit:cover}
 .res-figure-glyph{display:flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,0.18);color:rgba(255,255,255,0.85);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px)}
 .res-figure figcaption{margin-top:10px;font-size:12.5px;color:#7A8886;text-align:center}
 

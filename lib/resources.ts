@@ -25,7 +25,7 @@ export type ResourceLink = { href: string; label: string };
 // H2 (1-based). Mix these differently per article so no two look alike.
 export type ResourceInsert =
   | { before: number; kind: "quote"; text: string }
-  | { before: number; kind: "figure"; variant: "wide" | "side"; side?: "left" | "right" }
+  | { before: number; kind: "figure"; variant: "wide" | "side"; side?: "left" | "right"; src?: string; alt?: string }
   | { before: number; kind: "slider"; cards: { title: string; body: string }[] };
 
 export type ResourceLayout = {
@@ -73,8 +73,21 @@ export const resources: Resource[] = [
     layout: {
       stats: { beforeSection: 2 },
       inserts: [
-        { before: 3, kind: "figure", variant: "side", side: "left" },
-        { before: 4, kind: "figure", variant: "wide" },
+        {
+          before: 3,
+          kind: "figure",
+          variant: "side",
+          side: "left",
+          src: "/resources/fhir-side.jpg",
+          alt: "The HL7 FHIR logo, the data standard CMS-0062-P proposes for prior authorization and referral certification.",
+        },
+        {
+          before: 4,
+          kind: "figure",
+          variant: "wide",
+          src: "/resources/fhir-wide.jpg",
+          alt: "Federal interoperability is moving electronic prior authorization and referral certification toward FHIR-based exchange.",
+        },
         {
           before: 5,
           kind: "quote",
