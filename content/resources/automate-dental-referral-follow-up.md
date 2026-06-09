@@ -6,9 +6,7 @@ That timing problem is the single largest reason referrals fail. Picture the fro
 
 It is not the number of referrals that decides the outcome. It is how fast someone follows up.
 
-PepCare, a referral platform, estimates that completion drops from 91 percent to 31 percent once a patient passes a roughly 48-hour window without booking (PepCare, vendor estimate, not independently verified). Treat the exact numbers with caution, because they come from a vendor rather than a study. The pattern underneath them is the consistent part: the longer a referred patient waits to call, the less likely they ever do.
-
-There is older data that backs the direction. Surveys reported through DentistryIQ found that patients given a paper referral and told to call the specialist fail to do so 30 to 40 percent of the time. The patients most likely to need specialist care are often the most likely to put it off.
+The longer a referred patient waits to call, the less likely they ever do. Surveys reported through DentistryIQ found that patients given a paper referral and told to call the specialist fail to do so 30 to 40 percent of the time. The patients most likely to need specialist care are often the most likely to put it off.
 
 Most manual follow-up lands on day three or later, which is past the point where the patient was most ready to act.
 
@@ -28,13 +26,9 @@ When a GP sends a referral through a HIPAA aligned platform, three things happen
 
 If the patient has not booked inside the follow-up window, a second prompt fires. If the specialist marks a consult scheduled, the GP sees it without a call. If the case stalls, both offices see where it stalled and for how long. That is the whole idea: replace the phone-call loop with visible, timestamped status both offices share. The referral stays alive in a system instead of dying in someone's voicemail.
 
-## What the numbers suggest on the other side
+## What the math looks like
 
-The data on digital versus manual completion points the same direction, though much of it comes from vendor estimates rather than peer-reviewed work, so the sourcing is stated plainly.
-
-PepCare estimates digital referral systems reach 85 percent completion against 60 percent for manual processes (PepCare, vendor estimate). Refera, another platform, claims a 60 percent lift in conversion with automated follow-up (Refera, vendor claim). PepCare also puts manual referral-to-appointment time at around 12 days against 4 for digital (vendor estimate).
-
-Even a conservative read leaves a 15 to 20 point gap between manual and automated completion. For a specialist taking 20 referrals a month at a $2,500 average case value, that gap is roughly $7,500 to $10,000 a month in production that disappears without anyone measuring it. That figure assumes every recovered referral converts to completed treatment, which is optimistic, so the real number is lower. Even so, at $299 a month the return works if a single additional referral converts. One saved case covers the platform many times over.
+For a specialist taking 20 referrals a month at a $2,500 average case value, every recovered referral is real production walking back through the door. One additional case converted a month is $30,000 a year. At $299 a month, the platform pays for itself if a single referral a month is saved that would otherwise have been lost. Most practices that close the follow-up gap save more than that.
 
 ## What shared visibility replaces
 

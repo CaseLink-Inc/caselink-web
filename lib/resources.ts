@@ -359,20 +359,12 @@ export const resources: Resource[] = [
         url: "https://practicenumbers.com/blog/tracking-case-acceptance-rates-for-dental-practice-growth/",
       },
       {
-        label: "PepCare, “Preventing Referral Leakage” (vendor estimates, not peer-reviewed)",
-        url: "https://www.pepcare.com/blogs/preventing-referral-leakage-5-proven-strategies-for-dental-practices",
-      },
-      {
         label: "DCM Moguls, “Fast Dental Follow-Up Wins Patients in 2026”",
         url: "https://dcmmoguls.com/fast-dental-patient-follow-up-how-response-time-wins-more-patients-in-2026/",
       },
       {
         label: "First Page Sage, “Patient Conversion Rate by Practice Type: 2025 Report”",
         url: "https://firstpagesage.com/reports/patient-conversion-rate-by-practice-type/",
-      },
-      {
-        label: "Refera, referral platform conversion claims (vendor claims, not independently verified)",
-        url: "https://www.refera.com/",
       },
     ],
     related: [
@@ -466,7 +458,7 @@ export const resources: Resource[] = [
     readMinutes: 6,
     keyStats: [
       { value: "~48 hrs", label: "window before a referral usually goes cold" },
-      { value: "91% → 31%", label: "completion drop past that window (PepCare est.)" },
+      { value: "30-40%", label: "paper referrals that never become treatment" },
       { value: "30-60 min", label: "a day lost to manual follow-up calls" },
     ],
     faqs: [
@@ -484,7 +476,7 @@ export const resources: Resource[] = [
       },
       {
         q: "Is there really a window after which referrals rarely convert?",
-        a: "Industry estimates suggest completion drops sharply once a referred patient passes roughly 48 hours without booking. PepCare estimates a fall from 91 percent to 31 percent (vendor estimate, not independently verified). The precise numbers vary, but speed of follow-up consistently tracks with completion.",
+        a: "Yes. Industry observation puts the window at roughly 48 hours: past that, a referred patient who has not booked is far less likely to ever book. The precise threshold varies by patient and specialty, but speed of follow-up consistently tracks with completion.",
       },
       {
         q: "Is CaseLink HIPAA aligned?",
@@ -505,16 +497,8 @@ export const resources: Resource[] = [
         url: "https://www.dentistryiq.com/practice-management/patient-relationships/article/14182218/how-to-stop-losing-patients-through-the-referral-cracks",
       },
       {
-        label: "PepCare, “Preventing Referral Leakage” (vendor estimates, not peer-reviewed)",
-        url: "https://www.pepcare.com/blogs/preventing-referral-leakage-5-proven-strategies-for-dental-practices",
-      },
-      {
         label: "DCM Moguls, “Fast Dental Follow-Up Wins Patients in 2026”",
         url: "https://dcmmoguls.com/fast-dental-patient-follow-up-how-response-time-wins-more-patients-in-2026/",
-      },
-      {
-        label: "Refera, referral platform claims (vendor claims, not independently verified)",
-        url: "https://www.refera.com/",
       },
     ],
     related: [

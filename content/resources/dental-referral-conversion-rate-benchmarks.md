@@ -26,13 +26,13 @@ Here is what the available data says about each stage. Where published numbers e
 
 **Stage 2, referral received by the specialist.** Where the first losses occur. A fax to the wrong number. A slip left in the patient's car. An email in a general inbox no one watches. Attrition here is hard to quantify because neither office tracks it, but the room for loss is obvious.
 
-**Stage 3, patient contacts the specialist.** The biggest drop. A 2008 study by Kelton Research found that 46 percent of dental specialist referrals went unfulfilled nationally, rising to 50 percent among patients aged 18 to 49 (Kelton Research, 2008, via DentistryIQ). PepCare estimates manual completion around 60 percent, meaning roughly 40 percent of patients referred on paper never reach a scheduled appointment (PepCare, vendor estimate).
+**Stage 3, patient contacts the specialist.** The biggest drop. A 2008 study by Kelton Research found that 46 percent of dental specialist referrals went unfulfilled nationally, rising to 50 percent among patients aged 18 to 49 (Kelton Research, 2008, via DentistryIQ). DentistryIQ has reported paper-referral failure in a 30 to 40 percent range, depending on the survey. Either way, a meaningful share of referred patients never reach a scheduled appointment.
 
 **Stage 4, consultation scheduled and completed.** Once the patient calls, scheduling attrition is lower. The main risks are long wait times, insurance friction, and ordinary no-shows. Dental no-show estimates vary, with 15 to 20 percent a commonly cited range.
 
 **Stage 5, treatment accepted or declined.** Where traditional case acceptance takes over. For referred specialty care, acceptance tends to run higher than for elective recommendations, because the patient has already cleared several hurdles and the problem is usually acute or clearly defined.
 
-**End to end.** A manual pipeline, combining attrition at every stage, likely converts at 35 to 45 percent from referral to completed treatment (synthesis estimate from the sources above). A digital pipeline with automated coordination converts at roughly 60 to 70 percent (vendor estimates from PepCare and Refera, not independently verified).
+**End to end.** Combining attrition at every stage, a manual pipeline likely converts at 35 to 45 percent from referral to completed treatment. A pipeline with structured digital handoffs and shared status closes a meaningful portion of that gap, though the absolute numbers vary by practice and specialty.
 
 ## Where the largest losses happen
 
@@ -48,7 +48,7 @@ Sixty percent of patients in the Kelton study said they would feel more comforta
 
 Published referral-specific benchmarks do not exist the way case acceptance benchmarks do. Levin Group does not publish a conversion number. The ADA Health Policy Institute tracks practice economics but not stage-by-stage referral data.
 
-Based on available data from Kelton, PepCare, Refera, and First Page Sage, here are working targets for a specialist practice using digital coordination. These are synthesis estimates from those sources, not published standards.
+Drawing on the Kelton survey and broader industry coverage, here are working targets for a specialist practice using digital coordination. These are synthesis estimates, not published standards.
 
 **Referral sent to patient contact, 80 percent or higher.** The manual baseline from Kelton is roughly 54 percent. Digital coordination should close much of that through immediate specialist notification and patient prompts.
 
