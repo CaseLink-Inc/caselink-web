@@ -33,6 +33,14 @@ export async function generateMetadata({
   const { slug } = await params;
   const r = getResource(slug);
   if (!r) return {};
+  // Per-article social preview image (WhatsApp / iMessage / LinkedIn / X read
+  // og:image). Use the article's 16:9 thumbnail; metadataBase makes the URL
+  // absolute. Articles without a thumbnail fall back to the site default OG
+  // image automatically. Future articles get this for free once a thumbnail
+  // is set.
+  const ogImages = r.thumbnail
+    ? [{ url: r.thumbnail, width: 800, height: 450, alt: r.title }]
+    : undefined;
   return {
     title: r.metaTitle,
     description: r.excerpt,
@@ -42,6 +50,13 @@ export async function generateMetadata({
       description: r.excerpt,
       url: `${SITE}/resources/${r.slug}`,
       type: "article",
+      ...(ogImages ? { images: ogImages } : {}),
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: r.title,
+      description: r.excerpt,
+      ...(r.thumbnail ? { images: [r.thumbnail] } : {}),
     },
   };
 }
