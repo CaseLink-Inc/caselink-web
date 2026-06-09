@@ -119,6 +119,11 @@ Vercel picks it up in ~30 seconds.
   - Verify both desktop and mobile widths before pushing visual changes.
 - **Images**: use `next/image` with explicit `width`/`height` matching the
   source aspect. CSS handles final display size.
+- **Image alt text**: ALWAYS write descriptive alt text for every content
+  image at the time it is added (resource card thumbnails, article wide/side
+  figures, the `/resources` hero, etc.), for SEO and accessibility. Never ship
+  a content image without it. Purely decorative images use `alt=""`. This is a
+  standing instruction — do it automatically, do not ask each time.
 - **External links**: use `<a>` with `target="_blank" rel="noopener
   noreferrer"`. Internal navigation uses `next/link`.
 - **CTAs to the product**: import from `lib/urls.ts`, never hardcode.
