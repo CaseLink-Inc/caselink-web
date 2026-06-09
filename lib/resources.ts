@@ -51,6 +51,8 @@ export type Resource = {
   related: ResourceLink[];
   /** Controls per-article reading flow (stat-block + image positions). */
   layout: ResourceLayout;
+  /** Card thumbnail image (16:9). Falls back to a shared default if unset. */
+  thumbnail?: string;
 };
 
 // Accent color per category, drawn from the marketing theme tokens.
@@ -67,6 +69,7 @@ export const CATEGORY_COLOR: Record<ResourceCategory, string> = {
 export const resources: Resource[] = [
   {
     slug: "cms-0062-p-fhir-dental-authorization",
+    thumbnail: "/resources/card-thumbnail.jpg",
     layout: {
       stats: { beforeSection: 2 },
       inserts: [

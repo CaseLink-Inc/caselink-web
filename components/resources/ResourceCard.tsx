@@ -25,15 +25,24 @@ export default function ResourceCard({
       <div
         className="res-thumb"
         style={{ "--accent": CATEGORY_COLOR[r.category] } as React.CSSProperties}
-        aria-hidden="true"
       >
-        <Image
-          src="/logo-mark-white.svg"
-          alt=""
-          width={44}
-          height={44}
-          className="res-thumb-mark"
-        />
+        {r.thumbnail ? (
+          <Image
+            src={r.thumbnail}
+            alt=""
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 900px) 50vw, 380px"
+            className="res-thumb-img"
+          />
+        ) : (
+          <Image
+            src="/logo-mark-white.svg"
+            alt=""
+            width={44}
+            height={44}
+            className="res-thumb-mark"
+          />
+        )}
         <span className="res-cat">{r.category}</span>
       </div>
       <div className="res-card-body">

@@ -2182,11 +2182,12 @@ body[data-inv-page="true"] .calendly-badge-widget{display:none !important}
 .res-draftnote strong{color:#B45309}
 
 /* Shared thumb (gradient placeholder header, themed by --accent) */
-.res-thumb{position:relative;display:block;min-height:172px;border-radius:16px;overflow:hidden;background:
+.res-thumb{position:relative;display:block;aspect-ratio:16/9;min-height:0;border-radius:16px;overflow:hidden;background:
   radial-gradient(circle at 28% 22%,color-mix(in srgb,var(--accent,#3E8EFF) 38%,#fff),transparent 58%),
   linear-gradient(135deg,color-mix(in srgb,var(--accent,#3E8EFF) 82%,#1A1F1E) 0%,var(--accent,#3E8EFF) 52%,color-mix(in srgb,var(--accent,#3E8EFF) 55%,#90F0C5) 100%)}
+.res-thumb-img{object-fit:cover}
 .res-thumb-mark{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);opacity:0.28}
-.res-cat{position:absolute;left:14px;bottom:14px;background:rgba(255,255,255,0.92);color:#1A1F1E;padding:5px 11px;border-radius:999px;font-size:10.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.res-cat{position:absolute;z-index:2;left:14px;bottom:14px;background:rgba(255,255,255,0.92);color:#1A1F1E;padding:5px 11px;border-radius:999px;font-size:10.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
 .res-flag{position:absolute;top:12px;right:12px;background:#1A1F1E;color:#fff;padding:3px 9px;border-radius:6px;font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;opacity:0.88}
 
 /* Meta row */
