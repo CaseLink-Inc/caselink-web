@@ -451,6 +451,9 @@ export const resources: Resource[] = [
   },
   {
     slug: "automate-dental-referral-follow-up",
+    thumbnail: "/resources/automate-card.jpg",
+    thumbnailAlt:
+      "A dentist and patient view a screen together at the chair, reviewing care information.",
     layout: {
       stats: { beforeSection: 2 },
       inserts: [
@@ -459,7 +462,13 @@ export const resources: Resource[] = [
           kind: "quote",
           text: "A referred patient who has not booked within a couple of days probably never will.",
         },
-        { before: 5, kind: "figure", variant: "wide" },
+        {
+          before: 5,
+          kind: "figure",
+          variant: "wide",
+          src: "/resources/automate-wide.jpg",
+          alt: "Two dental staff at a workstation review a referral dashboard on a wide monitor in a treatment room.",
+        },
       ],
     },
     title: "What changes when a dental practice automates referral follow-up",
