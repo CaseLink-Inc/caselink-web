@@ -298,18 +298,16 @@ Vercel picks it up in ~30 seconds.
 
 ### Scheduled / time-gated
 
-- **DMARC tightening — status as of 2026-06-10**: live DNS still shows
-  `p=none` (the June 1 routine did not result in the IONOS edit).
-  Full aggregate-report audit on 2026-06-10 (24 reports from Google,
+- **DMARC tightening — `p=quarantine` LIVE as of 2026-06-11** (verified
+  on all four IONOS authoritative nameservers). Basis: full
+  aggregate-report audit on 2026-06-10 (24 reports from Google,
   Microsoft, and Yahoo covering May 20 to June 4): 150 messages, 150
   DMARC passes, zero failures. Google Workspace mail passes aligned
   DKIM + SPF; SendGrid (`em110.caselink.net`) passes via aligned DKIM
-  (selector `s1`) as designed. No spoofing observed. Plan: flip
-  `p=none` → `p=quarantine` immediately (exact record:
-  `v=DMARC1; p=quarantine; rua=mailto:support@caselink.net;
-  ruf=mailto:support@caselink.net; fo=1; adkim=s; aspf=s; pct=100`),
-  then `quarantine` → `reject` around 2026-06-24 after ~2 weeks of
-  clean reports. Verify edits with `dig +short TXT _dmarc.caselink.net`.
+  (selector `s1`) as designed. No spoofing observed. Remaining step:
+  flip `quarantine` → `reject` around 2026-06-24 after ~2 weeks of
+  clean reports (same TXT record, one word changes). Verify with
+  `dig +short TXT _dmarc.caselink.net`.
 
 ### Recommended but not started
 
