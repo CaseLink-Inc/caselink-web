@@ -2350,6 +2350,63 @@ body[data-inv-page="true"] .calendly-badge-widget{display:none !important}
   .res-article-lede{font-size:17px}
 }
 
+/* ============================================================
+   GEO LANDING PAGES (.geo-*) — SEO landing pages like
+   /dental-referral-platform-dc. Marketing theme; reuses .eyebrow,
+   .lead, .section-head, .btn, .res-faq-* accordion.
+   ============================================================ */
+.geo-hero{position:relative;padding:130px 0 80px;overflow:hidden;background:linear-gradient(180deg,#FBFBF9,#EDF2FB)}
+.geo-hero-bg{position:absolute;inset:0;pointer-events:none;background:
+  radial-gradient(ellipse 60% 55% at 85% 10%,rgba(62,142,255,0.10),transparent 60%),
+  radial-gradient(ellipse 55% 50% at 10% 90%,rgba(144,240,197,0.12),transparent 60%)}
+.geo-hero-inner{position:relative;max-width:780px}
+.geo-hero-inner h1{font-size:54px;line-height:1.06;letter-spacing:-0.035em;margin:16px 0 20px;color:#1A1F1E;font-weight:800}
+.geo-hero-inner .lead{font-size:17px;color:#4A5250;line-height:1.6;max-width:620px;margin-bottom:32px}
+.geo-hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:28px}
+.geo-hero-proof{list-style:none;margin:0;padding:0;display:flex;gap:22px;flex-wrap:wrap}
+.geo-hero-proof li{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;color:#4A5250}
+.geo-hero-proof svg{color:#3DBD6B;flex-shrink:0}
+
+.geo-why{padding:96px 0 80px}
+.geo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.geo-card{background:#fff;border:1px solid #E8EEF8;border-radius:18px;padding:30px 28px;transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease}
+.geo-card:hover{transform:translateY(-5px);box-shadow:0 20px 50px rgba(26,31,30,0.08);border-color:rgba(62,142,255,0.25)}
+.geo-card-ic{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:12px;background:rgba(62,142,255,0.10);color:#3E8EFF;margin-bottom:18px}
+.geo-card h3{font-size:19px;letter-spacing:-0.015em;color:#1A1F1E;margin:0 0 10px;font-weight:700}
+.geo-card p{font-size:14.5px;line-height:1.6;color:#4A5250;margin:0}
+
+.geo-steps-sec{padding:96px 0}
+.geo-steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;counter-reset:geo}
+.geo-steps li{position:relative;background:#F7FAFA;border:1px solid #E8EEF8;border-radius:18px;padding:30px 28px}
+.geo-step-n{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;background:#1A1F1E;color:#fff;font-size:15px;font-weight:700;margin-bottom:16px}
+.geo-steps h3{font-size:18px;letter-spacing:-0.01em;color:#1A1F1E;margin:0 0 10px;font-weight:700}
+.geo-steps p{font-size:14.5px;line-height:1.6;color:#4A5250;margin:0}
+.geo-steps-more{margin:28px 0 0;font-size:14.5px}
+.geo-steps-more a{display:inline-flex;align-items:center;gap:8px;font-weight:700;color:#1A1F1E;text-decoration:none}
+.geo-steps-more a:hover{color:#3E8EFF}
+
+.geo-faq{padding:0 0 96px}
+.geo-faq-inner{max-width:840px}
+
+@media (max-width:1100px){
+  .geo-hero-inner h1{font-size:46px}
+}
+@media (max-width:900px){
+  .geo-hero{padding:110px 0 60px}
+  .geo-hero-inner h1{font-size:38px}
+  .geo-why{padding:70px 0 60px}
+  .geo-grid{grid-template-columns:1fr}
+  .geo-steps-sec{padding:70px 0}
+  .geo-steps{grid-template-columns:1fr}
+  .geo-faq{padding:0 0 70px}
+}
+@media (max-width:640px){
+  .geo-hero-inner h1{font-size:31px}
+  .geo-hero-cta{flex-direction:column}
+  .geo-hero-cta .btn{justify-content:center;width:100%}
+  .geo-hero-proof{flex-direction:column;gap:10px}
+}
+
 /* Honor users who request reduced motion. Same payoff at any width. */
 @media (prefers-reduced-motion: reduce){
   *,
