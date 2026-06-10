@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy · CaseLink",
+  title: "Privacy Policy",
   description:
     "How CaseLink collects, uses, and protects personal information when you visit caselink.net or use the CaseLink referral and clinical communication platform.",
   alternates: { canonical: "/privacy" },

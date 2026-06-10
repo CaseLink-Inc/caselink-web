@@ -4,7 +4,7 @@ import { Mail, Phone, Calendar } from "@/components/icons";
 import BookCallButton from "@/components/BookCallButton";
 
 export const metadata: Metadata = {
-  title: "Contact CaseLink · Talk to our team",
+  title: { absolute: "Contact CaseLink · Talk to our team" },
   description:
     "Book a 15-minute walkthrough, send a message, or call us. CaseLink is based in Washington, DC, and replies to most enquiries the same business day.",
   alternates: { canonical: "/contact" },

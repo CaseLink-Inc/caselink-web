@@ -8,7 +8,7 @@ import BookCallButton from "@/components/BookCallButton";
 import { SIGNUP_URL } from "@/lib/urls";
 
 export const metadata: Metadata = {
-  title: "About CaseLink · Building the link dentistry has been missing",
+  title: { absolute: "About CaseLink · Building the link dentistry has been missing" },
   description:
     "CaseLink began with a simple observation. Dentists are some of the most connected professionals in healthcare, yet the digital tools connecting their practices have not caught up. Meet Nick Campbell and the team building the network.",
   alternates: { canonical: "/about" },

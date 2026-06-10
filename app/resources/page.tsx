@@ -9,7 +9,7 @@ const DESCRIPTION =
   "Practical guides on dental referrals, specialist growth, HIPAA-compliant collaboration, and running a connected practice. From the CaseLink team.";
 
 export const metadata: Metadata = {
-  title: "Resources · CaseLink",
+  title: "Resources",
   description: DESCRIPTION,
   alternates: { canonical: "/resources" },
   openGraph: {

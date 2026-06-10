@@ -42,7 +42,9 @@ export async function generateMetadata({
     ? [{ url: r.thumbnail, width: 800, height: 450, alt: r.title }]
     : undefined;
   return {
-    title: r.metaTitle,
+    // metaTitle already ends in "| CaseLink"; absolute bypasses the layout's
+    // "%s · CaseLink" template so the brand is not doubled.
+    title: { absolute: r.metaTitle },
     description: r.excerpt,
     alternates: { canonical: `/resources/${r.slug}` },
     openGraph: {
