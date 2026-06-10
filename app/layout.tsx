@@ -28,9 +28,9 @@ const siteUrl = "https://www.caselink.net";
 const siteName = "CaseLink";
 // Google Analytics 4 measurement ID for the caselink.net web stream.
 const GA_MEASUREMENT_ID = "G-L5HM3LDBHB";
-const siteTitle = "CaseLink · Your link to better patient care";
+const siteTitle = "CaseLink · Dental Referral Platform for GPs & Specialists";
 const siteDescription =
-  "A secure referral and collaboration network for general dentists and specialists. HIPAA compliant by design.";
+  "CaseLink is a HIPAA-compliant dental referral platform. General dentists and specialists send cases, share records, and track every referral in one shared workspace. Free for GPs.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
