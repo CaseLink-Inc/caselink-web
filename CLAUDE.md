@@ -298,18 +298,18 @@ Vercel picks it up in ~30 seconds.
 
 ### Scheduled / time-gated
 
-- **DMARC tightening (`p=none` → `p=quarantine`)** — scheduled remote
-  agent fires 2026-06-01 at 03:30 UTC (= 9:00am Asia/Colombo). Routine
-  ID `trig_01SpWhepFXXZgrETwU26mGHx`. Direct link:
-  https://claude.ai/code/routines/trig_01SpWhepFXXZgrETwU26mGHx . The
-  agent will read CLAUDE.md first, ask the user if aggregate reports
-  in `support@caselink.net` are clean, then walk through editing the
-  `_dmarc` TXT in IONOS to flip `p=none` → `p=quarantine`. Verifies
-  with `dig @ns1048.ui-dns.com` etc. First DMARC report on 2026-05-18
-  already confirmed DKIM aligns cleanly (see "DMARC first-day report"
-  entry above), so tightening is safe on current evidence. Earliest
-  follow-up to `p=reject`: 2026-06-15 (the agent reminds the user to
-  schedule that separately).
+- **DMARC tightening — status as of 2026-06-10**: live DNS still shows
+  `p=none` (the June 1 routine did not result in the IONOS edit).
+  Full aggregate-report audit on 2026-06-10 (24 reports from Google,
+  Microsoft, and Yahoo covering May 20 to June 4): 150 messages, 150
+  DMARC passes, zero failures. Google Workspace mail passes aligned
+  DKIM + SPF; SendGrid (`em110.caselink.net`) passes via aligned DKIM
+  (selector `s1`) as designed. No spoofing observed. Plan: flip
+  `p=none` → `p=quarantine` immediately (exact record:
+  `v=DMARC1; p=quarantine; rua=mailto:support@caselink.net;
+  ruf=mailto:support@caselink.net; fo=1; adkim=s; aspf=s; pct=100`),
+  then `quarantine` → `reject` around 2026-06-24 after ~2 weeks of
+  clean reports. Verify edits with `dig +short TXT _dmarc.caselink.net`.
 
 ### Recommended but not started
 
