@@ -53,6 +53,8 @@ export type Resource = {
   layout: ResourceLayout;
   /** Card thumbnail image (16:9). Falls back to a shared default if unset. */
   thumbnail?: string;
+  /** Descriptive alt text for the card thumbnail. Required when `thumbnail` is set. */
+  thumbnailAlt?: string;
 };
 
 // Accent color per category, drawn from the marketing theme tokens.
@@ -70,6 +72,8 @@ export const resources: Resource[] = [
   {
     slug: "cms-0062-p-fhir-dental-authorization",
     thumbnail: "/resources/card-thumbnail.jpg",
+    thumbnailAlt:
+      "The HL7 FHIR logo, the data standard CMS-0062-P proposes for prior authorization and referral certification.",
     layout: {
       stats: { beforeSection: 2 },
       inserts: [
@@ -374,10 +378,20 @@ export const resources: Resource[] = [
   },
   {
     slug: "how-endodontists-track-and-manage-incoming-referrals",
+    thumbnail: "/resources/endodontists-card.jpg",
+    thumbnailAlt:
+      "A dental specialist consults with a patient in the operatory while a coordinator works at the front desk station.",
     layout: {
       stats: { beforeSection: 3 },
       inserts: [
-        { before: 2, kind: "figure", variant: "side", side: "left" },
+        {
+          before: 2,
+          kind: "figure",
+          variant: "side",
+          side: "left",
+          src: "/resources/endodontists-side.jpg",
+          alt: "An endodontist reviews case records on a laptop in the clinic, with a colleague visible in the background.",
+        },
         {
           before: 5,
           kind: "quote",

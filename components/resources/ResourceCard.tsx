@@ -29,7 +29,7 @@ export default function ResourceCard({
         {r.thumbnail ? (
           <Image
             src={r.thumbnail}
-            alt=""
+            alt={r.thumbnailAlt ?? ""}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 900px) 50vw, 380px"
             className="res-thumb-img"
