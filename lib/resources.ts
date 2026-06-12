@@ -158,6 +158,9 @@ export const resources: Resource[] = [
   },
   {
     slug: "how-to-stop-losing-dental-referrals",
+    thumbnail: "/resources/how-to-stop-card.jpg",
+    thumbnailAlt:
+      "A graphic asking Losing Referrals? with paper referral forms drifting apart on a light blue background.",
     layout: {
       stats: "top",
       inserts: [
@@ -166,7 +169,14 @@ export const resources: Resource[] = [
           kind: "quote",
           text: "Half the week's referrals, gone before lunch. There was simply no thread connecting the two offices once the patient walked out the door.",
         },
-        { before: 3, kind: "figure", variant: "side", side: "right" },
+        {
+          before: 3,
+          kind: "figure",
+          variant: "side",
+          side: "right",
+          src: "/resources/how-to-stop-side.jpg",
+          alt: "A dentist shows a treatment document to a smiling patient seated in the dental chair.",
+        },
       ],
     },
     title: "How to stop losing dental referrals to specialists",
