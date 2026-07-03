@@ -40,16 +40,38 @@ managers. Founder: Nick Campbell (Co-Founder, CEO). Based in Washington, DC.
 ```
 app/
   layout.tsx              Root layout: Satoshi font, metadata, JSON-LD,
-                          Nav/Footer/RevealInit/Calendly
+                          Nav/Footer/RevealInit/Calendly, GA4 gtag
   page.tsx                Home — composed from components/home/*
   about/page.tsx          About (per-page metadata + canonical)
   contact/page.tsx        Contact (per-page metadata + canonical)
+  privacy/page.tsx        Privacy policy (hero + TOC + sections)
+  terms/page.tsx          Terms of Service (same treatment; pending
+                          Nick's legal review)
+  resources/page.tsx      Blog index: full-bleed hero + category filter
+                          tabs + card grid. HIDDEN from nav/footer until
+                          Nick calls it complete (URLs are live/indexed).
+  resources/[slug]/       Article template: per-article layout recipes,
+                          stats strip, figures, pull-quotes, slider, FAQ
+                          accordion, BlogPosting + FAQPage JSON-LD,
+                          per-article og:image from the card thumbnail.
+  dental-referral-platform-dc/  SEO geo landing page (footer-linked)
+  investors/, investors-v2/     Live investor brief + advisor-feedback
+                          rebuild draft (v2 has draft-note callouts
+                          awaiting Nick's content; pick one, delete other)
   login/, signup/,        Stubbed app shells. Not real auth.
   dashboard/              Disallowed in robots.txt.
   not-found.tsx           Custom animated 404 (broken-referral metaphor)
-  sitemap.ts              Generates /sitemap.xml
+  sitemap.ts              Generates /sitemap.xml (includes articles)
   robots.ts               Generates /robots.txt — explicitly allows major
                           AI crawlers (GPTBot, ClaudeBot, Perplexity, etc.)
+
+content/resources/*.md    Article prose bodies (rendered via react-markdown)
+lib/resources.ts          Article catalog: metadata, categories, key stats,
+                          FAQs, layout recipes, thumbnails + alt text
+lib/resourceBody.ts       Loads content/resources/<slug>.md at build time
+components/resources/     ArticleBody, ResourceCard/Stats/Figure/PullQuote/
+                          Slider, ResourceLibrary (filter tabs)
+public/resources/         Article images (<slug>-card/-side/-wide.jpg)
   icon.svg                Favicon (CaseLink mark with brand gradient)
   opengraph-image.png     1200x630 social preview
   twitter-image.png       Same
@@ -124,6 +146,27 @@ Vercel picks it up in ~30 seconds.
   figures, the `/resources` hero, etc.), for SEO and accessibility. Never ship
   a content image without it. Purely decorative images use `alt=""`. This is a
   standing instruction — do it automatically, do not ask each time.
+- **Article images workflow (USER-MANDATED — keep it exactly this simple)**:
+  the user drops correctly-sized JPGs into
+  `/Users/kasu/Desktop/CaseLink/Blog article routines/Image temp/`, renamed
+  `<article-slug> <placeholder-name>.jpg`, and states the exact filenames in
+  chat. Read ONLY those exact files from that folder. Never search other
+  directories, never guess at files, never resize (the user sizes them).
+  Flow: user gives article link + filenames → inspect dimensions to map each
+  to its slot (card 800x450, side 800x600, wide 1600x700, hero 2400x1400) →
+  copy to `public/resources/<slug>-<slot>.jpg` → set `thumbnail`/`thumbnailAlt`
+  or figure `src`/`alt` in `lib/resources.ts` → write alt text → build → push.
+  Nothing else.
+- **Never name competing referral platforms** (PepCare, Refera, NexHealth,
+  Adit, or any direct competitor) anywhere on the site or in articles. No
+  comparisons, no citing their stats. Research/benchmark sources (DentistryIQ,
+  Kelton, Levin Group) and PMS names in "works alongside" framing are fine.
+  Same rule lives in the blog routine's facts file.
+- **Page titles**: the root layout template appends `· CaseLink`. Per-page
+  titles must NOT include the brand again — either plain (`"Resources"`) or,
+  when the title intentionally embeds the brand, use
+  `title: { absolute: "..." }`. A site-wide doubled-brand bug shipped once;
+  don't reintroduce it.
 - **External links**: use `<a>` with `target="_blank" rel="noopener
   noreferrer"`. Internal navigation uses `next/link`.
 - **CTAs to the product**: import from `lib/urls.ts`, never hardcode.
@@ -132,6 +175,76 @@ Vercel picks it up in ~30 seconds.
 
 ## Recent significant changes (most recent first)
 
+- **Terms of Service at `/terms`** (2026-06-12): full ToS mirroring the
+  privacy page treatment (Legal hero, 16-section TOC, contact card).
+  Covers not-a-PMS/no-medical-advice service definition, free-GP/paid
+  specialist billing, PHI + BAA precedence, acceptable use, liability
+  cap (12 months of fees, $100 floor), Virginia law/Arlington venue.
+  Footer-linked, sitemap, llms.txt. **Awaiting Nick's legal review.**
+  Same commit fixed a site-wide doubled-title bug ("· CaseLink ·
+  CaseLink") — see the title convention above.
+- **SEO ranking push** (2026-06-11, after "dental referral platform in
+  dc" returned no CaseLink on any page): geo landing page at
+  `/dental-referral-platform-dc` (Service + FAQPage JSON-LD, reuses the
+  home Network map, footer-linked, sitemap 0.8); homepage title changed
+  from the bare tagline to "CaseLink · Dental Referral Platform for GPs
+  & Specialists" + keyworded meta description; listings submitted to
+  Capterra/G2/Software Advice (user); GBP article posts drafted (user
+  posted 3+); local press pitch drafted for Nick. Root cause of not
+  ranking: ~3-week-old domain + no page contained the query words.
+- **DMARC `p=quarantine` live** (2026-06-11, verified on all four IONOS
+  nameservers). Audit of 24 aggregate reports (Google/Microsoft/Yahoo,
+  May 20–Jun 4): 150/150 DMARC pass, zero failures, no spoofing.
+  `p=reject` is optional hardening, deliberately deprioritized — flip
+  same-day if a spoof ever appears in reports.
+- **Automated blog-draft routine (LOCAL, not in the cloud Routines
+  tab)**: launchd job `com.caselink.blogwriter` runs Tue+Thu 12:05
+  Asia/Colombo, headless `claude -p`. Files in
+  `~/Desktop/CaseLink/Blog article routines/` (writer-agent + facts +
+  routine docs, runner script, `articles/` output, `logs/`). Rotates 4
+  content pillars (problem→fit, tips, why-digitize, policy radar),
+  600–900 words, byline "CaseLink Team", never invents CaseLink
+  metrics, never names competitors. Saves draft + gate-check, fires a
+  macOS notification, reveals in Finder. Drafts are for review — NOT
+  auto-published. Mac must be awake at fire time.
+- **Google Analytics 4 installed** (`G-L5HM3LDBHB`, gtag via
+  next/script in the root layout). CSP extended for googletagmanager +
+  google-analytics domains. Privacy policy cookie section names GA4.
+  Verified collecting.
+- **Resources section (blog) built** at `/resources` + 6 articles —
+  currently **hidden from nav/footer** (URLs live, indexed, in sitemap
+  + llms.txt) until Nick calls it complete. Gapstars-style index:
+  full-bleed dark hero (photo drops into `.res-hero-img`, placeholder
+  gradient until then) + category filter tabs. Articles: markdown
+  bodies in `content/resources/`, catalog in `lib/resources.ts`,
+  per-article layout recipes so no two read alike (stats strip
+  position varies; inserts: pull-quotes, side/wide figures, card
+  slider). Per-article og:image = card thumbnail (WhatsApp previews).
+  Live articles: how-to-stop-losing-dental-referrals,
+  free-dental-referral-software-for-general-dentists,
+  dental-referral-conversion-rate-benchmarks,
+  how-endodontists-track-and-manage-incoming-referrals,
+  automate-dental-referral-follow-up,
+  cms-0062-p-fhir-dental-authorization (Policy category, June 15
+  comment deadline — needs a refresh after). Image status: FHIR ✓all,
+  endodontists ✓card+side, automate ✓card+wide, how-to-stop
+  ✓card+side; free-gp and conversion still on placeholders, hero
+  photo pending. The removed 7th article (Dentrix) has a temporary
+  redirect in next.config.ts — republish + drop redirect when the
+  integration ships; original source in ~/Downloads/Web articles/.
+- **Competitor mentions stripped from articles** (2026-06-10): PepCare
+  and Refera name-drops/stats removed from automate + conversion
+  articles and the catalog. Standing don't (see conventions).
+- **Investor brief v2 draft at `/investors-v2`** (advisor-feedback
+  rebuild; noindex like the original): value-prop hero, new problem/
+  built/market/why-Nick sections, visible trajectory assumptions,
+  merged round+funds panel, "Confidential" dropped. Seven loud amber
+  draft-note callouts await Nick's content (bio + LinkedIn, pilot mix,
+  Casagrande testimonial, product screenshot, assumption numbers,
+  market-figure verification). Same session fixed the advisor's "$0,000
+  placeholder" finding on BOTH investor pages: the animated counters
+  rendered 0 in every screenshot/PDF; they now render real values
+  statically. Decide v1 vs v2, then delete the loser.
 - **Investor snapshot at `/investors`** (unlisted, fully rebuilt): six
   cohesive panels — Hero / The round / Today / Three-year trajectory /
   Where it goes / Contact — plus a sticky top nav and a confidential
@@ -304,21 +417,51 @@ Vercel picks it up in ~30 seconds.
   Microsoft, and Yahoo covering May 20 to June 4): 150 messages, 150
   DMARC passes, zero failures. Google Workspace mail passes aligned
   DKIM + SPF; SendGrid (`em110.caselink.net`) passes via aligned DKIM
-  (selector `s1`) as designed. No spoofing observed. Remaining step:
-  flip `quarantine` → `reject` around 2026-06-24 after ~2 weeks of
-  clean reports (same TXT record, one word changes). Verify with
+  (selector `s1`) as designed. No spoofing observed. Optional last
+  step: flip `quarantine` → `reject` (same TXT, one word). User
+  deprioritized it — no deadline; flip same-day if spoofing ever shows
+  up in the weekly reports. Verify with
   `dig +short TXT _dmarc.caselink.net`.
+- **FHIR article refresh**: `/resources/cms-0062-p-fhir-dental-
+  authorization` is built around the June 15, 2026 comment deadline.
+  After June 15, update it (comment period closed, what happens next)
+  or it reads stale.
 
-### Recommended but not started
+### Open items
 
-- **Content strategy / blog** at `/resources` or `/blog`: the single
-  biggest organic-traffic lever the site has. Target dental-referral
-  long-tail queries.
+- **Remaining article images** (user supplies via the Image temp
+  workflow in conventions): free-gp card + wide, conversion card +
+  side + wide, and the `/resources` hero photo. Endodontists has no
+  wide slot configured (intentional). Optionally sharper 1200x630
+  social images per article later.
+- **Make Resources public**: re-add "Resources" to Nav and Footer
+  (removed in commit `a57b63d`, one line each) when Nick calls the
+  section complete — likely once the remaining images are in. Then do
+  the **cross-linking pass** (contextual links from home sections into
+  matching articles) which is deliberately parked until the section is
+  public.
+- **Terms of Service legal review**: `/terms` is live but Nick should
+  have counsel check governing law/venue (Virginia/Arlington), the
+  liability cap, and the jury-trial waiver.
+- **Investor brief: pick v1 or v2**: `/investors-v2` awaits Nick's
+  content (bio + LinkedIn, pilot mix, Casagrande testimonial, product
+  screenshot, trajectory assumptions, market-figure check). When
+  finalized, delete the losing page.
+- **Wednesday advisor meeting**: Nick asked for a recurring Wednesday
+  morning meeting during the advisor-feedback session; never set up
+  (needs time + invitees, then create via Google Calendar).
+- **Dentrix article republish** when the integration ships: re-add
+  catalog entry + body (source in `~/Downloads/Web articles/`), remove
+  the temporary redirect in `next.config.ts`.
+- **SEO follow-through** (mostly user actions): confirm
+  Capterra/G2/Software Advice listings went live, keep posting GBP
+  updates (~1 article/week), send the press pitch, ask pilot practices
+  for backlinks, watch Search Console impressions.
 - **Customer testimonials with `Review` JSON-LD**: when pilot practices
   go live and have quotes, this adds star ratings to search results.
-- **Terms of Service page** at `/terms`: currently no link to it
-  anywhere (the privacy policy was scoped to drop the `/terms`
-  reference to avoid a dead link). Worth adding when ready.
+- **Blog routine → cloud** (optional): the local launchd job only runs
+  when the Mac is awake; move to a cloud Routine once the routine
+  files live in a git repo.
 - **Investor page polish items** (low priority, awaiting feedback):
   Laura's real photo (currently LC initials avatar — replaced by an
   inline JSX swap on `InvestorsContent.tsx`); real backer SVG/PNG
@@ -356,9 +499,11 @@ Vercel picks it up in ~30 seconds.
   `/logo-mark.svg` inside, with breathing room. NOT a dark sphere
   with "CL" text. The traveling triangle must pass UNDER the hub
   (hub is drawn LAST in SVG order).
-- **Terms of Service page** at `/terms`. Currently no link to it
-  anywhere (the privacy policy was scoped to drop the `/terms`
-  reference to avoid a dead link). Worth adding when ready.
+- **Blog voice guardrails** live in
+  `~/Desktop/CaseLink/Blog article routines/caselink-facts.md` (single
+  source of product truth for articles: never invent a CaseLink
+  metric, not a PMS, no patient scheduling, HIPAA broad posture only,
+  byline "CaseLink Team", no competitor names).
 
 ## Don'ts
 
@@ -371,6 +516,9 @@ Vercel picks it up in ~30 seconds.
   template).
 - **Don't replace the semantic CSS classes** in `globals.css` with
   Tailwind utility classes. The design system lives there.
+- **Don't name competing referral platforms** anywhere (see conventions).
+- **Don't complicate the article-image workflow** — exact files from the
+  Image temp folder only, no searching, no resizing (see conventions).
 
 ---
 
