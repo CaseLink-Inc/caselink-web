@@ -51,17 +51,19 @@ export default function Footer() {
             <ul>
               <li><Link href="/" className={isActive("/") ? "on" : ""}>Home</Link></li>
               <li><Link href="/about" className={isActive("/about") ? "on" : ""}>About</Link></li>
+              <li><Link href="/#how">How it works</Link></li>
+              <li><Link href="/#pricing">Pricing</Link></li>
               <li><Link href="/contact" className={isActive("/contact") ? "on" : ""}>Contact</Link></li>
             </ul>
           </div>
           <div className="foot-col">
             <h5>More pages</h5>
             <ul>
-              <li><Link href="/#how">How it works</Link></li>
-              <li><Link href="/#pricing">Pricing</Link></li>
               <li><Link href="/dental-referral-platform-dc" className={isActive("/dental-referral-platform-dc") ? "on" : ""}>CaseLink in DC</Link></li>
               <li><Link href="/privacy" className={isActive("/privacy") ? "on" : ""}>Privacy</Link></li>
               <li><Link href="/terms" className={isActive("/terms") ? "on" : ""}>Terms</Link></li>
+              <li><Link href="/security" className={isActive("/security") ? "on" : ""}>Security</Link></li>
+              <li><Link href="/subprocessors" className={isActive("/subprocessors") ? "on" : ""}>Subprocessors</Link></li>
               <li><a href="mailto:support@caselink.net">support@CaseLink.net</a></li>
             </ul>
           </div>

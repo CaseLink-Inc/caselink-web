@@ -1586,6 +1586,16 @@ body.mob-open{overflow:hidden}
 .privacy-contact-card p{margin:4px 0;font-size:15px;color:#4A5250}
 .privacy-contact-card a{color:#3E8EFF}
 
+.privacy-table-wrap{margin:18px 0 4px;background:#fff;border:1px solid #E8EEF8;border-radius:14px;overflow:hidden;overflow-x:auto}
+.privacy-table-wrap table{width:100%;border-collapse:collapse;font-size:14.5px}
+.privacy-table-wrap th,.privacy-table-wrap td{text-align:left;padding:14px 18px;vertical-align:top;border-bottom:1px solid #E8EEF8;line-height:1.55}
+.privacy-table-wrap th{font-size:11.5px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#7A8886;background:#EDF2FB;white-space:nowrap}
+.privacy-table-wrap tr:last-child td{border-bottom:none}
+.privacy-table-wrap td:first-child{font-weight:600;color:#1A1F1E}
+.privacy-pill{display:inline-block;padding:3px 11px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
+.privacy-pill-yes{background:rgba(61,189,107,0.14);color:#268948}
+.privacy-pill-none{background:rgba(122,136,134,0.15);color:#7A8886}
+
 @media (max-width:900px){
   .privacy-hero h1{font-size:44px}
 }
@@ -1603,6 +1613,7 @@ body.mob-open{overflow:hidden}
   .privacy-section h3{font-size:15px}
   .privacy-section p,.privacy-section ul{font-size:15px}
   .privacy-contact-card{padding:20px 22px}
+  .privacy-table-wrap th,.privacy-table-wrap td{padding:12px 14px;font-size:13.5px}
 }
 
 @media (max-width:420px){
