@@ -73,6 +73,16 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async rewrites() {
+    return [
+      {
+        // Tips deck (static, self-contained page in public/). The platform
+        // footer links here. Clean URL without the .html extension.
+        source: "/tips",
+        destination: "/tips.html",
+      },
+    ];
+  },
   async redirects() {
     return [
       {
