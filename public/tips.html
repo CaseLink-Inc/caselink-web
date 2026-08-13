@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="icon" href="/icon.svg" sizes="any" type="image/svg+xml"/>
 <title>CaseLink Tips · Practical guidance by role and workflow stage</title>
 <style>
   @font-face {
@@ -642,6 +643,72 @@
     .stage-title { font-size: 32px; }
     .cover-stats { grid-template-columns: 1fr; }
   }
+
+  /* ----- Sidebar action buttons ----- */
+  .sidebar-actions { display: flex; flex-direction: column; gap: 8px; }
+  .side-btn {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 11px 14px; border-radius: 11px;
+    font-size: 14px; font-weight: 700; text-decoration: none;
+    border: 1px solid var(--line); color: var(--ink-2); background: var(--cream);
+    transition: all 0.16s;
+  }
+  .side-btn:hover { border-color: var(--ink-4); color: var(--ink); transform: translateY(-1px); }
+  .side-btn.primary { background: var(--ink); border-color: var(--ink); color: #fff; }
+  .side-btn.primary:hover { background: #000; border-color: #000; }
+
+  /* ----- Motion layer ----- */
+  @keyframes tipsUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  @keyframes barIn { from { transform: scaleX(0); } }
+  @keyframes dashFlow { to { stroke-dashoffset: -20; } }
+  @keyframes dotTravelA { 0% { transform: translateX(0); opacity: 0; } 12% { opacity: 1; } 88% { opacity: 1; } 100% { transform: translateX(150px); opacity: 0; } }
+  @keyframes dotTravelB { 0% { transform: translateX(0); opacity: 0; } 12% { opacity: 1; } 88% { opacity: 1; } 100% { transform: translateX(150px); opacity: 0; } }
+  @keyframes drawStroke { to { stroke-dashoffset: 0; } }
+  .stage-header, .role-banner, .protip,
+  .cover-tag, .cover-title, .cover-lede, .cover-flow, .cover-stats, .cover-cta,
+  .end-check, .end-title, .end-lede, .end-links { animation: tipsUp 0.55s cubic-bezier(0.22, 0.9, 0.32, 1) both; }
+  .role-banner { animation-delay: 0.08s; }
+  .protip { animation-delay: 0.12s; }
+  .cover-title { animation-delay: 0.06s; }
+  .cover-lede { animation-delay: 0.12s; }
+  .cover-flow { animation-delay: 0.18s; }
+  .cover-stats { animation-delay: 0.24s; }
+  .cover-cta { animation-delay: 0.32s; }
+  .end-title { animation-delay: 0.08s; }
+  .end-lede { animation-delay: 0.16s; }
+  .end-links { animation-delay: 0.24s; }
+  .tip {
+    animation: tipsUp 0.5s cubic-bezier(0.22, 0.9, 0.32, 1) both;
+    animation-delay: calc(120ms + var(--d, 0) * 70ms);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+  }
+  .tip:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(26, 31, 30, 0.06); }
+  .progress-fill { transform-origin: left; animation: barIn 0.8s cubic-bezier(0.22, 0.9, 0.32, 1) both; }
+
+  /* ----- Stage eyebrow icons ----- */
+  .eyebrow-ic { display: inline-flex; }
+  .eyebrow-ic svg { width: 14px; height: 14px; display: block; }
+
+  /* ----- Cover flow infographic ----- */
+  .cover-flow { margin: 28px 0 4px; }
+  .cover-flow svg { display: block; width: 100%; max-width: 460px; height: auto; }
+  .flow-dash { stroke: var(--ink-4); stroke-dasharray: 4 6; animation: dashFlow 1.1s linear infinite; }
+  .flow-dot-a { animation: dotTravelA 3s ease-in-out infinite; }
+  .flow-dot-b { animation: dotTravelB 3s ease-in-out 1.5s infinite; }
+  .flow-label { font-family: inherit; font-size: 11px; font-weight: 700; fill: var(--ink-3); letter-spacing: 0.04em; }
+
+  /* ----- End-screen check ----- */
+  .end-check { width: 64px; height: 64px; margin: 0 auto 22px; }
+  .end-check circle { stroke-dasharray: 176; stroke-dashoffset: 176; animation: drawStroke 0.8s ease-out 0.15s both; }
+  .end-check path { stroke-dasharray: 40; stroke-dashoffset: 40; animation: drawStroke 0.45s ease-out 0.85s both; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 </style>
 </head>
 <body>
@@ -736,6 +803,11 @@
       </button>
     </div>
 
+    <div class="sidebar-actions">
+      <a href="https://app.caselink.net" target="_blank" rel="noopener noreferrer" class="side-btn primary">Open the platform <span aria-hidden="true">&rarr;</span></a>
+      <a href="https://www.caselink.net" target="_blank" rel="noopener noreferrer" class="side-btn">Visit caselink.net</a>
+    </div>
+
     <div class="sidebar-foot">
       <div>CaseLink Tips · Practical guidance for the DMV rollout.</div>
       <div style="margin-top: 10px;"><a href="https://caselink.net" target="_blank" rel="noopener" class="foot-link">caselink.net</a> · <a href="mailto:support@caselink.net" class="foot-link">support@caselink.net</a></div>
@@ -824,7 +896,7 @@ const CONTENT = {
       ],
       protip: {
         title: 'Segment by role: specialists carry the monetization.',
-        body: 'Specialists pay $299 a month, or $269 on the annual plan. <strong>One additional case per month covers the subscription several times over.</strong> But that only holds if your profile is genuinely discoverable and your team is actually processing incoming referrals. Onboarding is not a soft launch — it is the moment you activate revenue.'
+        body: 'Specialists pay $299 a month, or $269 on the annual plan. <strong>One additional case per month covers the subscription several times over.</strong> But that only holds if your profile is genuinely discoverable and your team is actually processing incoming referrals. Onboarding is not a soft launch - it is the moment you activate revenue.'
       }
     },
     office: {
@@ -833,12 +905,12 @@ const CONTENT = {
       tips: [
         {
           title: 'Get the doctor to nominate two admins on the account.',
-          content: '<p>You and one backup. If both of you are ever out on the same day, the office manager for a partnered practice can be added as a temporary delegate. Never let the doctor be the only person with admin access — it creates chokepoints on their busiest days.</p>'
+          content: '<p>You and one backup. If both of you are ever out on the same day, the office manager for a partnered practice can be added as a temporary delegate. Never let the doctor be the only person with admin access - it creates chokepoints on their busiest days.</p>'
         },
         {
           title: 'Map your existing referral list into CaseLink invitations in the first week.',
           content: '<p>Pull the list of offices your practice actually refers to or receives from. Send each one a CaseLink invite with a personal note from the doctor. This mirrors your real network on the platform in one afternoon of work.</p>',
-          callout: { type: 'default', mark: 'Batch', body: 'Do this in one sitting. Momentum matters — half-invited networks stay half-populated for months.' }
+          callout: { type: 'default', mark: 'Batch', body: 'Do this in one sitting. Momentum matters - half-invited networks stay half-populated for months.' }
         },
         {
           title: 'Set the practice hours, holidays, and coverage rules once.',
@@ -846,7 +918,7 @@ const CONTENT = {
         },
         {
           title: 'Configure the default referral template with what you always need.',
-          content: '<p>If your practice always requires an X-ray, insurance card, and a signed consent — set those as required fields. GPs sending to you will see the checklist and comply automatically, eliminating half your usual follow-up calls.</p>',
+          content: '<p>If your practice always requires an X-ray, insurance card, and a signed consent - set those as required fields. GPs sending to you will see the checklist and comply automatically, eliminating half your usual follow-up calls.</p>',
           callout: { type: 'good', mark: 'Save', body: 'One well-configured intake template can save 15 to 20 minutes per case on missing-info follow-ups.' }
         }
       ],
@@ -874,7 +946,7 @@ const CONTENT = {
         {
           title: 'Attach the X-rays before you send, not after.',
           content: '<p>Half of all incoming-referral delays are the specialist waiting for imaging. Get in the habit of attaching bitewings, panos, and any relevant intraoral photos before hitting send. Two minutes of your time saves two days of theirs.</p>',
-          callout: { type: 'warn', mark: 'HIPAA', body: 'Only attach through CaseLink. Never email X-rays separately — that breaks the closed-loop record and creates PHI risk.' }
+          callout: { type: 'warn', mark: 'HIPAA', body: 'Only attach through CaseLink. Never email X-rays separately - that breaks the closed-loop record and creates PHI risk.' }
         },
         {
           title: 'Use the tooth chart to mark exactly which teeth you mean.',
@@ -888,7 +960,7 @@ const CONTENT = {
     },
     specialist: {
       title: 'Triage the inbox, then treat the case.',
-      lede: 'Incoming referrals on CaseLink are structured, so your triage is faster than reading paper. The teams that win are the ones with a defined intake ritual — not the ones who click "accept" reactively.',
+      lede: 'Incoming referrals on CaseLink are structured, so your triage is faster than reading paper. The teams that win are the ones with a defined intake ritual - not the ones who click "accept" reactively.',
       tips: [
         {
           title: 'Have your clinical coordinator triage every morning at 8am.',
@@ -916,7 +988,7 @@ const CONTENT = {
     },
     office: {
       title: 'The intake shift is where CaseLink pays back the most.',
-      lede: 'The office manager runs the intake queue. That queue is where lost referrals used to happen. On CaseLink, none of it slips — but only if the intake ritual is real.',
+      lede: 'The office manager runs the intake queue. That queue is where lost referrals used to happen. On CaseLink, none of it slips - but only if the intake ritual is real.',
       tips: [
         {
           title: 'Assign one person, one time, one review.',
@@ -928,12 +1000,12 @@ const CONTENT = {
         },
         {
           title: 'Batch your incoming acceptances in two 30-minute windows.',
-          content: '<p>8am and 2pm. Do not process one referral every 15 minutes throughout the day — you will lose focus and make triage errors. Two focused windows produce cleaner decisions.</p>',
+          content: '<p>8am and 2pm. Do not process one referral every 15 minutes throughout the day - you will lose focus and make triage errors. Two focused windows produce cleaner decisions.</p>',
           callout: { type: 'good', mark: 'Focus', body: 'Batching reduces context-switching cost. You will finish 30% faster and miss fewer flags.' }
         },
         {
           title: 'Use the internal note field liberally.',
-          content: '<p>Notes on a case that are invisible to the referring practice are perfect for internal coordination — "Patient called, wants morning appointment" or "Dr. wants to review before scheduling." Reduces sticky-note chaos on the physical desk.</p>'
+          content: '<p>Notes on a case that are invisible to the referring practice are perfect for internal coordination - "Patient called, wants morning appointment" or "Dr. wants to review before scheduling." Reduces sticky-note chaos on the physical desk.</p>'
         }
       ],
       protip: {
@@ -973,7 +1045,7 @@ const CONTENT = {
     },
     specialist: {
       title: 'Compliance is a competitive advantage you can market.',
-      lede: 'For specialists, being demonstrably HIPAA-safe is a reason for GPs to refer to you and a reason for patients to trust you. The rules are not overhead — they are a product feature you already paid for.',
+      lede: 'For specialists, being demonstrably HIPAA-safe is a reason for GPs to refer to you and a reason for patients to trust you. The rules are not overhead - they are a product feature you already paid for.',
       tips: [
         {
           title: 'Confirm every incoming CaseLink referral inside the platform.',
@@ -986,7 +1058,7 @@ const CONTENT = {
         },
         {
           title: 'Get a signed BAA on file with CaseLink at sign-up.',
-          content: '<p>CaseLink provides a Business Associate Agreement covering the vendor relationship. This is required by HIPAA. Complete it during onboarding — do not push it to "later." Your compliance officer will thank you.</p>'
+          content: '<p>CaseLink provides a Business Associate Agreement covering the vendor relationship. This is required by HIPAA. Complete it during onboarding - do not push it to "later." Your compliance officer will thank you.</p>'
         },
         {
           title: 'Never accept PHI over Instagram DMs or Facebook.',
@@ -1001,7 +1073,7 @@ const CONTENT = {
     },
     office: {
       title: 'You are the HIPAA officer for the practice, whether you signed up for it or not.',
-      lede: 'Office managers usually inherit the compliance role. CaseLink makes it easier — but only if you enforce a few clear rules with the team. Nobody else will.',
+      lede: 'Office managers usually inherit the compliance role. CaseLink makes it easier - but only if you enforce a few clear rules with the team. Nobody else will.',
       tips: [
         {
           title: 'Train new staff on CaseLink before their first case.',
@@ -1031,16 +1103,16 @@ const CONTENT = {
   close: {
     gp: {
       title: 'Track your patients through to treatment, not just to the referral.',
-      lede: 'A sent referral is not a completed one. CaseLink shows you the full arc — sent, accepted, scheduled, seen, treatment decision. Use it to prevent the drop-offs that used to invisibly cost you patients.',
+      lede: 'A sent referral is not a completed one. CaseLink shows you the full arc - sent, accepted, scheduled, seen, treatment decision. Use it to prevent the drop-offs that used to invisibly cost you patients.',
       tips: [
         {
           title: 'Review your Sent Referrals dashboard every Monday morning.',
-          content: '<p>Ten minutes, once a week. Look for referrals that have been sent for more than seven days without a scheduled appointment. Those are the ones you call the patient about — "Have you scheduled with Dr. X yet?"</p>',
+          content: '<p>Ten minutes, once a week. Look for referrals that have been sent for more than seven days without a scheduled appointment. Those are the ones you call the patient about - "Have you scheduled with Dr. X yet?"</p>',
           callout: { type: 'good', mark: 'Result', body: 'A Monday follow-up ritual can recover 15 to 20 percent of stalled referrals within a month.' }
         },
         {
           title: 'Watch the Case Progress bar for stuck cases.',
-          content: '<p>CaseLink shows the case status as a progress bar. If a case is stuck at "Reviewed" for more than five business days, message the specialist. Something is holding up the treatment decision — usually a missing insurance verification.</p>'
+          content: '<p>CaseLink shows the case status as a progress bar. If a case is stuck at "Reviewed" for more than five business days, message the specialist. Something is holding up the treatment decision - usually a missing insurance verification.</p>'
         },
         {
           title: 'Send a post-op report when the patient comes back to you.',
@@ -1053,7 +1125,7 @@ const CONTENT = {
       ],
       protip: {
         title: 'Segment by role: GPs lose revenue on invisible drop-offs.',
-        body: 'The industry average is that <strong>30 to 34 percent of dental referrals fail to complete.</strong> Most GPs never see this because they never track past the send. On CaseLink you can see the drop-off in real time — and prevent it with a Monday follow-up. That alone can grow your continuing-care revenue meaningfully.'
+        body: 'The industry average is that <strong>30 to 34 percent of dental referrals fail to complete.</strong> Most GPs never see this because they never track past the send. On CaseLink you can see the drop-off in real time - and prevent it with a Monday follow-up. That alone can grow your continuing-care revenue meaningfully.'
       }
     },
     specialist: {
@@ -1075,7 +1147,7 @@ const CONTENT = {
         },
         {
           title: 'Send the post-op update back to the referring GP within one week of treatment.',
-          content: '<p>Not just the medical courtesy — it drives repeat referrals. GPs remember specialists who follow up. They forget the ones who don\'t. Post-op reports on CaseLink are two clicks. Do it every time.</p>',
+          content: '<p>Not just the medical courtesy - it drives repeat referrals. GPs remember specialists who follow up. They forget the ones who don\'t. Post-op reports on CaseLink are two clicks. Do it every time.</p>',
           callout: { type: 'good', mark: 'Growth', body: 'Specialists who consistently send post-op reports receive 40% more repeat referrals from the same GPs.' }
         }
       ],
@@ -1086,7 +1158,7 @@ const CONTENT = {
     },
     office: {
       title: 'The close-the-loop step is a workflow, not a task.',
-      lede: 'Nobody in the practice will remember to update case status without a system. That system is you. CaseLink gives you the dashboards — your job is turning them into a routine.',
+      lede: 'Nobody in the practice will remember to update case status without a system. That system is you. CaseLink gives you the dashboards - your job is turning them into a routine.',
       tips: [
         {
           title: 'Build a weekly stalled-case review.',
@@ -1094,7 +1166,7 @@ const CONTENT = {
         },
         {
           title: 'Add scheduling status manually when the patient books through a phone call.',
-          content: '<p>Not all patients book through the platform. When your front desk takes a scheduling call, they should update the CaseLink case status immediately — not "later." The record only works if it reflects reality.</p>',
+          content: '<p>Not all patients book through the platform. When your front desk takes a scheduling call, they should update the CaseLink case status immediately - not "later." The record only works if it reflects reality.</p>',
           callout: { type: 'warn', mark: 'Habit', body: 'Cases with status not updated for 30+ days should be flagged. They distort your metrics.' }
         },
         {
@@ -1120,7 +1192,7 @@ const CONTENT = {
       tips: [
         {
           title: 'Track specialist response times per practice.',
-          content: '<p>Your dashboard shows the average time each specialist takes to accept, schedule, and see referrals from you. If one specialist is consistently three times slower than the others, your patients notice — even if you don\'t.</p>',
+          content: '<p>Your dashboard shows the average time each specialist takes to accept, schedule, and see referrals from you. If one specialist is consistently three times slower than the others, your patients notice - even if you don\'t.</p>',
           callout: { type: 'default', mark: 'Signal', body: 'A specialist averaging more than 3 days to first response deserves a conversation, not more referrals.' }
         },
         {
@@ -1133,7 +1205,7 @@ const CONTENT = {
         },
         {
           title: 'Use the earnings-per-referred-case data specialists share with you.',
-          content: '<p>Some specialists share treatment-value data back. It helps you understand the actual downstream value of a referral. Not a vanity metric — a way to see the network as a whole.</p>'
+          content: '<p>Some specialists share treatment-value data back. It helps you understand the actual downstream value of a referral. Not a vanity metric - a way to see the network as a whole.</p>'
         }
       ],
       protip: {
@@ -1143,7 +1215,7 @@ const CONTENT = {
     },
     specialist: {
       title: 'Prove ROI to your practice, prove your value to the network.',
-      lede: 'Specialists paying $299/month want to see the return. CaseLink makes it obvious — but only if you use the analytics deliberately. This is not vanity reporting. It is the difference between renewing and cancelling.',
+      lede: 'Specialists paying $299/month want to see the return. CaseLink makes it obvious - but only if you use the analytics deliberately. This is not vanity reporting. It is the difference between renewing and cancelling.',
       tips: [
         {
           title: 'Calculate your CaseLink ROI monthly.',
@@ -1152,7 +1224,7 @@ const CONTENT = {
         },
         {
           title: 'Segment your incoming referrals by GP practice.',
-          content: '<p>Which GPs send you the most? Which send you the highest-value cases? Which have the highest patient-show rate? Those are your top three relationships. Nurture them explicitly — a lunch, a quarterly update, a thank-you note.</p>'
+          content: '<p>Which GPs send you the most? Which send you the highest-value cases? Which have the highest patient-show rate? Those are your top three relationships. Nurture them explicitly - a lunch, a quarterly update, a thank-you note.</p>'
         },
         {
           title: 'Track your acceptance rate over time.',
@@ -1171,7 +1243,7 @@ const CONTENT = {
     },
     office: {
       title: 'Analytics is the office manager\'s reporting to the practice.',
-      lede: 'Doctors do not want to read dashboards. They want a two-line summary of what changed and what to do about it. That summary is your job. CaseLink gives you the data — you produce the summary.',
+      lede: 'Doctors do not want to read dashboards. They want a two-line summary of what changed and what to do about it. That summary is your job. CaseLink gives you the data - you produce the summary.',
       tips: [
         {
           title: 'Prepare a monthly one-page practice referral summary for the doctor.',
@@ -1210,6 +1282,32 @@ let state = {
 // ==========================
 // Renderers
 // ==========================
+const STAGE_ICONS = {
+  connect: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7.1-7.1l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7.1 7.1l1.7-1.7"/></svg>',
+  handoff: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3l4 4-4 4"/><path d="M21 7H9a4 4 0 0 0-4 4v1"/><path d="M7 21l-4-4 4-4"/><path d="M3 17h12a4 4 0 0 0 4-4v-1"/></svg>',
+  hipaa: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>',
+  close: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v6h-6"/></svg>',
+  growth: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>'
+};
+
+function animateCoverStats() {
+  document.querySelectorAll('.cover-stat-num').forEach(el => {
+    const raw = el.textContent.trim();
+    const suffix = raw.endsWith('+') ? '+' : '';
+    const target = parseInt(raw, 10);
+    if (isNaN(target)) return;
+    const t0 = performance.now();
+    const dur = 700;
+    function tick(now) {
+      const k = Math.min(1, (now - t0) / dur);
+      const eased = 1 - Math.pow(1 - k, 3);
+      el.textContent = Math.round(target * eased) + suffix;
+      if (k < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  });
+}
+
 function renderCover() {
   return `
     <div class="cover">
@@ -1222,8 +1320,26 @@ function renderCover() {
         <span class="cover-title-accent">by role and by moment.</span>
       </h1>
       <p class="cover-lede">
-        Practical guidance for General Dentists, Specialists, and Office Managers using CaseLink to run their referral workflow. Structured across five stages — from first sign-up to practice-level analytics.
+        Practical guidance for General Dentists, Specialists, and Office Managers using CaseLink to run their referral workflow. Structured across five stages - from first sign-up to practice-level analytics.
       </p>
+            <div class="cover-flow" aria-hidden="true">
+        <svg viewBox="0 0 460 72">
+          <circle cx="36" cy="28" r="17" fill="var(--blue-tint)" stroke="var(--blue)" stroke-width="1.5"/>
+          <text x="36" y="32" text-anchor="middle" font-size="11" font-weight="800" fill="var(--blue)">GP</text>
+          <line x1="60" y1="28" x2="196" y2="28" class="flow-dash" stroke-width="1.5"/>
+          <circle cx="64" cy="28" r="3" fill="var(--blue)" class="flow-dot-a"/>
+          <circle cx="230" cy="28" r="21" fill="#fff" stroke="var(--line)" stroke-width="1.5"/>
+          <defs><linearGradient id="cf-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--blue)"/><stop offset="1" stop-color="var(--mint)"/></linearGradient></defs>
+          <circle cx="230" cy="28" r="9" fill="url(#cf-g)"/>
+          <line x1="264" y1="28" x2="400" y2="28" class="flow-dash" stroke-width="1.5"/>
+          <circle cx="268" cy="28" r="3" fill="var(--green)" class="flow-dot-b"/>
+          <circle cx="424" cy="28" r="17" fill="var(--mint-tint)" stroke="var(--green)" stroke-width="1.5"/>
+          <text x="424" y="32" text-anchor="middle" font-size="10" font-weight="800" fill="var(--green)">SP</text>
+          <text x="36" y="63" text-anchor="middle" class="flow-label">REFER</text>
+          <text x="230" y="63" text-anchor="middle" class="flow-label">CASELINK</text>
+          <text x="424" y="63" text-anchor="middle" class="flow-label">TREAT</text>
+        </svg>
+      </div>
       <div class="cover-stats">
         <div class="cover-stat">
           <div class="cover-stat-num">5</div>
@@ -1231,7 +1347,7 @@ function renderCover() {
         </div>
         <div class="cover-stat">
           <div class="cover-stat-num">3</div>
-          <div class="cover-stat-label">Roles served — GP, Specialist, Office Manager</div>
+          <div class="cover-stat-label">Roles served - GP, Specialist, Office Manager</div>
         </div>
         <div class="cover-stat">
           <div class="cover-stat-num">60+</div>
@@ -1239,7 +1355,7 @@ function renderCover() {
         </div>
       </div>
       <button class="cover-cta" onclick="setStage(1)">
-        Start with Stage 01 — Get Connected
+        Start with Stage 01 - Get Connected
         <span>→</span>
       </button>
     </div>
@@ -1249,9 +1365,13 @@ function renderCover() {
 function renderEnd() {
   return `
     <div class="end">
+      <svg class="end-check" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+        <circle cx="32" cy="32" r="28" stroke="var(--green)" stroke-width="3" stroke-linecap="round"/>
+        <path d="M21 33l8 8 15-16" stroke="var(--green)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
       <h1 class="end-title">That's the workflow.</h1>
       <p class="end-lede">
-        You've seen how CaseLink pays off at every stage — onboarding, hand-off, compliance, closing the loop, and growth. The platform does the plumbing. Your rituals do the rest.
+        You've seen how CaseLink pays off at every stage - onboarding, hand-off, compliance, closing the loop, and growth. The platform does the plumbing. Your rituals do the rest.
       </p>
       <div class="end-links">
         <button class="nav-btn primary" onclick="setStage(0)">Back to overview</button>
@@ -1274,7 +1394,7 @@ function renderStage(stageIdx) {
   return `
     <div class="topstrip">
       <div class="breadcrumb">
-        <span>${ROLES[state.role]}</span> · <strong>Stage 0${stageIdx} — ${stage.label}</strong>
+        <span>${ROLES[state.role]}</span> · <strong>Stage 0${stageIdx} - ${stage.label}</strong>
       </div>
       <div class="nav-controls">
         <button class="nav-btn" onclick="prevStage()" ${stageIdx === 0 ? 'disabled' : ''}>← Prev</button>
@@ -1286,7 +1406,7 @@ function renderStage(stageIdx) {
 
     <div class="stage-header">
       <div class="stage-eyebrow">
-        <span>◆</span>
+        <span class="eyebrow-ic">${STAGE_ICONS[stage.id] || ''}</span>
         ${stage.eyebrow}
       </div>
       <h1 class="stage-title">${content.title}</h1>
@@ -1302,14 +1422,14 @@ function renderStage(stageIdx) {
 
     <div class="tips-grid">
       ${content.tips.map((tip, i) => `
-        <div class="tip">
+        <div class="tip" style="--d:${i}">
           <div class="tip-number">${i + 1}</div>
           <div class="tip-body">
             <h3 class="tip-title">${tip.title}</h3>
             <div class="tip-content">${tip.content}</div>
             ${tip.callout ? `
               <div class="tip-callout ${tip.callout.type}">
-                <span class="tip-callout-mark">${tip.callout.mark} —</span>
+                <span class="tip-callout-mark">${tip.callout.mark} -</span>
                 <span>${tip.callout.body}</span>
               </div>
             ` : ''}
@@ -1335,6 +1455,7 @@ function render() {
   const main = document.getElementById('main');
   if (state.stage === 0) {
     main.innerHTML = renderCover();
+    animateCoverStats();
   } else if (state.stage === STAGES.length - 1) {
     main.innerHTML = renderEnd();
   } else {

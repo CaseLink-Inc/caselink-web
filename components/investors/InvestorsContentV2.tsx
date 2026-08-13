@@ -85,7 +85,7 @@ function Reveal({ as: Tag = "div", className = "", children, delay }: any) {
    Deliberately loud, dashed amber box. Marks content Nick still needs
    to supply or verify. Impossible to mistake for finished copy. Strip
    every one of these before the URL goes out. */
-function DraftNote({ label = "Draft — needs your content", children }: { label?: string; children: React.ReactNode }) {
+function DraftNote({ label = "Draft - needs your content", children }: { label?: string; children: React.ReactNode }) {
   return (
     <div className="invv2-todo" role="note">
       <span className="invv2-todo-tag" aria-hidden="true" />
@@ -308,7 +308,7 @@ export default function InvestorsContentV2() {
                 &ldquo;3 endodontic groups, 4 oral surgery, 5 general dentists across
                 Fairfax, Arlington, and Montgomery.&rdquo; Specificity converts.
               </DraftNote>
-              <DraftNote label="Testimonial — pending">
+              <DraftNote label="Testimonial - pending">
                 Pull-quote from a pilot here once we have it. Targeting the
                 Casagrande quote. Format: one sentence plus name, role, practice.
               </DraftNote>
@@ -542,7 +542,7 @@ export default function InvestorsContentV2() {
         <div className="wrap">
           <Panel className="invv2-panel-prose">
             <header className="inv-panel-head">
-              <span className="inv-panel-num">—</span>
+              <span className="inv-panel-num">-</span>
               <h2 className="inv-panel-title">Market</h2>
               <span className="inv-panel-status-meta">Beachhead to national</span>
             </header>
@@ -599,7 +599,7 @@ export default function InvestorsContentV2() {
               <div className="invv2-why-text">
                 <h3 className="invv2-why-name">Nick Campbell</h3>
                 <div className="invv2-why-role">Co-Founder and CEO · Washington, DC</div>
-                <DraftNote label="Founder bio — needs Nick">
+                <DraftNote label="Founder bio - needs Nick">
                   Two sentences: background, why dentistry, why now. Then one
                   credibility line (prior startup, dental-industry experience, or
                   technical background). Investors buy the founder at pre-seed, so
