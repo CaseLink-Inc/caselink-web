@@ -45,6 +45,11 @@ export default function ContactForm() {
     payload.subject = "New CaseLink contact form submission";
     payload.from_name = "CaseLink";
 
+    // Unchecked checkboxes are absent from FormData. Record consent
+    // explicitly either way so every submission carries a clear trail.
+    payload.transactional_consent = payload.transactional_consent ? "yes" : "no";
+    payload.marketing_consent = payload.marketing_consent ? "yes" : "no";
+
     // hCaptcha (enabled in the Web3Forms dashboard) injects an `h-captcha-response`
     // hidden input once the challenge is solved. If the user submits before solving
     // it, Web3Forms would reject the request with a generic 400, so we catch it
@@ -190,10 +195,48 @@ export default function ContactForm() {
               placeholder="Tell us about your referral workflow today. The more context, the better we can help."
             />
           </div>
-          <label className="check-row">
-            <input type="checkbox" required />
-            <span>I agree to be contacted by CaseLink about my inquiry. No spam, no shared data, ever.</span>
-          </label>
+          <div className="optin-block">
+            <p className="optin-intro">
+              Choose how CaseLink can reach you. You can change this any time
+              in Settings.
+            </p>
+            <label className="check-row optin-row">
+              <input type="checkbox" name="transactional_consent" value="yes" required />
+              <span>
+                <strong className="optin-label">
+                  Account and referral notifications<span className="req">*</span>
+                </strong>
+                <span className="optin-fine">
+                  By checking this box, I consent to receive transactional
+                  messages from CaseLink, Inc. related to my account or the
+                  services I have requested. These messages may include
+                  referral notifications, case updates, and account
+                  notifications among others. Message frequency may vary.
+                  Message &amp; Data rates may apply. Reply HELP for help or
+                  STOP to opt-out.
+                </span>
+              </span>
+            </label>
+            <label className="check-row optin-row">
+              <input type="checkbox" name="marketing_consent" value="yes" />
+              <span>
+                <strong className="optin-label">Product news and offers</strong>
+                <span className="optin-fine">
+                  By checking this box, I consent to receive marketing and
+                  promotional messages from CaseLink, Inc., including new
+                  product updates, special offers, and discounts among others.
+                  Consent is not a condition of purchase. Message frequency
+                  may vary. Message &amp; Data rates may apply. Reply HELP for
+                  help or STOP to opt-out.
+                </span>
+              </span>
+            </label>
+            <p className="optin-foot">
+              See our <a href="/privacy">Privacy Policy</a> and{" "}
+              <a href="/terms">Terms</a>. You can unsubscribe from marketing
+              email any time using the link in the footer.
+            </p>
+          </div>
           <div className="h-captcha" data-captcha="true" />
           {captchaMissing && (
             <p
