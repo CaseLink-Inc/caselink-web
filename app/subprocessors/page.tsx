@@ -153,9 +153,9 @@ export default function SubprocessorsPage() {
             </p>
             <p>
               This page is incorporated by reference into every executed
-              CaseLink <a href="/baa">Business Associate Agreement</a>. It lists
-              the categories of Subprocessors we use and describes the
-              safeguards we require of each.
+              CaseLink Business Associate Agreement. It lists the categories
+              of Subprocessors we use and describes the safeguards we require
+              of each.
             </p>
 
             <section id="commitments" className="privacy-section">

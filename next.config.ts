@@ -52,7 +52,10 @@ const securityHeaders = [
       // Calendly popup runs in an iframe. hCaptcha challenge also iframed.
       "frame-src 'self' https://calendly.com https://*.calendly.com https://*.hcaptcha.com https://hcaptcha.com",
       // Web3Forms POST + Calendly tracking + hCaptcha verification + GA4 collect.
-      "connect-src 'self' https://api.web3forms.com https://calendly.com https://*.calendly.com https://assets.calendly.com https://*.hcaptcha.com https://hcaptcha.com https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com",
+      // GA4 beacons go to the bare analytics.google.com apex (not covered by
+      // the *.analytics.google.com wildcard), and with Google signals enabled
+      // also to www.google.com/g/collect and stats.g.doubleclick.net.
+      "connect-src 'self' https://api.web3forms.com https://calendly.com https://*.calendly.com https://assets.calendly.com https://*.hcaptcha.com https://hcaptcha.com https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://analytics.google.com https://stats.g.doubleclick.net https://www.google.com",
       // Stop the site from being framed by anyone else.
       "frame-ancestors 'none'",
       "base-uri 'self'",

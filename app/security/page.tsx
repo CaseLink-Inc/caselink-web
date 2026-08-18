@@ -80,9 +80,9 @@ export default function SecurityPage() {
             </p>
             <p>
               The controls described here are the baseline commitments
-              incorporated by reference into every CaseLink{" "}
-              <a href="/baa">Business Associate Agreement</a>. We will provide
-              reasonable advance notice of any material reduction in scope.
+              incorporated by reference into every CaseLink Business Associate
+              Agreement. We will provide reasonable advance notice of any
+              material reduction in scope.
             </p>
 
             <section id="encryption" className="privacy-section">
