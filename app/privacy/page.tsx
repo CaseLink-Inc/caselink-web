@@ -27,8 +27,9 @@ const sections = [
   { id: "children", n: "10", title: "Children’s Privacy" },
   { id: "international", n: "11", title: "International Users" },
   { id: "thirdparty", n: "12", title: "Third-Party Links" },
-  { id: "changes", n: "13", title: "Changes to This Policy" },
-  { id: "contact", n: "14", title: "Contact Us" },
+  { id: "sms", n: "13", title: "SMS and Text Messaging" },
+  { id: "changes", n: "14", title: "Changes to This Policy" },
+  { id: "contact", n: "15", title: "Contact Us" },
 ];
 
 export default function PrivacyPage() {
@@ -45,7 +46,7 @@ export default function PrivacyPage() {
             communication platform.
           </p>
           <p className="privacy-effective">
-            <strong>Effective:</strong> 18 May 2026
+            <strong>Effective:</strong> 20 August 2026
           </p>
         </div>
       </section>
@@ -304,6 +305,14 @@ export default function PrivacyPage() {
                 including when you choose to integrate the Service with a
                 third-party tool.
               </p>
+
+              <h3>4.6 Mobile Information</h3>
+              <p>
+                No mobile information will be shared with third
+                parties/affiliates for marketing/promotional purposes.
+                Information sharing to subcontractors in support services, such
+                as customer service, is permitted.
+              </p>
             </section>
 
             <section id="phi" className="privacy-section">
@@ -511,8 +520,44 @@ export default function PrivacyPage() {
               </p>
             </section>
 
+            <section id="sms" className="privacy-section">
+              <h2>13. SMS and Text Messaging</h2>
+              <p>
+                CaseLink offers an SMS text messaging program for users who
+                choose to receive text messages from us. The program includes:
+              </p>
+              <ul>
+                <li>
+                  <strong>Account and referral notifications.</strong>{" "}
+                  Transactional messages related to your account or the
+                  services you have requested, such as referral notifications,
+                  case updates, and account alerts.
+                </li>
+                <li>
+                  <strong>Product news and offers.</strong> Optional marketing
+                  and promotional messages, including new product updates,
+                  special offers, and discounts.
+                </li>
+              </ul>
+              <p>
+                You opt in to text messages by checking the corresponding
+                consent box on our <a href="/contact">contact form</a> or in
+                the Service, where you can also update your preferences in
+                Settings at any time. Consent to marketing messages is not a
+                condition of purchase.
+              </p>
+              <p>
+                Message frequency may vary. Message and data rates may apply.
+                Reply HELP to any text message for help or STOP to opt out at
+                any time. Opting out of text messages does not affect
+                transactional email or in-Service notifications. Mobile
+                information collected through the program is handled as
+                described in Section 4.6 of this Policy.
+              </p>
+            </section>
+
             <section id="changes" className="privacy-section">
-              <h2>13. Changes to This Policy</h2>
+              <h2>14. Changes to This Policy</h2>
               <p>
                 We may update this Policy from time to time. If a change is
                 material, we will provide reasonable notice by posting an
@@ -525,7 +570,7 @@ export default function PrivacyPage() {
             </section>
 
             <section id="contact" className="privacy-section">
-              <h2>14. Contact Us</h2>
+              <h2>15. Contact Us</h2>
               <p>
                 If you have questions about this Policy or our privacy
                 practices, contact us at:

@@ -29,8 +29,9 @@ const sections = [
   { id: "liability", n: "12", title: "Limitation of Liability" },
   { id: "indemnification", n: "13", title: "Indemnification" },
   { id: "law", n: "14", title: "Governing Law and Disputes" },
-  { id: "changes", n: "15", title: "Changes to These Terms" },
-  { id: "contact", n: "16", title: "Contact Us" },
+  { id: "sms", n: "15", title: "SMS and Text Messages" },
+  { id: "changes", n: "16", title: "Changes to These Terms" },
+  { id: "contact", n: "17", title: "Contact Us" },
 ];
 
 export default function TermsPage() {
@@ -46,7 +47,7 @@ export default function TermsPage() {
             CaseLink referral and case-collaboration platform.
           </p>
           <p className="privacy-effective">
-            <strong>Effective:</strong> 11 June 2026
+            <strong>Effective:</strong> 20 August 2026
           </p>
         </div>
       </section>
@@ -412,8 +413,41 @@ export default function TermsPage() {
               </p>
             </section>
 
+            <section id="sms" className="privacy-section">
+              <h2>15. SMS and Text Messages</h2>
+              <p>
+                If you opt in to receive text messages from CaseLink, you may
+                receive the following types of messages:
+              </p>
+              <ul>
+                <li>
+                  <strong>Transactional and account messages.</strong> Referral
+                  notifications, case updates, account alerts, and other
+                  messages related to your account or the services you have
+                  requested.
+                </li>
+                <li>
+                  <strong>Marketing and promotional messages.</strong> New
+                  product updates, special offers, and discounts, sent only if
+                  you have separately opted in to marketing messages.
+                </li>
+              </ul>
+              <p>
+                Message frequency may vary. To stop receiving messages, reply
+                STOP to any text message. Reply HELP to any text message for
+                help. Message and data rates may apply. Check with your
+                carrier for details. Carriers are not liable for delayed or
+                undelivered messages.
+              </p>
+              <p>
+                Consent to marketing messages is not a condition of purchase.
+                For details on how mobile information is handled, see our{" "}
+                <a href="/privacy">Privacy Policy</a>.
+              </p>
+            </section>
+
             <section id="changes" className="privacy-section">
-              <h2>15. Changes to These Terms</h2>
+              <h2>16. Changes to These Terms</h2>
               <p>
                 We may update these Terms from time to time. If a change is
                 material, we will provide reasonable notice by posting an
@@ -426,7 +460,7 @@ export default function TermsPage() {
             </section>
 
             <section id="contact" className="privacy-section">
-              <h2>16. Contact Us</h2>
+              <h2>17. Contact Us</h2>
               <p>Questions about these Terms can be sent to:</p>
               <div className="privacy-contact-card">
                 <p className="name">CaseLink, Inc.</p>
