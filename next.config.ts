@@ -43,7 +43,8 @@ const securityHeaders = [
       "default-src 'self'",
       // Next.js + JSON-LD + Calendly widget all need inline + eval'd code.
       // googletagmanager.com serves the GA4 gtag.js library.
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://assets.calendly.com https://calendly.com https://va.vercel-scripts.com https://web3forms.com https://*.hcaptcha.com https://hcaptcha.com https://www.googletagmanager.com",
+      // links.caselink.net serves the LeadConnector CRM tracker.
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://assets.calendly.com https://calendly.com https://va.vercel-scripts.com https://web3forms.com https://*.hcaptcha.com https://hcaptcha.com https://www.googletagmanager.com https://links.caselink.net",
       // Fonts and stylesheets — self-hosted Satoshi + Calendly widget CSS.
       "style-src 'self' 'unsafe-inline' https://assets.calendly.com https://*.hcaptcha.com https://hcaptcha.com",
       "font-src 'self' data:",
@@ -55,7 +56,9 @@ const securityHeaders = [
       // GA4 beacons go to the bare analytics.google.com apex (not covered by
       // the *.analytics.google.com wildcard), and with Google signals enabled
       // also to www.google.com/g/collect and stats.g.doubleclick.net.
-      "connect-src 'self' https://api.web3forms.com https://calendly.com https://*.calendly.com https://assets.calendly.com https://*.hcaptcha.com https://hcaptcha.com https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://analytics.google.com https://stats.g.doubleclick.net https://www.google.com",
+      // links.caselink.net + backend.leadconnectorhq.com receive the CRM
+      // tracker's form-submission reports.
+      "connect-src 'self' https://api.web3forms.com https://calendly.com https://*.calendly.com https://assets.calendly.com https://*.hcaptcha.com https://hcaptcha.com https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://analytics.google.com https://stats.g.doubleclick.net https://www.google.com https://links.caselink.net https://backend.leadconnectorhq.com",
       // Stop the site from being framed by anyone else.
       "frame-ancestors 'none'",
       "base-uri 'self'",

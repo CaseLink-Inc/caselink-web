@@ -169,6 +169,16 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', '${GA_MEASUREMENT_ID}');`}
         </Script>
+
+        {/* LeadConnector CRM tracker (served from the branded
+            links.caselink.net subdomain). Reports form submissions into the
+            CRM so follow-up sequences start automatically. The tracking ID
+            is CaseLink-specific. Do not change it. */}
+        <Script
+          src="https://links.caselink.net/js/external-tracking.js"
+          data-tracking-id="tk_a9be11cdd564409692faee1ea3a35f43"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
