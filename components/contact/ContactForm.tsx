@@ -201,10 +201,10 @@ export default function ContactForm() {
               in Settings.
             </p>
             <label className="check-row optin-row">
-              <input type="checkbox" name="transactional_consent" value="yes" required />
+              <input type="checkbox" name="transactional_consent" value="yes" />
               <span>
                 <strong className="optin-label">
-                  Account and referral notifications<span className="req">*</span>
+                  Account and referral notifications
                 </strong>
                 <span className="optin-fine">
                   By checking this box, I consent to receive transactional
