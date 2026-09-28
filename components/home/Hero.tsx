@@ -19,6 +19,7 @@ export default function Hero() {
             Built in Washington, DC
           </span>
           <h1>
+            <span className="hero-kicker">Dental referral platform for GPs and specialists</span>
             <span className="line"><span>Your link to</span></span>
             <span className="line"><span className="grad-text">better patient care.</span></span>
           </h1>

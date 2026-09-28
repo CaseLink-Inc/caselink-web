@@ -3,6 +3,7 @@ import CtaBand from "@/components/home/CtaBand";
 import ResourceLibrary from "@/components/resources/ResourceLibrary";
 import { getResources } from "@/lib/resources";
 import { SIGNUP_URL } from "@/lib/urls";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 const SITE = "https://www.caselink.net";
 const DESCRIPTION =
@@ -42,6 +43,7 @@ export default function ResourcesPage() {
 
   return (
     <>
+      <Breadcrumbs trail={[{ name: "Resources", path: "/resources" }]} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

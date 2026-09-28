@@ -155,8 +155,10 @@ nav.site-nav{
 .hero h1{font-size:78px;margin:22px 0 24px;color:#1A1F1E}
 .hero h1 .line{display:block;overflow:hidden}
 .hero h1 .line span{display:inline-block;animation:rise .9s cubic-bezier(0.16,1,0.3,1) both}
-.hero h1 .line:nth-child(2) span{animation-delay:.1s}
-.hero h1 .line:nth-child(3) span{animation-delay:.2s}
+.hero h1 .line + .line span{animation-delay:.1s}
+.hero h1 .line + .line + .line span{animation-delay:.2s}
+/* Keyword line inside the home H1 (SEO). Small, quiet, sits above the slogan. */
+.hero h1 .hero-kicker{display:block;font-size:16px;line-height:1.4;font-weight:600;letter-spacing:0;color:#4A5250;margin:0 0 14px;animation:fadeUp 1s .15s both}
 @keyframes rise{from{transform:translateY(110%)}to{transform:translateY(0)}}
 .hero p.sub{font-size:18px;color:#4A5250;max-width:520px;margin-bottom:32px;line-height:1.55;animation:fadeUp 1s .4s both}
 .hero-cta{display:flex;gap:12px;animation:fadeUp 1s .55s both;flex-wrap:wrap}
@@ -1330,6 +1332,7 @@ body.mob-open{overflow:hidden}
   .hero h1{font-size:48px;margin:18px 0 22px}
   .hero p.sub{font-size:15px;margin-bottom:24px}
   .hero-tag{font-size:11px}
+  .hero h1 .hero-kicker{font-size:14px;margin-bottom:10px}
   .about-hero h1{font-size:34px}
   .contact-hero h1{font-size:30px}
   /* Unified mobile section title size. Every section heading lands at
@@ -1695,6 +1698,7 @@ body.mob-open{overflow:hidden}
    ===================================================================== */
 @media (max-width:900px){
   .hero h1 .line span,
+  .hero h1 .hero-kicker,
   .hero-tag,
   .hero p.sub,
   .hero-cta,
@@ -2426,6 +2430,35 @@ body[data-inv-page="true"] .calendly-badge-widget{display:none !important}
   .geo-hero-cta{flex-direction:column}
   .geo-hero-cta .btn{justify-content:center;width:100%}
   .geo-hero-proof{flex-direction:column;gap:10px}
+}
+
+/* ============================================================
+   PRICING PAGE + FAQ HUB (/pricing, /faqs). Reuse the .geo-* hero
+   and cards, the home Pricing section, and the .res-faq-* accordion.
+   ============================================================ */
+.pricing-page-hero{padding-bottom:24px}
+.pricing-page-hero + .pricing-sec{background:#EDF2FB;padding-top:40px}
+/* The page hero already carries the heading, so keep only the billing toggle. */
+.pricing-page-hero + .pricing-sec .pricing-head{margin-bottom:40px}
+.pricing-page-hero + .pricing-sec .pricing-head > :not(.bill-toggle){display:none}
+.geo-card p a,.section-head p a{color:#3E8EFF;text-decoration:underline;text-underline-offset:2px}
+
+.faqhub-jump{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
+.faqhub-jump a{display:inline-flex;align-items:center;padding:9px 15px;background:#fff;border:1px solid #E8EEF8;border-radius:999px;font-size:13.5px;font-weight:600;color:#1A1F1E;text-decoration:none;transition:border-color .2s ease,color .2s ease}
+.faqhub-jump a:hover{border-color:rgba(62,142,255,0.3);color:#3E8EFF}
+.faqhub-main{padding:72px 0 96px}
+.faqhub-inner{max-width:840px}
+.faqhub-group{scroll-margin-top:110px}
+.faqhub-group + .faqhub-group{margin-top:56px}
+.faqhub-group h2{font-size:28px;letter-spacing:-0.02em;color:#1A1F1E;margin:0 0 20px;font-weight:800}
+
+@media (max-width:900px){
+  .faqhub-main{padding:56px 0 70px}
+  .faqhub-group + .faqhub-group{margin-top:44px}
+}
+@media (max-width:640px){
+  .faqhub-group h2{font-size:23px}
+  .faqhub-jump a{font-size:13px;padding:8px 13px}
 }
 
 /* Honor users who request reduced motion. Same payoff at any width. */

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
   title: "Subprocessors",
@@ -108,6 +109,7 @@ const withoutPhi = [
 export default function SubprocessorsPage() {
   return (
     <>
+      <Breadcrumbs trail={[{ name: "Subprocessors", path: "/subprocessors" }]} />
       <section className="privacy-hero">
         <div className="privacy-hero-bg" />
         <div className="wrap privacy-hero-inner">

@@ -280,7 +280,7 @@ export const resources: Resource[] = [
       },
       {
         q: "Is CaseLink HIPAA aligned?",
-        a: "Yes. End-to-end encryption and audit logs across all case activity, with Business Associate Agreements available to subscribed specialist practices.",
+        a: "Yes. End-to-end encryption and audit logs across all case activity, with a Business Associate Agreement signed on signup with every practice.",
       },
       {
         q: "What if the specialist I want is not on CaseLink?",
@@ -433,7 +433,7 @@ export const resources: Resource[] = [
       },
       {
         q: "Is the platform HIPAA aligned?",
-        a: "Yes. End-to-end encryption and audit logs for all case activity. Business Associate Agreements are available to subscribed specialist practices.",
+        a: "Yes. End-to-end encryption and audit logs for all case activity. CaseLink signs a Business Associate Agreement on signup with every practice.",
       },
       {
         q: "Can my front desk manage referrals without me?",
@@ -513,7 +513,7 @@ export const resources: Resource[] = [
       },
       {
         q: "Is CaseLink HIPAA aligned?",
-        a: "Yes. End-to-end encryption, audit logs, and Business Associate Agreements available to subscribed specialists.",
+        a: "Yes. End-to-end encryption, audit logs, and a Business Associate Agreement signed on signup with every practice.",
       },
       {
         q: "How much does CaseLink cost?",

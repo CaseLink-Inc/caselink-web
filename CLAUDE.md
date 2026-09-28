@@ -55,6 +55,10 @@ app/
                           accordion, BlogPosting + FAQPage JSON-LD,
                           per-article og:image from the card thumbnail.
   dental-referral-platform-dc/  SEO geo landing page (footer-linked)
+  pricing/page.tsx        Pricing page (reuses home Pricing cards, per-plan
+                          Offer JSON-LD, pricing FAQs). Nav + footer link here.
+  faqs/page.tsx           FAQ hub, content in lib/faqs.ts, FAQPage JSON-LD
+                          generated from the same list the page renders.
   investors/, investors-v2/     Live investor brief + advisor-feedback
                           rebuild draft (v2 has draft-note callouts
                           awaiting Nick's content; pick one, delete other)
@@ -66,6 +70,11 @@ app/
                           AI crawlers (GPTBot, ClaudeBot, Perplexity, etc.)
 
 content/resources/*.md    Article prose bodies (rendered via react-markdown)
+lib/faqs.ts               FAQ hub content (grouped). Restates facts already on
+                          the site only. Pricing group also feeds /pricing.
+lib/breadcrumbs.ts        BreadcrumbList JSON-LD builder. Every inner page
+                          renders <Breadcrumbs trail=... /> (schema only, no
+                          visible bar). Add it to any new page.
 lib/resources.ts          Article catalog: metadata, categories, key stats,
                           FAQs, layout recipes, thumbnails + alt text
 lib/resourceBody.ts       Loads content/resources/<slug>.md at build time
@@ -175,6 +184,18 @@ Vercel picks it up in ~30 seconds.
 
 ## Recent significant changes (most recent first)
 
+- **AI-visibility pass** (2026-09-28): new `/pricing` and `/faqs`
+  (27 Q&As, 6 groups) pages, both in sitemap + llms.txt + footer, nav
+  Pricing now points to `/pricing`. BreadcrumbList JSON-LD on every
+  inner page via `components/Breadcrumbs.tsx`. Home H1 gained a small
+  keyword line ("Dental referral platform for GPs and specialists")
+  above the unchanged slogan (`.hero-kicker`). llms.txt now lists
+  pricing, FAQs, security, subprocessors. **BAA policy decided: signed
+  on signup with EVERY practice** (user, 2026-09-28). Marketing copy
+  (DC page, 3 article FAQs) aligned. Nick confirmed every practice
+  must sign the BAA, so `/terms` section 5 was updated to match.
+  Vercel apex redirect `caselink.net` -> `www` switched from 307 to
+  308 (permanent) in project Settings -> Domains, verified 2026-09-28.
 - **Terms of Service at `/terms`** (2026-06-12): full ToS mirroring the
   privacy page treatment (Legal hero, 16-section TOC, contact card).
   Covers not-a-PMS/no-medical-advice service definition, free-GP/paid

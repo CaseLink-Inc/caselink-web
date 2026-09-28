@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
@@ -35,6 +36,7 @@ const sections = [
 export default function PrivacyPage() {
   return (
     <>
+      <Breadcrumbs trail={[{ name: "Privacy Policy", path: "/privacy" }]} />
       <section className="privacy-hero">
         <div className="privacy-hero-bg" />
         <div className="wrap privacy-hero-inner">

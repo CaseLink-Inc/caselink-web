@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
@@ -37,6 +38,7 @@ const sections = [
 export default function TermsPage() {
   return (
     <>
+      <Breadcrumbs trail={[{ name: "Terms of Service", path: "/terms" }]} />
       <section className="privacy-hero">
         <div className="privacy-hero-bg" />
         <div className="wrap privacy-hero-inner">
@@ -215,8 +217,9 @@ export default function TermsPage() {
                 under HIPAA, the parties&rsquo; obligations with respect to
                 PHI are governed by the Business Associate Agreement (the{" "}
                 <strong>&ldquo;BAA&rdquo;</strong>) executed between CaseLink
-                and that practice. Business Associate Agreements are available
-                to subscribed specialist practices. In the event of a conflict
+                and that practice. Every practice, on every plan, must execute
+                a BAA with CaseLink on signup, before using the Service to
+                exchange PHI. In the event of a conflict
                 between these Terms and an executed BAA with respect to PHI,
                 the BAA prevails.
               </p>

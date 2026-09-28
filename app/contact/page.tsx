@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import ContactForm from "@/components/contact/ContactForm";
 import { Mail, Phone, Calendar } from "@/components/icons";
 import BookCallButton from "@/components/BookCallButton";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
   title: { absolute: "Contact CaseLink · Talk to our team" },
@@ -20,6 +21,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
+      <Breadcrumbs trail={[{ name: "Contact", path: "/contact" }]} />
       <section className="contact-hero">
         <div className="contact-hero-bg" />
         <div className="wrap contact-hero-inner">

@@ -18,6 +18,7 @@ import {
 } from "@/lib/resources";
 import { getResourceBody } from "@/lib/resourceBody";
 import { SIGNUP_URL } from "@/lib/urls";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 const SITE = "https://www.caselink.net";
 
@@ -147,6 +148,10 @@ export default async function ResourceArticlePage({
 
   return (
     <>
+      <Breadcrumbs trail={[
+          { name: "Resources", path: "/resources" },
+          { name: r.title, path: `/resources/${r.slug}` },
+        ]} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }}

@@ -6,6 +6,7 @@ import MarketStat from "@/components/about/MarketStat";
 import CtaBand from "@/components/home/CtaBand";
 import BookCallButton from "@/components/BookCallButton";
 import { SIGNUP_URL } from "@/lib/urls";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
   title: { absolute: "About CaseLink · Building the link dentistry has been missing" },
@@ -24,6 +25,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
+      <Breadcrumbs trail={[{ name: "About", path: "/about" }]} />
       <section className="about-hero">
         <div className="about-hero-bg" />
         <div className="wrap about-hero-inner">

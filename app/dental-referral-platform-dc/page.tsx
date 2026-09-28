@@ -5,6 +5,7 @@ import CtaBand from "@/components/home/CtaBand";
 import BookCallButton from "@/components/BookCallButton";
 import { ArrowRight, Check, Shield, Users, Bolt } from "@/components/icons";
 import { SIGNUP_URL } from "@/lib/urls";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 const SITE = "https://www.caselink.net";
 const PAGE_URL = `${SITE}/dental-referral-platform-dc`;
@@ -38,7 +39,7 @@ const faqs = [
   },
   {
     q: "Is CaseLink HIPAA compliant?",
-    a: "Yes. Every referral, message, and file is encrypted in transit and at rest, with audit logs on every action and role-based access controls. Business Associate Agreements are available to subscribed specialist practices.",
+    a: "Yes. Every referral, message, and file is encrypted in transit and at rest, with audit logs on every action and role-based access controls. CaseLink signs a Business Associate Agreement on signup with every practice.",
   },
   {
     q: "How do I get the specialists I refer to on CaseLink?",
@@ -93,6 +94,7 @@ const faqLd = {
 export default function DcLandingPage() {
   return (
     <>
+      <Breadcrumbs trail={[{ name: "Dental referral platform in Washington, DC", path: "/dental-referral-platform-dc" }]} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceLd) }}
