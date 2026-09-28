@@ -184,6 +184,13 @@ Vercel picks it up in ~30 seconds.
 
 ## Recent significant changes (most recent first)
 
+- **FAQ answers link to articles** (2026-09-28): `guide` slug on six
+  entries in `lib/faqs.ts`, rendered by `components/FaqAccordion.tsx` as
+  "Read the guide: <title>" on /faqs and /pricing. Gives Google an
+  internal path into the articles (5 had never been crawled) while the
+  Resources nav/footer link stays Nick's call. Search Console 404s for
+  `email.mail.caselink.net` and `url8401.caselink.net` are SendGrid email
+  link-tracking subdomains, not site pages. Ignore them.
 - **IndexNow** (2026-09-28): key file `public/68179138f4e85021dc604240ea7c71fb.txt`
   and `scripts/indexnow.mjs`. Run `npm run indexnow` after any deploy that
   adds or changes pages. It pings Bing (and other IndexNow engines) with

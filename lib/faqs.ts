@@ -6,7 +6,10 @@
  * this list, so the visible page and the schema always match.
  */
 
-export type Faq = { q: string; a: string };
+/** `guide` is a Resources article slug, rendered as a "Read the guide" link
+ *  under the answer. It gives crawlers an internal path into the articles
+ *  while Resources stays out of the nav and footer. */
+export type Faq = { q: string; a: string; guide?: string };
 export type FaqGroup = { id: string; title: string; faqs: Faq[] };
 
 export const faqGroups: FaqGroup[] = [
@@ -47,6 +50,7 @@ export const faqGroups: FaqGroup[] = [
       {
         q: "Is CaseLink really free for general dentists?",
         a: "Yes. The GP plan is permanently free, with no trial period and no credit card. It includes unlimited referrals, secure file sharing, encrypted messaging, and real-time updates.",
+        guide: "free-dental-referral-software-for-general-dentists",
       },
       {
         q: "Is there a free trial for specialists?",
@@ -95,6 +99,7 @@ export const faqGroups: FaqGroup[] = [
       {
         q: "How is CaseLink different from sending referrals by fax or email?",
         a: "Fax and email lose visibility the moment they leave your office. CaseLink keeps every referral in one workspace with full clinical context, real-time status, and outcome reports that move in minutes instead of days.",
+        guide: "how-to-stop-losing-dental-referrals",
       },
       {
         q: "What clinical information can I attach to a referral?",
@@ -107,6 +112,7 @@ export const faqGroups: FaqGroup[] = [
       {
         q: "What happens if a referred patient does not book?",
         a: "If a patient has not booked inside the follow-up window, the case surfaces for outreach. The referral ends with a recorded outcome that both offices can see.",
+        guide: "automate-dental-referral-follow-up",
       },
       {
         q: "Can office managers and front desk staff run CaseLink?",
@@ -125,6 +131,7 @@ export const faqGroups: FaqGroup[] = [
       {
         q: "Does CaseLink integrate with Dentrix, Eaglesoft, or Open Dental?",
         a: "There is no data-level integration today. CaseLink runs alongside those systems in the browser. A scheduling integration is on the way.",
+        guide: "cms-0062-p-fhir-dental-authorization",
       },
       {
         q: "Do I need new hardware?",
@@ -139,10 +146,12 @@ export const faqGroups: FaqGroup[] = [
       {
         q: "What does the specialist plan add?",
         a: "Everything in the general dentist plan, plus a referral inbox, an analytics dashboard, and case timelines.",
+        guide: "how-endodontists-track-and-manage-incoming-referrals",
       },
       {
         q: "Can I see which GPs send me the most referrals?",
         a: "Yes. CaseLink reports on referral volume, source attribution, and completion by referring practice over any time period.",
+        guide: "dental-referral-conversion-rate-benchmarks",
       },
       {
         q: "How do I get my referring GPs to use CaseLink?",

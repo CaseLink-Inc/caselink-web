@@ -2451,6 +2451,9 @@ body[data-inv-page="true"] .calendly-badge-widget{display:none !important}
 .faqhub-group{scroll-margin-top:110px}
 .faqhub-group + .faqhub-group{margin-top:56px}
 .faqhub-group h2{font-size:28px;letter-spacing:-0.02em;color:#1A1F1E;margin:0 0 20px;font-weight:800}
+.res-faq-item .faq-guide-link{display:inline-flex;align-items:center;gap:7px;margin:0 20px 20px;font-size:14px;font-weight:700;color:#3E8EFF;text-decoration:none}
+.res-faq-item .faq-guide-link:hover{text-decoration:underline;text-underline-offset:2px}
+.res-faq-item p:has(+ .faq-guide-link){padding-bottom:12px}
 
 @media (max-width:900px){
   .faqhub-main{padding:56px 0 70px}

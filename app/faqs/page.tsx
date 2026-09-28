@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import CtaBand from "@/components/home/CtaBand";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import FaqAccordion from "@/components/FaqAccordion";
 import { faqGroups, allFaqs } from "@/lib/faqs";
 import { SIGNUP_URL } from "@/lib/urls";
 
@@ -66,29 +67,7 @@ export default function FaqsPage() {
           {faqGroups.map((g) => (
             <div key={g.id} id={g.id} className="faqhub-group">
               <h2>{g.title}</h2>
-              <div className="res-faq-list">
-                {g.faqs.map((f) => (
-                  <details key={f.q} className="res-faq-item">
-                    <summary>
-                      <span>{f.q}</span>
-                      <span className="res-faq-mark" aria-hidden="true">
-                        <svg
-                          width="16"
-                          height="16"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                        >
-                          <path d="M12 5v14M5 12h14" />
-                        </svg>
-                      </span>
-                    </summary>
-                    <p>{f.a}</p>
-                  </details>
-                ))}
-              </div>
+              <FaqAccordion faqs={g.faqs} />
             </div>
           ))}
         </div>
