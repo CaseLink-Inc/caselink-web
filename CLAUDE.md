@@ -184,6 +184,11 @@ Vercel picks it up in ~30 seconds.
 
 ## Recent significant changes (most recent first)
 
+- **IndexNow** (2026-09-28): key file `public/68179138f4e85021dc604240ea7c71fb.txt`
+  and `scripts/indexnow.mjs`. Run `npm run indexnow` after any deploy that
+  adds or changes pages. It pings Bing (and other IndexNow engines) with
+  every URL in the live sitemap. Added because Bing had not indexed the
+  site while ChatGPT (via OAI-SearchBot) already cited CaseLink.
 - **AI-visibility pass** (2026-09-28): new `/pricing` and `/faqs`
   (27 Q&As, 6 groups) pages, both in sitemap + llms.txt + footer, nav
   Pricing now points to `/pricing`. BreadcrumbList JSON-LD on every
