@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getResources } from "@/lib/resources";
+import { specialties } from "@/lib/specialties";
 
 const SITE = "https://www.caselink.net";
 
@@ -11,6 +12,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(r.date),
     changeFrequency: "monthly",
     priority: 0.6,
+  }));
+
+  const specialtyPages: MetadataRoute.Sitemap = specialties.map((s) => ({
+    url: `${SITE}/referral-software/${s.slug}`,
+    lastModified: now,
+    changeFrequency: "monthly",
+    priority: 0.8,
   }));
 
   return [
@@ -32,6 +40,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
+    {
+      url: `${SITE}/referral-software`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    ...specialtyPages,
     {
       url: `${SITE}/pricing`,
       lastModified: now,

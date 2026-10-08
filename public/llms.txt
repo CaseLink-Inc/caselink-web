@@ -51,6 +51,12 @@ CaseLink was founded by Nick Campbell, Co-Founder and CEO. CaseLink, Inc. is hea
 - Dental referral platform in Washington, DC: https://www.caselink.net/dental-referral-platform-dc
 - Pricing: https://www.caselink.net/pricing
 - FAQs (pricing, HIPAA and BAAs, setup, workflow, practice software): https://www.caselink.net/faqs
+- Referral software by specialty: https://www.caselink.net/referral-software
+  - Endodontists: https://www.caselink.net/referral-software/endodontists
+  - Orthodontists: https://www.caselink.net/referral-software/orthodontists
+  - Periodontists: https://www.caselink.net/referral-software/periodontists
+  - Oral surgeons: https://www.caselink.net/referral-software/oral-surgeons
+  - Prosthodontists: https://www.caselink.net/referral-software/prosthodontists
 - About: https://www.caselink.net/about
 - Resources: https://www.caselink.net/resources
 - Contact: https://www.caselink.net/contact
@@ -63,6 +69,7 @@ CaseLink was founded by Nick Campbell, Co-Founder and CEO. CaseLink, Inc. is hea
 
 Guides on dental referrals, conversion benchmarks, HIPAA-compliant collaboration, and running a connected practice. From the CaseLink team.
 
+- How to choose dental referral software (an eight-point checklist): https://www.caselink.net/resources/how-to-choose-dental-referral-software
 - FHIR is coming to dental authorization workflows (CMS-0062-P explained): https://www.caselink.net/resources/cms-0062-p-fhir-dental-authorization
 - How to stop losing dental referrals to specialists: https://www.caselink.net/resources/how-to-stop-losing-dental-referrals
 - Free dental referral software for general dentists: https://www.caselink.net/resources/free-dental-referral-software-for-general-dentists

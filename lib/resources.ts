@@ -70,6 +70,69 @@ export const CATEGORY_COLOR: Record<ResourceCategory, string> = {
 
 export const resources: Resource[] = [
   {
+    slug: "how-to-choose-dental-referral-software",
+    layout: {
+      stats: { beforeSection: 2 },
+      inserts: [
+        {
+          before: 4,
+          kind: "quote",
+          text: "The best referral software is the one the other office actually uses.",
+        },
+      ],
+    },
+    title: "How to choose dental referral software: an eight-point checklist",
+    metaTitle: "How to choose dental referral software | CaseLink",
+    excerpt:
+      "Eight questions to ask before your practice picks a referral platform, from who pays and the BAA to what travels with each case and how both offices see status.",
+    category: "Software",
+    author: "CaseLink Team",
+    date: "2026-10-08",
+    readMinutes: 6,
+    keyStats: [
+      { value: "30-40%", label: "of paper referrals never complete, per industry surveys" },
+      { value: "8", label: "questions to ask before you choose" },
+      { value: "1 BAA", label: "required from any tool that holds patient data" },
+    ],
+    faqs: [
+      {
+        q: "What should dental referral software include?",
+        a: "At minimum: a Business Associate Agreement, encryption in transit and at rest, attachments for x-rays and clinical notes, a status both offices can see, follow-up when a patient does not book, and a way to send results back to the referring dentist.",
+      },
+      {
+        q: "Can free dental referral software be HIPAA compliant?",
+        a: "Yes, price and compliance are separate questions. Any tool that stores or sends patient information should sign a Business Associate Agreement with your practice and encrypt data in transit and at rest. If a vendor will not sign a BAA, do not send patient data through it.",
+      },
+      {
+        q: "Does referral software need to integrate with my practice management system?",
+        a: "Not necessarily. Referral software handles the handoff between offices, a job most practice management systems were not built for. What matters is that it runs alongside your PMS without forcing you to move scheduling, charting, or billing.",
+      },
+      {
+        q: "How long should setup take?",
+        a: "A browser-based referral tool should take minutes to set up, with nothing to install. If a vendor needs weeks of onboarding before your first referral, factor that time into the cost.",
+      },
+      {
+        q: "Who should run referral software in a dental office?",
+        a: "Usually the front desk or office manager. Look for a tool where staff can create, accept, and track referrals without the dentist in every administrative step.",
+      },
+    ],
+    sources: [
+      {
+        label: "“How to stop losing patients through the referral cracks,” DentistryIQ",
+        url: "https://www.dentistryiq.com/practice-management/patient-relationships/article/14182218/how-to-stop-losing-patients-through-the-referral-cracks",
+      },
+      {
+        label: "US Department of Health and Human Services, “Business Associate Contracts” sample provisions",
+        url: "https://www.hhs.gov/hipaa/for-professionals/covered-entities/sample-business-associate-agreement-provisions/index.html",
+      },
+    ],
+    related: [
+      { href: "/referral-software", label: "Referral software by specialty" },
+      { href: "/pricing", label: "Pricing" },
+      { href: "/faqs", label: "FAQs" },
+    ],
+  },
+  {
     slug: "cms-0062-p-fhir-dental-authorization",
     thumbnail: "/resources/card-thumbnail.jpg",
     thumbnailAlt:
@@ -103,13 +166,13 @@ export const resources: Resource[] = [
       "FHIR is coming to dental authorization workflows. Here is what CMS-0062-P actually proposes.",
     metaTitle: "FHIR and dental authorization: CMS-0062-P explained | CaseLink",
     excerpt:
-      "The federal direction on prior authorization and referral certification is FHIR. Here is what CMS-0062-P actually proposes, what it does not, and what dental practices should do before the comment period closes June 15.",
+      "The federal direction on prior authorization and referral certification is FHIR. Here is what CMS-0062-P actually proposes, what it does not, where the rule stands after the comment period closed, and what dental practices should do now.",
     category: "Policy",
     author: "CaseLink Team",
-    date: "2026-06-08",
+    date: "2026-10-08",
     readMinutes: 5,
     keyStats: [
-      { value: "June 15", label: "comment period closes (2026)" },
+      { value: "June 15", label: "comment period closed (2026)" },
       { value: "Oct 2027", label: "proposed NCPDP compliance date" },
       { value: "18-24 mo", label: "before commercial payers typically follow" },
     ],
@@ -123,8 +186,8 @@ export const resources: Resource[] = [
         a: "No. The rule does not endorse or require any platform. It standardizes how electronic prior authorization and referral certification data moves between HIPAA covered entities and names FHIR as that standard.",
       },
       {
-        q: "When does the comment period close?",
-        a: "June 15, 2026. Comments can be submitted through the ADA's process or directly through regulations.gov under file code CMS-0062-P.",
+        q: "Has CMS-0062-P been finalized?",
+        a: "Not yet. The public comment period closed June 15, 2026, and as of October 2026 CMS has not published a final rule. The final version can differ from the proposal, including the compliance dates and the treatment of the Direct Data Entry exception.",
       },
       {
         q: "How could this affect small or rural dental practices?",
@@ -132,7 +195,7 @@ export const resources: Resource[] = [
       },
       {
         q: "What should a dental practice do now?",
-        a: "If you file prior authorizations electronically, review the ADA's three dental-specific concerns and decide whether to comment before June 15. If you are choosing a referral or authorization tool, ask vendors how they plan to support FHIR-based exchange and how their architecture handles structured authorization data.",
+        a: "Watch for the final rule in the Federal Register and the ADA's summary of it. If you rely on payer web portals for prior authorizations, plan for the possibility that the Direct Data Entry exception changes. If you are choosing a referral or authorization tool, ask vendors how they plan to support FHIR-based exchange and how their architecture handles structured authorization data.",
       },
     ],
     sources: [
@@ -149,6 +212,11 @@ export const resources: Resource[] = [
       {
         label:
           "Federal Register, Proposed Rule, document 2026-07205, April 14, 2026.",
+      },
+      {
+        label:
+          "CMS, CMS-0062-P rule page (status checked October 8, 2026).",
+        url: "https://www.cms.gov/initiatives/burden-reduction/overview/interoperability/policies-regulations/cms-interoperability-standards-prior-authorization-drugs-proposed-rule-cms-0062-p",
       },
     ],
     related: [

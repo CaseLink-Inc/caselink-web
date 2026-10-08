@@ -54,6 +54,7 @@ export default function Footer() {
               <li><Link href="/#how">How it works</Link></li>
               <li><Link href="/pricing" className={isActive("/pricing") ? "on" : ""}>Pricing</Link></li>
               <li><Link href="/faqs" className={isActive("/faqs") ? "on" : ""}>FAQs</Link></li>
+              <li><Link href="/referral-software" className={pathname.startsWith("/referral-software") ? "on" : ""}>For specialists</Link></li>
               <li><Link href="/contact" className={isActive("/contact") ? "on" : ""}>Contact</Link></li>
             </ul>
           </div>

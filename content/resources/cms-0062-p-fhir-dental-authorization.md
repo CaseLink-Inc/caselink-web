@@ -1,6 +1,8 @@
 A federal proposed rule released in April moves the entire prior authorization system in US healthcare toward FHIR-based exchange. The headline of the rule is drug prior authorization. The part that matters for dental is buried further down.
 
-On April 10, 2026, the Centers for Medicare and Medicaid Services released proposed rule CMS-0062-P, titled the "2026 CMS Interoperability Standards and Prior Authorization for Drugs Proposed Rule." The public comment period closes June 15, 2026. The American Dental Association is collecting member input ahead of its formal response.
+*Updated October 8, 2026: the comment period has closed. See "Where the rule stands now" below.*
+
+On April 10, 2026, the Centers for Medicare and Medicaid Services released proposed rule CMS-0062-P, titled the "2026 CMS Interoperability Standards and Prior Authorization for Drugs Proposed Rule." The public comment period closed June 15, 2026. As of October 2026, CMS has not published a final rule.
 
 The rule is getting written about quickly, and some of the early commentary frames it as a federal mandate specifically for dental referral coordination. That framing is wrong, and it matters that it is wrong, because the actual rule still has real implications for dental practices that are worth understanding clearly.
 
@@ -15,7 +17,8 @@ The second piece sits under HIPAA Administrative Simplification authority. Under
 ### The rule at a glance
 
 - Rule number: CMS-0062-P
-- Released April 10, 2026, comment period closes June 15, 2026
+- Released April 10, 2026, comment period closed June 15, 2026
+- Status as of October 2026: still a proposed rule, no final rule published
 - Headline: prior authorization for prescription drugs, under FHIR-based standards
 - Buried lede for dental: a HIPAA Administrative Simplification proposal naming FHIR for referral certification and authorization transactions, including dental
 - Proposed compliance date for NCPDP standards: October 1, 2027
@@ -37,7 +40,7 @@ The direction is the story. The 2020 rule established the framework. The 2024 ru
 
 Once federal-program payers are required to support FHIR-based prior authorization APIs, commercial payers historically follow within roughly 18 to 24 months. Once the HIPAA standards in CMS-0062-P are finalized, the practical floor for electronic exchange of prior authorization and referral certification information moves to FHIR. That is the part that will eventually reach every practice, dental or otherwise, that submits authorizations electronically.
 
-The ADA is engaging on member behalf. Its public framing of the proposed rule identifies three areas of dental-specific concern:
+The American Dental Association collected member input during the comment period. Its public framing of the proposed rule identified three areas of dental-specific concern:
 
 - **The FHIR transition itself.** Every dental office that submits prior authorizations electronically would be affected by the change from current standards to FHIR-based exchange.
 - **The Direct Data Entry portal exception.** CMS is considering eliminating the exception that currently allows dental offices to submit data for claims, benefit verification, and prior authorizations through payer web portals. Small and rural dental practices rely on this exception.
@@ -55,10 +58,20 @@ Infrastructure choices made now carry forward. A practice picking a referral or 
 
 > CaseLink was built HIPAA aligned from day one, with end-to-end encryption, audit logging on every case, and structured electronic exchange between offices. CaseLink is not a federally mandated platform. No platform is. It is a platform whose architecture aligns with where federal interoperability is going, so practices on CaseLink will not be unwinding fax workflows when commercial payers catch up to the FHIR-based standard.
 
-## What to do before June 15
+## Where the rule stands now
 
-The comment period closes June 15, 2026. The ADA hosted a member input call on May 21 to inform its formal response. Practices that want their dental-specific concerns reflected in the rulemaking record have a narrow window.
+The comment period closed on June 15, 2026. CMS now reviews the comments it received and decides what to keep, change, or drop before publishing a final rule in the Federal Register. As of October 2026, it has not done so, and CMS has not announced a date.
 
-If your practice files prior authorizations electronically, read the ADA's framing of the three dental-specific issues and decide whether you want to add your voice through the ADA's process or directly through regulations.gov under file code CMS-0062-P.
+Three things are worth knowing while the rule is pending.
 
-If your practice is evaluating referral or authorization tools right now, ask vendors two questions. First, what is your plan to support FHIR-based exchange as the standards finalize. Second, how does your current architecture handle structured prior authorization and referral certification data. The answers will tell you a lot about which tools were built for where the industry is going and which were built for where it was.
+**The final rule can differ from the proposal.** Provisions the ADA flagged, including the Direct Data Entry portal exception, could be kept, changed, or removed. The proposed October 1, 2027 compliance date for NCPDP standards could also move.
+
+**The direction is unlikely to reverse.** The 2020 and 2024 rules already moved federal-program prior authorization toward FHIR. CMS-0062-P extends that path. Whatever the final details, structured electronic exchange is where authorization and referral certification are heading.
+
+**Nothing changes for your practice until a final rule is in effect.** There is no new obligation today. This is a planning signal.
+
+## What to do now
+
+Watch for the final rule and the ADA's summary of it. If your practice relies on payer web portals for prior authorizations, plan for the possibility that the Direct Data Entry exception changes.
+
+If your practice is evaluating referral or authorization tools right now, ask vendors two questions. First, what is your plan to support FHIR-based exchange as the standards finalize. Second, how does your current architecture handle structured prior authorization and referral certification data. The answers will tell you a lot about which tools were built for where the industry is going and which were built for where it was. Our checklist on [how to choose dental referral software](/resources/how-to-choose-dental-referral-software) covers the other questions worth asking.

@@ -2464,6 +2464,42 @@ body[data-inv-page="true"] .calendly-badge-widget{display:none !important}
   .faqhub-jump a{font-size:13px;padding:8px 13px}
 }
 
+/* ============================================================
+   SPECIALTY PAGES (/referral-software, /referral-software/<slug>).
+   Reuse the .geo-* hero, cards, and steps. Adds two list cards,
+   an "Also for" chip row, and the hub card grid.
+   ============================================================ */
+.spec-lists{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.spec-list-card{background:#fff;border:1px solid #E8EEF8;border-radius:18px;padding:30px 28px}
+.spec-list-card h3{font-size:19px;letter-spacing:-0.015em;color:#1A1F1E;margin:0 0 16px;font-weight:700}
+.spec-list-card ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px}
+.spec-list-card li{display:flex;align-items:flex-start;gap:10px;font-size:15px;line-height:1.5;color:#4A5250}
+.spec-list-card li svg{flex-shrink:0;margin-top:3px;color:#3DBD6B}
+.spec-how{background:#F7FAFA}
+.spec-others{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:32px}
+.spec-others span{font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#7A8886;margin-right:4px}
+.spec-others a{display:inline-flex;padding:8px 14px;background:#fff;border:1px solid #E8EEF8;border-radius:999px;font-size:13.5px;font-weight:600;color:#1A1F1E;text-decoration:none;transition:border-color .2s ease,color .2s ease}
+.spec-others a:hover{border-color:rgba(62,142,255,0.3);color:#3E8EFF}
+
+.spec-hub-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.spec-hub-card{display:flex;flex-direction:column;text-decoration:none;color:inherit}
+.spec-hub-card .eyebrow{margin-bottom:12px}
+.spec-hub-card h2{font-size:21px;letter-spacing:-0.015em;color:#1A1F1E;margin:0 0 10px;font-weight:800;line-height:1.2}
+.spec-hub-card p{flex:1;margin-bottom:18px}
+.spec-hub-more{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:#3E8EFF}
+.spec-hub-gp{background:linear-gradient(180deg,#FBFBF9,#EDF2FB)}
+
+@media (max-width:1100px){
+  .spec-hub-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:900px){
+  .spec-lists{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .spec-hub-grid{grid-template-columns:1fr}
+  .spec-list-card{padding:24px 22px}
+}
+
 /* Honor users who request reduced motion. Same payoff at any width. */
 @media (prefers-reduced-motion: reduce){
   *,

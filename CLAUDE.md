@@ -184,6 +184,18 @@ Vercel picks it up in ~30 seconds.
 
 ## Recent significant changes (most recent first)
 
+- **Specialty pages + buyer's guide + FHIR refresh** (2026-10-08):
+  `/referral-software` hub (ItemList JSON-LD, footer link "For
+  specialists") and five pages at `/referral-software/<slug>`
+  (endodontists, orthodontists, periodontists, oral-surgeons,
+  prosthodontists) from `lib/specialties.ts`, with Service + FAQPage
+  JSON-LD and cross-links. Specialty "what a referral includes" lists are
+  general clinical guidance, not CaseLink features. Never claim specific
+  file-type support (CBCT etc). New article
+  `how-to-choose-dental-referral-software` (Software, 8-point checklist,
+  no competitor names). FHIR article refreshed: comment period closed,
+  CMS-0062-P still proposed with no final rule as of 2026-10-08 (checked
+  on the CMS rule page). Re-check for a final rule periodically and update.
 - **Domain reputation: inherited "Pornography" rating** (2026-10-08): a
   dental office's FortiGuard firewall blocked caselink.net as
   Pornography during Nick's onboarding visit. Cause: the domain dates to
@@ -467,10 +479,9 @@ Vercel picks it up in ~30 seconds.
   deprioritized it — no deadline; flip same-day if spoofing ever shows
   up in the weekly reports. Verify with
   `dig +short TXT _dmarc.caselink.net`.
-- **FHIR article refresh**: `/resources/cms-0062-p-fhir-dental-
-  authorization` is built around the June 15, 2026 comment deadline.
-  After June 15, update it (comment period closed, what happens next)
-  or it reads stale.
+- **FHIR article: watch for the final rule**: refreshed 2026-10-08 (comment
+  period closed, still proposed). When CMS publishes the CMS-0062-P final
+  rule, update the article, its FAQs, and the keyStats.
 
 ### Open items
 
