@@ -184,6 +184,18 @@ Vercel picks it up in ~30 seconds.
 
 ## Recent significant changes (most recent first)
 
+- **Domain reputation: inherited "Pornography" rating** (2026-10-08): a
+  dental office's FortiGuard firewall blocked caselink.net as
+  Pornography during Nick's onboarding visit. Cause: the domain dates to
+  2001 and a previous owner ran a Chinese adult-spam page on it (Wayback
+  snapshot April 2024). Filter vendors rated it then and never rechecked.
+  Re-rating submitted by user to Fortinet + several others (Talos, Palo
+  Alto, Symantec, Trellix, BrightCloud as available). Forcepoint and
+  Zscaler lookups were not accessible. Family DNS filters (Cloudflare
+  1.1.1.3, OpenDNS FamilyShield, CleanBrowsing, AdGuard, Quad9) tested
+  clean. If another office is blocked: ask their IT to allowlist
+  `caselink.net` + `app.caselink.net`, then submit a re-rating to that
+  firewall vendor. Category to request: Information Technology.
 - **FAQ answers link to articles** (2026-09-28): `guide` slug on six
   entries in `lib/faqs.ts`, rendered by `components/FaqAccordion.tsx` as
   "Read the guide: <title>" on /faqs and /pricing. Gives Google an
