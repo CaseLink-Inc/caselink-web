@@ -25,6 +25,14 @@ export async function generateMetadata({
   const s = getSpecialty(specialty);
   if (!s) return {};
   const path = `/referral-software/${s.slug}`;
+  // Per-specialty social card. The opengraph-image file convention cannot vary
+  // by route param, so these are served from /public/og and set explicitly.
+  const ogImage = {
+    url: `/og/referral-software-${s.slug}.jpg`,
+    width: 1200,
+    height: 630,
+    alt: `CaseLink dental referral software for ${s.slug.replace(/-/g, " ")}.`,
+  };
   return {
     title: s.metaTitle,
     description: s.description,
@@ -34,6 +42,13 @@ export async function generateMetadata({
       description: s.description,
       url: `${SITE}${path}`,
       type: "website",
+      images: [ogImage],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${s.metaTitle} · CaseLink`,
+      description: s.description,
+      images: [ogImage.url],
     },
   };
 }

@@ -22,6 +22,16 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 
 const SITE = "https://www.caselink.net";
 
+// Articles with a dedicated 1200x630 social card in /public/og. Any article
+// not listed here keeps using its 16:9 thumbnail, so adding a card later is
+// a matter of dropping the file in and adding the slug.
+const FEATURED_OG_SLUGS = new Set([
+  "how-to-choose-dental-referral-software",
+  "how-to-stop-losing-dental-referrals",
+  "free-dental-referral-software-for-general-dentists",
+  "dental-referral-conversion-rate-benchmarks",
+]);
+
 export function generateStaticParams() {
   return resources.map((r) => ({ slug: r.slug }));
 }
@@ -39,9 +49,15 @@ export async function generateMetadata({
   // absolute. Articles without a thumbnail fall back to the site default OG
   // image automatically. Future articles get this for free once a thumbnail
   // is set.
-  const ogImages = r.thumbnail
-    ? [{ url: r.thumbnail, width: 800, height: 450, alt: r.title }]
-    : undefined;
+  const featuredOg = FEATURED_OG_SLUGS.has(r.slug)
+    ? `/og/resources-${r.slug}.jpg`
+    : null;
+  const ogImages = featuredOg
+    ? [{ url: featuredOg, width: 1200, height: 630, alt: r.title }]
+    : r.thumbnail
+      ? [{ url: r.thumbnail, width: 800, height: 450, alt: r.title }]
+      : undefined;
+  const socialImage = featuredOg ?? r.thumbnail;
   return {
     // metaTitle already ends in "| CaseLink"; absolute bypasses the layout's
     // "%s · CaseLink" template so the brand is not doubled.
@@ -59,7 +75,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: r.title,
       description: r.excerpt,
-      ...(r.thumbnail ? { images: [r.thumbnail] } : {}),
+      ...(socialImage ? { images: [socialImage] } : {}),
     },
   };
 }
