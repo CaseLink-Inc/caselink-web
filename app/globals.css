@@ -265,6 +265,82 @@ section{position:relative;padding:80px 0}
 .big-stat .src{font-size:11px;color:#7A8886;margin-top:14px;padding-top:14px;border-top:1px solid #F4F7FB;letter-spacing:0.04em;text-transform:uppercase}
 
 /* HOW IT WORKS */
+/* INTRO VIDEO (click-to-play facade: no video bytes load until clicked) */
+.introvid-sec{background:#fff;padding:80px 0;overflow:hidden}
+/* Seamless grid wash, tiling exactly at 20px. Masked with a vertical ramp so
+   it starts fully invisible at the top of the section and reaches full
+   strength at the bottom. */
+.introvid-sec::before{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:
+    linear-gradient(to right,rgba(26,31,30,0.032) 1px,transparent 1px),
+    linear-gradient(to bottom,rgba(26,31,30,0.032) 1px,transparent 1px);
+  background-size:20px 20px;
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 100%);
+  mask-image:linear-gradient(to bottom,transparent 0%,#000 100%);
+}
+.introvid-inner{position:relative;z-index:1}
+.introvid-head{text-align:center;max-width:680px;margin:0 auto 36px}
+.introvid-head .eyebrow{justify-content:center}
+.introvid-head p{margin-left:auto;margin-right:auto}
+/* The animation and poster are both light, so the frame sits on white.
+   A dark backdrop here bled through the antialiased corners as a hairline.
+   translateZ(0) gives the clip its own layer so the radius stays clean. */
+.introvid-frame{
+  position:relative;margin:0 auto;
+  border-radius:24px;overflow:hidden;background:#fff;
+  box-shadow:0 1px 0 rgba(26,31,30,0.04),0 24px 70px rgba(26,31,30,0.13);
+  aspect-ratio:16/9;transform:translateZ(0);
+}
+.introvid-poster{
+  display:block;width:100%;height:100%;padding:0;border:none;
+  background:#fff;cursor:pointer;position:relative;
+}
+.introvid-posterimg{width:100%;height:100%;object-fit:cover;display:block}
+/* Oversized by a pixel on each side so the iframe document's own edge is
+   clipped under the rounded corners instead of showing as a hairline seam. */
+.introvid-player{
+  position:absolute;top:-1px;left:-1px;
+  width:calc(100% + 2px);height:calc(100% + 2px);
+  display:block;border:0;background:#fff;
+}
+.introvid-play{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:84px;height:84px;border-radius:50%;
+  background:rgba(255,255,255,0.94);color:#1A1F1E;
+  display:flex;align-items:center;justify-content:center;
+  padding-left:5px;
+  box-shadow:0 10px 36px rgba(26,31,30,0.28);
+  transition:transform .28s cubic-bezier(.22,.9,.32,1),background .28s ease;
+}
+.introvid-poster:hover .introvid-play{transform:translate(-50%,-50%) scale(1.07);background:#fff}
+.introvid-poster:focus-visible{outline:3px solid #3E8EFF;outline-offset:3px}
+.introvid-duration{
+  position:absolute;right:16px;bottom:16px;
+  background:rgba(26,31,30,0.78);color:#fff;
+  font-size:12.5px;font-weight:700;letter-spacing:0.02em;
+  padding:5px 10px;border-radius:7px;
+}
+
+@media (max-width:900px){
+  .introvid-sec{padding:56px 0}
+  .introvid-frame{border-radius:18px}
+  .introvid-play{width:64px;height:64px}
+  .introvid-play svg{width:21px;height:21px}
+}
+
+@media (max-width:640px){
+  .introvid-head{margin-bottom:26px}
+  .introvid-frame{border-radius:14px}
+  .introvid-play{width:56px;height:56px}
+  .introvid-duration{right:10px;bottom:10px;font-size:11.5px;padding:4px 8px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .introvid-play{transition:none}
+  .introvid-poster:hover .introvid-play{transform:translate(-50%,-50%)}
+}
+
 .how-sec{background:#FBFBF9;padding:80px 0;overflow:hidden}
 .how-head{text-align:center;max-width:680px;margin:0 auto 36px}
 .how-head .eyebrow{justify-content:center}

@@ -30,7 +30,9 @@ const securityHeaders = [
     value: "max-age=63072000; includeSubDomains; preload",
   },
   { key: "X-Content-Type-Options", value: "nosniff" },
-  { key: "X-Frame-Options", value: "DENY" },
+  // SAMEORIGIN rather than DENY so the home page can frame its own
+  // /intro animation. Other sites still cannot frame CaseLink.
+  { key: "X-Frame-Options", value: "SAMEORIGIN" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
   {
     key: "Permissions-Policy",
@@ -44,7 +46,13 @@ const securityHeaders = [
       // Next.js + JSON-LD + Calendly widget all need inline + eval'd code.
       // googletagmanager.com serves the GA4 gtag.js library.
       // links.caselink.net serves the LeadConnector CRM tracker.
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://assets.calendly.com https://calendly.com https://va.vercel-scripts.com https://web3forms.com https://*.hcaptcha.com https://hcaptcha.com https://www.googletagmanager.com https://links.caselink.net",
+      // blob: is needed by the /intro animation bundle, which instantiates its
+      // own modules as blob URLs. Same-origin code has to be running already to
+      // create one, so alongside the 'unsafe-eval' above it adds no real reach.
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: https://assets.calendly.com https://calendly.com https://va.vercel-scripts.com https://web3forms.com https://*.hcaptcha.com https://hcaptcha.com https://www.googletagmanager.com https://links.caselink.net",
+      // The animation decodes its voiceover and music into blob URLs.
+      "media-src 'self' blob: data:",
+      "worker-src 'self' blob:",
       // Fonts and stylesheets — self-hosted Satoshi + Calendly widget CSS.
       "style-src 'self' 'unsafe-inline' https://assets.calendly.com https://*.hcaptcha.com https://hcaptcha.com",
       "font-src 'self' data:",
@@ -59,8 +67,9 @@ const securityHeaders = [
       // links.caselink.net + backend.leadconnectorhq.com receive the CRM
       // tracker's form-submission reports.
       "connect-src 'self' https://api.web3forms.com https://calendly.com https://*.calendly.com https://assets.calendly.com https://*.hcaptcha.com https://hcaptcha.com https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://analytics.google.com https://stats.g.doubleclick.net https://www.google.com https://links.caselink.net https://backend.leadconnectorhq.com",
-      // Stop the site from being framed by anyone else.
-      "frame-ancestors 'none'",
+      // Stop the site from being framed by anyone else. 'self' (not 'none')
+      // so the home page can embed its own /intro animation in an iframe.
+      "frame-ancestors 'self'",
       "base-uri 'self'",
       "form-action 'self' https://api.web3forms.com",
       "upgrade-insecure-requests",
