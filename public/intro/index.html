@@ -8,6 +8,10 @@
     "https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js":"/intro/vendor/react-dom.production.min.js",
     "https://unpkg.com/@babel/standalone@7.29.0/babel.min.js":"/intro/vendor/babel.min.js"
   };
+  /* The export remembers playback position in localStorage, so a returning
+     visitor would resume mid-video or land on the end card. The home page
+     should always open on the first frame. */
+  try{ localStorage.removeItem("caselink_intro7_t"); }catch(e){}
   function remap(v){ return (typeof v==="string" && MAP[v]) ? MAP[v] : v; }
   var sd=Object.getOwnPropertyDescriptor(HTMLScriptElement.prototype,"src");
   if(sd&&sd.set){

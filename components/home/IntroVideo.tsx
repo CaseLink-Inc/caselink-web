@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 /**
  * Click-to-play facade around the Claude Design animation export, which is
@@ -15,6 +15,20 @@ import { useState } from "react";
  */
 export default function IntroVideo() {
   const [playing, setPlaying] = useState(false);
+  const [ready, setReady] = useState(false);
+
+  // While the export boots it paints its own near-black page background and
+  // flashes its player controls, which reads as a black box for a moment. The
+  // poster is held over the iframe until shortly after the document loads and
+  // the first scene has painted, then cross-faded away.
+  const settle = () => window.setTimeout(() => setReady(true), 900);
+
+  // Backstop: if the iframe never fires load, the poster must not stick.
+  useEffect(() => {
+    if (!playing) return;
+    const id = window.setTimeout(() => setReady(true), 6000);
+    return () => window.clearTimeout(id);
+  }, [playing]);
 
   return (
     <section id="intro-video" className="introvid-sec">
@@ -30,13 +44,30 @@ export default function IntroVideo() {
 
         <div className="introvid-frame reveal">
           {playing ? (
-            <iframe
-              className="introvid-player"
-              src="/intro/index.html"
-              title="CaseLink introduction"
-              allow="autoplay; fullscreen"
-              allowFullScreen
-            />
+            <>
+              <iframe
+                className="introvid-player"
+                src="/intro/index.html"
+                title="CaseLink introduction"
+                allow="autoplay; fullscreen"
+                allowFullScreen
+                onLoad={settle}
+              />
+              <div
+                className={`introvid-cover${ready ? " is-ready" : ""}`}
+                aria-hidden="true"
+              >
+                <Image
+                  src="/intro/poster.jpg"
+                  alt=""
+                  width={1920}
+                  height={1080}
+                  sizes="(max-width: 900px) 100vw, 1180px"
+                  className="introvid-posterimg"
+                  priority
+                />
+              </div>
+            </>
           ) : (
             <button
               type="button"
