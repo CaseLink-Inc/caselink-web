@@ -208,6 +208,8 @@ Vercel picks it up in ~30 seconds.
   clean. If another office is blocked: ask their IT to allowlist
   `caselink.net` + `app.caselink.net`, then submit a re-rating to that
   firewall vendor. Category to request: Information Technology.
+  **Fortinet re-rating confirmed fixed by user on 2026-10-22.** G2/Capterra/
+  GetApp/Software Advice listing copy updated by user the same week.
 - **FAQ answers link to articles** (2026-09-28): `guide` slug on six
   entries in `lib/faqs.ts`, rendered by `components/FaqAccordion.tsx` as
   "Read the guide: <title>" on /faqs and /pricing. Gives Google an
