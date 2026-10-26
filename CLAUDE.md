@@ -184,6 +184,16 @@ Vercel picks it up in ~30 seconds.
 
 ## Recent significant changes (most recent first)
 
+- **Security pass** (2026-10-26): Next.js 16.2.6 -> 16.4.3 (npm audit had
+  critical unauthenticated-RCE advisories, now 0 vulnerabilities).
+  Public pitch deck `public/caselink-deck-0a5e6b362c.pdf` removed (its URL
+  was advertised in robots.txt). Investor pages' deck buttons now open a
+  "pitch deck request" email to Nick. Added `/.well-known/security.txt`
+  pointing to support@caselink.net and /security#disclosure (expires
+  2027-10-26, renew before then). PHP2Shell (Oct 2026 PHP RCE): website,
+  app front end (S3/CloudFront), and GoHighLevel tracker don't run PHP.
+  Blaze confirmed on Slack the app backend does not use PHP. Run
+  `npm audit --omit=dev` before each deploy and patch criticals promptly.
 - **Specialty pages + buyer's guide + FHIR refresh** (2026-10-08):
   `/referral-software` hub (ItemList JSON-LD, footer link "For
   specialists") and five pages at `/referral-software/<slug>`
@@ -487,6 +497,11 @@ Vercel picks it up in ~30 seconds.
 
 ### Open items
 
+- **Security follow-ups (user)**: two-practice access test in the Blaze
+  app (practice A must not open practice B's referrals); 2FA on every admin
+  account (Google Workspace, Vercel, GitHub, Blaze, GoHighLevel, G2, IONOS);
+  IONOS domain transfer lock; DMARC `p=quarantine` -> `p=reject`; Vercel
+  Firewall (Bot Protection + OWASP managed rules) in the dashboard.
 - **Remaining article images** (user supplies via the Image temp
   workflow in conventions): free-gp card + wide, conversion card +
   side + wide, and the `/resources` hero photo. Endodontists has no

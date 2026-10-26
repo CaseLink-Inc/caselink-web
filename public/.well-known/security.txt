@@ -1,0 +1,5 @@
+Contact: mailto:support@caselink.net
+Expires: 2027-10-26T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://www.caselink.net/.well-known/security.txt
+Policy: https://www.caselink.net/security#disclosure

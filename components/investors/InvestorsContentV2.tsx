@@ -17,7 +17,8 @@ import Link from "next/link";
 import BookCallButton from "@/components/BookCallButton";
 import ReferralJourney from "@/components/investors/ReferralJourney";
 
-const DECK_HREF = "/caselink-deck-0a5e6b362c.pdf";
+// Deck is sent on request (the public PDF was removed 2026-10-26).
+const DECK_HREF = "mailto:nick@caselink.net?subject=CaseLink%20pitch%20deck%20request";
 
 /* ===== COUNTER =====
    Renders the real value at all times. No count-up animation: an investor
@@ -165,8 +166,8 @@ export default function InvestorsContentV2() {
               Talk to Nick
               {arrow}
             </BookCallButton>
-            <a href={DECK_HREF} target="_blank" rel="noopener noreferrer" className="btn inv-cta-ghost inv-cta-lg">
-              View the deck
+            <a href={DECK_HREF} className="btn inv-cta-ghost inv-cta-lg">
+              Request the deck
             </a>
           </Reveal>
         </div>
@@ -644,12 +645,12 @@ export default function InvestorsContentV2() {
                   <span className="inv-contact-btn-t">Book a call</span>
                   <span className="inv-contact-btn-s">15 min walkthrough</span>
                 </BookCallButton>
-                <a className="inv-contact-btn" href={DECK_HREF} target="_blank" rel="noopener noreferrer">
+                <a className="inv-contact-btn" href={DECK_HREF}>
                   <span className="inv-contact-btn-ic">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" /><path d="M14 2v6h6" /><path d="M9 13h6M9 17h4" /></svg>
                   </span>
                   <span className="inv-contact-btn-t">Pitch deck</span>
-                  <span className="inv-contact-btn-s">PDF, 15 MB</span>
+                  <span className="inv-contact-btn-s">Request by email</span>
                 </a>
                 <a className="inv-contact-btn" href="https://app.caselink.net" target="_blank" rel="noopener noreferrer">
                   <span className="inv-contact-btn-ic">
