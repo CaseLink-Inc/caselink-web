@@ -1,5 +1,5 @@
 // Runs before the LeadConnector chat widget loads (app/layout.tsx and
-// public/tips.html). Two jobs:
+// public/tips.html). Sets our reply sound (public/chat-sound.mp3), plus:
 // 1. Start every page load with a fresh chat. The widget keeps the visitor
 //    and conversation token in this one localStorage key, so dropping it
 //    gives a new chat on refresh. The CRM's lead-source keys are left alone.
@@ -42,6 +42,9 @@
     var widget = document.querySelector("chat-widget");
     if (!widget) return;
     observer.disconnect();
+    // Our own reply sound ("bubble up", generated in-house) instead of the
+    // widget's default.
+    widget.notificationSoundUrl = location.origin + "/chat-sound.mp3";
     (function poll(tries) {
       if (!style(widget) && tries < 300) requestAnimationFrame(function () { poll(tries + 1); });
     })(0);

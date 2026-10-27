@@ -42,7 +42,10 @@ managers. Founder: Nick Campbell (Co-Founder, CEO). Based in Washington, DC.
     or refresh starts a fresh chat (client-side navigation keeps it), and
     injects a one-time scale-in + logo spin (and a logo spin on hover in
     place of the widget's brightness flash) into the launcher's shadow
-    root (off under prefers-reduced-motion).
+    root (off under prefers-reduced-motion). It also points the widget's
+    reply sound at `public/chat-sound.mp3` ("bubble up", generated
+    in-house, so no licensing). Other options live in
+    `../crm-bot/sound-options/`.
     Answered by the "CaseLink Intro Booking Bot" in the CRM, which books
     intro calls on Nick's CRM calendar. Appearance is managed in the CRM
     (Sites → Chat Widget), not in this repo. CSP allows widgets/services/
