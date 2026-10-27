@@ -73,9 +73,10 @@ const securityHeaders = [
       // also to www.google.com/g/collect and stats.g.doubleclick.net.
       // links.caselink.net + backend.leadconnectorhq.com receive the CRM
       // tracker's form-submission reports. widgets + services.leadconnectorhq.com
-      // carry the live chat widget's config and messages, and
+      // carry the live chat widget's config and messages (replies arrive over
+      // a wss:// socket on services.leadconnectorhq.com), and
       // services.msgsndr.com (LeadConnector's other host) its visitor session.
-      "connect-src 'self' https://api.web3forms.com https://calendly.com https://*.calendly.com https://assets.calendly.com https://*.hcaptcha.com https://hcaptcha.com https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://analytics.google.com https://stats.g.doubleclick.net https://www.google.com https://links.caselink.net https://backend.leadconnectorhq.com https://widgets.leadconnectorhq.com https://services.leadconnectorhq.com https://services.msgsndr.com",
+      "connect-src 'self' https://api.web3forms.com https://calendly.com https://*.calendly.com https://assets.calendly.com https://*.hcaptcha.com https://hcaptcha.com https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://analytics.google.com https://stats.g.doubleclick.net https://www.google.com https://links.caselink.net https://backend.leadconnectorhq.com https://widgets.leadconnectorhq.com https://services.leadconnectorhq.com wss://services.leadconnectorhq.com https://services.msgsndr.com",
       // Stop the site from being framed by anyone else. 'self' (not 'none')
       // so the home page can embed its own /intro animation in an iframe.
       "frame-ancestors 'self'",
