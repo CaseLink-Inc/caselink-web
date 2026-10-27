@@ -36,7 +36,12 @@ managers. Founder: Nick Campbell (Co-Founder, CEO). Based in Washington, DC.
     every page and any future page gets it automatically. The static
     `public/tips.html` does not use the layout and carries its own copy of
     the script tag (its slide hotkeys skip keys typed inside the chat). Any
-    new static HTML page in `public/` needs the same tag added by hand.
+    new static HTML page in `public/` needs the same tags added by hand.
+    `public/chat-widget-setup.js` loads just before the widget on both:
+    it clears the widget's chat-thread localStorage key so every page load
+    or refresh starts a fresh chat (client-side navigation keeps it), and
+    injects a one-time scale-in + logo spin into the launcher's shadow
+    root (off under prefers-reduced-motion).
     Answered by the "CaseLink Intro Booking Bot" in the CRM, which books
     intro calls on Nick's CRM calendar. Appearance is managed in the CRM
     (Sites → Chat Widget), not in this repo. CSP allows widgets/services/
@@ -196,6 +201,8 @@ Vercel picks it up in ~30 seconds.
 
 ## Recent significant changes (most recent first)
 
+- **Chat widget: fresh chat on refresh + launcher spin-in** (2026-10-27):
+  `public/chat-widget-setup.js`, see Third-party widgets.
 - **Live chat widget** (2026-10-27): CRM chat widget added site-wide (see
   Third-party widgets). Floating Calendly badge removed because it sat in
   the same bottom-right corner and the bot now books calls. Inline

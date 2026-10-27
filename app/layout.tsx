@@ -182,7 +182,10 @@ gtag('config', '${GA_MEASUREMENT_ID}');`}
 
         {/* LeadConnector live chat widget ("CaseLink"), answered by the
             CaseLink Intro Booking Bot in the CRM. lazyOnload so it never
-            competes with first paint. The widget ID is CaseLink-specific. */}
+            competes with first paint. The widget ID is CaseLink-specific.
+            The setup script runs first: fresh chat on every page load and
+            a spin-in for the launcher button. */}
+        <Script src="/chat-widget-setup.js" strategy="afterInteractive" />
         <Script
           src="https://widgets.leadconnectorhq.com/loader.js"
           data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
