@@ -44,7 +44,8 @@ managers. Founder: Nick Campbell (Co-Founder, CEO). Based in Washington, DC.
     place of the widget's brightness flash) into the launcher's shadow
     root (off under prefers-reduced-motion). It also points the widget's
     reply sound at `public/chat-sound.mp3` ("bubble up", generated
-    in-house, so no licensing). Other options live in
+    in-house, so no licensing) and hides the "Powered by Ignite Creative"
+    footer line. Other sound options live in
     `../crm-bot/sound-options/`.
     Answered by the "CaseLink Intro Booking Bot" in the CRM, which books
     intro calls on Nick's CRM calendar. Appearance is managed in the CRM

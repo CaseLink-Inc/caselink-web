@@ -22,6 +22,8 @@
     // flash. Swap that for a single logo spin. Doubled class beats its rule.
     ".lc_text-widget--bubble.lc_text-widget--bubble:not(.lc_text-widget--horizontal):hover{filter:none}" +
     ".lc_text-widget--bubble:hover img{transform:rotate(360deg)}" +
+    // Hide the reseller's "Powered by Ignite Creative" footer line.
+    ".lc_text-widget--agency-branding{display:none!important}" +
     "@media (prefers-reduced-motion:reduce){.lc_text-widget--bubble,.lc_text-widget--bubble img{animation:none;transition:none}.lc_text-widget--bubble:hover img{transform:none}}";
 
   function style(widget) {
