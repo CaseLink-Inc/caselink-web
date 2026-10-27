@@ -1503,6 +1503,8 @@ document.querySelectorAll('.stage-item').forEach(btn => {
   btn.addEventListener('click', () => setStage(parseInt(btn.dataset.stage, 10)));
 });
 document.addEventListener('keydown', (e) => {
+  // Leave keys alone while the visitor is typing, e.g. in the live chat.
+  if (e.composedPath().some(el => el.tagName === 'CHAT-WIDGET' || el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.isContentEditable)) return;
   if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); nextStage(); }
   else if (e.key === 'ArrowLeft') { prevStage(); }
 });
@@ -1510,5 +1512,8 @@ document.addEventListener('keydown', (e) => {
 // Initial render
 render();
 </script>
+<!-- CaseLink live chat widget. Same widget as app/layout.tsx, which this
+     static page does not use. -->
+<script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6ae0d9536118072e0e2c589f" defer></script>
 </body>
 </html>

@@ -32,7 +32,11 @@ managers. Founder: Nick Campbell (Co-Founder, CEO). Based in Washington, DC.
     by `BookCallButton`. Script mounted in `components/Calendly.tsx`.
     Loaded from `assets.calendly.com`.
   - **CaseLink live chat** — LeadConnector (GoHighLevel/Ignite) chat widget
-    `6ae0d9536118072e0e2c589f`, loaded in `app/layout.tsx` (lazyOnload).
+    `6ae0d9536118072e0e2c589f`, loaded in `app/layout.tsx` (lazyOnload), so
+    every page and any future page gets it automatically. The static
+    `public/tips.html` does not use the layout and carries its own copy of
+    the script tag (its slide hotkeys skip keys typed inside the chat). Any
+    new static HTML page in `public/` needs the same tag added by hand.
     Answered by the "CaseLink Intro Booking Bot" in the CRM, which books
     intro calls on Nick's CRM calendar. Appearance is managed in the CRM
     (Sites → Chat Widget), not in this repo. CSP allows widgets/services/
