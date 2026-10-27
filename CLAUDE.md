@@ -28,8 +28,16 @@ managers. Founder: Nick Campbell (Co-Founder, CEO). Based in Washington, DC.
 - **Self-hosted Satoshi** font family via `next/font/local` (10 weights
   in `public/fonts/`).
 - **Third-party widgets**:
-  - **Calendly** — floating "Schedule time with me" badge, mounted in
-    `components/Calendly.tsx`. Loaded from `assets.calendly.com`.
+  - **Calendly** — popup only (no floating badge since 2026-10-27), opened
+    by `BookCallButton`. Script mounted in `components/Calendly.tsx`.
+    Loaded from `assets.calendly.com`.
+  - **CaseLink live chat** — LeadConnector (GoHighLevel/Ignite) chat widget
+    `6ae0d9536118072e0e2c589f`, loaded in `app/layout.tsx` (lazyOnload).
+    Answered by the "CaseLink Intro Booking Bot" in the CRM, which books
+    intro calls on Nick's CRM calendar. Appearance is managed in the CRM
+    (Sites → Chat Widget), not in this repo. CSP allows widgets/services/
+    stcdn.leadconnectorhq.com, services.msgsndr.com, fonts.bunny.net and
+    challenges.cloudflare.com (Turnstile) for it.
   - **Web3Forms** — contact form submission target. Access key currently
     inlined in `components/contact/ContactForm.tsx`. POSTs to
     `api.web3forms.com/submit`. Optional override via
@@ -184,6 +192,13 @@ Vercel picks it up in ~30 seconds.
 
 ## Recent significant changes (most recent first)
 
+- **Live chat widget** (2026-10-27): CRM chat widget added site-wide (see
+  Third-party widgets). Floating Calendly badge removed because it sat in
+  the same bottom-right corner and the bot now books calls. Inline
+  "Book a call" buttons still open Calendly. CSP extended for the widget's
+  hosts (verified zero violations loading and opening the chat). Privacy
+  §6 gained a "Live chat" cookie bullet and the effective date moved to
+  27 October 2026. Shipped first on a preview branch for review.
 - **Security pass** (2026-10-26): Next.js 16.2.6 -> 16.4.3 (npm audit had
   critical unauthenticated-RCE advisories, now 0 vulnerabilities).
   Public pitch deck `public/caselink-deck-0a5e6b362c.pdf` removed (its URL

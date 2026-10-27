@@ -38,32 +38,13 @@ export default function Calendly() {
         href="https://assets.calendly.com/assets/external/widget.css"
         rel="stylesheet"
       />
+      {/* No floating badge: the bottom-right corner belongs to the CaseLink
+          live chat widget, which books intro calls itself. The script stays
+          so every BookCallButton can still open the Calendly popup. */}
       <Script
         src="https://assets.calendly.com/assets/external/widget.js"
         strategy="afterInteractive"
       />
-      <Script id="calendly-badge" strategy="afterInteractive">
-        {`
-          (function () {
-            function start() {
-              if (window.Calendly && !window.__caselinkBadgeInitialized) {
-                window.__caselinkBadgeInitialized = true;
-                Calendly.initBadgeWidget({
-                  url: '${CALENDLY_URL}',
-                  text: 'Schedule time with me',
-                  color: '#1b1f1e',
-                  textColor: '#ffffff',
-                  branding: false
-                });
-              } else if (!window.Calendly) {
-                setTimeout(start, 200);
-              }
-            }
-            if (document.readyState === 'complete') start();
-            else window.addEventListener('load', start);
-          })();
-        `}
-      </Script>
     </>
   );
 }

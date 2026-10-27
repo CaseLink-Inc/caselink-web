@@ -48,7 +48,7 @@ export default function PrivacyPage() {
             communication platform.
           </p>
           <p className="privacy-effective">
-            <strong>Effective:</strong> 20 August 2026
+            <strong>Effective:</strong> 27 October 2026
           </p>
         </div>
       </section>
@@ -349,6 +349,16 @@ export default function PrivacyPage() {
                   Calendly booking widget on the Website, Calendly sets cookies
                   to manage your scheduling session. Calendly&rsquo;s privacy
                   practices apply to those cookies.
+                </li>
+                <li>
+                  <strong>Live chat.</strong> The chat window on the Website is
+                  provided by LeadConnector, our customer relationship
+                  management provider. It uses cookies and local storage to
+                  keep your conversation open as you move between pages, and
+                  the messages and contact details you share are stored there
+                  so our team can follow up. Replies may come from an automated
+                  assistant. Please do not share patient information in the
+                  chat.
                 </li>
                 <li>
                   <strong>Analytics.</strong> We use Google Analytics 4 to

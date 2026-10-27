@@ -179,6 +179,16 @@ gtag('config', '${GA_MEASUREMENT_ID}');`}
           data-tracking-id="tk_a9be11cdd564409692faee1ea3a35f43"
           strategy="afterInteractive"
         />
+
+        {/* LeadConnector live chat widget ("CaseLink"), answered by the
+            CaseLink Intro Booking Bot in the CRM. lazyOnload so it never
+            competes with first paint. The widget ID is CaseLink-specific. */}
+        <Script
+          src="https://widgets.leadconnectorhq.com/loader.js"
+          data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
+          data-widget-id="6ae0d9536118072e0e2c589f"
+          strategy="lazyOnload"
+        />
       </body>
     </html>
   );

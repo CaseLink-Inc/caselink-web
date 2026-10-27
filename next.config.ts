@@ -46,27 +46,36 @@ const securityHeaders = [
       // Next.js + JSON-LD + Calendly widget all need inline + eval'd code.
       // googletagmanager.com serves the GA4 gtag.js library.
       // links.caselink.net serves the LeadConnector CRM tracker.
+      // The CaseLink live chat widget loads from widgets.leadconnectorhq.com,
+      // pulls helpers from stcdn + services.leadconnectorhq.com, and runs a
+      // Cloudflare Turnstile spam check from challenges.cloudflare.com.
       // blob: is needed by the /intro animation bundle, which instantiates its
       // own modules as blob URLs. Same-origin code has to be running already to
       // create one, so alongside the 'unsafe-eval' above it adds no real reach.
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: https://assets.calendly.com https://calendly.com https://va.vercel-scripts.com https://web3forms.com https://*.hcaptcha.com https://hcaptcha.com https://www.googletagmanager.com https://links.caselink.net",
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: https://assets.calendly.com https://calendly.com https://va.vercel-scripts.com https://web3forms.com https://*.hcaptcha.com https://hcaptcha.com https://www.googletagmanager.com https://links.caselink.net https://widgets.leadconnectorhq.com https://services.leadconnectorhq.com https://stcdn.leadconnectorhq.com https://challenges.cloudflare.com",
       // The animation decodes its voiceover and music into blob URLs.
-      "media-src 'self' blob: data:",
+      // The live chat widget plays a new-message sound from its own host.
+      "media-src 'self' blob: data: https://widgets.leadconnectorhq.com",
       "worker-src 'self' blob:",
       // Fonts and stylesheets — self-hosted Satoshi + Calendly widget CSS.
-      "style-src 'self' 'unsafe-inline' https://assets.calendly.com https://*.hcaptcha.com https://hcaptcha.com",
-      "font-src 'self' data:",
+      // The live chat widget loads its CSS from LeadConnector and its Roboto
+      // font from fonts.bunny.net.
+      "style-src 'self' 'unsafe-inline' https://assets.calendly.com https://*.hcaptcha.com https://hcaptcha.com https://widgets.leadconnectorhq.com https://stcdn.leadconnectorhq.com https://fonts.bunny.net",
+      "font-src 'self' data: https://fonts.bunny.net",
       // Images: site assets, Web3Forms badge, Vercel-optimised images, social previews.
       "img-src 'self' data: blob: https:",
       // Calendly popup runs in an iframe. hCaptcha challenge also iframed.
-      "frame-src 'self' https://calendly.com https://*.calendly.com https://*.hcaptcha.com https://hcaptcha.com",
+      // The live chat widget's Turnstile check renders in a Cloudflare iframe.
+      "frame-src 'self' https://calendly.com https://*.calendly.com https://*.hcaptcha.com https://hcaptcha.com https://challenges.cloudflare.com",
       // Web3Forms POST + Calendly tracking + hCaptcha verification + GA4 collect.
       // GA4 beacons go to the bare analytics.google.com apex (not covered by
       // the *.analytics.google.com wildcard), and with Google signals enabled
       // also to www.google.com/g/collect and stats.g.doubleclick.net.
       // links.caselink.net + backend.leadconnectorhq.com receive the CRM
-      // tracker's form-submission reports.
-      "connect-src 'self' https://api.web3forms.com https://calendly.com https://*.calendly.com https://assets.calendly.com https://*.hcaptcha.com https://hcaptcha.com https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://analytics.google.com https://stats.g.doubleclick.net https://www.google.com https://links.caselink.net https://backend.leadconnectorhq.com",
+      // tracker's form-submission reports. widgets + services.leadconnectorhq.com
+      // carry the live chat widget's config and messages, and
+      // services.msgsndr.com (LeadConnector's other host) its visitor session.
+      "connect-src 'self' https://api.web3forms.com https://calendly.com https://*.calendly.com https://assets.calendly.com https://*.hcaptcha.com https://hcaptcha.com https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://analytics.google.com https://stats.g.doubleclick.net https://www.google.com https://links.caselink.net https://backend.leadconnectorhq.com https://widgets.leadconnectorhq.com https://services.leadconnectorhq.com https://services.msgsndr.com",
       // Stop the site from being framed by anyone else. 'self' (not 'none')
       // so the home page can embed its own /intro animation in an iframe.
       "frame-ancestors 'self'",
