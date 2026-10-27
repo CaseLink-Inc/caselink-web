@@ -4,7 +4,7 @@
 //    and conversation token in this one localStorage key, so dropping it
 //    gives a new chat on refresh. The CRM's lead-source keys are left alone.
 // 2. Replace the launcher's sudden pop-in with a soft scale-in while the
-//    logo spins into place. The widget renders in a shadow root, so page CSS
+//    logo spins into place, and its hover flash with a logo spin. The widget renders in a shadow root, so page CSS
 //    can't reach it and the style is injected into that root instead.
 (function () {
   try {
@@ -17,8 +17,12 @@
     "@keyframes cl-bubble-in{from{opacity:0;transform:scale(.6)}}" +
     "@keyframes cl-logo-spin{from{transform:rotate(-360deg)}}" +
     ".lc_text-widget--bubble{animation:cl-bubble-in .5s cubic-bezier(.22,1,.36,1) backwards}" +
-    ".lc_text-widget--bubble img{animation:cl-logo-spin 1.1s cubic-bezier(.22,1,.36,1) backwards}" +
-    "@media (prefers-reduced-motion:reduce){.lc_text-widget--bubble,.lc_text-widget--bubble img{animation:none}}";
+    ".lc_text-widget--bubble img{animation:cl-logo-spin 1.1s cubic-bezier(.22,1,.36,1) backwards;transition:transform .8s cubic-bezier(.22,1,.36,1)}" +
+    // The widget brightens the button to 125% on hover, which reads as a
+    // flash. Swap that for a single logo spin. Doubled class beats its rule.
+    ".lc_text-widget--bubble.lc_text-widget--bubble:not(.lc_text-widget--horizontal):hover{filter:none}" +
+    ".lc_text-widget--bubble:hover img{transform:rotate(360deg)}" +
+    "@media (prefers-reduced-motion:reduce){.lc_text-widget--bubble,.lc_text-widget--bubble img{animation:none;transition:none}.lc_text-widget--bubble:hover img{transform:none}}";
 
   function style(widget) {
     var root = widget.shadowRoot;

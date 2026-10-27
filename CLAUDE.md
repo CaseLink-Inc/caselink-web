@@ -40,7 +40,8 @@ managers. Founder: Nick Campbell (Co-Founder, CEO). Based in Washington, DC.
     `public/chat-widget-setup.js` loads just before the widget on both:
     it clears the widget's chat-thread localStorage key so every page load
     or refresh starts a fresh chat (client-side navigation keeps it), and
-    injects a one-time scale-in + logo spin into the launcher's shadow
+    injects a one-time scale-in + logo spin (and a logo spin on hover in
+    place of the widget's brightness flash) into the launcher's shadow
     root (off under prefers-reduced-motion).
     Answered by the "CaseLink Intro Booking Bot" in the CRM, which books
     intro calls on Nick's CRM calendar. Appearance is managed in the CRM
