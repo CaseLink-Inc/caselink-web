@@ -28,7 +28,7 @@ Not every free tier earns the word. These criteria separate a genuine offering f
 
 [CaseLink](https://www.caselink.net) is a HIPAA aligned referral and collaboration platform. General dentists use it to send structured referrals, track case progress, and communicate securely about each patient.
 
-The GP tier is permanently free. No trial. No card. Referral creation, status tracking, secure messaging, file sharing, and notifications are all included at no charge.
+The GP tier is free. No trial. No card. Referral creation, status tracking, secure messaging, file sharing, and notifications are all included at no charge.
 
 A referral runs like this. The front desk opens a new case from the dashboard, adds patient identifiers, the clinical reason, and any relevant files, then picks a specialist from the directory. The specialist receives it, accepts it, books a consult, and updates the case as treatment moves. Every status change shows up on the GP side in real time. The pipeline has six stages, from Referral Received through Treatment Accepted, and both offices read the same one.
 

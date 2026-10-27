@@ -188,6 +188,10 @@ Vercel picks it up in ~30 seconds.
   copy to `public/resources/<slug>-<slot>.jpg` → set `thumbnail`/`thumbnailAlt`
   or figure `src`/`alt` in `lib/resources.ts` → write alt text → build → push.
   Nothing else.
+- **GP plan is "free", never "permanently free"**: no "forever",
+  "permanently" or "for life" anywhere (site, articles, chat bot). GPs may
+  be charged in future (user, 2026-10-28). Same rule in the blog facts file
+  and the bot prompt.
 - **Never name competing referral platforms** (PepCare, Refera, NexHealth,
   Adit, or any direct competitor) anywhere on the site or in articles. No
   comparisons, no citing their stats. Research/benchmark sources (DentistryIQ,
@@ -206,6 +210,7 @@ Vercel picks it up in ~30 seconds.
 
 ## Recent significant changes (most recent first)
 
+- **"Permanently free" removed** (2026-10-28): 9 spots now say "free".
 - **Chat widget: fresh chat on refresh + launcher spin-in** (2026-10-27):
   `public/chat-widget-setup.js`, see Third-party widgets.
 - **Live chat widget** (2026-10-27): CRM chat widget added site-wide (see

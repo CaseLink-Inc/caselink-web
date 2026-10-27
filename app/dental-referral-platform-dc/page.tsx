@@ -31,7 +31,7 @@ const faqs = [
   },
   {
     q: "Is CaseLink really free for general dentists?",
-    a: "Yes. The GP plan is permanently free, with no trial period and no credit card. It includes unlimited referrals, secure messaging, file sharing, and real-time status tracking. Specialists pay $299 a month, with 10 percent off annual billing.",
+    a: "Yes. The GP plan is free, with no trial period and no credit card. It includes unlimited referrals, secure messaging, file sharing, and real-time status tracking. Specialists pay $299 a month, with 10 percent off annual billing.",
   },
   {
     q: "Does CaseLink replace my practice management system?",
@@ -194,7 +194,7 @@ export default function DcLandingPage() {
               <p>
                 Early DMV practices get founding member pricing, hands-on
                 onboarding, and a direct line to the team. The GP side is free
-                for everyone, permanently.
+                for everyone.
               </p>
             </div>
           </div>

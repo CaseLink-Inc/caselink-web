@@ -37,7 +37,7 @@ const sharedFaqs = (plural: string) => [
   },
   {
     q: `Do the general dentists who refer to me have to pay?`,
-    a: "No. The general dentist plan is permanently free, with unlimited referrals and no credit card. You can invite any referring GP from the referral screen in under a minute.",
+    a: "No. The general dentist plan is free, with unlimited referrals and no credit card. You can invite any referring GP from the referral screen in under a minute.",
   },
   {
     q: "Does CaseLink replace my practice management system?",

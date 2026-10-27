@@ -49,7 +49,7 @@ export const faqGroups: FaqGroup[] = [
       },
       {
         q: "Is CaseLink really free for general dentists?",
-        a: "Yes. The GP plan is permanently free, with no trial period and no credit card. It includes unlimited referrals, secure file sharing, encrypted messaging, and real-time updates.",
+        a: "Yes. The GP plan is free, with no trial period and no credit card. It includes unlimited referrals, secure file sharing, encrypted messaging, and real-time updates.",
         guide: "free-dental-referral-software-for-general-dentists",
       },
       {

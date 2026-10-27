@@ -24,18 +24,28 @@
     ".lc_text-widget--bubble:hover img{transform:rotate(360deg)}" +
     // Hide the reseller's "Powered by Ignite Creative" footer line.
     ".lc_text-widget--agency-branding{display:none!important}" +
+    // With the footer gone the message box sat flush on the bottom edge.
+    // It lives in the nested chat-input component, hence the walk below.
+    // Doubled class: the widget's adopted sheets win ties against ours.
+    ".input-row.input-row{padding-bottom:12px}" +
     "@media (prefers-reduced-motion:reduce){.lc_text-widget--bubble,.lc_text-widget--bubble img{animation:none;transition:none}.lc_text-widget--bubble:hover img{transform:none}}";
 
-  function style(widget) {
-    var root = widget.shadowRoot;
-    if (!root) return false;
+  // The widget nests components (chat-pane, chat-input) in shadow roots of
+  // their own, created as the chat opens. Style every root as it appears.
+  function style(root) {
     if (!root.getElementById("cl-launcher-motion")) {
       var s = document.createElement("style");
       s.id = "cl-launcher-motion";
       s.textContent = css;
       root.appendChild(s);
     }
-    return true;
+    function nested() {
+      root.querySelectorAll("*").forEach(function (el) {
+        if (el.shadowRoot && !el.shadowRoot.getElementById("cl-launcher-motion")) style(el.shadowRoot);
+      });
+    }
+    nested();
+    new MutationObserver(nested).observe(root, { childList: true, subtree: true });
   }
 
   // Wait for the widget element, then for its shadow root (which can be
@@ -48,7 +58,8 @@
     // widget's default.
     widget.notificationSoundUrl = location.origin + "/chat-sound.mp3";
     (function poll(tries) {
-      if (!style(widget) && tries < 300) requestAnimationFrame(function () { poll(tries + 1); });
+      if (widget.shadowRoot) style(widget.shadowRoot);
+      else if (tries < 300) requestAnimationFrame(function () { poll(tries + 1); });
     })(0);
   });
   observer.observe(document.documentElement, { childList: true, subtree: true });

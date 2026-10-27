@@ -106,7 +106,7 @@ export default function PricingPage() {
           <span className="eyebrow">Pricing</span>
           <h1>Dental referral software pricing.</h1>
           <p className="lead">
-            General dentists send referrals for free, permanently. Specialists
+            General dentists send referrals for free. Specialists
             pay a flat monthly fee that is typically covered by a single new
             case per month. Groups and DSOs get a custom plan.
           </p>

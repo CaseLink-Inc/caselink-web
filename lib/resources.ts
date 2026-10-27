@@ -279,7 +279,7 @@ export const resources: Resource[] = [
       },
       {
         q: "Is there free referral software for general dentists?",
-        a: "Yes. CaseLink's GP tier is permanently free, covering referral creation, status tracking, secure messaging, and file sharing. Specialists are the paying side.",
+        a: "Yes. CaseLink's GP tier is free, covering referral creation, status tracking, secure messaging, and file sharing. Specialists are the paying side.",
       },
       {
         q: "Can I use it alongside my existing practice management system?",
@@ -333,14 +333,14 @@ export const resources: Resource[] = [
     date: "2026-05-25",
     readMinutes: 6,
     keyStats: [
-      { value: "$0", label: "permanently free for general dentists" },
+      { value: "$0", label: "free for general dentists" },
       { value: "30-40%", label: "of paper referrals fail without tracking" },
       { value: "<30 min", label: "from sign-up to first referral" },
     ],
     faqs: [
       {
         q: "Is CaseLink really free for general dentists?",
-        a: "Yes. The GP tier is permanently free, with no trial period, no feature gate on the core referral workflow, and no credit card. GPs create an account, complete a profile, and start sending.",
+        a: "Yes. The GP tier is free, with no trial period, no feature gate on the core referral workflow, and no credit card. GPs create an account, complete a profile, and start sending.",
       },
       {
         q: "Does it work with Dentrix, Eaglesoft, or Open Dental?",
