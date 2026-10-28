@@ -59,7 +59,7 @@ export async function generateMetadata({
       : undefined;
   const socialImage = featuredOg ?? r.thumbnail;
   return {
-    // metaTitle already ends in "| CaseLink"; absolute bypasses the layout's
+    // metaTitle already ends in "· CaseLink"; absolute bypasses the layout's
     // "%s · CaseLink" template so the brand is not doubled.
     title: { absolute: r.metaTitle },
     description: r.excerpt,

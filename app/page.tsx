@@ -25,8 +25,15 @@ const softwareApplicationJsonLd = {
   name: "CaseLink",
   url: SITE,
   description:
-    "CaseLink is a HIPAA-compliant referral and collaboration network for general dentists, specialists, and dental practice managers. Send referrals with full clinical context, track status in real time, and exchange outcome reports in minutes.",
+    "CaseLink is HIPAA-compliant dental referral management software, a referral platform where general dentists and specialists refer to each other. Send digital referrals with full clinical context, track status in real time, and exchange outcome reports in minutes instead of by fax.",
+  alternateName: [
+    "CaseLink dental referral management software",
+    "CaseLink dental referral platform",
+  ],
   applicationCategory: "BusinessApplication",
+  applicationSubCategory: "Dental referral management",
+  keywords:
+    "dental referral management, dental referral software, dental referral platform, referral tracking, dentist to specialist referrals, digital dental referrals, paperless referrals, DSO referral management",
   operatingSystem: "Web",
   audience: {
     "@type": "Audience",
@@ -46,13 +53,16 @@ const softwareApplicationJsonLd = {
   },
   featureList: [
     "HIPAA-compliant patient referrals",
-    "End-to-end encryption on every message and file",
+    "Encryption in transit and at rest on every referral, message, and file",
     "Real-time referral status tracking",
     "Outcome reports between practices",
     "Encrypted clinical messaging",
     "Audit logs on every action",
     "Role-based access controls",
     "Patient and case organization",
+    "Referral source analytics for specialists",
+    "Invite referring practices in under a minute",
+    "Multi-location analytics and team permissions for DSOs",
   ],
 };
 

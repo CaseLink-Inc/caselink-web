@@ -28,9 +28,9 @@ const siteUrl = "https://www.caselink.net";
 const siteName = "CaseLink";
 // Google Analytics 4 measurement ID for the caselink.net web stream.
 const GA_MEASUREMENT_ID = "G-L5HM3LDBHB";
-const siteTitle = "CaseLink · Dental Referral Platform for GPs & Specialists";
+const siteTitle = "CaseLink · Dental Referral Management Platform for Dentists & Specialists";
 const siteDescription =
-  "CaseLink is a HIPAA-compliant dental referral platform. General dentists and specialists send cases, share records, and track every referral in one shared workspace. Free for GPs.";
+  "CaseLink is a HIPAA-compliant dental referral management platform where general dentists and specialists refer to each other, share x-rays and records, and track every referral in one shared workspace. Free for GPs.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -42,12 +42,17 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
   applicationName: siteName,
   keywords: [
-    "dental referrals",
-    "dental referral network",
-    "HIPAA compliant referrals",
-    "general dentist software",
-    "specialist referrals",
-    "dental practice management",
+    "dental referral management",
+    "dental referral management software",
+    "dental referral platform",
+    "dental referral software",
+    "dental referral tracking",
+    "dentist to specialist referral network",
+    "digital dental referrals",
+    "online dental referral system",
+    "paperless dental referrals",
+    "HIPAA compliant dental referrals",
+    "DSO referral management",
     "encrypted dental messaging",
   ],
   authors: [{ name: "CaseLink, Inc.", url: siteUrl }],
@@ -105,7 +110,18 @@ const organizationJsonLd = {
     postalCode: "22204",
     addressCountry: "US",
   },
-  areaServed: "Washington DC metropolitan area",
+  alternateName: "CaseLink",
+  slogan: "Your link to better patient care.",
+  // The product serves practices anywhere in the US (lib/faqs.ts). The DC
+  // metro focus lives on the geo page, not here.
+  areaServed: { "@type": "Country", name: "United States" },
+  knowsAbout: [
+    "Dental referral management",
+    "Dentist to specialist referrals",
+    "Dental referral tracking",
+    "HIPAA compliant dental communication",
+    "Dental specialist referral networks",
+  ],
   contactPoint: [
     {
       "@type": "ContactPoint",

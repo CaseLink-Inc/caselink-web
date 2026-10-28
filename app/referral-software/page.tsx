@@ -8,7 +8,7 @@ import { SIGNUP_URL } from "@/lib/urls";
 
 const SITE = "https://www.caselink.net";
 const DESCRIPTION =
-  "HIPAA-compliant dental referral software for every specialty: endodontists, orthodontists, periodontists, oral surgeons, and prosthodontists. Free for referring general dentists.";
+  "HIPAA-compliant dental referral software and referral management for every specialty: endodontists, orthodontists, periodontists, oral surgeons, and prosthodontists, plus general dentists and DSOs. Free for referring general dentists.";
 
 export const metadata: Metadata = {
   title: "Dental Referral Software for Specialists",
@@ -26,11 +26,15 @@ const listLd = {
   "@context": "https://schema.org",
   "@type": "ItemList",
   name: "CaseLink referral software by specialty",
-  itemListElement: specialties.map((s, i) => ({
+  itemListElement: [
+    ...specialties.map((s) => ({ name: s.metaTitle, path: `/referral-software/${s.slug}` })),
+    { name: "Free Dental Referral Software for General Dentists", path: "/referral-software/general-dentists" },
+    { name: "Referral Management for DSOs and Dental Groups", path: "/referral-software/dso" },
+  ].map((item, i) => ({
     "@type": "ListItem",
     position: i + 1,
-    name: s.metaTitle,
-    url: `${SITE}/referral-software/${s.slug}`,
+    name: item.name,
+    url: `${SITE}${item.path}`,
   })),
 };
 
@@ -71,7 +75,7 @@ export default function ReferralSoftwareHub() {
                 </span>
               </Link>
             ))}
-            <Link href="/resources/free-dental-referral-software-for-general-dentists" className="geo-card spec-hub-card spec-hub-gp">
+            <Link href="/referral-software/general-dentists" className="geo-card spec-hub-card spec-hub-gp">
               <span className="eyebrow">General dentists</span>
               <h2>Free for general dentists</h2>
               <p>
@@ -79,17 +83,48 @@ export default function ReferralSoftwareHub() {
                 case for free, with no trial period and no credit card.
               </p>
               <span className="spec-hub-more">
+                Learn more
+                <ArrowRight width={13} height={13} />
+              </span>
+            </Link>
+            <Link href="/referral-software/dso" className="geo-card spec-hub-card">
+              <span className="eyebrow">DSOs and groups</span>
+              <h2>Referral management for DSOs</h2>
+              <p>
+                One referral workflow across every location, with team
+                permissions, multi-location analytics, and API access.
+              </p>
+              <span className="spec-hub-more">
+                Learn more
+                <ArrowRight width={13} height={13} />
+              </span>
+            </Link>
+            <Link href="/dental-referral-management" className="geo-card spec-hub-card spec-hub-gp">
+              <span className="eyebrow">Overview</span>
+              <h2>How referral management works</h2>
+              <p>
+                What dental referral management covers, where fax falls short,
+                and how CaseLink tracks each case from send to outcome.
+              </p>
+              <span className="spec-hub-more">
+                Learn more
+                <ArrowRight width={13} height={13} />
+              </span>
+            </Link>
+            <Link href="/resources/how-to-choose-dental-referral-software" className="geo-card spec-hub-card">
+              <span className="eyebrow">Buyer&apos;s guide</span>
+              <h2>How to choose referral software</h2>
+              <p>
+                Eight questions to ask before your practice picks a referral
+                platform, from who pays and the BAA to how both offices see
+                status.
+              </p>
+              <span className="spec-hub-more">
                 Read the guide
                 <ArrowRight width={13} height={13} />
               </span>
             </Link>
           </div>
-          <p className="geo-steps-more">
-            <Link href="/resources/how-to-choose-dental-referral-software">
-              Comparing options? Read how to choose dental referral software
-              <ArrowRight width={13} height={13} />
-            </Link>
-          </p>
         </div>
       </section>
 

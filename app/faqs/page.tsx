@@ -7,14 +7,14 @@ import { SIGNUP_URL } from "@/lib/urls";
 
 const SITE = "https://www.caselink.net";
 const DESCRIPTION =
-  "Answers to common questions about CaseLink, the HIPAA-compliant dental referral platform: pricing, BAAs, security, setup, and how it works alongside Dentrix, Eaglesoft, and Open Dental.";
+  "Answers to common questions about CaseLink, the HIPAA-compliant dental referral management platform: how dentists and specialists refer to each other, pricing, BAAs, security, setup, DSOs, and how it works alongside Dentrix, Eaglesoft, and Open Dental.";
 
 export const metadata: Metadata = {
-  title: "Dental Referral Platform FAQs",
+  title: "Dental Referral Management Platform FAQs",
   description: DESCRIPTION,
   alternates: { canonical: "/faqs" },
   openGraph: {
-    title: "Dental Referral Platform FAQs · CaseLink",
+    title: "Dental Referral Management Platform FAQs · CaseLink",
     description: DESCRIPTION,
     url: `${SITE}/faqs`,
     type: "website",

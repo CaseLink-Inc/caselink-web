@@ -22,8 +22,16 @@ export const faqGroups: FaqGroup[] = [
         a: "CaseLink is a HIPAA-compliant dental referral platform. General dentists and specialists send cases, share records, and track every referral in one shared workspace, instead of relying on fax, phone calls, and paper slips.",
       },
       {
+        q: "What is dental referral management software?",
+        a: "Dental referral management software replaces fax, phone calls, and paper referral slips with one secure system for sending, receiving, and tracking referrals between dental practices. CaseLink is a HIPAA-compliant dental referral management platform where general dentists and specialists refer to each other and both offices see the status and outcome of every case.",
+      },
+      {
+        q: "Can general dentists and specialists refer to each other on CaseLink?",
+        a: "Yes. General dentists send referrals to specialists, specialists accept them and send outcome reports back, and both offices see the same timestamped status, messages, and records.",
+      },
+      {
         q: "Who is CaseLink for?",
-        a: "General dentists who want visibility into every referral they send, specialists who want each incoming case to arrive with full clinical context, and office managers who coordinate referral flow across a practice. Supported specialties include orthodontics, endodontics, periodontics, oral surgery, and prosthodontics.",
+        a: "General dentists who want visibility into every referral they send, specialists who want each incoming case to arrive with full clinical context, office managers who coordinate referral flow across a practice, and DSOs and multi-location groups. Supported specialties include orthodontics, endodontics, periodontics, oral surgery, and prosthodontics.",
       },
       {
         q: "How long does setup take?",
@@ -102,6 +110,15 @@ export const faqGroups: FaqGroup[] = [
         guide: "how-to-stop-losing-dental-referrals",
       },
       {
+        q: "Can CaseLink replace paper referral pads and faxed referrals?",
+        a: "Yes. Instead of a paper slip the patient carries or a fax nobody confirms, the referral goes to the specialist with x-rays and notes attached, and both offices see when it was received, when the patient was contacted, and when the consult was scheduled.",
+        guide: "paperless-dental-referrals",
+      },
+      {
+        q: "Can I track the referrals my office sends?",
+        a: "Yes. Every referral you send has a timestamped status visible to your office, from received through consult scheduled and treatment accepted, with outcome reports returned in the same case record.",
+      },
+      {
         q: "What clinical information can I attach to a referral?",
         a: "Patient details, x-rays, insurance information, treatment notes, and supporting attachments. The specialist receives each case with the clinical context already in place.",
       },
@@ -159,7 +176,7 @@ export const faqGroups: FaqGroup[] = [
       },
       {
         q: "What does the DSO and multi-location plan include?",
-        a: "Team permissions, multi-location analytics, API access, and a dedicated success manager. Pricing is custom on an annual contract.",
+        a: "Team permissions, multi-location analytics, API access, and a dedicated success manager. Pricing is custom on an annual contract. CaseLink gives every location in a group the same referral workflow.",
       },
     ],
   },

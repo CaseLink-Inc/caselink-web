@@ -54,13 +54,16 @@ export default function Footer() {
               <li><Link href="/#how">How it works</Link></li>
               <li><Link href="/pricing" className={isActive("/pricing") ? "on" : ""}>Pricing</Link></li>
               <li><Link href="/faqs" className={isActive("/faqs") ? "on" : ""}>FAQs</Link></li>
-              <li><Link href="/referral-software" className={pathname.startsWith("/referral-software") ? "on" : ""}>For specialists</Link></li>
+              <li><Link href="/dental-referral-management" className={isActive("/dental-referral-management") ? "on" : ""}>Referral management</Link></li>
+              <li><Link href="/referral-software" className={isActive("/referral-software") || /^\/referral-software\/(?!general-dentists|dso)/.test(pathname) ? "on" : ""}>For specialists</Link></li>
               <li><Link href="/contact" className={isActive("/contact") ? "on" : ""}>Contact</Link></li>
             </ul>
           </div>
           <div className="foot-col">
             <h5>More pages</h5>
             <ul>
+              <li><Link href="/referral-software/general-dentists" className={isActive("/referral-software/general-dentists") ? "on" : ""}>For general dentists</Link></li>
+              <li><Link href="/referral-software/dso" className={isActive("/referral-software/dso") ? "on" : ""}>For DSOs</Link></li>
               <li><Link href="/dental-referral-platform-dc" className={isActive("/dental-referral-platform-dc") ? "on" : ""}>CaseLink in DC</Link></li>
               <li><Link href="/privacy" className={isActive("/privacy") ? "on" : ""}>Privacy</Link></li>
               <li><Link href="/terms" className={isActive("/terms") ? "on" : ""}>Terms</Link></li>

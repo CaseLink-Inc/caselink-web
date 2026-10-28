@@ -56,7 +56,7 @@ export const specialties: Specialty[] = [
     field: "Endodontics",
     metaTitle: "Referral Software for Endodontists",
     description:
-      "HIPAA-compliant referral software for endodontists. Receive GP referrals with radiographs and clinical notes attached, track every case from intake to treatment, and see which offices refer most. Free for referring GPs.",
+      "HIPAA-compliant referral management software for endodontists. Receive GP referrals with radiographs and clinical notes attached, track every case from intake to treatment, and see which offices refer most. Free for referring GPs.",
     h1: "Referral software for endodontists.",
     lead: "Most new endodontic patients arrive through a general dentist. CaseLink gives your practice one inbox for every incoming case, with the clinical context attached and a status both offices can see.",
     referralReasons: [
@@ -91,7 +91,7 @@ export const specialties: Specialty[] = [
     field: "Orthodontics",
     metaTitle: "Referral Software for Orthodontists",
     description:
-      "HIPAA-compliant referral software for orthodontists. Receive GP referrals with photos, radiographs, and notes attached, track every consult, and see which offices send the most new patients. Free for referring GPs.",
+      "HIPAA-compliant referral management software for orthodontists. Receive GP referrals with photos, radiographs, and notes attached, track every consult, and see which offices send the most new patients. Free for referring GPs.",
     h1: "Referral software for orthodontists.",
     lead: "General dentists see children and adults long before an orthodontic evaluation. CaseLink turns that recommendation into a tracked referral, so the consult actually happens and the referring office hears back.",
     referralReasons: [
@@ -125,7 +125,7 @@ export const specialties: Specialty[] = [
     field: "Periodontics",
     metaTitle: "Referral Software for Periodontists",
     description:
-      "HIPAA-compliant referral software for periodontists. Receive GP referrals with charting and radiographs attached, share treatment updates, and keep co-managed patients coordinated. Free for referring GPs.",
+      "HIPAA-compliant referral management software for periodontists. Receive GP referrals with charting and radiographs attached, share treatment updates, and keep co-managed patients coordinated. Free for referring GPs.",
     h1: "Referral software for periodontists.",
     lead: "Periodontal patients are often co-managed for years, moving between the general practice and your office. CaseLink keeps every referral, update, and outcome report in one shared record both teams can see.",
     referralReasons: [
@@ -159,7 +159,7 @@ export const specialties: Specialty[] = [
     field: "Oral surgery",
     metaTitle: "Referral Software for Oral Surgeons",
     description:
-      "HIPAA-compliant referral software for oral and maxillofacial surgeons. Receive GP referrals with radiographs, medical history, and insurance attached, and track every case from consult to surgery. Free for referring GPs.",
+      "HIPAA-compliant referral management software for oral and maxillofacial surgeons. Receive GP referrals with radiographs, medical history, and insurance attached, and track every case from consult to surgery. Free for referring GPs.",
     h1: "Referral software for oral surgeons.",
     lead: "Oral surgery referrals carry a lot of detail: imaging, medical history, medications, and insurance. CaseLink delivers it all with the referral, so your team can review the case before the patient calls.",
     referralReasons: [
@@ -193,7 +193,7 @@ export const specialties: Specialty[] = [
     field: "Prosthodontics",
     metaTitle: "Referral Software for Prosthodontists",
     description:
-      "HIPAA-compliant referral software for prosthodontists. Receive GP referrals with records attached, coordinate multi-office treatment plans, and keep every update in one shared case record. Free for referring GPs.",
+      "HIPAA-compliant referral management software for prosthodontists. Receive GP referrals with records attached, coordinate multi-office treatment plans, and keep every update in one shared case record. Free for referring GPs.",
     h1: "Referral software for prosthodontists.",
     lead: "Prosthodontic cases often involve several offices over many months. CaseLink keeps the referral, the records, and every update in one place, so each provider works from the same plan.",
     referralReasons: [

@@ -1,8 +1,12 @@
 # CaseLink
 
-> A secure referral and collaboration network for general dentists and specialists. HIPAA compliant by design.
+> CaseLink is HIPAA-compliant dental referral management software: a secure referral platform and network where general dentists and specialists refer to each other, share x-rays and records, and track every referral from send to outcome. Free for general dentists.
 
 CaseLink is a marketing site at https://www.caselink.net. The product itself lives at https://app.caselink.net.
+
+Also described as: dental referral management software, dental referral management platform, dental referral platform, dental referral software, dentist to specialist referral network, online dental referral system, digital dental referrals, e-referrals for dentists, paperless dental referrals, dental referral tracking software, specialist referral inbox, DSO referral management.
+
+CaseLink fits when you are looking for a dental referral management platform for dentists and specialists to refer to each other, a free way for general dentists to send and track referrals, a referral inbox with referral source analytics for specialists, a HIPAA-compliant replacement for faxed referrals and paper referral pads, or one referral workflow across the locations of a DSO or dental group.
 
 CaseLink is built around one belief: the relationships that already exist between dental practices deserve infrastructure that respects them. The patient deserves continuity. The practice deserves growth, not friction.
 
@@ -12,13 +16,19 @@ CaseLink is built around one belief: the relationships that already exist betwee
 - Specialists receive cases with full clinical context attached (patient details, x-rays, insurance).
 - Both sides see status updates and outcome reports without phone tag or fax.
 - Encrypted messaging is organized by patient and by practice.
-- Practice owners track conversion, response time, and revenue impact.
+- Unbooked cases surface for outreach, so every referral ends with a recorded outcome.
+- Specialists see referral volume, source attribution, and completion by referring practice.
+- If a practice is not on CaseLink yet, it can be invited from the referral screen in under a minute.
+- Setup takes under 30 minutes. Sending a referral takes under three minutes. Runs in the browser, nothing to install.
+- Works alongside Dentrix, Eaglesoft, Open Dental, and other practice management systems. CaseLink is not a practice management system and does not do patient scheduling. There is no data-level PMS integration today.
 
 ## Who it is for
 
 - General dentists who want full visibility into every referral they send.
 - Specialists (orthodontics, endodontics, periodontics, oral surgery, prosthodontics) who want pre-filled clinical context with each incoming case.
 - Office managers who coordinate referral flow across a practice.
+- DSOs and multi-location dental groups that want one referral workflow across every location (team permissions, multi-location analytics, API access, dedicated success manager).
+- Practices anywhere in the United States. The founding network is concentrated in Washington, DC, Northern Virginia, and Maryland.
 
 ## Pricing
 
@@ -32,7 +42,7 @@ Full pricing: https://www.caselink.net/pricing
 
 ## Compliance and security
 
-- End-to-end encryption: every referral, every message, every file encrypted in transit and at rest.
+- Encryption: every referral, every message, every file encrypted in transit and at rest.
 - Audit logs for every action: every login, every change, every download timestamped and traceable.
 - Role-based access with automatic session timeouts.
 - Multi-factor authentication required for every account with access to patient information.
@@ -48,6 +58,9 @@ CaseLink was founded by Nick Campbell, Co-Founder and CEO. CaseLink, Inc. is hea
 ## Key pages
 
 - Home: https://www.caselink.net
+- Dental referral management (overview): https://www.caselink.net/dental-referral-management
+- Free referral software for general dentists: https://www.caselink.net/referral-software/general-dentists
+- Referral management for DSOs and dental groups: https://www.caselink.net/referral-software/dso
 - Dental referral platform in Washington, DC: https://www.caselink.net/dental-referral-platform-dc
 - Pricing: https://www.caselink.net/pricing
 - FAQs (pricing, HIPAA and BAAs, setup, workflow, practice software): https://www.caselink.net/faqs
@@ -69,6 +82,7 @@ CaseLink was founded by Nick Campbell, Co-Founder and CEO. CaseLink, Inc. is hea
 
 Guides on dental referrals, conversion benchmarks, HIPAA-compliant collaboration, and running a connected practice. From the CaseLink team.
 
+- Paperless dental referrals: replacing the fax and the referral pad: https://www.caselink.net/resources/paperless-dental-referrals
 - How to choose dental referral software (an eight-point checklist): https://www.caselink.net/resources/how-to-choose-dental-referral-software
 - FHIR is coming to dental authorization workflows (CMS-0062-P explained): https://www.caselink.net/resources/cms-0062-p-fhir-dental-authorization
 - How to stop losing dental referrals to specialists: https://www.caselink.net/resources/how-to-stop-losing-dental-referrals

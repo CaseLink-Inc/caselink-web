@@ -2559,6 +2559,8 @@ body[data-inv-page="true"] .calendly-badge-widget{display:none !important}
 .spec-list-card ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px}
 .spec-list-card li{display:flex;align-items:flex-start;gap:10px;font-size:15px;line-height:1.5;color:#4A5250}
 .spec-list-card li svg{flex-shrink:0;margin-top:3px;color:#3DBD6B}
+/* "Before" list on the referral management pages: a muted x instead of a green check. */
+.spec-list-card.is-gap li svg{color:#B4BDBB;transform:rotate(45deg)}
 .spec-how{background:#F7FAFA}
 .spec-others{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:32px}
 .spec-others span{font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#7A8886;margin-right:4px}
@@ -2568,7 +2570,7 @@ body[data-inv-page="true"] .calendly-badge-widget{display:none !important}
 .spec-hub-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 .spec-hub-card{display:flex;flex-direction:column;text-decoration:none;color:inherit}
 .spec-hub-card .eyebrow{margin-bottom:12px}
-.spec-hub-card h2{font-size:21px;letter-spacing:-0.015em;color:#1A1F1E;margin:0 0 10px;font-weight:800;line-height:1.2}
+.spec-hub-card h2,.spec-hub-card h3{font-size:21px;letter-spacing:-0.015em;color:#1A1F1E;margin:0 0 10px;font-weight:800;line-height:1.2}
 .spec-hub-card p{flex:1;margin-bottom:18px}
 .spec-hub-more{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:#3E8EFF}
 .spec-hub-gp{background:linear-gradient(180deg,#FBFBF9,#EDF2FB)}

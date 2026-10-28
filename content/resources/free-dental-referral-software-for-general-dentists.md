@@ -14,7 +14,7 @@ The word gets stretched. Before you evaluate anything, sort out which version is
 
 Not every free tier earns the word. These criteria separate a genuine offering from a lead magnet with a short shelf life.
 
-**HIPAA alignment.** Anything touching patient information needs end-to-end encryption, audit logs, and a Business Associate Agreement available on request. A platform that cannot offer a BAA has no business holding identifiable patient data.
+**HIPAA alignment.** Anything touching patient information needs encryption in transit and at rest, audit logs, and a Business Associate Agreement available on request. A platform that cannot offer a BAA has no business holding identifiable patient data.
 
 **Messaging tied to the case.** Phone tag and email defeat the point. Messaging should attach to each case record. A separate inbox that makes you re-explain context every time is no better than the phone you already have.
 

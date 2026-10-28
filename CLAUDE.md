@@ -210,6 +210,24 @@ Vercel picks it up in ~30 seconds.
 
 ## Recent significant changes (most recent first)
 
+- **"Referral management" wording pass** (2026-10-28): ChatGPT left CaseLink
+  out for "dental referral management platform for dentists and specialists
+  to refer to each other" (it was #1 for "referral software for
+  specialists"). Research: "referral management" is the phrase most rivals
+  put in titles, and CaseLink only used "platform"/"software". Changes:
+  home title/description/hero kicker/keywords/SoftwareApplication now say
+  "dental referral management" alongside "platform" (keep BOTH phrases,
+  user decision). Organization areaServed is now the US (DC focus stays on
+  the geo page). New pages: `/dental-referral-management` (pillar),
+  `/referral-software/general-dentists`, `/referral-software/dso` (static
+  routes beside `[specialty]`, footer-linked, sitemap, llms.txt). New
+  article `paperless-dental-referrals`. Hub has 9 cards. New FAQs in
+  `lib/faqs.ts` and the home FAQ. `llms.txt` gained an "Also described as"
+  synonym line and a "CaseLink fits when" line. Article metaTitles now end
+  in "· CaseLink". **Encryption wording: say "encrypted in transit and at
+  rest", never "end-to-end"** unless Nick or Blaze confirms true E2E. The
+  DSO page may only restate the DSO plan facts (team permissions,
+  multi-location analytics, API access, success manager, custom annual).
 - **"Permanently free" removed** (2026-10-28): 9 spots now say "free".
 - **Chat widget: fresh chat on refresh + launcher spin-in** (2026-10-27):
   `public/chat-widget-setup.js`, see Third-party widgets.

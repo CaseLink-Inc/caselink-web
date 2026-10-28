@@ -3,7 +3,11 @@ import { Plus } from "@/components/icons";
 export const faqs = [
   {
     q: "Is CaseLink HIPAA compliant?",
-    a: "Yes. CaseLink is HIPAA compliant from the foundation, with end-to-end encryption on every referral, message, and file, audit logs on every action, role-based access controls, and automatic session timeouts. We sign a Business Associate Agreement on signup.",
+    a: "Yes. CaseLink is HIPAA compliant from the foundation, with encryption in transit and at rest on every referral, message, and file, audit logs on every action, role-based access controls, and automatic session timeouts. We sign a Business Associate Agreement on signup.",
+  },
+  {
+    q: "Can general dentists and specialists refer to each other on CaseLink?",
+    a: "Yes. CaseLink is a dental referral management platform built for both sides. General dentists send referrals to specialists, specialists receive and accept them, and both offices see the same status, messages, and outcome reports. If a practice you work with is not on CaseLink yet, you can invite them in under a minute.",
   },
   {
     q: "How is CaseLink different from sending referrals by fax or email?",

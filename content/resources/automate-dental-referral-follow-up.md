@@ -36,7 +36,7 @@ CaseLink tracks referrals through six stages: Referral Received, Patient Outreac
 
 The GP stops calling to ask whether the patient showed up, because the answer is on the screen. The specialist stops calling to report outcomes, because the GP can already see the status and read the notes. Each step that used to need a phone call now happens through the platform with a timestamp and a record.
 
-The GP side is free. The specialist pays $299 a month, with 10 percent off annual billing. CaseLink is HIPAA aligned, with end-to-end encryption and audit logging on every case.
+The GP side is free. The specialist pays $299 a month, with 10 percent off annual billing. CaseLink is HIPAA aligned, with encryption in transit and at rest and audit logging on every case.
 
 For a practice where follow-up calls are a daily grind and leakage is a known problem, the shift is structural. The calls were a symptom. The real issue was that no shared system existed between offices. Once both sides see the same case at the same time, the follow-up loop closes on its own.
 

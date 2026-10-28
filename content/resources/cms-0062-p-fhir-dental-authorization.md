@@ -56,7 +56,7 @@ Fax and unsecured email are getting further from the standard. The federal direc
 
 Infrastructure choices made now carry forward. A practice picking a referral or prior authorization tool in 2026 should be evaluating whether the tool is built on modern healthcare data standards and aligned with HIPAA's evolving requirements, or whether it is layering a web interface over fax workflows. Vague answers from vendors about future standards readiness are a signal worth taking seriously.
 
-> CaseLink was built HIPAA aligned from day one, with end-to-end encryption, audit logging on every case, and structured electronic exchange between offices. CaseLink is not a federally mandated platform. No platform is. It is a platform whose architecture aligns with where federal interoperability is going, so practices on CaseLink will not be unwinding fax workflows when commercial payers catch up to the FHIR-based standard.
+> CaseLink was built HIPAA aligned from day one, with encryption in transit and at rest, audit logging on every case, and structured electronic exchange between offices. CaseLink is not a federally mandated platform. No platform is. It is a platform whose architecture aligns with where federal interoperability is going, so practices on CaseLink will not be unwinding fax workflows when commercial payers catch up to the FHIR-based standard.
 
 ## Where the rule stands now
 

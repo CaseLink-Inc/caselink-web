@@ -70,7 +70,7 @@ export default async function SpecialtyPage({
     "@context": "https://schema.org",
     "@type": "Service",
     name: `CaseLink referral software for ${s.plural}`,
-    serviceType: "Dental referral and case collaboration software",
+    serviceType: "Dental referral management software",
     description: s.description,
     url: `${SITE}${path}`,
     audience: { "@type": "Audience", audienceType: s.plural },
@@ -252,6 +252,8 @@ export default async function SpecialtyPage({
                 {o.field}
               </Link>
             ))}
+            <Link href="/referral-software/general-dentists">General dentists</Link>
+            <Link href="/referral-software/dso">DSOs and groups</Link>
           </nav>
         </div>
       </section>

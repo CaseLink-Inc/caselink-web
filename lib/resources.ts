@@ -70,6 +70,65 @@ export const CATEGORY_COLOR: Record<ResourceCategory, string> = {
 
 export const resources: Resource[] = [
   {
+    slug: "paperless-dental-referrals",
+    layout: {
+      stats: "top",
+      inserts: [
+        {
+          before: 3,
+          kind: "quote",
+          text: "A paper slip puts the next step on the person least likely to take it.",
+        },
+      ],
+    },
+    title: "Paperless dental referrals: replacing the fax and the referral pad",
+    metaTitle: "Paperless dental referrals: replacing fax and referral pads · CaseLink",
+    excerpt:
+      "Where paper referral pads and faxed referrals break down, what a digital referral changes, and five steps to move your office to paperless referrals.",
+    category: "Referrals",
+    author: "CaseLink Team",
+    date: "2026-10-28",
+    readMinutes: 5,
+    keyStats: [
+      { value: "30-40%", label: "of paper referrals never complete, per industry surveys" },
+      { value: "5", label: "steps to move your office off paper referrals" },
+      { value: "1 record", label: "shared by both offices instead of a fax and a slip" },
+    ],
+    faqs: [
+      {
+        q: "What is a paperless dental referral?",
+        a: "A paperless referral is sent through secure software instead of a printed referral pad or a fax. The referring office attaches radiographs, notes, and insurance details in one step, and both offices see the referral's status and outcome in a shared record.",
+      },
+      {
+        q: "Is faxing dental referrals HIPAA compliant?",
+        a: "Fax is permitted under HIPAA, but it is hard to control. Faxes can be misdialed or left on a shared machine, and there is no record of who viewed them. A referral platform that encrypts data in transit and at rest, keeps audit logs, and signs a Business Associate Agreement gives your office much more control.",
+      },
+      {
+        q: "Do the specialists I refer to need to use the same software?",
+        a: "For full tracking, yes, both offices should be on the same platform. On CaseLink, general dentists join for free and can invite any specialist from the referral screen in under a minute.",
+      },
+      {
+        q: "Can we keep accepting paper referrals while we switch?",
+        a: "Yes. You can keep the referral pad for a short overlap, accept paper referrals from offices that have not joined yet, and invite those offices as their referrals arrive.",
+      },
+    ],
+    sources: [
+      {
+        label: "“How to stop losing patients through the referral cracks,” DentistryIQ",
+        url: "https://www.dentistryiq.com/practice-management/patient-relationships/article/14182218/how-to-stop-losing-patients-through-the-referral-cracks",
+      },
+      {
+        label: "US Department of Health and Human Services, “Business Associate Contracts” sample provisions",
+        url: "https://www.hhs.gov/hipaa/for-professionals/covered-entities/sample-business-associate-agreement-provisions/index.html",
+      },
+    ],
+    related: [
+      { href: "/dental-referral-management", label: "Dental referral management" },
+      { href: "/referral-software/general-dentists", label: "Free referral software for general dentists" },
+      { href: "/resources/how-to-choose-dental-referral-software", label: "How to choose dental referral software" },
+    ],
+  },
+  {
     slug: "how-to-choose-dental-referral-software",
     layout: {
       stats: { beforeSection: 2 },
@@ -82,7 +141,7 @@ export const resources: Resource[] = [
       ],
     },
     title: "How to choose dental referral software: an eight-point checklist",
-    metaTitle: "How to choose dental referral software | CaseLink",
+    metaTitle: "How to choose dental referral software · CaseLink",
     excerpt:
       "Eight questions to ask before your practice picks a referral platform, from who pays and the BAA to what travels with each case and how both offices see status.",
     category: "Software",
@@ -164,7 +223,7 @@ export const resources: Resource[] = [
     },
     title:
       "FHIR is coming to dental authorization workflows. Here is what CMS-0062-P actually proposes.",
-    metaTitle: "FHIR and dental authorization: CMS-0062-P explained | CaseLink",
+    metaTitle: "FHIR and dental authorization: CMS-0062-P explained · CaseLink",
     excerpt:
       "The federal direction on prior authorization and referral certification is FHIR. Here is what CMS-0062-P actually proposes, what it does not, where the rule stands after the comment period closed, and what dental practices should do now.",
     category: "Policy",
@@ -248,7 +307,7 @@ export const resources: Resource[] = [
       ],
     },
     title: "How to stop losing dental referrals to specialists",
-    metaTitle: "How to stop losing dental referrals | CaseLink",
+    metaTitle: "How to stop losing dental referrals · CaseLink",
     excerpt:
       "About a third of dental referrals never become treatment. Here is where they break down, what each lost case costs, and how to close the gap.",
     category: "Referrals",
@@ -325,7 +384,7 @@ export const resources: Resource[] = [
       ],
     },
     title: "Free dental referral software for general dentists",
-    metaTitle: "Free dental referral software for GPs | CaseLink",
+    metaTitle: "Free dental referral software for GPs · CaseLink",
     excerpt:
       "CaseLink is a HIPAA aligned referral platform where general dentists send referrals, track status, and message specialists at no cost. No trial. No credit card.",
     category: "Getting started",
@@ -348,7 +407,7 @@ export const resources: Resource[] = [
       },
       {
         q: "Is CaseLink HIPAA aligned?",
-        a: "Yes. End-to-end encryption and audit logs across all case activity, with a Business Associate Agreement signed on signup with every practice.",
+        a: "Yes. Encryption in transit and at rest, and audit logs across all case activity, with a Business Associate Agreement signed on signup with every practice.",
       },
       {
         q: "What if the specialist I want is not on CaseLink?",
@@ -389,7 +448,7 @@ export const resources: Resource[] = [
       ],
     },
     title: "What a healthy dental referral conversion rate actually looks like",
-    metaTitle: "Dental referral conversion rate benchmarks | CaseLink",
+    metaTitle: "Dental referral conversion rate benchmarks · CaseLink",
     excerpt:
       "Case acceptance and referral conversion are different metrics. Here is what the data says about each stage of the funnel, and where the biggest losses happen.",
     category: "Benchmarks",
@@ -478,7 +537,7 @@ export const resources: Resource[] = [
       ],
     },
     title: "How endodontists track and manage incoming referrals",
-    metaTitle: "Referral management for endodontists | CaseLink",
+    metaTitle: "Referral management for endodontists · CaseLink",
     excerpt:
       "Endodontists depend on GP referrals for most new patients. A referral platform gives the practice visibility from intake through treatment.",
     category: "Specialists",
@@ -501,7 +560,7 @@ export const resources: Resource[] = [
       },
       {
         q: "Is the platform HIPAA aligned?",
-        a: "Yes. End-to-end encryption and audit logs for all case activity. CaseLink signs a Business Associate Agreement on signup with every practice.",
+        a: "Yes. Encryption in transit and at rest, and audit logs for all case activity. CaseLink signs a Business Associate Agreement on signup with every practice.",
       },
       {
         q: "Can my front desk manage referrals without me?",
@@ -550,7 +609,7 @@ export const resources: Resource[] = [
       ],
     },
     title: "What changes when a dental practice automates referral follow-up",
-    metaTitle: "Automate dental referral follow-up | CaseLink",
+    metaTitle: "Automate dental referral follow-up · CaseLink",
     excerpt:
       "Most referral follow-up relies on phone calls no one has time to make. Automated status updates recover the referrals that fail silently.",
     category: "Operations",
@@ -581,7 +640,7 @@ export const resources: Resource[] = [
       },
       {
         q: "Is CaseLink HIPAA aligned?",
-        a: "Yes. End-to-end encryption, audit logs, and a Business Associate Agreement signed on signup with every practice.",
+        a: "Yes. Encryption in transit and at rest, audit logs, and a Business Associate Agreement signed on signup with every practice.",
       },
       {
         q: "How much does CaseLink cost?",

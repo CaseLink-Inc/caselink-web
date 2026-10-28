@@ -45,7 +45,7 @@ export default function Trust() {
             <div className="trust-item">
               <div className="trust-item-icon"><Lock width={18} height={18} stroke="#3E8EFF" /></div>
               <div>
-                <h4>End-to-end encryption</h4>
+                <h4>Encrypted in transit and at rest</h4>
                 <p>Every referral, every message, every file encrypted in transit and at rest.</p>
               </div>
             </div>

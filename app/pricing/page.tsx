@@ -11,7 +11,7 @@ import { SIGNUP_URL } from "@/lib/urls";
 const SITE = "https://www.caselink.net";
 const PAGE_URL = `${SITE}/pricing`;
 const DESCRIPTION =
-  "CaseLink pricing: free for general dentists, $299 a month for specialists ($269 a month billed yearly), and custom plans for DSOs. Every plan includes HIPAA compliance and a BAA.";
+  "CaseLink dental referral management pricing: free for general dentists, $299 a month for specialists ($269 a month billed yearly), and custom plans for DSOs. Every plan includes HIPAA compliance and a BAA.";
 
 export const metadata: Metadata = {
   title: "Dental Referral Software Pricing",
