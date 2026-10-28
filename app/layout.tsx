@@ -92,7 +92,15 @@ const organizationJsonLd = {
   name: "CaseLink, Inc.",
   url: siteUrl,
   email: "support@caselink.net",
-  logo: `${siteUrl}/logo-primary.svg`,
+  // Square PNG mark. AI answer engines and Google crop the logo to a square
+  // tile, and the wide SVG lockup rendered as a cropped "selink" in ChatGPT.
+  logo: {
+    "@type": "ImageObject",
+    url: `${siteUrl}/logo-square-512.png`,
+    width: 512,
+    height: 512,
+  },
+  image: `${siteUrl}/logo-square-512.png`,
   description: siteDescription,
   foundingDate: "2024",
   founders: [
