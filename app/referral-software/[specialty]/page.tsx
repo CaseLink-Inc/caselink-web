@@ -28,11 +28,26 @@ export async function generateMetadata({
   const path = `/referral-software/${s.slug}`;
   // Per-specialty social card. The opengraph-image file convention cannot vary
   // by route param, so these are served from /public/og and set explicitly.
+  // Each card carries its own status chip, so the alt text names the one on
+  // that card rather than repeating the headline for all five.
+  const OG_ALT: Record<string, string> = {
+    endodontists:
+      'a "New endo referral" card reading "Imaging and notes attached", marked RECEIVED',
+    orthodontists:
+      'a "Consult booked" card reading "Status shared with the GP", marked SCHEDULED',
+    periodontists:
+      'a "Treatment plan shared" card reading "Visible to both offices", marked SHARED',
+    "oral-surgeons":
+      'a "Post-op report sent" card reading "Back to the referring dentist", marked COMPLETED',
+    prosthodontists:
+      'a "Case notes updated" card reading "The restorative plan in one place", marked UPDATED',
+  };
+  const specialtyName = s.slug.replace(/-/g, " ");
   const ogImage = {
     url: `/og/referral-software-${s.slug}.jpg`,
     width: 1200,
     height: 630,
-    alt: `CaseLink dental referral software for ${s.slug.replace(/-/g, " ")}.`,
+    alt: `CaseLink card for ${specialtyName}. The headline "Referral software for ${specialtyName}." beside ${OG_ALT[s.slug] ?? "an example referral status"}.`,
   };
   return {
     title: s.metaTitle,
