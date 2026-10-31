@@ -89,11 +89,16 @@ export default function Network() {
                 <stop offset="100%" stopColor="#3E8EFF" stopOpacity="0.14" />
               </linearGradient>
               {/* The frosted body of a pin: bright at the top-left where the
-                  light is, falling away to nothing at the rim. */}
-              <radialGradient id="pinGlass" cx="38%" cy="32%" r="72%">
-                <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.95" />
-                <stop offset="62%" stopColor="#FFFFFF" stopOpacity="0.52" />
-                <stop offset="100%" stopColor="#E2EEFF" stopOpacity="0.28" />
+                  light is, settling to a still-solid blue-white at the
+                  opposite edge. It must not fall away to nothing: the
+                  gradient centre sits up and left, so a faint far stop puts
+                  that fade on the bottom of the disc, and the pin reads as
+                  spreading into the map instead of ending at its rim. The
+                  falloff is lighting, not a vignette. */}
+              <radialGradient id="pinGlass" cx="40%" cy="34%" r="76%">
+                <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.97" />
+                <stop offset="55%" stopColor="#FFFFFF" stopOpacity="0.88" />
+                <stop offset="100%" stopColor="#EAF3FF" stopOpacity="0.76" />
               </radialGradient>
               <radialGradient id="sigGlow" cx="50%" cy="50%" r="50%">
                 <stop offset="0%" stopColor="#74BDF5" stopOpacity="0.5" />
@@ -152,7 +157,7 @@ export default function Network() {
                   r="10.5"
                   fill="none"
                   stroke="#B8D6FF"
-                  strokeOpacity="0.85"
+                  strokeOpacity="0.95"
                   strokeWidth="1"
                 />
                 <path
