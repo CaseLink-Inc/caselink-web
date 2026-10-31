@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import RevealInit from "@/components/RevealInit";
+import ScrollReset from "@/components/ScrollReset";
 import Calendly from "@/components/Calendly";
 import "./globals.css";
 
@@ -179,6 +180,7 @@ export default function RootLayout({
         {children}
         <Footer />
         <RevealInit />
+        <ScrollReset />
         <Calendly />
 
         {/* Google Analytics 4 (gtag.js). afterInteractive so it loads once
