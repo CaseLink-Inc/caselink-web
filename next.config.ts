@@ -125,6 +125,19 @@ const nextConfig: NextConfig = {
         destination: "/resources",
         permanent: false,
       },
+      {
+        // Investor brief retired. Both the live page and the v2 draft are
+        // gone, but the link was shared directly with investors, so send
+        // anyone holding it to the homepage rather than a 404.
+        source: "/investors",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/investors-v2",
+        destination: "/",
+        permanent: true,
+      },
     ];
   },
 };

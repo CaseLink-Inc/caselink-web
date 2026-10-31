@@ -11,6 +11,7 @@ const links = [
   { href: "/#network", label: "Network" },
   { href: "/pricing", label: "Pricing" },
   { href: "/about", label: "About" },
+  { href: "/resources", label: "Resources" },
   { href: "/contact", label: "Contact" },
 ];
 

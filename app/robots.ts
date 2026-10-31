@@ -34,12 +34,12 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/dashboard", "/login", "/signup", "/investors"],
+        disallow: ["/dashboard", "/login", "/signup"],
       },
       ...aiBots.map((bot) => ({
         userAgent: bot,
         allow: "/",
-        disallow: ["/dashboard", "/login", "/signup", "/investors"],
+        disallow: ["/dashboard", "/login", "/signup"],
       })),
     ],
     sitemap: `${SITE}/sitemap.xml`,
