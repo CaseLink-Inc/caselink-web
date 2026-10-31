@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import CtaBand from "@/components/home/CtaBand";
 import BookCallButton from "@/components/BookCallButton";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import FaqAccordion from "@/components/FaqAccordion";
-import { ArrowRight, Check, CreditCard, Clock, Bolt } from "@/components/icons";
+import { ArrowRight, Check } from "@/components/icons";
 import type { Faq } from "@/lib/faqs";
 import { specialties } from "@/lib/specialties";
 import { SIGNUP_URL } from "@/lib/urls";
@@ -132,7 +133,10 @@ export default function GeneralDentistsPage() {
         <div className="geo-hero-bg" aria-hidden="true" />
         <div className="wrap geo-hero-inner">
           <span className="eyebrow">General dentists</span>
-          <h1>Free referral software for general dentists.</h1>
+          <h1>
+            Free referral software for{" "}
+            <span className="cl-landing">general dentists.</span>
+          </h1>
           <p className="lead">
             Send referrals to specialists with the clinical context attached,
             and see where every patient you refer stands. CaseLink is free for
@@ -141,14 +145,14 @@ export default function GeneralDentistsPage() {
           <div className="geo-hero-cta">
             <a
               href={SIGNUP_URL}
-              className="btn btn-primary"
+              className="cl-btn cl-btn--lg"
               target="_blank"
               rel="noopener noreferrer"
             >
               Get started free
               <ArrowRight width={14} height={14} />
             </a>
-            <BookCallButton className="btn btn-ghost">
+            <BookCallButton className="cl-btn cl-btn--secondary cl-btn--lg">
               Book a 15 minute walkthrough
             </BookCallButton>
           </div>
@@ -170,7 +174,7 @@ export default function GeneralDentistsPage() {
       </section>
 
       {/* WHAT GPs DO + WHAT TO SEND */}
-      <section className="geo-why">
+      <section className="geo-why cl-bg-icefield">
         <div className="wrap">
           <div className="section-head">
             <span className="eyebrow">Sending referrals</span>
@@ -210,16 +214,16 @@ export default function GeneralDentistsPage() {
       </section>
 
       {/* HOW CASELINK HELPS */}
-      <section className="geo-steps-sec spec-how">
+      <section className="geo-steps-sec spec-how cl-bg-icemesh">
         <div className="wrap">
           <div className="section-head">
             <span className="eyebrow">How CaseLink helps</span>
             <h2>Send in minutes, follow every case.</h2>
           </div>
           <div className="geo-grid">
-            <div className="geo-card">
+            <div className="geo-card geo-card--glass">
               <span className="geo-card-ic" aria-hidden="true">
-                <CreditCard width={20} height={20} />
+                <Image src="/ds/icons/caselink-finance.svg" alt="" width={52} height={52} />
               </span>
               <h3>Free for your office</h3>
               <p>
@@ -228,9 +232,9 @@ export default function GeneralDentistsPage() {
                 fee and no contract.
               </p>
             </div>
-            <div className="geo-card">
+            <div className="geo-card geo-card--glass">
               <span className="geo-card-ic" aria-hidden="true">
-                <Clock width={20} height={20} />
+                <Image src="/ds/icons/caselink-referral-status.svg" alt="" width={52} height={52} />
               </span>
               <h3>See where each patient stands</h3>
               <p>
@@ -239,9 +243,9 @@ export default function GeneralDentistsPage() {
                 specialist to ask.
               </p>
             </div>
-            <div className="geo-card">
+            <div className="geo-card geo-card--glass">
               <span className="geo-card-ic" aria-hidden="true">
-                <Bolt width={20} height={20} />
+                <Image src="/ds/icons/caselink-notifications.svg" alt="" width={52} height={52} />
               </span>
               <h3>Patients do not slip away</h3>
               <p>

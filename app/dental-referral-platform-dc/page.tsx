@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import Network from "@/components/home/Network";
 import CtaBand from "@/components/home/CtaBand";
 import BookCallButton from "@/components/BookCallButton";
-import { ArrowRight, Check, Shield, Users, Bolt } from "@/components/icons";
+import FaqAccordion from "@/components/FaqAccordion";
+import { ArrowRight, Check } from "@/components/icons";
 import { SIGNUP_URL } from "@/lib/urls";
 import Breadcrumbs from "@/components/Breadcrumbs";
 
@@ -112,7 +114,7 @@ export default function DcLandingPage() {
           <h1>
             The dental referral platform
             <br />
-            built in DC, for the DMV.
+            <span className="cl-landing">built in DC, for the DMV.</span>
           </h1>
           <p className="lead">
             CaseLink replaces fax and phone-tag referrals with one shared,
@@ -123,14 +125,14 @@ export default function DcLandingPage() {
           <div className="geo-hero-cta">
             <a
               href={SIGNUP_URL}
-              className="btn btn-primary"
+              className="cl-btn cl-btn--lg"
               target="_blank"
               rel="noopener noreferrer"
             >
               Get started free
               <ArrowRight width={14} height={14} />
             </a>
-            <BookCallButton className="btn btn-ghost">
+            <BookCallButton className="cl-btn cl-btn--secondary cl-btn--lg">
               Book a 15 minute walkthrough
             </BookCallButton>
           </div>
@@ -152,7 +154,7 @@ export default function DcLandingPage() {
       </section>
 
       {/* WHY DMV PRACTICES */}
-      <section className="geo-why">
+      <section className="geo-why cl-bg-seaglass">
         <div className="wrap">
           <div className="section-head">
             <span className="eyebrow">Why CaseLink here</span>
@@ -166,7 +168,7 @@ export default function DcLandingPage() {
           <div className="geo-grid">
             <div className="geo-card">
               <span className="geo-card-ic" aria-hidden="true">
-                <Users width={20} height={20} />
+                <Image src="/ds/icons/caselink-care-team.svg" alt="" width={52} height={52} />
               </span>
               <h3>The network is already here</h3>
               <p>
@@ -177,7 +179,7 @@ export default function DcLandingPage() {
             </div>
             <div className="geo-card">
               <span className="geo-card-ic" aria-hidden="true">
-                <Bolt width={20} height={20} />
+                <Image src="/ds/icons/caselink-location.svg" alt="" width={52} height={52} />
               </span>
               <h3>Built alongside DC pilots</h3>
               <p>
@@ -188,7 +190,7 @@ export default function DcLandingPage() {
             </div>
             <div className="geo-card">
               <span className="geo-card-ic" aria-hidden="true">
-                <Shield width={20} height={20} />
+                <Image src="/ds/icons/caselink-practice.svg" alt="" width={52} height={52} />
               </span>
               <h3>Founding member terms</h3>
               <p>
@@ -205,7 +207,11 @@ export default function DcLandingPage() {
       <Network />
 
       {/* HOW IT WORKS SUMMARY */}
-      <section className="geo-steps-sec">
+      {/* Ice fade, not Glacier: the hero is Glacier, and a page should not
+          open and close on the same ground. Ice fade settles white into a
+          mint whisper and then powder, which gives the white step cards a
+          cleaner surface than Glacier's blue top. */}
+      <section className="geo-steps-sec cl-bg-icefade">
         <div className="wrap">
           <div className="section-head">
             <span className="eyebrow">How it works</span>
@@ -213,7 +219,10 @@ export default function DcLandingPage() {
           </div>
           <ol className="geo-steps">
             <li>
-              <span className="geo-step-n">1</span>
+              <span className="geo-step-n">
+                <b>1</b>
+                <ArrowRight className="geo-step-arrow" width={17} height={17} aria-hidden="true" />
+              </span>
               <h3>Send the case</h3>
               <p>
                 Create a referral with the clinical reason, images, and notes
@@ -222,7 +231,10 @@ export default function DcLandingPage() {
               </p>
             </li>
             <li>
-              <span className="geo-step-n">2</span>
+              <span className="geo-step-n">
+                <b>2</b>
+                <ArrowRight className="geo-step-arrow" width={17} height={17} aria-hidden="true" />
+              </span>
               <h3>Both offices see the same status</h3>
               <p>
                 Received, patient notified, consult scheduled, treatment
@@ -231,7 +243,10 @@ export default function DcLandingPage() {
               </p>
             </li>
             <li>
-              <span className="geo-step-n">3</span>
+              <span className="geo-step-n">
+                <b>3</b>
+                <ArrowRight className="geo-step-arrow" width={17} height={17} aria-hidden="true" />
+              </span>
               <h3>Close the loop</h3>
               <p>
                 If a patient has not booked inside the follow-up window, the
@@ -241,7 +256,7 @@ export default function DcLandingPage() {
             </li>
           </ol>
           <p className="geo-steps-more">
-            <Link href="/#how">
+            <Link href="/#intro-video">
               See the full product tour
               <ArrowRight width={13} height={13} />
             </Link>
@@ -256,29 +271,12 @@ export default function DcLandingPage() {
             <span className="eyebrow">FAQ</span>
             <h2>Common questions from DMV practices.</h2>
           </div>
-          <div className="res-faq-list">
-            {faqs.map((f) => (
-              <details key={f.q} className="res-faq-item">
-                <summary>
-                  <span>{f.q}</span>
-                  <span className="res-faq-mark" aria-hidden="true">
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                    >
-                      <path d="M12 5v14M5 12h14" />
-                    </svg>
-                  </span>
-                </summary>
-                <p>{f.a}</p>
-              </details>
-            ))}
-          </div>
+          {/* This page had its own copy of the accordion markup, so it
+              missed both fixes the shared component carries: the `name`
+              that makes the group exclusive (without it every answer the
+              visitor opened stayed open and the list kept growing) and the
+              "Read the guide" link under answers that have one. */}
+          <FaqAccordion faqs={faqs} name="caselink-faq-dc" />
         </div>
       </section>
 

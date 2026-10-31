@@ -1,0 +1,92 @@
+/* CaseLink Design System v3 "Seamless Flow" — motion layer.
+
+   IMPORTANT, so nobody mistakes this for a locked step: the design system
+   has no motion section. Its only stated timings are the bundle's
+   `transition: background .15s ease, color .15s ease, transform .15s ease`
+   on controls and `transition: left .18s ease` on the toggle. Everything
+   below is derived from the written principles, not copied from a card:
+
+     "soft but confident, minimal but visually rich, contemporary but
+      timeless, dimensional but never heavy 3D, airy and refined"
+     "Light is the material."
+     "Silence is structure."
+
+   Read as motion that means: short, small, and calm. Things resolve into
+   light rather than travelling across the screen. No overshoot, no bounce,
+   no decorative loops. Interaction timing is the design system's own .15s.
+
+   If a motion step is ever locked in the design system, this file should be
+   replaced by it. */
+
+:root {
+  /* The design system's own control timing, used verbatim. */
+  --motion-fast: 0.15s;
+  /* Derived: state changes that are bigger than a hover. */
+  --motion-base: 0.28s;
+  /* Derived: section entrances. Short enough to never gate reading. */
+  --motion-enter: 0.55s;
+  /* Calm ease-out. Decelerates into place with no overshoot, which is what
+     "soft but confident" and "never heavy 3D" rule out. */
+  --motion-ease: cubic-bezier(0.22, 0.9, 0.32, 1);
+  /* Entrance travel. The old site moved 30px; light-first motion barely
+     moves at all and leans on opacity instead. */
+  --motion-rise: 14px;
+}
+
+/* ---- Section entrance ----------------------------------------------
+   Retunes the site's existing .reveal observer rather than replacing it,
+   so every section that already uses .reveal picks this up for free. */
+.reveal {
+  opacity: 0;
+  transform: translateY(var(--motion-rise));
+  transition:
+    opacity var(--motion-enter) var(--motion-ease),
+    transform var(--motion-enter) var(--motion-ease);
+}
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger for grids of cards. The design system groups cards as a set, so
+   they should arrive as a set: a short offset, not a cascade. */
+.clw-stagger > * {
+  transition-delay: calc(var(--i, 0) * 60ms);
+}
+
+/* ---- Interaction ----------------------------------------------------
+   Matches the bundle's control timing so site elements and .cl-* controls
+   respond identically. */
+.clw-interactive,
+.clsec a:not(.cl-btn),
+.clwho-card {
+  transition:
+    background var(--motion-fast) ease,
+    color var(--motion-fast) ease,
+    box-shadow var(--motion-base) var(--motion-ease),
+    transform var(--motion-base) var(--motion-ease);
+}
+
+/* Cards lift by a hair and gain light, never a drop shadow: the design
+   system forbids shadows, so the hover reads as the rim catching light. */
+.clwho-card:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 0 0 1px rgba(116, 189, 245, 0.55),
+    0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+/* ---- Reduced motion -------------------------------------------------
+   Anyone asking for less motion gets none of it, including the entrance. */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .clw-stagger > * { transition-delay: 0ms; }
+  .clw-interactive,
+  .clsec a:not(.cl-btn),
+  .clwho-card { transition: none; }
+  .clwho-card:hover { transform: none; }
+}

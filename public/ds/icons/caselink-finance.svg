@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="500" height="500" role="img" aria-label="Finance">
+<defs>
+  <linearGradient id="finance-bk" x1="48" y1="116" x2="136" y2="28" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4d93ff"></stop><stop offset="0.5" stop-color="#74bdf5"></stop><stop offset="0.78" stop-color="#93e3c6"></stop><stop offset="1" stop-color="#cfe9ff"></stop></linearGradient>
+  <linearGradient id="finance-fr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f3f8ff" stop-opacity=".82"></stop><stop offset="1" stop-color="#e4eefb" stop-opacity=".5"></stop></linearGradient>
+  <clipPath id="finance-clip"><rect x="28" y="60" width="88" height="72" rx="20"></rect><rect x="34" y="50" width="64" height="16" rx="10"></rect></clipPath>
+  <filter id="finance-blur" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="9"></feGaussianBlur></filter>
+  <mask id="finance-out" maskUnits="userSpaceOnUse" x="0" y="0" width="160" height="160"><rect width="160" height="160" fill="#fff"></rect><g fill="#000"><rect x="28" y="60" width="88" height="72" rx="20"></rect><rect x="34" y="50" width="64" height="16" rx="10"></rect></g></mask>
+</defs>
+<g fill="url(#finance-bk)"><rect x="48" y="28" width="88" height="88" rx="22"></rect></g>
+<g clip-path="url(#finance-clip)">
+  <rect width="160" height="160" fill="#ffffff"></rect>
+  <g fill="url(#finance-bk)" filter="url(#finance-blur)"><rect x="48" y="28" width="88" height="88" rx="22"></rect></g>
+  <g fill="url(#finance-fr)"><rect x="28" y="60" width="88" height="72" rx="20"></rect><rect x="34" y="50" width="64" height="16" rx="10"></rect></g>
+</g>
+<g fill="none" stroke="#ffffff" stroke-opacity=".9" stroke-width="2.4" mask="url(#finance-out)"><rect x="28" y="60" width="88" height="72" rx="20"></rect><rect x="34" y="50" width="64" height="16" rx="10"></rect></g>
+<g fill="#ffffff"><rect x="86" y="86" width="30" height="20" rx="10" fill="#fff"></rect><circle cx="98" cy="96" r="4" fill="#9cc6f2"></circle></g>
+</svg>

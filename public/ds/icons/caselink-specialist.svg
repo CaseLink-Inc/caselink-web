@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="500" height="500" role="img" aria-label="Specialist">
+<defs>
+  <linearGradient id="specialist-bk" x1="48" y1="116" x2="136" y2="28" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4d93ff"></stop><stop offset="0.5" stop-color="#74bdf5"></stop><stop offset="0.78" stop-color="#93e3c6"></stop><stop offset="1" stop-color="#cfe9ff"></stop></linearGradient>
+  <linearGradient id="specialist-fr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f3f8ff" stop-opacity=".82"></stop><stop offset="1" stop-color="#e4eefb" stop-opacity=".5"></stop></linearGradient>
+  <clipPath id="specialist-clip"><circle cx="72" cy="65" r="21"></circle><path d="M28 136a44 44 0 0 1 88 0z"></path></clipPath>
+  <filter id="specialist-blur" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="9"></feGaussianBlur></filter>
+  <mask id="specialist-out" maskUnits="userSpaceOnUse" x="0" y="0" width="160" height="160"><rect width="160" height="160" fill="#fff"></rect><g fill="#000"><circle cx="72" cy="65" r="21"></circle><path d="M28 136a44 44 0 0 1 88 0z"></path></g></mask>
+</defs>
+<g fill="url(#specialist-bk)"><rect x="48" y="28" width="88" height="88" rx="22"></rect></g>
+<g clip-path="url(#specialist-clip)">
+  <rect width="160" height="160" fill="#ffffff"></rect>
+  <g fill="url(#specialist-bk)" filter="url(#specialist-blur)"><rect x="48" y="28" width="88" height="88" rx="22"></rect></g>
+  <g fill="url(#specialist-fr)"><circle cx="72" cy="65" r="21"></circle><path d="M28 136a44 44 0 0 1 88 0z"></path></g>
+</g>
+<g fill="none" stroke="#ffffff" stroke-opacity=".9" stroke-width="2.4" mask="url(#specialist-out)"><circle cx="72" cy="65" r="21"></circle><path d="M28 136a44 44 0 0 1 88 0z"></path></g>
+<g fill="#ffffff"><path d="M116 37C118.86 47.14 118.86 47.14 129 50C118.86 52.86 118.86 52.86 116 63C113.14 52.86 113.14 52.86 103 50C113.14 47.14 113.14 47.14 116 37Z" fill="#fff"></path></g>
+</svg>

@@ -1,12 +1,19 @@
-import { Briefcase, Smile, ArrowRight } from "@/components/icons";
-import { Users } from "@/components/icons";
+import Image from "next/image";
 import { SIGNUP_URL } from "@/lib/urls";
 
+/**
+ * Audience cards, restyled onto the design system's WebsiteCards "Value"
+ * family (step 7): solid white .cl-card--lg on the Ice field ground, a
+ * frosted design system icon in a round icon box, a Regular 22px card
+ * headline, and the points as .cl-card-row dividers.
+ *
+ * The copy is unchanged from the previous section: the same eyebrow,
+ * headline, lead, roles, titles, bodies, points and calls to action.
+ */
 export default function ForWho() {
   const cards = [
     {
-      iconClass: "who-anim-float",
-      icon: <Briefcase width={26} height={26} stroke="#3E8EFF" />,
+      icon: "/ds/icons/caselink-general-dentist.svg",
       role: "For general dentists",
       title: "Refer with confidence.",
       body: "Keep your patients and your specialist relationships in one place.",
@@ -19,8 +26,7 @@ export default function ForWho() {
       href: SIGNUP_URL,
     },
     {
-      iconClass: "who-anim-pulse",
-      icon: <Smile width={26} height={26} stroke="#FFA940" />,
+      icon: "/ds/icons/caselink-specialist.svg",
       role: "For specialists",
       title: "Receive without chaos.",
       body: "Triage incoming cases in seconds with full clinical context attached.",
@@ -33,8 +39,7 @@ export default function ForWho() {
       href: SIGNUP_URL,
     },
     {
-      iconClass: "who-anim-sway",
-      icon: <Users width={26} height={26} stroke="#3DBD6B" />,
+      icon: "/ds/icons/caselink-care-team.svg",
       role: "For office managers",
       title: "Coordinate without the calls.",
       body: "Run the daily flow of referrals across the whole practice without chasing anyone.",
@@ -49,35 +54,57 @@ export default function ForWho() {
   ];
 
   return (
-    <section id="who" className="for-who">
-      <div className="wrap">
-        <div className="section-head reveal">
-          <span className="eyebrow">Built for both sides</span>
-          <h2>Whichever side of the<br /><span className="grad-text">referral</span> you are on.</h2>
-          <p>Same workspace. Different details. Right for each role.</p>
+    <section id="who" className="clsec clsec--frosted cl-grain">
+      {/* G6 Frosted field: glows underneath, a grid of frosted tiles on
+          top. The tiles are .cl-tile-field's own <i> children. */}
+      <div className="clsec-tiles cl-tile-field" aria-hidden="true">
+        {Array.from({ length: 180 }).map((_, i) => (
+          <i key={i} />
+        ))}
+      </div>
+      <div className="wrap clsec-body">
+        <div className="clsec-head reveal">
+          <span className="clsec-eyebrow">Built for both sides</span>
+          <h2 className="clsec-h2">
+            Whichever side of the
+            <br />
+            <span className="cl-landing">referral</span> you are on.
+          </h2>
+          <p className="clsec-lede">
+            Same workspace. Different details. Right for each role.
+          </p>
         </div>
-        <div className="who-grid">
+
+        <div className="clwho-grid">
           {cards.map((c, i) => (
-            <div key={c.role} className="who-card reveal" style={{ transitionDelay: `${i * 0.1}s` }}>
+            <div
+              key={c.role}
+              className="cl-card cl-card--lg clwho-card reveal"
+              style={{ transitionDelay: `${i * 0.1}s` }}
+            >
               <div>
-                <div className={`who-icon ${c.iconClass}`}>
-                  <span className="who-icon-inner">{c.icon}</span>
-                </div>
-                <div className="role">{c.role}</div>
-                <h3>{c.title}</h3>
-                <p className="body">{c.body}</p>
-                <ul className="points">
-                  {c.points.map((p) => <li key={p}>{p}</li>)}
+                <span className="clw-ibx clw-ibx--lg">
+                  <Image src={c.icon} alt="" width={52} height={52} />
+                </span>
+                <div className="clwho-role">{c.role}</div>
+                <h3 className="clw-cardtitle">{c.title}</h3>
+                <p className="clw-cardbody">{c.body}</p>
+                <ul className="clwho-points">
+                  {c.points.map((p) => (
+                    <li key={p} className="cl-card-row">
+                      <span className="cl-ring" aria-hidden="true" />
+                      {p}
+                    </li>
+                  ))}
                 </ul>
               </div>
               <a
                 href={c.href}
-                className="arr"
+                className="cl-btn cl-btn--secondary clwho-cta"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 {c.cta}
-                <ArrowRight width={16} height={16} />
               </a>
             </div>
           ))}

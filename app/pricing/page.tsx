@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import Pricing from "@/components/home/Pricing";
 import CtaBand from "@/components/home/CtaBand";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import FaqAccordion from "@/components/FaqAccordion";
-import { Shield, File, Users } from "@/components/icons";
 import { faqGroups } from "@/lib/faqs";
 import { SIGNUP_URL } from "@/lib/urls";
 
@@ -102,9 +102,30 @@ export default function PricingPage() {
 
       <section className="geo-hero pricing-page-hero">
         <div className="geo-hero-bg" aria-hidden="true" />
+        {/* Care steps: four ascending frosted panels, white through blue
+            to mint. Tiers rising is what this page is, and it is glass,
+            which is the material the rest of the rebrand runs on.
+
+            Deliberately not the horizon arc (home hero) and not the
+            satin curve family (Contact) — one visual per page, no
+            repeats. Decorative, so no alt text. */}
+        <Image
+          src="/ds/visuals/e07-care-steps-day.png"
+          alt=""
+          width={1122}
+          height={1402}
+          priority
+          sizes="520px"
+          className="geo-hero-art"
+          aria-hidden="true"
+        />
         <div className="wrap geo-hero-inner">
           <span className="eyebrow">Pricing</span>
-          <h1>Dental referral software pricing.</h1>
+          {/* One landing phrase per layout, which this hero had none of. */}
+          <h1>
+            Dental referral{" "}
+            <span className="cl-landing">software pricing.</span>
+          </h1>
           <p className="lead">
             General dentists send referrals for free. Specialists
             pay a flat monthly fee that is typically covered by a single new
@@ -123,8 +144,10 @@ export default function PricingPage() {
           </div>
           <div className="geo-grid">
             <div className="geo-card">
+              {/* The system's own icon set, frosted, in place of the
+                  hairline strokes this card family was drawing. */}
               <span className="geo-card-ic" aria-hidden="true">
-                <Shield width={20} height={20} />
+                <Image src="/ds/icons/caselink-hipaa-lock.svg" alt="" width={52} height={52} />
               </span>
               <h3>HIPAA compliance</h3>
               <p>
@@ -135,7 +158,7 @@ export default function PricingPage() {
             </div>
             <div className="geo-card">
               <span className="geo-card-ic" aria-hidden="true">
-                <File width={20} height={20} />
+                <Image src="/ds/icons/caselink-baa-agreement.svg" alt="" width={52} height={52} />
               </span>
               <h3>BAA on signup</h3>
               <p>
@@ -145,7 +168,7 @@ export default function PricingPage() {
             </div>
             <div className="geo-card">
               <span className="geo-card-ic" aria-hidden="true">
-                <Users width={20} height={20} />
+                <Image src="/ds/icons/caselink-secure-records.svg" alt="" width={52} height={52} />
               </span>
               <h3>Unlimited case storage</h3>
               <p>

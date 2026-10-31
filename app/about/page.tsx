@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { ArrowRight } from "@/components/icons";
+import { ArrowRight, LinkedIn } from "@/components/icons";
 import Timeline from "@/components/about/Timeline";
 import MarketStat from "@/components/about/MarketStat";
 import CtaBand from "@/components/home/CtaBand";
@@ -27,12 +27,25 @@ export default function AboutPage() {
     <>
       <Breadcrumbs trail={[{ name: "About", path: "/about" }]} />
       <section className="about-hero">
-        <div className="about-hero-bg" />
+        {/* Frosted tiles, held to the right half and dissolving into the
+            ground before it reaches the headline. It is here to give the
+            portrait card's glass something to blur: a card over a flat
+            ground reads as a tinted panel, not as glass. Decorative. */}
+        <Image
+          src="/ds/visuals/e05-frosted-tiles-day.png"
+          alt=""
+          width={1122}
+          height={1402}
+          priority
+          sizes="760px"
+          className="about-hero-art"
+          aria-hidden="true"
+        />
         <div className="wrap about-hero-inner">
           <div>
             <span className="eyebrow">About CaseLink</span>
             <h1>
-              Building the <span className="grad-text">link</span> dentistry
+              Building the <span className="cl-landing">link</span> dentistry
               has been missing.
             </h1>
             <p className="lead">
@@ -41,13 +54,13 @@ export default function AboutPage() {
               tools connecting their practices have not caught up.
             </p>
             <div className="hero-cta">
-              <BookCallButton className="btn btn-primary">
+              <BookCallButton className="cl-btn cl-btn--lg">
                 Book a call
                 <ArrowRight width={14} height={14} />
               </BookCallButton>
               <a
                 href={SIGNUP_URL}
-                className="btn btn-ghost"
+                className="cl-btn cl-btn--secondary cl-btn--lg"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -56,8 +69,6 @@ export default function AboutPage() {
             </div>
           </div>
           <div className="portrait-wrap">
-            <div className="portrait-orbit2" aria-hidden="true" />
-            <div className="portrait-orbit" aria-hidden="true" />
             <div className="portrait-frame">
               <Image
                 src="/portrait.png"
@@ -67,11 +78,23 @@ export default function AboutPage() {
                 priority
               />
               <div className="portrait-tag">
-                <span className="pt-dot" />
+                <span className="pt-dot" aria-hidden="true" />
                 <div className="pt-txt">
                   <strong>Nick Campbell</strong>
                   <span>Co-Founder · CEO</span>
                 </div>
+                {/* TODO: swap for Nick's own profile. CLAUDE.md still
+                    lists his LinkedIn as pending from him, so this points
+                    at the company page rather than guessing a URL. */}
+                <a
+                  className="pt-li"
+                  href="https://www.linkedin.com/company/caselinknet/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Nick Campbell on LinkedIn"
+                >
+                  <LinkedIn width={15} height={15} />
+                </a>
               </div>
             </div>
           </div>
@@ -86,8 +109,16 @@ export default function AboutPage() {
             <p className="story-quote reveal">
               I kept hearing the same story from dentists I knew in DC. A
               patient gets referred, and then no one is sure what happens
-              next. The relationship was there. The tooling was not.
+              next. The relationship was there.{" "}
+              <span className="cl-landing">The tooling was not.</span>
             </p>
+            <div className="story-signature reveal">
+              <Image src="/portrait-signature.jpg" width={48} height={48} alt="Nick Campbell" />
+              <div>
+                <div className="sname">Nick Campbell</div>
+                <div className="srole">Co-Founder · CEO</div>
+              </div>
+            </div>
           </div>
           <div className="story-body">
             <div className="reveal">
@@ -113,13 +144,6 @@ export default function AboutPage() {
                 If that sounds useful, let us know. We are still small enough
                 to onboard you ourselves.
               </p>
-              <div className="story-signature">
-                <Image src="/portrait-signature.jpg" width={48} height={48} alt="Nick Campbell" />
-                <div>
-                  <div className="sname">Nick Campbell</div>
-                  <div className="srole">Co-Founder · CEO</div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -129,21 +153,24 @@ export default function AboutPage() {
 
       <section className="about-mission">
         <div className="wrap">
-          <span className="eyebrow reveal" style={{ textAlign: "center", display: "flex", justifyContent: "center" }}>What we stand for</span>
+          <span className="eyebrow reveal">What we stand for</span>
           <h2 className="reveal">Three principles<br />that shape every decision.</h2>
           <p className="reveal">Patient continuity first. Simplicity always. Compliance by design.</p>
           <div className="mission-grid">
             <div className="mission-card reveal">
+              <span className="clw-ibx clw-ibx--lg mission-icon"><Image src="/ds/icons/caselink-care-team.svg" alt="A care team around one patient: two practices sharing a single case." width={52} height={52} /></span>
               <div className="mission-num">01</div>
               <h3>Patient continuity first</h3>
               <p>Every feature is judged by one question. Does it make it easier for a patient to receive seamless care across two practices.</p>
             </div>
             <div className="mission-card reveal" style={{ transitionDelay: ".1s" }}>
+              <span className="clw-ibx clw-ibx--lg mission-icon"><Image src="/ds/icons/caselink-link.svg" alt="Two links joined: the layer between practices rather than inside one." width={52} height={52} /></span>
               <div className="mission-num">02</div>
               <h3>The link, not the replacement</h3>
               <p>CaseLink does not replace your practice management software. We are the layer that connects your practice to the next one.</p>
             </div>
             <div className="mission-card reveal" style={{ transitionDelay: ".2s" }}>
+              <span className="clw-ibx clw-ibx--lg mission-icon"><Image src="/ds/icons/caselink-compliance.svg" alt="A compliance mark: patient data held to HIPAA by design." width={52} height={52} /></span>
               <div className="mission-num">03</div>
               <h3>Compliance you can feel</h3>
               <p>Patient data is sacred. CaseLink is HIPAA compliant by design, audited annually, and every action is traceable.</p>

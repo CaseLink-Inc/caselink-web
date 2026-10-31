@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="500" height="500" role="img" aria-label="BAA agreement">
+<defs>
+  <linearGradient id="baa-agreement-bk" x1="48" y1="116" x2="136" y2="28" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4d93ff"></stop><stop offset="0.5" stop-color="#74bdf5"></stop><stop offset="0.78" stop-color="#93e3c6"></stop><stop offset="1" stop-color="#cfe9ff"></stop></linearGradient>
+  <linearGradient id="baa-agreement-fr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f3f8ff" stop-opacity=".82"></stop><stop offset="1" stop-color="#e4eefb" stop-opacity=".5"></stop></linearGradient>
+  <clipPath id="baa-agreement-clip"><path d="M28 70a22 22 0 0 1 22-22h28l38 38v28a22 22 0 0 1-22 22H50a22 22 0 0 1-22-22z"></path></clipPath>
+  <filter id="baa-agreement-blur" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="9"></feGaussianBlur></filter>
+  <mask id="baa-agreement-out" maskUnits="userSpaceOnUse" x="0" y="0" width="160" height="160"><rect width="160" height="160" fill="#fff"></rect><g fill="#000"><path d="M28 70a22 22 0 0 1 22-22h28l38 38v28a22 22 0 0 1-22 22H50a22 22 0 0 1-22-22z"></path></g></mask>
+</defs>
+<g fill="url(#baa-agreement-bk)"><rect x="48" y="28" width="88" height="88" rx="22"></rect></g>
+<g clip-path="url(#baa-agreement-clip)">
+  <rect width="160" height="160" fill="#ffffff"></rect>
+  <g fill="url(#baa-agreement-bk)" filter="url(#baa-agreement-blur)"><rect x="48" y="28" width="88" height="88" rx="22"></rect></g>
+  <g fill="url(#baa-agreement-fr)"><path d="M28 70a22 22 0 0 1 22-22h28l38 38v28a22 22 0 0 1-22 22H50a22 22 0 0 1-22-22z"></path></g>
+</g>
+<g fill="none" stroke="#ffffff" stroke-opacity=".9" stroke-width="2.4" mask="url(#baa-agreement-out)"><path d="M28 70a22 22 0 0 1 22-22h28l38 38v28a22 22 0 0 1-22 22H50a22 22 0 0 1-22-22z"></path></g>
+<g fill="#ffffff"><path d="M66 83.9l14.95 4.6v10.35c0 9.2-5.75 14.95-14.95 18.4c-9.2-3.4499999999999997-14.95-9.2-14.95-18.4v-10.35z" fill="#fff"></path></g>
+</svg>

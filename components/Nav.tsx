@@ -8,7 +8,6 @@ import { LOGIN_URL } from "@/lib/urls";
 
 const links = [
   { href: "/", label: "Home", exact: true },
-  { href: "/#how", label: "How it works" },
   { href: "/#network", label: "Network" },
   { href: "/pricing", label: "Pricing" },
   { href: "/about", label: "About" },
@@ -48,16 +47,10 @@ export default function Nav() {
     return exact ? pathname === href : pathname.startsWith(href);
   };
 
-  const arrowSvg = (
-    <svg viewBox="0 0 24 24" fill="none" strokeWidth="2" strokeLinecap="round" stroke="currentColor">
-      <path d="M5 12h14M13 5l7 7-7 7" />
-    </svg>
-  );
-
   return (
     <>
       <nav className="site-nav">
-        <div className="nav-inner">
+        <div className="nav-inner cl-glass cl-glass--bar">
           <Link href="/" className="logo" aria-label="CaseLink">
             <Image src="/logo-primary.svg" width={142} height={32} alt="CaseLink" priority />
           </Link>
@@ -73,7 +66,7 @@ export default function Nav() {
             ))}
           </div>
           <div className="nav-cta">
-            <a href={LOGIN_URL} className="btn btn-primary" target="_blank" rel="noopener noreferrer">
+            <a href={LOGIN_URL} className="cl-btn cl-btn--sm" target="_blank" rel="noopener noreferrer">
               Login now
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M5 12h14M13 5l7 7-7 7" />
@@ -103,12 +96,11 @@ export default function Nav() {
           {links.map((l) => (
             <li key={l.href}>
               {/* Close the drawer on every tap. The pathname-based effect
-                  only fires when the route changes, so links like /#how
+                  only fires when the route changes, so links like /#network
                   (same path, different hash) or 'Home' while already on
                   / would leave the drawer open without this. */}
               <Link href={l.href} onClick={() => setOpen(false)}>
                 {l.label}
-                {arrowSvg}
               </Link>
             </li>
           ))}

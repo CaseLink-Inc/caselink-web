@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="500" height="500" role="img" aria-label="Patient consent">
+<defs>
+  <linearGradient id="consent-bk" x1="48" y1="116" x2="136" y2="28" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4d93ff"></stop><stop offset="0.5" stop-color="#74bdf5"></stop><stop offset="0.78" stop-color="#93e3c6"></stop><stop offset="1" stop-color="#cfe9ff"></stop></linearGradient>
+  <linearGradient id="consent-fr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f3f8ff" stop-opacity=".82"></stop><stop offset="1" stop-color="#e4eefb" stop-opacity=".5"></stop></linearGradient>
+  <clipPath id="consent-clip"><path d="M28 70a22 22 0 0 1 22-22h28l38 38v28a22 22 0 0 1-22 22H50a22 22 0 0 1-22-22z"></path></clipPath>
+  <filter id="consent-blur" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="9"></feGaussianBlur></filter>
+  <mask id="consent-out" maskUnits="userSpaceOnUse" x="0" y="0" width="160" height="160"><rect width="160" height="160" fill="#fff"></rect><g fill="#000"><path d="M28 70a22 22 0 0 1 22-22h28l38 38v28a22 22 0 0 1-22 22H50a22 22 0 0 1-22-22z"></path></g></mask>
+</defs>
+<g fill="url(#consent-bk)"><rect x="48" y="28" width="88" height="88" rx="22"></rect></g>
+<g clip-path="url(#consent-clip)">
+  <rect width="160" height="160" fill="#ffffff"></rect>
+  <g fill="url(#consent-bk)" filter="url(#consent-blur)"><rect x="48" y="28" width="88" height="88" rx="22"></rect></g>
+  <g fill="url(#consent-fr)"><path d="M28 70a22 22 0 0 1 22-22h28l38 38v28a22 22 0 0 1-22 22H50a22 22 0 0 1-22-22z"></path></g>
+</g>
+<g fill="none" stroke="#ffffff" stroke-opacity=".9" stroke-width="2.4" mask="url(#consent-out)"><path d="M28 70a22 22 0 0 1 22-22h28l38 38v28a22 22 0 0 1-22 22H50a22 22 0 0 1-22-22z"></path></g>
+<g fill="#ffffff"><path d="M44 108c6-10 9-10 11-2s6 8 10 0 7-8 10 0 5 4 11-2" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"></path></g>
+</svg>

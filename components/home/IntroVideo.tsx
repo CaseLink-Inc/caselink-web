@@ -31,7 +31,12 @@ export default function IntroVideo() {
   }, [playing]);
 
   return (
-    <section id="intro-video" className="introvid-sec">
+    <section id="intro-video" className="introvid-sec cl-grain cl-bg-seaglass">
+      {/* G13 Sea glass: the whole section is one pane, so it carries the
+          rim, the sheen and the inner lip that the glass recipe asks for.
+          The audience section already owns G6's tile field, and this
+          keeps the two from reading as the same treatment twice. */}
+      <div className="cl-pane-sheen" aria-hidden="true" />
       <div className="wrap introvid-inner">
         <div className="section-head introvid-head reveal">
           <span className="eyebrow">Watch the intro</span>

@@ -10,12 +10,20 @@ const steps = [
   { when: "Next", title: "Across US", desc: "Opening the network to practices nationwide, one referral relationship at a time." },
 ];
 
-// Where each step's dot sits along the line, as a percentage.
-const dotPercents = [10, 30, 50, 70, 90];
+/* Where each step's dot sits along the line, as a percentage of it.
+   The dots sit at the left edge of five equal columns separated by a 24px
+   gap, so these are the real centres rather than the even tenths used
+   before, which lit each dot a stride after the line had passed it. The
+   spread across every desktop width is under half a percent. Below
+   1100px the line is hidden and these only keep the order. */
+const dotPercents = [0.8, 21.2, 41.6, 62, 82.4];
 
-// We're actively running DC pilots, so the leading edge lands just past
-// the 4th dot but never reaches the 5th.
-const TARGET_PROGRESS = 78;
+/* We're running DC pilots, so the sweep stops a quarter of the way from
+   "Right now" towards "Across US". It used to stop at 78, which on the
+   real geometry was four fifths of the way there and read as almost
+   arrived. */
+const TARGET_PROGRESS =
+  dotPercents[3] + (dotPercents[4] - dotPercents[3]) * 0.25;
 // Cycle phases (ms):
 //  - fill    : 0 -> TARGET_PROGRESS (ease-out)
 //  - hold-in : stay at peak
@@ -114,7 +122,13 @@ export default function Timeline() {
         <p>Five moments that shaped where CaseLink is today, and where it is heading next.</p>
         <div className="tl-wrap">
           <div className="tl-line" />
-          <div className="tl-progress" style={{ width: `${progress}%` }} />
+          {/* `lit` gates the bloom and the leading flare, which would
+              otherwise sit stacked at x=0 through the empty beat between
+              sweeps. */}
+          <div
+            className={`tl-progress ${progress > 1 ? "lit" : ""}`}
+            style={{ width: `${progress}%` }}
+          />
           <div ref={gridRef} className="tl-grid">
             {steps.map((s, i) => (
               <div key={s.title} className={`tl-step ${shown[i] ? "in" : ""}`}>

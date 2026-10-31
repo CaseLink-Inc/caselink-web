@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="500" height="500" role="img" aria-label="Oral surgery">
+<defs>
+  <linearGradient id="oral-surgery-bk" x1="48" y1="116" x2="136" y2="28" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4d93ff"></stop><stop offset="0.5" stop-color="#74bdf5"></stop><stop offset="0.78" stop-color="#93e3c6"></stop><stop offset="1" stop-color="#cfe9ff"></stop></linearGradient>
+  <linearGradient id="oral-surgery-fr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f3f8ff" stop-opacity=".82"></stop><stop offset="1" stop-color="#e4eefb" stop-opacity=".5"></stop></linearGradient>
+  <clipPath id="oral-surgery-clip"><path d="M46 50C35 50 28 59 28 72c0 14 6 24 10 36l7 21c1.6 5 8.4 5 10 0l6-20c1.6-5.4 5.6-8 11-8s9.4 2.6 11 8l6 20c1.6 5 8.4 5 10 0l7-21c4-12 10-22 10-36 0-13-7-22-18-22-9 0-14 5-26 5S55 50 46 50z"></path></clipPath>
+  <filter id="oral-surgery-blur" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="9"></feGaussianBlur></filter>
+  <mask id="oral-surgery-out" maskUnits="userSpaceOnUse" x="0" y="0" width="160" height="160"><rect width="160" height="160" fill="#fff"></rect><g fill="#000"><path d="M46 50C35 50 28 59 28 72c0 14 6 24 10 36l7 21c1.6 5 8.4 5 10 0l6-20c1.6-5.4 5.6-8 11-8s9.4 2.6 11 8l6 20c1.6 5 8.4 5 10 0l7-21c4-12 10-22 10-36 0-13-7-22-18-22-9 0-14 5-26 5S55 50 46 50z"></path></g></mask>
+</defs>
+<g fill="url(#oral-surgery-bk)"><rect x="52" y="30" width="80" height="66" rx="26"></rect></g>
+<g clip-path="url(#oral-surgery-clip)">
+  <rect width="160" height="160" fill="#ffffff"></rect>
+  <g fill="url(#oral-surgery-bk)" filter="url(#oral-surgery-blur)"><rect x="52" y="30" width="80" height="66" rx="26"></rect></g>
+  <g fill="url(#oral-surgery-fr)"><path d="M46 50C35 50 28 59 28 72c0 14 6 24 10 36l7 21c1.6 5 8.4 5 10 0l6-20c1.6-5.4 5.6-8 11-8s9.4 2.6 11 8l6 20c1.6 5 8.4 5 10 0l7-21c4-12 10-22 10-36 0-13-7-22-18-22-9 0-14 5-26 5S55 50 46 50z"></path></g>
+</g>
+<g fill="none" stroke="#ffffff" stroke-opacity=".9" stroke-width="2.4" mask="url(#oral-surgery-out)"><path d="M46 50C35 50 28 59 28 72c0 14 6 24 10 36l7 21c1.6 5 8.4 5 10 0l6-20c1.6-5.4 5.6-8 11-8s9.4 2.6 11 8l6 20c1.6 5 8.4 5 10 0l7-21c4-12 10-22 10-36 0-13-7-22-18-22-9 0-14 5-26 5S55 50 46 50z"></path></g>
+<g fill="#ffffff"><g transform="translate(14.40 17.20) scale(0.8)"><path d="M64 62h16l-2 46a6 6 0 0 1-12 0z" fill="#fff"></path><rect x="56" y="68" width="32" height="7" rx="3.5" fill="#fff"></rect><rect x="58" y="80" width="28" height="7" rx="3.5" fill="#fff"></rect><rect x="60" y="92" width="24" height="7" rx="3.5" fill="#fff"></rect></g></g>
+</svg>

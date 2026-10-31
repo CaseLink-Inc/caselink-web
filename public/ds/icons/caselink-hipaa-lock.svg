@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="500" height="500" role="img" aria-label="HIPAA secure">
+<defs>
+  <linearGradient id="hipaa-lock-bk" x1="48" y1="116" x2="136" y2="28" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4d93ff"></stop><stop offset="0.5" stop-color="#74bdf5"></stop><stop offset="0.78" stop-color="#93e3c6"></stop><stop offset="1" stop-color="#cfe9ff"></stop></linearGradient>
+  <linearGradient id="hipaa-lock-fr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f3f8ff" stop-opacity=".82"></stop><stop offset="1" stop-color="#e4eefb" stop-opacity=".5"></stop></linearGradient>
+  <clipPath id="hipaa-lock-clip"><rect x="34" y="84" width="76" height="52" rx="18"></rect><path d="M46 88V72a26 26 0 0 1 52 0v16H86V72a14 14 0 0 0-28 0v16z"></path></clipPath>
+  <filter id="hipaa-lock-blur" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="9"></feGaussianBlur></filter>
+  <mask id="hipaa-lock-out" maskUnits="userSpaceOnUse" x="0" y="0" width="160" height="160"><rect width="160" height="160" fill="#fff"></rect><g fill="#000"><rect x="34" y="84" width="76" height="52" rx="18"></rect><path d="M46 88V72a26 26 0 0 1 52 0v16H86V72a14 14 0 0 0-28 0v16z"></path></g></mask>
+</defs>
+<g fill="url(#hipaa-lock-bk)"><rect x="48" y="28" width="88" height="88" rx="22"></rect></g>
+<g clip-path="url(#hipaa-lock-clip)">
+  <rect width="160" height="160" fill="#ffffff"></rect>
+  <g fill="url(#hipaa-lock-bk)" filter="url(#hipaa-lock-blur)"><rect x="48" y="28" width="88" height="88" rx="22"></rect></g>
+  <g fill="url(#hipaa-lock-fr)"><rect x="34" y="84" width="76" height="52" rx="18"></rect><path d="M46 88V72a26 26 0 0 1 52 0v16H86V72a14 14 0 0 0-28 0v16z"></path></g>
+</g>
+<g fill="none" stroke="#ffffff" stroke-opacity=".9" stroke-width="2.4" mask="url(#hipaa-lock-out)"><rect x="34" y="84" width="76" height="52" rx="18"></rect><path d="M46 88V72a26 26 0 0 1 52 0v16H86V72a14 14 0 0 0-28 0v16z"></path></g>
+<g fill="#ffffff"><circle cx="72" cy="104" r="7" fill="#fff"></circle><rect x="69" y="106" width="6" height="16" rx="3" fill="#fff"></rect></g>
+</svg>

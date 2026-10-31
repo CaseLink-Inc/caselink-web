@@ -31,19 +31,24 @@ export default function ResourceLibrary({ resources }: { resources: Resource[] }
   return (
     <section className="res-main">
       <div className="wrap">
-        <div className="res-tabs" role="tablist" aria-label="Filter resources by topic">
-          {tabs.map((t) => (
-            <button
-              key={t}
-              type="button"
-              role="tab"
-              aria-selected={active === t}
-              className={`res-tab${active === t ? " is-active" : ""}`}
-              onClick={() => setActive(t)}
-            >
-              {t}
-            </button>
-          ))}
+        {/* The rail is its own element so it can shrink to the pills
+            while the row below it still carries the full-width hairline
+            that separates the filter from the grid. */}
+        <div className="res-tabrow">
+          <div className="res-tabs" role="tablist" aria-label="Filter resources by topic">
+            {tabs.map((t) => (
+              <button
+                key={t}
+                type="button"
+                role="tab"
+                aria-selected={active === t}
+                className={`res-tab${active === t ? " is-active" : ""}`}
+                onClick={() => setActive(t)}
+              >
+                {t}
+              </button>
+            ))}
+          </div>
         </div>
 
         <div className="res-grid">

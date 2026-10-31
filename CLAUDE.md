@@ -72,9 +72,11 @@ app/
   resources/page.tsx      Blog index: full-bleed hero + category filter
                           tabs + card grid. HIDDEN from nav/footer until
                           Nick calls it complete (URLs are live/indexed).
-  resources/[slug]/       Article template: per-article layout recipes,
-                          stats strip, figures, pull-quotes, slider, FAQ
-                          accordion, BlogPosting + FAQPage JSON-LD,
+  resources/[slug]/       Article template, LOCKED 2026-10-30 (see
+                          "Article template" below): lit ground + glass
+                          panels, callout/step cards, stat strip, lens
+                          pull-quote, feature image, figures, slider,
+                          FAQ accordion, BlogPosting + FAQPage JSON-LD,
                           per-article og:image from the card thumbnail.
   dental-referral-platform-dc/  SEO geo landing page (footer-linked)
   pricing/page.tsx        Pricing page (reuses home Pricing cards, per-plan
@@ -156,6 +158,45 @@ git add -A && git commit -m "..." && git push
 ```
 
 Vercel picks it up in ~30 seconds.
+
+## Article template — LOCKED (2026-10-30)
+
+The `/resources/[slug]` layout is signed off. Every new article uses it as
+is. Colour may vary per piece; the structure may not.
+
+- **Lit ground, then glass.** `.res-article::before` lays soft blue and
+  mint washes behind the whole article, masked to fade out over its last
+  tenth so it never ends on a line. Every panel above it is genuinely
+  translucent (`--res-glass`, 60→40% white, 26px backdrop blur,
+  `--res-glass-rim`). Glass over a flat ground is just a white box, which
+  is what this replaced — don't reintroduce opaque cards here.
+- **No section has its own ground.** The head and the body share the one
+  glow. A second background anywhere inside the article shows as a hard
+  horizontal seam.
+- **Callouts and steps are the same card.** A markdown paragraph opening
+  in `**bold**` becomes `.res-point`; an ordered list becomes
+  `.res-steps`. Both are a two-column grid, marker and text, `align-items:
+  center`. The marker is a flat frosted 64px disc — icon for callouts,
+  numeral for steps. It centres on the CARD, never on the first line:
+  a 64px disc cannot sit level with a 26px line of type.
+- **Icons come from `layout.pointIcons`** in `lib/resources.ts`, one slug
+  per callout in document order, names from `public/ds/icons`.
+- **Type**: first paragraph 19px, `h2` 31px, card titles 19px Medium,
+  body 16px. Bold is only ever a UI number.
+- **Stat strip** breaks the 760px reading measure to 960px — at reading
+  width three cards come out at 240px and long values wrap. Cards rise
+  and stagger in on scroll via the shared `.reveal` observer.
+- **Pull-quote** is two crossing lenses under a sheet of glass with the
+  line on top (`ResourcePullQuote` wraps its text so it paints above the
+  pseudo-element). Never a tinted box with a bar down the side.
+- **Feature image** is the card thumbnail at the reading width, both
+  edges on the text column.
+- **Charts, graphs and diagrams are welcome** where an article has real
+  numbers or a process to show (the benchmarks piece and its funnel are
+  the obvious first case). Build them to the same rules: glass over the
+  lit ground, palette colours only, Medium not Bold, no drop shadows.
+  They replace `ResourceFigure` placeholders rather than sitting beside
+  them.
 
 ## Coding conventions
 
@@ -349,10 +390,13 @@ Vercel picks it up in ~30 seconds.
   how-endodontists-track-and-manage-incoming-referrals,
   automate-dental-referral-follow-up,
   cms-0062-p-fhir-dental-authorization (Policy category, June 15
-  comment deadline — needs a refresh after). Image status: FHIR ✓all,
-  endodontists ✓card+side, automate ✓card+wide, how-to-stop
-  ✓card+side; free-gp and conversion still on placeholders, hero
-  photo pending. The removed 7th article (Dentrix) has a temporary
+  comment deadline — needs a refresh after). Image status (2026-10-30):
+  all 8 cards carry a distinct photo with alt text. Body figures: FHIR
+  ✓side+wide, endodontists ✓side, automate ✓wide, how-to-stop ✓side.
+  free-gp and conversion had empty figure placeholders in the body and
+  those inserts were deleted rather than left waiting on an image —
+  conversion shows the stage funnel there instead. Only the /resources
+  hero photo is still pending. The removed 7th article (Dentrix) has a temporary
   redirect in next.config.ts — republish + drop redirect when the
   integration ships; original source in ~/Downloads/Web articles/.
 - **Competitor mentions stripped from articles** (2026-06-10): PepCare
@@ -556,9 +600,8 @@ Vercel picks it up in ~30 seconds.
   account (Google Workspace, Vercel, GitHub, Blaze, GoHighLevel, G2, IONOS);
   IONOS domain transfer lock; DMARC `p=quarantine` -> `p=reject`; Vercel
   Firewall (Bot Protection + OWASP managed rules) in the dashboard.
-- **Remaining article images** (user supplies via the Image temp
-  workflow in conventions): free-gp card + wide, conversion card +
-  side + wide, and the `/resources` hero photo. Endodontists has no
+- **Remaining article images**: only the `/resources` hero photo. Every
+  article card has a real photo as of 2026-10-30. Endodontists has no
   wide slot configured (intentional). Optionally sharper 1200x630
   social images per article later.
 - **Make Resources public**: re-add "Resources" to Nav and Footer

@@ -36,10 +36,10 @@ export default function ResourceCard({
           />
         ) : (
           <Image
-            src="/logo-mark-white.svg"
+            src="/logo-mark.svg"
             alt=""
-            width={44}
-            height={44}
+            width={52}
+            height={52}
             className="res-thumb-mark"
           />
         )}

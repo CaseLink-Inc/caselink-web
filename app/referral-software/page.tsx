@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import CtaBand from "@/components/home/CtaBand";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { ArrowRight } from "@/components/icons";
@@ -38,6 +39,18 @@ const listLd = {
   })),
 };
 
+/* The specialty icons, keyed by slug. The watermark on each card is the
+   system's own icon set used at size and low opacity rather than inside
+   a tile, so the hub reads differently from the pricing and
+   referral-management card grids. */
+const SPEC_ICON: Record<string, string> = {
+  endodontists: "caselink-endodontics",
+  orthodontists: "caselink-orthodontics",
+  periodontists: "caselink-periodontics",
+  "oral-surgeons": "caselink-oral-surgery",
+  prosthodontists: "caselink-treatment-plan",
+};
+
 export default function ReferralSoftwareHub() {
   return (
     <>
@@ -47,11 +60,14 @@ export default function ReferralSoftwareHub() {
       />
       <Breadcrumbs trail={[{ name: "Referral software", path: "/referral-software" }]} />
 
-      <section className="geo-hero">
+      <section className="geo-hero geo-hero--mint">
         <div className="geo-hero-bg" aria-hidden="true" />
         <div className="wrap geo-hero-inner">
           <span className="eyebrow">For specialists</span>
-          <h1>Dental referral software for every specialty.</h1>
+          <h1>
+            Dental referral software for{" "}
+            <span className="cl-landing">every specialty.</span>
+          </h1>
           <p className="lead">
             Each specialty receives referrals differently. CaseLink gives every
             specialist practice one inbox for incoming cases, a status both
@@ -66,6 +82,14 @@ export default function ReferralSoftwareHub() {
           <div className="spec-hub-grid">
             {specialties.map((s) => (
               <Link key={s.slug} href={`/referral-software/${s.slug}`} className="geo-card spec-hub-card">
+                <Image
+                  src={`/ds/icons/${SPEC_ICON[s.slug] ?? "caselink-specialist"}.svg`}
+                  alt=""
+                  width={148}
+                  height={148}
+                  className="spec-hub-ico"
+                  aria-hidden="true"
+                />
                 <span className="eyebrow">{s.field}</span>
                 <h2>{s.metaTitle}</h2>
                 <p>{s.lead}</p>
@@ -75,7 +99,9 @@ export default function ReferralSoftwareHub() {
                 </span>
               </Link>
             ))}
-            <Link href="/referral-software/general-dentists" className="geo-card spec-hub-card spec-hub-gp">
+            <Link href="/referral-software/general-dentists" className="geo-card spec-hub-card">
+                              <Image src="/ds/icons/caselink-general-dentist.svg" alt="" width={148} height={148}
+                  className="spec-hub-ico" aria-hidden="true" />
               <span className="eyebrow">General dentists</span>
               <h2>Free for general dentists</h2>
               <p>
@@ -88,6 +114,8 @@ export default function ReferralSoftwareHub() {
               </span>
             </Link>
             <Link href="/referral-software/dso" className="geo-card spec-hub-card">
+                              <Image src="/ds/icons/caselink-multi-location.svg" alt="" width={148} height={148}
+                  className="spec-hub-ico" aria-hidden="true" />
               <span className="eyebrow">DSOs and groups</span>
               <h2>Referral management for DSOs</h2>
               <p>
@@ -99,7 +127,9 @@ export default function ReferralSoftwareHub() {
                 <ArrowRight width={13} height={13} />
               </span>
             </Link>
-            <Link href="/dental-referral-management" className="geo-card spec-hub-card spec-hub-gp">
+            <Link href="/dental-referral-management" className="geo-card spec-hub-card">
+                              <Image src="/ds/icons/caselink-referral-status.svg" alt="" width={148} height={148}
+                  className="spec-hub-ico" aria-hidden="true" />
               <span className="eyebrow">Overview</span>
               <h2>How referral management works</h2>
               <p>
@@ -112,6 +142,8 @@ export default function ReferralSoftwareHub() {
               </span>
             </Link>
             <Link href="/resources/how-to-choose-dental-referral-software" className="geo-card spec-hub-card">
+                              <Image src="/ds/icons/caselink-help.svg" alt="" width={148} height={148}
+                  className="spec-hub-ico" aria-hidden="true" />
               <span className="eyebrow">Buyer&apos;s guide</span>
               <h2>How to choose referral software</h2>
               <p>

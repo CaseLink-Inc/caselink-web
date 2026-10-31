@@ -26,11 +26,22 @@ export type ResourceLink = { href: string; label: string };
 export type ResourceInsert =
   | { before: number; kind: "quote"; text: string }
   | { before: number; kind: "figure"; variant: "wide" | "side"; side?: "left" | "right"; src?: string; alt?: string }
-  | { before: number; kind: "slider"; cards: { title: string; body: string }[] };
+  | { before: number; kind: "slider"; cards: { title: string; body: string }[] }
+  /** Stage diagram. Every figure must come from the article's own text:
+   *  a stage with no published number carries none and is drawn as a gap. */
+  | {
+      before: number;
+      kind: "funnel";
+      stages: { label: string; figure?: string; note: string; peak?: boolean }[];
+      result?: { figure: string; label: string };
+    };
 
 export type ResourceLayout = {
   stats: "top" | "beforeFaq" | { beforeSection: number };
   inserts?: ResourceInsert[];
+  /** Icon slug per bold-lead callout, in document order. Names come from
+   *  public/ds/icons. Short lists repeat the last entry; omit for none. */
+  pointIcons?: string[];
 };
 
 export type Resource = {
@@ -57,15 +68,19 @@ export type Resource = {
   thumbnailAlt?: string;
 };
 
-// Accent color per category, drawn from the marketing theme tokens.
+// Accent colour per category, from the design system's palette. The set
+// used #FFA940 for two categories and #3DBD6B for three; peach is allowed
+// nowhere outside the logo and that green is in no palette. The seven now
+// run across Blue Deep, Blue, Sky and Mint deep, which keeps them
+// distinguishable by lightness as well as hue.
 export const CATEGORY_COLOR: Record<ResourceCategory, string> = {
   Referrals: "#3E8EFF",
-  Benchmarks: "#FFA940",
-  Software: "#3DBD6B",
-  Specialists: "#3E8EFF",
-  Operations: "#FFA940",
-  "Getting started": "#3DBD6B",
-  Policy: "#3DBD6B",
+  Benchmarks: "#1D5FD8",
+  Software: "#2FBF8F",
+  Specialists: "#74BDF5",
+  Operations: "#0B2A66",
+  "Getting started": "#178A5E",
+  Policy: "#1D5FD8",
 };
 
 export const resources: Resource[] = [
@@ -73,6 +88,17 @@ export const resources: Resource[] = [
     slug: "paperless-dental-referrals",
     layout: {
       stats: "top",
+      /* One per breakdown, in the order they appear: the fax nobody
+         confirms, the records that travel separately, the slip the
+         patient carries, the status that takes a call, the outcome that
+         comes back late. */
+      pointIcons: [
+        "caselink-notifications",
+        "caselink-secure-records",
+        "caselink-case-timeline",
+        "caselink-call",
+        "caselink-post-op-report",
+      ],
       inserts: [
         {
           before: 3,
@@ -85,6 +111,9 @@ export const resources: Resource[] = [
     metaTitle: "Paperless dental referrals: replacing fax and referral pads · CaseLink",
     excerpt:
       "Where paper referral pads and faxed referrals break down, what a digital referral changes, and five steps to move your office to paperless referrals.",
+    thumbnail: "/resources/paperless-dental-referrals-card.jpg",
+    thumbnailAlt:
+      "A dental assistant and a specialist part a dense curtain of hanging paper referral slips, opening a lit path for a patient to walk through to the other side.",
     category: "Referrals",
     author: "CaseLink Team",
     date: "2026-10-28",
@@ -144,6 +173,9 @@ export const resources: Resource[] = [
     metaTitle: "How to choose dental referral software · CaseLink",
     excerpt:
       "Eight questions to ask before your practice picks a referral platform, from who pays and the BAA to what travels with each case and how both offices see status.",
+    thumbnail: "/resources/how-to-choose-card.jpg",
+    thumbnailAlt:
+      "A tablet showing a referral case with bitewing radiographs, a status timeline and a checklist, on a desk beside a scattered pile of faxed paper referrals and loose x-ray films.",
     category: "Software",
     author: "CaseLink Team",
     date: "2026-10-08",
@@ -193,11 +225,23 @@ export const resources: Resource[] = [
   },
   {
     slug: "cms-0062-p-fhir-dental-authorization",
-    thumbnail: "/resources/card-thumbnail.jpg",
+    thumbnail: "/resources/cms-0062-p-fhir-card.jpg",
     thumbnailAlt:
-      "The HL7 FHIR logo, the data standard CMS-0062-P proposes for prior authorization and referral certification.",
+      "A fax machine feeding a curling sheet of paper that passes through a pane of glass and becomes a row of lit digital case records, with a dental x-ray film and a stack of paper on the desk behind it.",
     layout: {
       stats: { beforeSection: 2 },
+      /* One per callout, in document order: what the rule does not make
+         a compliance category, who it does not put a mandate on, that it
+         endorses no platform, how a final rule can differ from the
+         proposal, why the direction holds, and what is in effect today. */
+      pointIcons: [
+        "caselink-compliance",
+        "caselink-practice",
+        "caselink-integrations",
+        "caselink-audit-log",
+        "caselink-case-timeline",
+        "caselink-referral-status",
+      ],
       inserts: [
         {
           before: 3,
@@ -279,7 +323,7 @@ export const resources: Resource[] = [
       },
     ],
     related: [
-      { href: "/#how", label: "How it works" },
+      { href: "/#intro-video", label: "How it works" },
       { href: "/privacy", label: "HIPAA and privacy" },
     ],
   },
@@ -353,7 +397,7 @@ export const resources: Resource[] = [
       },
     ],
     related: [
-      { href: "/#how", label: "How it works" },
+      { href: "/#intro-video", label: "How it works" },
       { href: "/#network", label: "The network" },
     ],
   },
@@ -380,13 +424,15 @@ export const resources: Resource[] = [
             },
           ],
         },
-        { before: 4, kind: "figure", variant: "wide" },
       ],
     },
     title: "Free dental referral software for general dentists",
     metaTitle: "Free dental referral software for GPs · CaseLink",
     excerpt:
       "CaseLink is a HIPAA aligned referral platform where general dentists send referrals, track status, and message specialists at no cost. No trial. No credit card.",
+    thumbnail: "/resources/free-gp-card.jpg",
+    thumbnailAlt:
+      "A long printed referral form carrying a panoramic dental x-ray curls off a bright operatory counter and feeds into an open laptop, where the same case appears as a tracked list of patients on screen.",
     category: "Getting started",
     author: "CaseLink Team",
     date: "2026-05-25",
@@ -430,21 +476,74 @@ export const resources: Resource[] = [
     ],
     related: [
       { href: "/#pricing", label: "Pricing" },
-      { href: "/#how", label: "How it works" },
+      { href: "/#intro-video", label: "How it works" },
     ],
   },
   {
     slug: "dental-referral-conversion-rate-benchmarks",
+    thumbnail: "/resources/conversion-benchmarks-card.jpg",
+    thumbnailAlt:
+      "A specialist welcoming a seated patient in a bright waiting room, with other people walking past in motion blur and a glass panel showing a referral status timeline with the current step lit.",
     layout: {
       stats: { beforeSection: 3 },
+      /* One per callout, in document order: the five funnel stages and
+         the end-to-end line, then the five benchmark targets. */
+      pointIcons: [
+        "caselink-send-referral",
+        "caselink-secure-records",
+        "caselink-call",
+        "caselink-appointment",
+        "caselink-treatment-plan",
+        "caselink-reports",
+        "caselink-send-referral",
+        "caselink-call",
+        "caselink-appointment",
+        "caselink-treatment-plan",
+        "caselink-reports",
+      ],
       inserts: [
-        { before: 2, kind: "figure", variant: "side", side: "right" },
+        /* Sits after the stage-by-stage prose and before "Where the
+           largest losses happen", so it summarises what was just read
+           and sets up what follows. It replaced an empty wide figure
+           placeholder that was waiting on an image. */
+        {
+          before: 4,
+          kind: "funnel",
+          stages: [
+            {
+              label: "Referral sent by the GP",
+              note: "The starting line. A slip, a fax, or a call between front desks.",
+            },
+            {
+              label: "Received by the specialist",
+              note: "Where the first losses occur, and neither office tracks it.",
+            },
+            {
+              label: "Patient contacts the specialist",
+              figure: "46%",
+              note: "Unfulfilled nationally, rising to 50% among 18 to 49s (Kelton Research, 2008).",
+              peak: true,
+            },
+            {
+              label: "Consultation scheduled and completed",
+              figure: "15-20%",
+              note: "The commonly cited dental no-show range.",
+            },
+            {
+              label: "Treatment accepted or declined",
+              note: "Runs higher than elective care, with no published dental figure.",
+            },
+          ],
+          result: {
+            figure: "35-45%",
+            label: "End to end on a manual pipeline, referral to completed treatment",
+          },
+        },
         {
           before: 5,
           kind: "quote",
           text: "The single most referenced number on dental referral completion is nearly two decades old. That gap is itself the finding.",
         },
-        { before: 6, kind: "figure", variant: "wide" },
       ],
     },
     title: "What a healthy dental referral conversion rate actually looks like",
@@ -509,17 +608,27 @@ export const resources: Resource[] = [
       },
     ],
     related: [
-      { href: "/#how", label: "How it works" },
+      { href: "/#intro-video", label: "How it works" },
       { href: "/#pricing", label: "Pricing" },
     ],
   },
   {
     slug: "how-endodontists-track-and-manage-incoming-referrals",
-    thumbnail: "/resources/endodontists-card.jpg",
+    thumbnail: "/resources/endodontists-referrals-card.jpg",
     thumbnailAlt:
-      "A dental specialist consults with a patient in the operatory while a coordinator works at the front desk station.",
+      "An endodontist in scrubs with loupes reaching toward a glass wall of periapical radiographs, one selected and lit, with its case details and stage list beside it.",
     layout: {
       stats: { beforeSection: 3 },
+      /* One per callout, in document order: structured intake, stage
+         tracking both sides read, source attribution, secure messaging
+         on the case, and follow-up that surfaces itself. */
+      pointIcons: [
+        "caselink-send-referral",
+        "caselink-case-timeline",
+        "caselink-reports",
+        "caselink-messaging",
+        "caselink-notifications",
+      ],
       inserts: [
         {
           before: 2,
@@ -588,9 +697,9 @@ export const resources: Resource[] = [
   },
   {
     slug: "automate-dental-referral-follow-up",
-    thumbnail: "/resources/automate-card.jpg",
+    thumbnail: "/resources/automate-follow-up-card.jpg",
     thumbnailAlt:
-      "A dentist and patient view a screen together at the chair, reviewing care information.",
+      "A dental assistant updating a patient's case on a frosted glass panel at the operatory doorway, while the dentist stands inside the surgery with a tablet showing the same record.",
     layout: {
       stats: { beforeSection: 2 },
       inserts: [
@@ -662,7 +771,7 @@ export const resources: Resource[] = [
       },
     ],
     related: [
-      { href: "/#how", label: "How it works" },
+      { href: "/#intro-video", label: "How it works" },
       { href: "/#network", label: "The network" },
     ],
   },

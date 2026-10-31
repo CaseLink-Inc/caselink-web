@@ -3,12 +3,44 @@
 import { useState } from "react";
 import Script from "next/script";
 import { ArrowRight, Check } from "@/components/icons";
+import SelectField, { type SelectOption } from "@/components/SelectField";
+import { specialties } from "@/lib/specialties";
+
+const asOptions = (labels: string[]): SelectOption[] =>
+  labels.map((l) => ({ value: l, label: l }));
 
 const roles = [
   { value: "gp", label: "General dentist", small: "Send referrals" },
   { value: "specialist", label: "Specialist", small: "Receive referrals" },
   { value: "dso", label: "DSO or group", small: "Multi-location" },
 ];
+
+/* The five fields come from lib/specialties.ts so this list and the
+   /referral-software pages never drift apart. Pediatric dentistry has no
+   landing page yet but is common enough that sending those practices to
+   "Other" would lose the one detail we asked for. */
+const specialtyOptions = asOptions([
+  ...specialties.map((s) => s.field),
+  "Pediatric dentistry",
+  "Other",
+]);
+
+const sizeOptions = asOptions([
+  "Solo practitioner",
+  "2 to 5 providers",
+  "6 to 15 providers",
+  "16 or more",
+]);
+
+const topicOptions = asOptions([
+  "Book a 15 minute walkthrough",
+  "Get pricing details",
+  "Pilot program inquiry",
+  "Integration questions",
+  "Investor inquiry",
+  "Press or partnership",
+  "Something else",
+]);
 
 // Web3Forms public API. Submissions are POSTed with a domain-locked access
 // key; Web3Forms forwards them to the email tied to that key
@@ -23,10 +55,14 @@ const WEB3FORMS_ACCESS_KEY =
 
 export default function ContactForm() {
   const [role, setRole] = useState("gp");
+  const [specialty, setSpecialty] = useState("");
+  const [size, setSize] = useState(sizeOptions[0].value);
+  const [topic, setTopic] = useState(topicOptions[0].value);
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [errored, setErrored] = useState(false);
   const [captchaMissing, setCaptchaMissing] = useState(false);
+  const [specialtyMissing, setSpecialtyMissing] = useState(false);
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -34,6 +70,16 @@ export default function ContactForm() {
     setSubmitting(true);
     setErrored(false);
     setCaptchaMissing(false);
+    setSpecialtyMissing(false);
+
+    /* The combobox submits through a hidden input, which browsers skip
+       during constraint validation, so this one required field is checked
+       here instead of by the browser. */
+    if (role === "specialist" && !specialty) {
+      setSpecialtyMissing(true);
+      setSubmitting(false);
+      return;
+    }
 
     // Build a plain object from the form, plus the Web3Forms control fields.
     const fd = new FormData(e.currentTarget);
@@ -164,28 +210,48 @@ export default function ContactForm() {
               ))}
             </div>
           </div>
+          {/* Only a specialist has a specialty, so the field is mounted
+              with the choice rather than greyed out alongside it. It
+              unmounts on a different role, which also drops the value from
+              the submission. */}
+          {role === "specialist" && (
+            <>
+              <SelectField
+                name="specialty"
+                label="Your specialty"
+                placeholder="Select your specialty"
+                options={specialtyOptions}
+                value={specialty}
+                onChange={(v) => {
+                  setSpecialty(v);
+                  setSpecialtyMissing(false);
+                }}
+                required
+                invalid={specialtyMissing}
+                groupClassName="form-group--reveal"
+              />
+              {specialtyMissing && (
+                <p role="alert" className="field-alert">
+                  Please choose your specialty.
+                </p>
+              )}
+            </>
+          )}
           <div className="form-row">
-            <div className="form-group">
-              <label>Practice size</label>
-              <select className="form-select" name="size" defaultValue="Solo practitioner">
-                <option>Solo practitioner</option>
-                <option>2 to 5 providers</option>
-                <option>6 to 15 providers</option>
-                <option>16 or more</option>
-              </select>
-            </div>
-            <div className="form-group">
-              <label>What can we help with</label>
-              <select className="form-select" name="topic" defaultValue="Book a 15 minute walkthrough">
-                <option>Book a 15 minute walkthrough</option>
-                <option>Get pricing details</option>
-                <option>Pilot program inquiry</option>
-                <option>Integration questions</option>
-                <option>Investor inquiry</option>
-                <option>Press or partnership</option>
-                <option>Something else</option>
-              </select>
-            </div>
+            <SelectField
+              name="size"
+              label="Practice size"
+              options={sizeOptions}
+              value={size}
+              onChange={setSize}
+            />
+            <SelectField
+              name="topic"
+              label="What can we help with"
+              options={topicOptions}
+              value={topic}
+              onChange={setTopic}
+            />
           </div>
           <div className="form-group">
             <label>Anything we should know</label>
@@ -251,7 +317,7 @@ export default function ContactForm() {
               Please complete the captcha before sending.
             </p>
           )}
-          <button type="submit" className="form-submit" disabled={submitting}>
+          <button type="submit" className="cl-btn cl-btn--lg form-submit" disabled={submitting}>
             {submitting ? "Sending" : "Send message"}
             {!submitting && <ArrowRight width={16} height={16} />}
           </button>

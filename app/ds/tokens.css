@@ -1,0 +1,141 @@
+/* CaseLink Design System v3 "Seamless Flow" — token layer.
+   Generated tokens.css from the design system artifact, trimmed to the
+   :root custom properties only:
+     - the generic type classes (.lead, .body, .label, .stat ...) are left
+       out because those names already exist in this site's CSS and JSX;
+       site classes read the --text-* vars instead.
+     - the @font-face block is left out because Satoshi is loaded through
+       next/font/local in app/layout.tsx.
+   Do not hand-edit: re-export from the design system instead. */
+/* CaseLink — generated from tokens.json */
+:root, [data-theme="light"] {
+  --blue: #3e8eff; /* CaseLink Blue, the official primary. The body of every atmospheric gradient, large fills, the arches. As text only at 24px and larger (3.3:1 on white); smaller blue text uses blue-deep. */
+  --blue-deep: #1d5fd8; /* Blue you can read: links, small blue labels, icon strokes, gradient-text end stops. 5.4:1 on white, 5.0:1 on blue-white. */
+  --navy: #0b2a66; /* Deep Blue. The dark end of Deep Blue Flow, dark sections, statistics on light grounds. White text on it is 13.9:1. */
+  --night: #071a40; /* The darkest ground, under Deep Blue Flow and in night slides. Never a flat page background in light layouts. */
+  --sky: #74b0ff; /* Clear Sky Blue. The mid stop of Atmospheric Blue and the lit side of arches. A fill, never text. */
+  --powder: #b8d6ff; /* Soft Powder Blue. Lower stops of gradients, chart fills, the inside of gradient glyphs. */
+  --ice: #e2eeff; /* Ice Blue. Pale tints, the far end of Ice Fade, quiet section bands. */
+  --cyan-pale: #cdf1f6; /* Pale Cyan. The cool shift in Soft Cyan Transition; a breath of cyan in large gradients, under 20% of any area. */
+  --blue-white: #f4f8ff; /* Blue-Tinted White. The default page ground; text on it uses ink or ink-muted. */
+  --white: #ffffff; /* Pure White. Type on blue and navy, glass edge light, raised surfaces. */
+  --ink: #10172a; /* Near-black for display type and body text on blue-white, white, ice and powder (16:1 on white). */
+  --charcoal: #313837; /* The official CaseLink charcoal from the logo wordmark. Body copy in documents and the black logo; interchangeable with ink for text. */
+  --ink-muted: #566479; /* Supporting text, captions and editorial metadata on blue-white, white or ice (5.6:1 on blue-white). */
+  --line: #d3e2f6; /* Hairlines: editorial rules, grid lines, table dividers. Rules, not boxes. */
+  --mint: #90f0c5; /* Official supporting colour, now a full partner: second gradient stop in Link Spectrum, glow fields, icon back layers, element fills. Never text on white (1.4:1); ink on mint is 13:1. */
+  --peach: #ffc794; /* Official supporting colour, the warm human accent: gradient tips, Dawn glows, icon accents, highlight dots. Ink on peach is 12:1. Keep it under mint in area; never peach-led. */
+  --mint-soft: #e4fbf1; /* Mint tint for quiet bands, chips and the mint side of gradients. Ink text. */
+  --mint-deep: #178a5e; /* Mint you can read: success states, small mint labels on white (4.6:1). */
+  --peach-soft: #fff1e3; /* Peach tint for warm bands, testimonial grounds, highlight chips. Ink text. */
+  --peach-deep: #b4601b; /* Peach you can read: warm labels and accents on white (4.6:1). */
+  --focus-ring: var(--blue-deep); /* Keyboard focus: 2px ring, 3px offset. */
+  --error-rim: #f2a49b; /* Soft coral rim on a field that failed validation. Form validation only, never marketing. */
+  --error-text: #d9574d; /* The validation message under that field. */
+  --error-tint: #fff4f2; /* Faint warm tint inside a field with an error. */
+}
+:root {
+  --space-1: 4px; /* Hairline offsets, icon-to-label nudges. */
+  --space-2: 8px; /* Tight groups: label to headline. */
+  --space-3: 16px; /* Inside controls, between metadata items. */
+  --space-4: 24px; /* Paragraph to paragraph; the grid gutter. */
+  --space-5: 40px; /* Headline to lead; the outer margin of social posts. */
+  --space-6: 64px; /* Page margin on desktop; between composition zones. */
+  --space-7: 104px; /* Between website sections. */
+  --space-8: 168px; /* Editorial silence: the empty field next to an oversized headline. */
+  --radius-sm: 8px; /* Checkboxes and small tags. */
+  --radius-field: 16px; /* Text fields and selects (step 6). Toasts 18, cards 24. */
+  --radius-md: 16px; /* Image crops and panels in product contexts. */
+  --radius-lg: 32px; /* Large framed compositions, social post corners, app icon. */
+  --radius-pill: 999px; /* Buttons, chips, status pills, bars and toggles. */
+  --control-sm: 32px; /* Small button. */
+  --control-md: 40px; /* Default button. */
+  --control-lg: 48px; /* Large button, hero CTAs. */
+  --grad-spectrum: linear-gradient(120deg, #3e8eff 0%, #74b0ff 34%, #90f0c5 70%, #ffc794 100%); /* Link Spectrum, the logo's own gradient. Edge light, icon fills, elements, underlines, one hero word. The brand signature. */
+  --grad-atmospheric: linear-gradient(180deg, #2f80f7 0%, #3e8eff 26%, #74b0ff 54%, #b9e6e0 80%, #fff1e3 100%); /* Atmospheric Blue: blue sky settling into a mint and peach horizon. Heroes, covers, arch fields. White text on the upper 55%. */
+  --grad-ice-fade: linear-gradient(165deg, #ffffff 0%, #f4f8ff 38%, #e9f8f2 70%, #d8e8ff 100%); /* Ice Fade with a mint whisper. Editorial pages, blog headers, reading surfaces. Ink text. */
+  --grad-deep-flow: radial-gradient(120% 95% at 85% 100%, #90f0c5 0%, #3e8eff 22%, #1d5fd8 46%, #0b2a66 76%, #071a40 100%); /* Deep Blue Flow with a mint dawn rising from one corner. Statistics, closing slides, dark bands. White text. */
+  --grad-soft-cyan: linear-gradient(135deg, #f4f8ff 0%, #dff3f8 40%, #c4f2de 75%, #90f0c5 100%); /* Soft Cyan Transition, blue-white to mint. Feature panels, behind icons and illustrations. */
+  --grad-diffusion: radial-gradient(130% 110% at 100% 0%, #3e8eff 0%, #74b0ff 24%, #c9e0ff 48%, #f4f8ff 70%, #fff1e3 100%); /* Blue-to-White Diffusion: a blue corner fading through white to a warm peach far corner. Light layouts, text set on the white side. */
+  --grad-dawn: radial-gradient(120% 110% at 100% 100%, #ffc794 0%, #ffe2c4 22%, #e7f1ff 58%, #f4f8ff 85%); /* Dawn: the warm, human ground. Testimonials, patient stories, people moments. Ink text. */
+  --grad-glass: linear-gradient(180deg, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.16) 42%, rgba(255,255,255,0.03) 100%); /* Layered Glass fill for translucent planes, always with a spectrum edge. */
+  --grad-edge-light: linear-gradient(90deg, #ffffff 0%, #cfe3ff 45%, #90f0c5 75%, #ffc794 100%); /* Edge light: illuminated rims, rules under headlines, focus underlines. */
+  --grad-text: linear-gradient(90deg, #3e8eff 0%, #3aaee6 50%, #2fbf8f 100%); /* Legacy name for grad-text-blue-mint; peach stop removed. */
+  --grad-text-landing: linear-gradient(95deg, #1d5fd8 0%, #2f7fe6 40%, #16a77c 100%); /* The landing phrase on light grounds. */
+  --grad-text-landing-dark: linear-gradient(95deg, #74b0ff 0%, #90f0c5 100%); /* The landing phrase on dark grounds. */
+  --glass-fill: 0.18; /* Fill of a glass plane over a gradient. */
+  --glass-edge: 0.7; /* Edge light on a glass plane. */
+  --glass-haze: 0.08; /* The faintest overlapping plane, three layers deep. */
+  --grain: 0.07; /* Fine grain over large gradients to prevent banding. */
+  /* The design system ships this as the literal family "Satoshi". Here the
+     face is loaded by next/font/local, which generates its own hashed family
+     name and exposes it as --font-satoshi, so point at that first and keep
+     the design system's fallback chain behind it. */
+  --font-sans: var(--font-satoshi), Satoshi, Inter, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --text-display: 400 128px/0.98 var(--font-sans); /* One or two words that own a poster, cover or social post. */
+  --text-h1: 400 88px/1.02 var(--font-sans); /* Website hero and deck covers. The last phrase may land in grad-text-landing. */
+  --text-h2: 400 56px/1.06 var(--font-sans); /* Section titles, slide headers. */
+  --text-h3: 500 32px/1.15 var(--font-sans); /* Subheadings and feature titles. */
+  --text-h4: 500 22px/1.3 var(--font-sans); /* Card titles, small feature headings. */
+  --text-stat: 400 112px/0.95 var(--font-sans); /* Hero numbers, tabular figures, may end on a mint full stop. */
+  --text-lead: 400 21px/32px var(--font-sans); /* Intro under a headline, max 44 characters a line in compositions. */
+  --text-body: 400 18px/28px var(--font-sans); /* Paragraphs and descriptions. */
+  --text-body-sm: 400 15px/22px var(--font-sans); /* Secondary copy, captions under images. */
+  --text-label: 500 12px/16px var(--font-sans); /* Eyebrows, nav labels. Uppercase, short. */
+  --text-micro: 500 10px/14px var(--font-sans); /* Metadata rows on hairlines: record ids, stages, dates, URLs. Uppercase. */
+  --text-button: 500 15px/20px var(--font-sans); /* Buttons and calls to action, sentence case. */
+  --text-ui-title: 500 24px/32px var(--font-sans); /* Page titles in the app. */
+  --text-ui-heading: 500 17px/24px var(--font-sans); /* Panel and table headings. */
+  --text-ui-body: 400 15px/22px var(--font-sans); /* Default UI text, table cells. */
+  --text-ui-small: 400 13px/18px var(--font-sans); /* Timestamps, helper text. */
+  --text-ui-label: 500 11px/14px var(--font-sans); /* Table headers, field labels. Uppercase. */
+  --text-ui-number: 500 15px/22px var(--font-sans); /* Counts, times and IDs with tabular figures. */
+  --text-display-xxl: var(--text-display); /* Legacy alias. */
+  --text-display-xl: var(--text-h1); /* Legacy alias. */
+
+  /* ---------------------------------------------------------------
+     Recovered tokens.
+     The design system page generates tokens.css from tokens.json, and
+     that generator dropped 36 of the 92 tokens, including the whole
+     gradient family. The .cl-* classes mostly survive because
+     bundle.css carries inline fallbacks, but any plain var(--grad-*)
+     resolved to nothing. These are copied verbatim from tokens.json so
+     every token the system documents actually exists here.
+     --------------------------------------------------------------- */
+  --ice-soft: #e9f3ff; /* Ice soft. Quiet bands, Sent status background, number-bullet fills. Ink or blue-deep text. */
+  --mint-text: #2fbf8f; /* The deepened mint that ends the gradient-text sweeps and marks Completed status. Display s */
+  --status-scheduled: #1b6aa6; /* Scheduled status text on its #EAF5FD pill (5.6:1). */
+  --status-scheduled-bg: #eaf5fd; /* Scheduled status pill background. */
+  --status-draft-bg: #f1f3f7; /* Draft status pill background; its dot is #9AA5B5 and its text ink-muted. */
+  --grad-seamless: linear-gradient(135deg, #4d93ff 0%, #74bdf5 45%, #93e3c6 75%, #cfe9ff 100%); /* G1 Seamless, the signature: the icon gradient at full scale. Hero blocks, highlight panels */
+  --grad-ice-field: linear-gradient(180deg, #ffffff 0%, #f5f9ff 35%, #e9f3ff 70%, #e2f7ef 100%); /* G2 Ice field, the everyday page ground. Icons, cards and reading. Ink text. */
+  --grad-atmosphere: linear-gradient(180deg, #2f7bf2 0%, #4d93ff 30%, #8fc3ff 65%, #e9f3ff 100%); /* G3 Atmosphere: deep blue sky into ice. Website hero, social and deck covers. White type on */
+  --grad-mint-breeze: linear-gradient(150deg, #f5f9ff 0%, #e2f7ef 50%, #93e3c6 100%); /* G4 Mint breeze. Patient stories, outcomes, success states. Ink text. */
+  --grad-night: radial-gradient(90% 90% at 85% 100%, #93e3c6 0%, #3e8eff 25%, #1d5fd8 50%, #0b2a66 78%, #071a40 100%); /* G5 Night. Stats, investor pages, closing slides. White text only. */
+  --grad-frosted-field: radial-gradient(45% 55% at 20% 40%,#4d93ffd9,#4d93ff00 70%),radial-gradient(40% 50% at 55% 65%,#93e3c6d9,#93e3c600 70%),radial-gradient(35% 45% at 80% 20%,#74bdf5b3,#74bdf500 70%),#f5f9ff; /* G6 Frosted field: the glows under a grid of frosted tiles (tiles: .cl-tile-field). Hero ba */
+  --grad-horizon: linear-gradient(90deg, #3e8eff 0%, #74bdf5 40%, #cfe9ff 75%, #ffffff 100%); /* G7 Horizon. Wide banners, email headers, left-anchored white text. */
+  --grad-ice-mesh: radial-gradient(70% 80% at 12% 10%,#3e8eff6b,#3e8eff00 75%),radial-gradient(65% 80% at 92% 12%,#93e3c680,#93e3c600 75%),radial-gradient(90% 70% at 50% 110%,#74bdf566,#74bdf500 75%),#cfe9ff; /* G8 Ice mesh: ice fully blurred, blue, mint and sky drifting through at 30-40%. Use .cl-bg- */
+  --grad-arch-glow: radial-gradient(150% 135% at 50% 112%, #ffffff 0%, #cfe9ff 22%, #74bdf5 45%, #3e8eff 66%, #2a6fe8 84%, #2366e0 100%); /* G9 Arch glow: light rising from the bottom, with thin arches (.cl-arches). Event and launc */
+  --grad-glacier: linear-gradient(160deg, #b8d9ff 0%, #cfe9ff 40%, #e9f3ff 75%, #ffffff 100%); /* G10 Glacier. Quiet blue for cards and app empty states. Ink text. */
+  --grad-deep-sea: linear-gradient(200deg, #3e8eff 0%, #1d5fd8 45%, #0b2a66 100%); /* G11 Deep sea, an all-blue dark. App sidebars, product UI, footers. White text. */
+  --grad-mint-rise: linear-gradient(135deg, #93e3c6 0%, #74bdf5 50%, #3e8eff 100%); /* G12 Mint rise, Seamless reversed. Success, growth and accepted moments. */
+  --grad-text-blue-mint: linear-gradient(90deg, #3e8eff 0%, #3aaee6 50%, #2fbf8f 100%); /* T1 text gradient on light grounds. Hue only, no lightness change. One phrase per layout, 3 */
+  --grad-text-mint-blue: linear-gradient(90deg, #2fbf8f 0%, #3aaee6 50%, #3e8eff 100%); /* T2 text gradient on light grounds, mint-led. One phrase per layout, 30px and up. */
+  --grad-text-blue-mint-bright: linear-gradient(90deg, #8fc3ff 0%, #88d3ea 50%, #93e3c6 100%); /* T3 text gradient on dark grounds (Night, Deep sea, Atmosphere top). One phrase per layout. */
+  --grad-text-mint-blue-bright: linear-gradient(90deg, #93e3c6 0%, #88d3ea 50%, #8fc3ff 100%); /* T4 text gradient on dark grounds, mint-led. One phrase per layout. */
+  --grad-line-signature: linear-gradient(90deg, #3e8eff 0%, #74bdf5 50%, rgba(147,227,198,0) 100%); /* L1 line on light or dark: blue, sky, mint fading to 0%. Connectors, timelines, dividers, c */
+  --grad-line-deep: linear-gradient(90deg, #1d5fd8 0%, #3e8eff 50%, rgba(184,217,255,0) 100%); /* L2 line on light: deep blue, blue, powder fading to 0%. Underlines, chart lines. */
+  --grad-line-mint-lead: linear-gradient(90deg, #93e3c6 0%, #74bdf5 50%, rgba(62,142,255,0) 100%); /* L3 line on light or dark: mint-led, fading to 0%. Return connectors, success paths. */
+  --grad-line-ice: linear-gradient(90deg, #ffffff 0%, #b8d9ff 50%, rgba(147,227,198,0) 100%); /* L4 line on dark: white, powder, mint fading to 0%. Dividers, rings, arches. */
+  --grad-line-mint-glow: linear-gradient(90deg, #93e3c6 0%, #3e8eff 50%, rgba(29,95,216,0) 100%); /* L5 line on dark: mint, blue, deep blue fading to 0%. Active tabs, stat rules, rings. */
+  --grad-line-soft: linear-gradient(90deg, #74bdf5 0%, #93e3c6 50%, rgba(207,233,255,0) 100%); /* L6 line on light: sky, mint, ice fading to 0%. Quiet rules and secondary dividers. */
+  --grad-glass-thin: linear-gradient(180deg, rgba(255,255,255,0.62) 0%, rgba(255,255,255,0.5) 100%); /* Glass body, thin: nav bars, tab bars, toolbars, action bars. Readable over busy content. U */
+  --grad-glass-standard: linear-gradient(180deg, rgba(255,255,255,0.46) 0%, rgba(255,255,255,0.24) 100%); /* Glass body, standard: toasts, popovers, sheets, cards that float over a hero. Use .cl-glas */
+  --grad-glass-form: linear-gradient(180deg, rgba(255,255,255,0.72) 0%, rgba(255,255,255,0.58) 100%); /* Glass body for any pane holding a form or long text, such as modals. Use .cl-glass--form. */
+  --grad-glass-dark: linear-gradient(180deg, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.06) 100%); /* Glass body on dark grounds (Night, Deep sea). White text. Use .cl-glass--dark. */
+  --grad-glass-edge: linear-gradient(140deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.55) 22%, rgba(255,255,255,0.08) 52%, rgba(207,233,255,0.25) 78%, rgba(147,227,198,0.7) 100%); /* The 1.2px glass edge: brightest at the top-left, fading, returning as ice and mint at the  */
+  --grad-glass-edge-dark: linear-gradient(140deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.3) 25%, rgba(255,255,255,0.05) 55%, rgba(147,227,198,0.45) 100%); /* The glass edge on dark grounds. */
+  --grad-glass-sheen: radial-gradient(90% 60% at 18% 0%, rgba(255,255,255,0.38) 0%, rgba(255,255,255,0) 62%); /* Soft light across the top-left of every glass pane; 0.2 strength on thin glass. */
+  --blur-glass-thin: 18px; /* Thin glass: bars and toolbars. */
+  --blur-glass: 22px; /* Standard, form and dark glass. */
+}

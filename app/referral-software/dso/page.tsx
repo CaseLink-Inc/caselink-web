@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import CtaBand from "@/components/home/CtaBand";
 import BookCallButton from "@/components/BookCallButton";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import FaqAccordion from "@/components/FaqAccordion";
-import { ArrowRight, Check, Users, Grid, Bolt } from "@/components/icons";
+import { ArrowRight, Check } from "@/components/icons";
 import type { Faq } from "@/lib/faqs";
 
 /**
@@ -119,18 +120,21 @@ export default function DsoPage() {
         <div className="geo-hero-bg" aria-hidden="true" />
         <div className="wrap geo-hero-inner">
           <span className="eyebrow">DSOs and dental groups</span>
-          <h1>Referral management for DSOs and dental groups.</h1>
+          <h1>
+            Referral management for{" "}
+            <span className="cl-landing">DSOs and dental groups.</span>
+          </h1>
           <p className="lead">
             When every location handles referrals its own way, nobody can see
             the whole picture. CaseLink gives a group one referral workflow,
             with team permissions and analytics across every location.
           </p>
           <div className="geo-hero-cta">
-            <BookCallButton className="btn btn-primary">
+            <BookCallButton className="cl-btn cl-btn--lg">
               Book a call
               <ArrowRight width={14} height={14} />
             </BookCallButton>
-            <Link href="/contact" className="btn btn-ghost">
+            <Link href="/contact" className="cl-btn cl-btn--secondary cl-btn--lg">
               Talk to sales
             </Link>
           </div>
@@ -152,7 +156,10 @@ export default function DsoPage() {
       </section>
 
       {/* NEEDS + INCLUDED */}
-      <section className="geo-why">
+      {/* Ice field, not Glacier: the hero is already Glacier, so the two
+          ran together as one block with a hard seam where the second
+          restarted the gradient at its darkest stop. */}
+      <section className="geo-why cl-bg-icefield">
         <div className="wrap">
           <div className="section-head">
             <span className="eyebrow">Multi-location referrals</span>
@@ -191,16 +198,16 @@ export default function DsoPage() {
       </section>
 
       {/* HOW */}
-      <section className="geo-steps-sec spec-how">
+      <section className="geo-steps-sec spec-how cl-on-dark geo-sec--dark">
         <div className="wrap">
           <div className="section-head">
             <span className="eyebrow">How CaseLink helps</span>
             <h2>Built for groups, simple at the front desk.</h2>
           </div>
           <div className="geo-grid">
-            <div className="geo-card">
+            <div className="geo-card geo-card--dark">
               <span className="geo-card-ic" aria-hidden="true">
-                <Users width={20} height={20} />
+                <Image src="/ds/icons/caselink-access-control.svg" alt="" width={52} height={52} />
               </span>
               <h3>Team permissions</h3>
               <p>
@@ -209,9 +216,9 @@ export default function DsoPage() {
                 action.
               </p>
             </div>
-            <div className="geo-card">
+            <div className="geo-card geo-card--dark">
               <span className="geo-card-ic" aria-hidden="true">
-                <Grid width={20} height={20} />
+                <Image src="/ds/icons/caselink-multi-location.svg" alt="" width={52} height={52} />
               </span>
               <h3>Multi-location analytics</h3>
               <p>
@@ -220,9 +227,9 @@ export default function DsoPage() {
                 group.
               </p>
             </div>
-            <div className="geo-card">
+            <div className="geo-card geo-card--dark">
               <span className="geo-card-ic" aria-hidden="true">
-                <Bolt width={20} height={20} />
+                <Image src="/ds/icons/caselink-integrations.svg" alt="" width={52} height={52} />
               </span>
               <h3>API access</h3>
               <p>

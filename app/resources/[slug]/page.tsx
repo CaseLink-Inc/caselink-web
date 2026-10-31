@@ -1,14 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight, Clock, Plus } from "@/components/icons";
+import { ArrowRight, Clock } from "@/components/icons";
+import FaqAccordion from "@/components/FaqAccordion";
 import CtaBand from "@/components/home/CtaBand";
 import ResourceCard from "@/components/resources/ResourceCard";
+import Image from "next/image";
 import ArticleBody, { type ArticleInsert } from "@/components/resources/ArticleBody";
 import ResourceStats from "@/components/resources/ResourceStats";
 import ResourcePullQuote from "@/components/resources/ResourcePullQuote";
 import ResourceSlider from "@/components/resources/ResourceSlider";
 import ResourceFigure from "@/components/resources/ResourceFigure";
+import ResourceFunnel from "@/components/resources/ResourceFunnel";
 import {
   resources,
   getResource,
@@ -118,6 +121,17 @@ export default async function ResourceArticlePage({
         section: ins.before,
         node: <ResourceSlider cards={ins.cards} accent={accent} />,
       });
+    } else if (ins.kind === "funnel") {
+      inserts.push({
+        section: ins.before,
+        node: (
+          <ResourceFunnel
+            stages={ins.stages}
+            result={ins.result}
+            accent={accent}
+          />
+        ),
+      });
     } else if (ins.kind === "figure") {
       inserts.push({
         section: ins.before,
@@ -202,12 +216,33 @@ export default async function ResourceArticlePage({
           </div>
         </div>
 
+        {/* The feature image. The card thumbnail was the only artwork an
+            article had, and it only ever appeared on the index, so every
+            article opened on a wall of text. */}
+        {r.thumbnail && (
+          <div className="wrap res-article-figure">
+            <Image
+              src={r.thumbnail}
+              alt={r.thumbnailAlt ?? ""}
+              width={1600}
+              height={900}
+              sizes="(max-width:900px) 100vw, 1080px"
+              priority
+            />
+          </div>
+        )}
+
         <div className="wrap res-article-body">
           <p className="lead res-article-lede">{r.excerpt}</p>
 
           {statsTop && <ResourceStats stats={r.keyStats} accent={accent} />}
 
-          <ArticleBody markdown={body} accent={accent} inserts={inserts} />
+          <ArticleBody
+            markdown={body}
+            accent={accent}
+            inserts={inserts}
+            pointIcons={r.layout.pointIcons}
+          />
 
           {statsBeforeFaq && <ResourceStats stats={r.keyStats} accent={accent} />}
 
@@ -215,19 +250,12 @@ export default async function ResourceArticlePage({
           {r.faqs.length > 0 && (
             <section className="res-faq" aria-label="Frequently asked questions">
               <h2 className="res-faq-head">Frequently asked questions</h2>
-              <div className="res-faq-list">
-                {r.faqs.map((f) => (
-                  <details key={f.q} className="res-faq-item">
-                    <summary>
-                      <span>{f.q}</span>
-                      <span className="res-faq-mark" aria-hidden="true">
-                        <Plus width={16} height={16} />
-                      </span>
-                    </summary>
-                    <p>{f.a}</p>
-                  </details>
-                ))}
-              </div>
+              {/* The article template had its own copy of the accordion
+                  markup, so like the DC page it never got the `name` that
+                  makes the group exclusive: every answer a reader opened
+                  stayed open. The slug keys the group so two articles can
+                  never share one. */}
+              <FaqAccordion faqs={r.faqs} name={`caselink-faq-${r.slug}`} />
             </section>
           )}
 

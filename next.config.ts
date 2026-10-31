@@ -88,6 +88,13 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  images: {
+    // Next 16 rejects any quality not listed here, so asking for a higher
+    // one in a component without this returns an error instead of an
+    // image. 92 is for the hero: its ground is a smooth gradient, and
+    // gradients band at the default 75 where photographs do not.
+    qualities: [75, 92],
+  },
   async headers() {
     return [
       {

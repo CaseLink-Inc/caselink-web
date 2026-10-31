@@ -1,81 +1,73 @@
-import { Lock, Clock } from "@/components/icons";
-import type { SVGProps } from "react";
+import Image from "next/image";
+import TrustStage from "./TrustStage";
 
-const Eye = (props: SVGProps<SVGSVGElement>) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" {...props}>
-    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-    <circle cx="12" cy="12" r="3" />
-  </svg>
-);
-
-const ShieldDental = (props: SVGProps<SVGSVGElement>) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" {...props}>
-    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-    <path d="M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-);
+/**
+ * Trust, rebuilt on the design system's locked "Feature section" application
+ * (step 8): white ground with a corner wash, one hero object in a 32px frame
+ * beside the statement, and four step 7 value cards on an Ice field panel
+ * below, each with a frosted icon from the step 6 set.
+ *
+ * The hero object is TrustStage. The claim icons come from the icon set's
+ * own "HIPAA and security" group, and the four here are different from the
+ * four orbiting the padlock, since no artwork repeats across a set.
+ *
+ * Copy is unchanged from the previous section.
+ */
+const items = [
+  {
+    icon: "/ds/icons/caselink-encryption-key.svg",
+    title: "Encrypted in transit and at rest",
+    body: "Every referral, every message, every file encrypted in transit and at rest.",
+  },
+  {
+    icon: "/ds/icons/caselink-audit-log.svg",
+    title: "Audit logs for every action",
+    body: "Every login, every change, every download timestamped and traceable.",
+  },
+  {
+    icon: "/ds/icons/caselink-access-control.svg",
+    title: "Role-based access with auto timeouts",
+    body: "Staff see only what they need. Sessions end when they should.",
+  },
+  {
+    icon: "/ds/icons/caselink-privacy.svg",
+    title: "Designed for dental privacy from day one",
+    body: "Built around HIPAA from the first line of code. Never retrofitted.",
+  },
+];
 
 export default function Trust() {
   return (
-    <section id="trust" className="trust">
-      <div className="wrap trust-inner">
-        <div className="trust-viz reveal">
-          <div className="shield">
-            <div className="ring ring1" />
-            <div className="ring ring2" />
-            <div className="ring ring3" />
-            <svg viewBox="0 0 100 110">
-              <defs>
-                <linearGradient id="sg" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#3E8EFF" />
-                  <stop offset="100%" stopColor="#90F0C5" />
-                </linearGradient>
-              </defs>
-              <path d="M50 5 L90 20 L90 55 Q90 90 50 105 Q10 90 10 55 L10 20 Z" fill="url(#sg)" opacity=".2" />
-              <path d="M50 5 L90 20 L90 55 Q90 90 50 105 Q10 90 10 55 L10 20 Z" fill="none" stroke="url(#sg)" strokeWidth="1.5" />
-              <path d="M35 55 L45 65 L65 45" fill="none" stroke="#90F0C5" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
+    <section id="trust" className="trust cl-grain">
+      <div className="wrap">
+        <div className="trust-top">
+          <TrustStage />
+          <div className="trust-say reveal">
+            <span className="eyebrow">HIPAA compliance</span>
+            <h2>
+              <span className="cl-landing">HIPAA</span> compliance you can trust.
+            </h2>
+            <p className="lead">
+              We don&apos;t just meet standards. We build on them.
+            </p>
           </div>
         </div>
-        <div className="reveal">
-          <span className="eyebrow">HIPAA compliance</span>
-          <h2>HIPAA compliance you can <span className="grad-text">trust.</span></h2>
-          <p className="lead">We don&apos;t just meet standards. We build on them.</p>
-          <div className="trust-list">
-            <div className="trust-item">
-              <div className="trust-item-icon"><Lock width={18} height={18} stroke="#3E8EFF" /></div>
-              <div>
-                <h4>Encrypted in transit and at rest</h4>
-                <p>Every referral, every message, every file encrypted in transit and at rest.</p>
+
+        <div className="trust-base reveal">
+          <div className="trust-four clw-stagger">
+            {items.map((it, i) => (
+              <div
+                key={it.title}
+                className="cl-card cl-card--lg trust-card"
+                style={{ "--i": i } as React.CSSProperties}
+              >
+                <span className="clw-ibx clw-ibx--lg">
+                  <Image src={it.icon} alt="" width={52} height={52} />
+                </span>
+                <h3>{it.title}</h3>
+                <p>{it.body}</p>
               </div>
-            </div>
-            <div className="trust-item">
-              <div className="trust-item-icon" style={{ background: "rgba(144,240,197,0.15)" }}>
-                <Clock width={18} height={18} stroke="#90F0C5" />
-              </div>
-              <div>
-                <h4>Audit logs for every action</h4>
-                <p>Every login, every change, every download timestamped and traceable.</p>
-              </div>
-            </div>
-            <div className="trust-item">
-              <div className="trust-item-icon" style={{ background: "rgba(255,199,148,0.15)" }}>
-                <Eye width={18} height={18} stroke="#FFC794" />
-              </div>
-              <div>
-                <h4>Role-based access with auto timeouts</h4>
-                <p>Staff see only what they need. Sessions end when they should.</p>
-              </div>
-            </div>
-            <div className="trust-item">
-              <div className="trust-item-icon" style={{ background: "rgba(62,142,255,0.15)" }}>
-                <ShieldDental width={18} height={18} stroke="#3E8EFF" />
-              </div>
-              <div>
-                <h4>Designed for dental privacy from day one</h4>
-                <p>Built around HIPAA from the first line of code. Never retrofitted.</p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>

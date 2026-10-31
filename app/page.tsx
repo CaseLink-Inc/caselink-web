@@ -1,9 +1,5 @@
 import Hero from "@/components/home/Hero";
 import IntroVideo from "@/components/home/IntroVideo";
-// HowItWorks is hidden for now, replaced on the page by the intro video.
-// The component is intact at components/home/HowItWorks.tsx. To bring it
-// back, uncomment this import and the <HowItWorks /> usage below.
-// import HowItWorks from "@/components/home/HowItWorks";
 import Network from "@/components/home/Network";
 import ForWho from "@/components/home/ForWho";
 import Trust from "@/components/home/Trust";
@@ -99,7 +95,6 @@ export default function HomePage() {
       />
       <Hero />
       <IntroVideo />
-      {/* <HowItWorks /> */}
       <Network />
       <ForWho />
       <Trust />

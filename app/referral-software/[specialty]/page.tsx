@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import CtaBand from "@/components/home/CtaBand";
 import BookCallButton from "@/components/BookCallButton";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import FaqAccordion from "@/components/FaqAccordion";
-import { ArrowRight, Check, File, Clock, Grid } from "@/components/icons";
+import { ArrowRight, Check } from "@/components/icons";
 import { specialties, getSpecialty } from "@/lib/specialties";
 import { getResource } from "@/lib/resources";
 import { SIGNUP_URL } from "@/lib/urls";
@@ -52,6 +53,15 @@ export async function generateMetadata({
     },
   };
 }
+
+/* One icon per specialty, so each of the five pages carries its own. */
+const SPEC_ICON: Record<string, string> = {
+  endodontists: "caselink-endodontics",
+  orthodontists: "caselink-orthodontics",
+  periodontists: "caselink-periodontics",
+  "oral-surgeons": "caselink-oral-surgery",
+  prosthodontists: "caselink-treatment-plan",
+};
 
 export default async function SpecialtyPage({
   params,
@@ -114,6 +124,15 @@ export default async function SpecialtyPage({
       {/* HERO */}
       <section className="geo-hero">
         <div className="geo-hero-bg" aria-hidden="true" />
+        <span className="geo-hero-medal" aria-hidden="true">
+          <Image
+            src={`/ds/icons/${SPEC_ICON[s.slug] ?? "caselink-specialist"}.svg`}
+            alt=""
+            width={132}
+            height={132}
+            priority
+          />
+        </span>
         <div className="wrap geo-hero-inner">
           <span className="eyebrow">{s.field}</span>
           <h1>{s.h1}</h1>
@@ -121,14 +140,14 @@ export default async function SpecialtyPage({
           <div className="geo-hero-cta">
             <a
               href={SIGNUP_URL}
-              className="btn btn-primary"
+              className="cl-btn cl-btn--lg"
               target="_blank"
               rel="noopener noreferrer"
             >
               Start 1 month free
               <ArrowRight width={14} height={14} />
             </a>
-            <BookCallButton className="btn btn-ghost">
+            <BookCallButton className="cl-btn cl-btn--secondary cl-btn--lg">
               Book a 15 minute walkthrough
             </BookCallButton>
           </div>
@@ -150,7 +169,7 @@ export default async function SpecialtyPage({
       </section>
 
       {/* REFERRALS + WHAT A GOOD ONE INCLUDES */}
-      <section className="geo-why">
+      <section className="geo-why cl-bg-mintbreeze">
         <div className="wrap">
           <div className="section-head">
             <span className="eyebrow">The referral</span>
@@ -185,7 +204,7 @@ export default async function SpecialtyPage({
       </section>
 
       {/* HOW CASELINK HELPS */}
-      <section className="geo-steps-sec spec-how">
+      <section className="geo-steps-sec spec-how cl-bg-icefield">
         <div className="wrap">
           <div className="section-head">
             <span className="eyebrow">How CaseLink helps</span>
@@ -194,7 +213,7 @@ export default async function SpecialtyPage({
           <div className="geo-grid">
             <div className="geo-card">
               <span className="geo-card-ic" aria-hidden="true">
-                <File width={20} height={20} />
+                <Image src="/ds/icons/caselink-secure-records.svg" alt="" width={52} height={52} />
               </span>
               <h3>Cases arrive complete</h3>
               <p>
@@ -205,7 +224,7 @@ export default async function SpecialtyPage({
             </div>
             <div className="geo-card">
               <span className="geo-card-ic" aria-hidden="true">
-                <Clock width={20} height={20} />
+                <Image src="/ds/icons/caselink-referral-status.svg" alt="" width={52} height={52} />
               </span>
               <h3>Both offices see the status</h3>
               <p>
@@ -216,7 +235,7 @@ export default async function SpecialtyPage({
             </div>
             <div className="geo-card">
               <span className="geo-card-ic" aria-hidden="true">
-                <Grid width={20} height={20} />
+                <Image src="/ds/icons/caselink-reports.svg" alt="" width={52} height={52} />
               </span>
               <h3>Know your referral sources</h3>
               <p>

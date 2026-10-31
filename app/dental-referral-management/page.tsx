@@ -1,20 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import CtaBand from "@/components/home/CtaBand";
 import BookCallButton from "@/components/BookCallButton";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import FaqAccordion from "@/components/FaqAccordion";
-import {
-  ArrowRight,
-  Check,
-  File,
-  Clock,
-  Bolt,
-  ChatBubble,
-  CheckList,
-  Grid,
-  Plus,
-} from "@/components/icons";
+import { ArrowRight, Check, Plus } from "@/components/icons";
 import type { Faq } from "@/lib/faqs";
 import { SIGNUP_URL } from "@/lib/urls";
 
@@ -144,11 +135,14 @@ export default function DentalReferralManagementPage() {
       <Breadcrumbs trail={[{ name: "Dental referral management", path: PATH }]} />
 
       {/* HERO */}
-      <section className="geo-hero">
+      <section className="geo-hero geo-hero--flow">
         <div className="geo-hero-bg" aria-hidden="true" />
         <div className="wrap geo-hero-inner">
           <span className="eyebrow">Dental referral management</span>
-          <h1>Dental referral management for dentists and specialists.</h1>
+          <h1>
+            Dental referral management for{" "}
+            <span className="cl-landing">dentists and specialists.</span>
+          </h1>
           <p className="lead">
             CaseLink is a HIPAA-compliant dental referral management platform
             where general dentists and specialists refer to each other. Every
@@ -158,14 +152,14 @@ export default function DentalReferralManagementPage() {
           <div className="geo-hero-cta">
             <a
               href={SIGNUP_URL}
-              className="btn btn-primary"
+              className="cl-btn cl-btn--lg"
               target="_blank"
               rel="noopener noreferrer"
             >
               Get started free
               <ArrowRight width={14} height={14} />
             </a>
-            <BookCallButton className="btn btn-ghost">
+            <BookCallButton className="cl-btn cl-btn--secondary cl-btn--lg">
               Book a 15 minute walkthrough
             </BookCallButton>
           </div>
@@ -187,7 +181,7 @@ export default function DentalReferralManagementPage() {
       </section>
 
       {/* WHAT IT COVERS */}
-      <section className="geo-why">
+      <section className="geo-why cl-bg-icefield">
         <div className="wrap">
           <div className="section-head">
             <span className="eyebrow">The category</span>
@@ -226,16 +220,16 @@ export default function DentalReferralManagementPage() {
       </section>
 
       {/* HOW CASELINK HANDLES IT */}
-      <section className="geo-steps-sec spec-how">
+      <section className="geo-steps-sec spec-how cl-bg-icemesh">
         <div className="wrap">
           <div className="section-head">
             <span className="eyebrow">How CaseLink works</span>
             <h2>Referral tracking from send to outcome.</h2>
           </div>
           <div className="geo-grid">
-            <div className="geo-card">
+            <div className="geo-card geo-card--glass">
               <span className="geo-card-ic" aria-hidden="true">
-                <File width={20} height={20} />
+                <Image src="/ds/icons/caselink-send-referral.svg" alt="" width={52} height={52} />
               </span>
               <h3>Send in under three minutes</h3>
               <p>
@@ -244,9 +238,9 @@ export default function DentalReferralManagementPage() {
                 case with the clinical context already in place.
               </p>
             </div>
-            <div className="geo-card">
+            <div className="geo-card geo-card--glass">
               <span className="geo-card-ic" aria-hidden="true">
-                <Clock width={20} height={20} />
+                <Image src="/ds/icons/caselink-referral-status.svg" alt="" width={52} height={52} />
               </span>
               <h3>One status, both offices</h3>
               <p>
@@ -255,9 +249,9 @@ export default function DentalReferralManagementPage() {
                 receiving office.
               </p>
             </div>
-            <div className="geo-card">
+            <div className="geo-card geo-card--glass">
               <span className="geo-card-ic" aria-hidden="true">
-                <Bolt width={20} height={20} />
+                <Image src="/ds/icons/caselink-notifications.svg" alt="" width={52} height={52} />
               </span>
               <h3>Unbooked cases surface</h3>
               <p>
@@ -266,9 +260,9 @@ export default function DentalReferralManagementPage() {
                 recorded outcome.
               </p>
             </div>
-            <div className="geo-card">
+            <div className="geo-card geo-card--glass">
               <span className="geo-card-ic" aria-hidden="true">
-                <ChatBubble width={20} height={20} />
+                <Image src="/ds/icons/caselink-messaging.svg" alt="" width={52} height={52} />
               </span>
               <h3>Encrypted messaging</h3>
               <p>
@@ -276,9 +270,9 @@ export default function DentalReferralManagementPage() {
                 patient and by practice, instead of trading phone calls.
               </p>
             </div>
-            <div className="geo-card">
+            <div className="geo-card geo-card--glass">
               <span className="geo-card-ic" aria-hidden="true">
-                <CheckList width={20} height={20} />
+                <Image src="/ds/icons/caselink-post-op-report.svg" alt="" width={52} height={52} />
               </span>
               <h3>Outcome reports back</h3>
               <p>
@@ -286,9 +280,9 @@ export default function DentalReferralManagementPage() {
                 the same case record, in minutes instead of days.
               </p>
             </div>
-            <div className="geo-card">
+            <div className="geo-card geo-card--glass">
               <span className="geo-card-ic" aria-hidden="true">
-                <Grid width={20} height={20} />
+                <Image src="/ds/icons/caselink-reports.svg" alt="" width={52} height={52} />
               </span>
               <h3>Referral source analytics</h3>
               <p>

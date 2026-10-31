@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="500" height="500" role="img" aria-label="Call">
+<defs>
+  <linearGradient id="call-bk" x1="48" y1="116" x2="136" y2="28" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4d93ff"></stop><stop offset="0.5" stop-color="#74bdf5"></stop><stop offset="0.78" stop-color="#93e3c6"></stop><stop offset="1" stop-color="#cfe9ff"></stop></linearGradient>
+  <linearGradient id="call-fr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f3f8ff" stop-opacity=".82"></stop><stop offset="1" stop-color="#e4eefb" stop-opacity=".5"></stop></linearGradient>
+  <clipPath id="call-clip"><circle cx="72" cy="92" r="44"></circle></clipPath>
+  <filter id="call-blur" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="9"></feGaussianBlur></filter>
+  <mask id="call-out" maskUnits="userSpaceOnUse" x="0" y="0" width="160" height="160"><rect width="160" height="160" fill="#fff"></rect><g fill="#000"><circle cx="72" cy="92" r="44"></circle></g></mask>
+</defs>
+<g fill="url(#call-bk)"><rect x="48" y="28" width="88" height="88" rx="22"></rect></g>
+<g clip-path="url(#call-clip)">
+  <rect width="160" height="160" fill="#ffffff"></rect>
+  <g fill="url(#call-bk)" filter="url(#call-blur)"><rect x="48" y="28" width="88" height="88" rx="22"></rect></g>
+  <g fill="url(#call-fr)"><circle cx="72" cy="92" r="44"></circle></g>
+</g>
+<g fill="none" stroke="#ffffff" stroke-opacity=".9" stroke-width="2.4" mask="url(#call-out)"><circle cx="72" cy="92" r="44"></circle></g>
+<g fill="#ffffff"><rect x="50" y="62" width="16" height="26" rx="8" fill="#fff" transform="rotate(-40 58 75)"></rect><rect x="78" y="94" width="16" height="26" rx="8" fill="#fff" transform="rotate(-50 86 107)"></rect><path d="M56 84c3 12 11 20 22 23" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"></path></g>
+</svg>

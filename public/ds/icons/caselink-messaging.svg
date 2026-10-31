@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="500" height="500" role="img" aria-label="Messaging">
+<defs>
+  <linearGradient id="messaging-bk" x1="48" y1="116" x2="136" y2="28" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4d93ff"></stop><stop offset="0.5" stop-color="#74bdf5"></stop><stop offset="0.78" stop-color="#93e3c6"></stop><stop offset="1" stop-color="#cfe9ff"></stop></linearGradient>
+  <linearGradient id="messaging-fr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f3f8ff" stop-opacity=".82"></stop><stop offset="1" stop-color="#e4eefb" stop-opacity=".5"></stop></linearGradient>
+  <clipPath id="messaging-clip"><path d="M50 48H94A22 22 0 0 1 116 70V100A22 22 0 0 1 94 122H74L54 136Q47 141 49 132L51 122H50A22 22 0 0 1 28 100V70A22 22 0 0 1 50 48Z"></path></clipPath>
+  <filter id="messaging-blur" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="9"></feGaussianBlur></filter>
+  <mask id="messaging-out" maskUnits="userSpaceOnUse" x="0" y="0" width="160" height="160"><rect width="160" height="160" fill="#fff"></rect><g fill="#000"><path d="M50 48H94A22 22 0 0 1 116 70V100A22 22 0 0 1 94 122H74L54 136Q47 141 49 132L51 122H50A22 22 0 0 1 28 100V70A22 22 0 0 1 50 48Z"></path></g></mask>
+</defs>
+<g fill="url(#messaging-bk)"><path d="M70 28H114A22 22 0 0 1 136 50V80A22 22 0 0 1 114 102H113L115 112Q117 121 110 116L90 102H70A22 22 0 0 1 48 80V50A22 22 0 0 1 70 28Z"></path></g>
+<g clip-path="url(#messaging-clip)">
+  <rect width="160" height="160" fill="#ffffff"></rect>
+  <g fill="url(#messaging-bk)" filter="url(#messaging-blur)"><path d="M70 28H114A22 22 0 0 1 136 50V80A22 22 0 0 1 114 102H113L115 112Q117 121 110 116L90 102H70A22 22 0 0 1 48 80V50A22 22 0 0 1 70 28Z"></path></g>
+  <g fill="url(#messaging-fr)"><path d="M50 48H94A22 22 0 0 1 116 70V100A22 22 0 0 1 94 122H74L54 136Q47 141 49 132L51 122H50A22 22 0 0 1 28 100V70A22 22 0 0 1 50 48Z"></path></g>
+</g>
+<g fill="none" stroke="#ffffff" stroke-opacity=".9" stroke-width="2.4" mask="url(#messaging-out)"><path d="M50 48H94A22 22 0 0 1 116 70V100A22 22 0 0 1 94 122H74L54 136Q47 141 49 132L51 122H50A22 22 0 0 1 28 100V70A22 22 0 0 1 50 48Z"></path></g>
+<g fill="#ffffff"><circle cx="56" cy="85" r="5.5" fill="#fff"></circle><circle cx="72" cy="85" r="5.5" fill="#fff"></circle><circle cx="88" cy="85" r="5.5" fill="#fff"></circle></g>
+</svg>

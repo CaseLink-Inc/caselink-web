@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import ContactForm from "@/components/contact/ContactForm";
-import { Mail, Phone, Calendar } from "@/components/icons";
 import BookCallButton from "@/components/BookCallButton";
 import Breadcrumbs from "@/components/Breadcrumbs";
 
@@ -23,12 +23,23 @@ export default function ContactPage() {
     <>
       <Breadcrumbs trail={[{ name: "Contact", path: "/contact" }]} />
       <section className="contact-hero">
-        <div className="contact-hero-bg" />
+        {/* Sub-page hero: G10 ground with a brand visual masked in from the
+            right, which is what the website card set specifies. Without it
+            the right half of this hero was empty gradient. */}
+        <Image
+          className="contact-art"
+          src="/ds/brand-satin-curve.png"
+          alt=""
+          width={1122}
+          height={1402}
+          aria-hidden="true"
+          priority
+        />
         <div className="wrap contact-hero-inner">
           <span className="eyebrow">Get in touch</span>
           <h1>
             Let us show you how<br />
-            <span className="grad-text">CaseLink fits your practice.</span>
+            <span className="cl-landing">CaseLink fits your practice.</span>
           </h1>
           <p className="lead">
             A fifteen minute call is enough to see whether CaseLink is right
@@ -42,9 +53,13 @@ export default function ContactPage() {
         <div className="wrap contact-grid">
           <ContactForm />
           <div className="contact-info">
+            {/* The sticky element has to be a child: the grid item itself
+                stretches to the row, so it has no range of its own to
+                travel in. */}
+            <div className="contact-info-stick">
             <div className="info-card">
               <div className="info-card-head">
-                <div className="info-card-icon"><Mail width={20} height={20} stroke="#3E8EFF" /></div>
+                <div className="info-card-icon"><Image src="/ds/icons/caselink-email.svg" alt="An envelope in frosted glass: email the CaseLink team." width={44} height={44} /></div>
                 <div><h4>Email</h4><div className="info-sub">For everything</div></div>
               </div>
               <p>The fastest way to reach a real person on our team.</p>
@@ -52,7 +67,7 @@ export default function ContactPage() {
             </div>
             <div className="info-card">
               <div className="info-card-head">
-                <div className="info-card-icon"><Phone width={20} height={20} stroke="#FFA940" /></div>
+                <div className="info-card-icon"><Image src="/ds/icons/caselink-call.svg" alt="A handset in frosted glass: call the CaseLink team." width={44} height={44} /></div>
                 <div><h4>Phone</h4><div className="info-sub">Office hours, ET</div></div>
               </div>
               <p>Prefer a call. Reach our team Monday through Friday, 9 to 5.</p>
@@ -60,11 +75,12 @@ export default function ContactPage() {
             </div>
             <div className="info-card">
               <div className="info-card-head">
-                <div className="info-card-icon"><Calendar width={20} height={20} stroke="#3DBD6B" /></div>
+                <div className="info-card-icon"><Image src="/ds/icons/caselink-appointment.svg" alt="A calendar in frosted glass: book a CaseLink overview call." width={44} height={44} /></div>
                 <div><h4>CaseLink Overview</h4><div className="info-sub">15 minutes, online</div></div>
               </div>
               <p>Pick a time that works for you. We will walk through a real referral end to end.</p>
               <BookCallButton className="info-card-link">Pick a time</BookCallButton>
+            </div>
             </div>
           </div>
         </div>
