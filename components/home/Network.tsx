@@ -88,17 +88,18 @@ export default function Network() {
                 <stop offset="45%" stopColor="#74BDF5" stopOpacity="0.66" />
                 <stop offset="100%" stopColor="#3E8EFF" stopOpacity="0.14" />
               </linearGradient>
-              {/* The frosted body of a pin: bright at the top-left where the
-                  light is, settling to a still-solid blue-white at the
-                  opposite edge. It must not fall away to nothing: the
-                  gradient centre sits up and left, so a faint far stop puts
-                  that fade on the bottom of the disc, and the pin reads as
-                  spreading into the map instead of ending at its rim. The
-                  falloff is lighting, not a vignette. */}
-              <radialGradient id="pinGlass" cx="40%" cy="34%" r="76%">
+              {/* The frosted body of a pin: effectively flat. An off-centre
+                  radial here is what made the pin look like it spread at the
+                  bottom. Its centre has to sit up and left to face the light,
+                  so the far end of the ramp always lands on the lower right,
+                  and the body fades short of the rim and leaves a pale
+                  crescent there. Measured at 0.85 of the radius it was alpha
+                  0.99 at the top against 0.81 at the bottom, which reads as a
+                  smear rather than a disc. The light belongs to the sheen arc
+                  and the rim, so the body just fills the circle evenly. */}
+              <radialGradient id="pinGlass" cx="40%" cy="34%" r="90%">
                 <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.97" />
-                <stop offset="55%" stopColor="#FFFFFF" stopOpacity="0.88" />
-                <stop offset="100%" stopColor="#EAF3FF" stopOpacity="0.76" />
+                <stop offset="100%" stopColor="#FFFFFF" stopOpacity="0.93" />
               </radialGradient>
               <radialGradient id="sigGlow" cx="50%" cy="50%" r="50%">
                 <stop offset="0%" stopColor="#74BDF5" stopOpacity="0.5" />
@@ -142,12 +143,15 @@ export default function Network() {
                 />
               ))}
             </g>
-            {/* Glass pins. A frosted body with a powder rim and a top sheen,
-                carrying a small saturated core. The core is what has to be
-                legible, so it keeps the readable token while the pin itself
-                behaves like every other piece of glass on the site. The old
-                pins were a flat fill inside a hard 2px white ring, which is
-                a sticker, not glass. */}
+            {/* Glass pins. An even frosted body inside a powder rim, carrying
+                a small saturated core. The core is what has to be legible, so
+                it keeps the readable token.
+
+                There is deliberately no sheen arc. At this size the body is
+                only a few pixels across, and a bright crescent above a dark
+                round core stops reading as a highlight and starts reading as
+                an eyebrow over an eye. The rim carries the glass on its own
+                here. */}
             {PINS.map((p) => (
               <g key={`${p.x}-${p.y}`} className={`pin pin--${p.kind}`}>
                 <circle cx={p.x} cy={p.y} r="11" fill="url(#pinGlass)" />
@@ -159,14 +163,6 @@ export default function Network() {
                   stroke="#B8D6FF"
                   strokeOpacity="0.95"
                   strokeWidth="1"
-                />
-                <path
-                  d={`M ${p.x - 6.4} ${p.y - 5.2} A 8.2 8.2 0 0 1 ${p.x + 3.4} ${p.y - 9.6}`}
-                  fill="none"
-                  stroke="#FFFFFF"
-                  strokeOpacity="0.9"
-                  strokeWidth="1.4"
-                  strokeLinecap="round"
                 />
                 <circle className="pin-core" cx={p.x} cy={p.y} r="4.2" />
               </g>
