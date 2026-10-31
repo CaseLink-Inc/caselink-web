@@ -8,9 +8,9 @@ import { LOGIN_URL } from "@/lib/urls";
 
 const links = [
   { href: "/", label: "Home", exact: true },
+  { href: "/about", label: "About" },
   { href: "/#network", label: "Network" },
   { href: "/pricing", label: "Pricing" },
-  { href: "/about", label: "About" },
   { href: "/resources", label: "Resources" },
   { href: "/contact", label: "Contact" },
 ];
