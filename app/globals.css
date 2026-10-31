@@ -903,6 +903,12 @@ section{position:relative;padding:80px 0}
   overflow:hidden;
   box-shadow:inset 0 0 0 1px rgba(211,226,246,.85);
 }
+/* Desktop gives the map 560px against 440 and below elsewhere, so the feed
+   sits far lower in the viewBox here (y=417 at 1440, y=335 at 390) and the
+   constellation would leave a dead band across the bottom. Nudging it down
+   centres it between the header and the feed at this size. Reset below
+   1100, where the band is tight and the pins must stay clear of the feed. */
+.map-constellation{transform:translateY(23px)}
 /* The two hand-rolled radial tints are gone: G8 Ice mesh is the real
    ground for "behind glass cards, dashboards", and .cl-grain keeps a
    gradient this wide from banding. */
@@ -2447,6 +2453,7 @@ body.mob-open{overflow:hidden}
   .demo-stepper{margin-bottom:24px;max-width:100%}
 
   .map-viz{height:440px}
+  .map-constellation{transform:none}
   .legend{top:50px;right:12px;padding:8px 10px;font-size:10px}
 
   .portrait-frame{max-width:380px}

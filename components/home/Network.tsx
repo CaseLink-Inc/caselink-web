@@ -3,32 +3,39 @@
 // 3.47:1). Brand blue and the pale mints all fail there, so they light the
 // beams and the frosted pin bodies instead of carrying meaning.
 // The glass overlays are laid out in CSS pixels at fixed heights, so the
-// slice of the viewBox they cover changes with the container. Measured
-// across 1440/1024/820/600/390, the worst case of each is: header down to
-// y=56, feed from y=335, legend (only shown >=900) anywhere x>=431 above
-// y=139. Every pin therefore lives in y 70-321, and anything right of
-// x=417 stays below y=153.
+// slice of the viewBox they cover changes with the container. Re-measured
+// at 1440/1024/700/390, the worst case of each is: header down to y=56
+// (at 700), feed from y=335 (at 390), legend (only shown >=900) anywhere
+// x>=431 above y=139. A pin is r=11, so every pin centre lives in
+// y 67-324, and anything right of x=417 stays below y=160.
+//
+// The constellation is spread to those limits rather than sitting inside
+// them, because .map-viz is 560px tall on desktop against 440 and below
+// elsewhere: the feed starts at y=417 at 1440 but y=335 at 390, so a
+// constellation sized for the narrow case leaves a dead band across the
+// bottom of the wide one. The remaining difference is taken out by
+// .map-constellation, which is nudged down on desktop only.
 const PINS: { x: number; y: number; kind: "gp" | "spec"; label: string; ly: number }[] = [
-  { x: 85, y: 150, kind: "gp", label: "Logan Circle", ly: 132 },
-  { x: 55, y: 268, kind: "gp", label: "Foggy Bottom", ly: 250 },
-  { x: 150, y: 315, kind: "gp", label: "", ly: 0 },
-  { x: 215, y: 95, kind: "gp", label: "", ly: 0 },
-  { x: 355, y: 85, kind: "spec", label: "", ly: 0 },
-  { x: 470, y: 180, kind: "spec", label: "Capitol Hill", ly: 162 },
-  { x: 545, y: 275, kind: "spec", label: "H Street", ly: 257 },
-  { x: 430, y: 310, kind: "spec", label: "", ly: 0 },
+  { x: 72, y: 140, kind: "gp", label: "Logan Circle", ly: 122 },
+  { x: 34, y: 262, kind: "gp", label: "Foggy Bottom", ly: 244 },
+  { x: 140, y: 316, kind: "gp", label: "", ly: 0 },
+  { x: 205, y: 84, kind: "gp", label: "", ly: 0 },
+  { x: 368, y: 78, kind: "spec", label: "", ly: 0 },
+  { x: 486, y: 178, kind: "spec", label: "Capitol Hill", ly: 160 },
+  { x: 566, y: 272, kind: "spec", label: "H Street", ly: 254 },
+  { x: 452, y: 314, kind: "spec", label: "", ly: 0 },
 ];
 
 // Each practice's line in to the hub, and the signal that travels it.
 const BEAMS: { d: string; kind: "gp" | "spec"; delay: number; dur: number; begin: number }[] = [
-  { d: "M 85 150 Q 170 200 300 280", kind: "gp", delay: 0, dur: 3.5, begin: 0 },
-  { d: "M 55 268 Q 160 272 300 280", kind: "gp", delay: 0.45, dur: 3.4, begin: 1.8 },
-  { d: "M 150 315 Q 215 305 300 280", kind: "gp", delay: 0.9, dur: 3.6, begin: 2.2 },
-  { d: "M 215 95 Q 250 180 300 280", kind: "gp", delay: 1.35, dur: 3.3, begin: 2.6 },
-  { d: "M 355 85 Q 340 175 300 280", kind: "spec", delay: 1.8, dur: 3.2, begin: 0.6 },
-  { d: "M 470 180 Q 400 220 300 280", kind: "spec", delay: 2.25, dur: 3.9, begin: 1.6 },
-  { d: "M 545 275 Q 430 278 300 280", kind: "spec", delay: 2.7, dur: 3.7, begin: 1.1 },
-  { d: "M 430 310 Q 375 302 300 280", kind: "spec", delay: 3.15, dur: 3.8, begin: 0.9 },
+  { d: "M 72 140 Q 160 196 300 280", kind: "gp", delay: 0, dur: 3.5, begin: 0 },
+  { d: "M 34 262 Q 150 268 300 280", kind: "gp", delay: 0.45, dur: 3.4, begin: 1.8 },
+  { d: "M 140 316 Q 210 306 300 280", kind: "gp", delay: 0.9, dur: 3.6, begin: 2.2 },
+  { d: "M 205 84 Q 245 177 300 280", kind: "gp", delay: 1.35, dur: 3.3, begin: 2.6 },
+  { d: "M 368 78 Q 348 173 300 280", kind: "spec", delay: 1.8, dur: 3.2, begin: 0.6 },
+  { d: "M 486 178 Q 408 218 300 280", kind: "spec", delay: 2.25, dur: 3.9, begin: 1.6 },
+  { d: "M 566 272 Q 435 277 300 280", kind: "spec", delay: 2.7, dur: 3.7, begin: 1.1 },
+  { d: "M 452 314 Q 382 302 300 280", kind: "spec", delay: 3.15, dur: 3.8, begin: 0.9 },
 ];
 
 export default function Network() {
@@ -131,6 +138,9 @@ export default function Network() {
               <line x1="50" y1="50" x2="550" y2="450" strokeDasharray="3 5" />
               <line x1="550" y1="50" x2="50" y2="450" strokeDasharray="3 5" />
             </g>
+            {/* Hub, beams, pins, signals and labels move together; the grid
+                and its crossing lines are ground and stay put. */}
+            <g className="map-constellation">
             <circle cx="300" cy="280" r="120" fill="url(#hubGlow)" />
             <g>
               {BEAMS.map((b) => (
@@ -198,6 +208,7 @@ export default function Network() {
                 {p.label}
               </text>
             ))}
+            </g>
           </svg>
           <div className="map-feed cl-glass">
             <div className="feed-title">Recent referrals</div>
