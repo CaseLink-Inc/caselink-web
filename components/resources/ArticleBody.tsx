@@ -1,5 +1,5 @@
+import DsIcon from "@/components/DsIcon";
 import { Fragment } from "react";
-import Image from "next/image";
 import Markdown from "react-markdown";
 
 export type ArticleInsert = {
@@ -76,12 +76,7 @@ export default function ArticleBody({
               <p className={`res-point${icon ? " res-point--ic" : ""}`}>
                 {icon && (
                   <span className="res-point-ic" aria-hidden="true">
-                    <Image
-                      src={`/ds/icons/${icon}.svg`}
-                      alt=""
-                      width={38}
-                      height={38}
-                    />
+                    <DsIcon name={icon} size={38} />
                   </span>
                 )}
                 <span className="res-point-body">{children}</span>

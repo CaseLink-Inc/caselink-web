@@ -1,3 +1,4 @@
+import DsIcon from "@/components/DsIcon";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
@@ -147,7 +148,7 @@ export default function PricingPage() {
               {/* The system's own icon set, frosted, in place of the
                   hairline strokes this card family was drawing. */}
               <span className="geo-card-ic" aria-hidden="true">
-                <Image src="/ds/icons/caselink-hipaa-lock.svg" alt="" width={52} height={52} />
+                <DsIcon name="caselink-hipaa-lock" size={52} />
               </span>
               <h3>HIPAA compliance</h3>
               <p>
@@ -158,7 +159,7 @@ export default function PricingPage() {
             </div>
             <div className="geo-card">
               <span className="geo-card-ic" aria-hidden="true">
-                <Image src="/ds/icons/caselink-baa-agreement.svg" alt="" width={52} height={52} />
+                <DsIcon name="caselink-baa-agreement" size={52} />
               </span>
               <h3>BAA on signup</h3>
               <p>
@@ -168,7 +169,7 @@ export default function PricingPage() {
             </div>
             <div className="geo-card">
               <span className="geo-card-ic" aria-hidden="true">
-                <Image src="/ds/icons/caselink-secure-records.svg" alt="" width={52} height={52} />
+                <DsIcon name="caselink-secure-records" size={52} />
               </span>
               <h3>Unlimited case storage</h3>
               <p>

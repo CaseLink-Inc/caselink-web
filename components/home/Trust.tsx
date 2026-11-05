@@ -1,4 +1,4 @@
-import Image from "next/image";
+import DsIcon from "@/components/DsIcon";
 import TrustStage from "./TrustStage";
 
 /**
@@ -15,22 +15,22 @@ import TrustStage from "./TrustStage";
  */
 const items = [
   {
-    icon: "/ds/icons/caselink-encryption-key.svg",
+    icon: "caselink-encryption-key",
     title: "Encrypted in transit and at rest",
     body: "Every referral, every message, every file encrypted in transit and at rest.",
   },
   {
-    icon: "/ds/icons/caselink-audit-log.svg",
+    icon: "caselink-audit-log",
     title: "Audit logs for every action",
     body: "Every login, every change, every download timestamped and traceable.",
   },
   {
-    icon: "/ds/icons/caselink-access-control.svg",
+    icon: "caselink-access-control",
     title: "Role-based access with auto timeouts",
     body: "Staff see only what they need. Sessions end when they should.",
   },
   {
-    icon: "/ds/icons/caselink-privacy.svg",
+    icon: "caselink-privacy",
     title: "Designed for dental privacy from day one",
     body: "Built around HIPAA from the first line of code. Never retrofitted.",
   },
@@ -62,7 +62,7 @@ export default function Trust() {
                 style={{ "--i": i } as React.CSSProperties}
               >
                 <span className="clw-ibx clw-ibx--lg">
-                  <Image src={it.icon} alt="" width={52} height={52} />
+                  <DsIcon name={it.icon} size={52} />
                 </span>
                 <h3>{it.title}</h3>
                 <p>{it.body}</p>

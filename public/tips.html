@@ -1024,6 +1024,38 @@
       transition-duration: 0.01ms !important;
     }
   }
+
+  /* ---- Animated icons -----------------------------------------------
+     The glass icons animate by moving the light behind the frosted body
+     rather than spinning the badge. Mirrors the site's ds/motion.css so
+     the deck and the website behave identically. */
+  .cl-ai { display: inline-grid; place-items: center; line-height: 0; }
+  .cl-ai-svg { display: block; width: 100%; height: 100%; overflow: visible; }
+  .cl-ai-blob, .cl-ai-glass, .cl-ai-accent {
+    transform-box: view-box;
+    transform-origin: center;
+  }
+  .cl-ai-blob, .cl-ai-glass { transition: transform 620ms var(--ease); }
+  .cl-ai-outline { transition: opacity 380ms ease; }
+  :is(.role-option, .tip, .protip, .stage-head-row, .cover-tag):hover .cl-ai-blob,
+  .cl-ai:hover .cl-ai-blob { transform: rotate(15deg) scale(1.16); }
+  :is(.role-option, .tip, .protip, .stage-head-row, .cover-tag):hover .cl-ai-glass,
+  .cl-ai:hover .cl-ai-glass { transform: scale(1.035); }
+  :is(.role-option, .tip, .protip, .stage-head-row, .cover-tag):hover .cl-ai-outline,
+  .cl-ai:hover .cl-ai-outline { opacity: 0.72; }
+  @keyframes cl-ai-twinkle {
+    0%   { transform: scale(1) rotate(0deg); opacity: 1; }
+    40%  { transform: scale(1.34) rotate(16deg); opacity: 0.8; }
+    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+  }
+  :is(.role-option, .tip, .protip, .stage-head-row, .cover-tag):hover .cl-ai-accent,
+  .cl-ai:hover .cl-ai-accent { animation: cl-ai-twinkle 620ms var(--ease); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cl-ai-blob, .cl-ai-glass, .cl-ai-outline, .cl-ai-accent {
+      transition: none; animation: none; transform: none;
+    }
+  }
 </style>
 </head>
 <body>
@@ -1888,6 +1920,8 @@ function render() {
     main.innerHTML = renderStage(state.stage);
   }
 
+  upgradeIcons(main);
+
   // Update sidebar active states
   document.querySelectorAll('.role-option').forEach(el => {
     el.classList.toggle('active', el.dataset.role === state.role);
@@ -1938,6 +1972,70 @@ function paintSidebarIcons() {
   document.querySelectorAll('.role-option .ic-sm[data-ic]').forEach(el => {
     el.innerHTML = ROLE_ICONS[el.dataset.ic] || '';
   });
+  upgradeIcons(document.querySelector('.sidebar-top'));
+}
+
+/* ---- Animated icons -------------------------------------------------
+   The icons are glass: a coloured blob of light behind a frosted body.
+   Animating that light means reaching inside the SVG, which is not
+   possible while it is an <img> src, so each one is fetched once and
+   inlined. Every icon in the library is built the same way,
+   defs > blob > glass > outline > accent, so the layers are tagged by
+   position and the stylesheet does the rest.
+
+   This upgrades in place: an icon whose fetch fails simply stays the
+   <img> it already was, which still renders correctly. */
+const ICON_CACHE = new Map();
+
+function tagIconLayers(svgText) {
+  const doc = new DOMParser().parseFromString(svgText, 'image/svg+xml');
+  const svg = doc.documentElement;
+  if (svg.nodeName !== 'svg') return null;
+  const groups = [...svg.children].filter(c => c.nodeName === 'g');
+  if (groups.length !== 4) return null;
+  ['blob', 'glass', 'outline', 'accent'].forEach((n, i) => {
+    groups[i].setAttribute('class', 'cl-ai-' + n);
+  });
+  svg.removeAttribute('width');
+  svg.removeAttribute('height');
+  // The wrapper owns the semantics; the file's own label would otherwise
+  // start announcing decorative icons once it is in the page.
+  svg.removeAttribute('role');
+  svg.removeAttribute('aria-label');
+  svg.setAttribute('class', 'cl-ai-svg');
+  svg.setAttribute('aria-hidden', 'true');
+  svg.setAttribute('focusable', 'false');
+  return svg.outerHTML;
+}
+
+async function iconMarkup(src) {
+  if (ICON_CACHE.has(src)) return ICON_CACHE.get(src);
+  try {
+    const res = await fetch(src);
+    if (!res.ok) throw new Error(String(res.status));
+    const tagged = tagIconLayers(await res.text());
+    ICON_CACHE.set(src, tagged);
+    return tagged;
+  } catch {
+    ICON_CACHE.set(src, null);
+    return null;
+  }
+}
+
+async function upgradeIcons(root) {
+  const imgs = [...(root || document).querySelectorAll('img[src^="/ds/icons/"]')];
+  await Promise.all(imgs.map(async img => {
+    const markup = await iconMarkup(img.getAttribute('src'));
+    if (!markup || !img.isConnected) return;
+    const span = document.createElement('span');
+    span.className = 'cl-ai';
+    const cs = getComputedStyle(img);
+    span.style.width = cs.width;
+    span.style.height = cs.height;
+    span.setAttribute('aria-hidden', 'true');
+    span.innerHTML = markup;
+    img.replaceWith(span);
+  }));
 }
 
 function setRole(role) {

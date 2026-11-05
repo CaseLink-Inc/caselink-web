@@ -1,3 +1,4 @@
+import DsIcon from "@/components/DsIcon";
 import type { Metadata } from "next";
 import Image from "next/image";
 import ContactForm from "@/components/contact/ContactForm";
@@ -59,7 +60,7 @@ export default function ContactPage() {
             <div className="contact-info-stick">
             <div className="info-card">
               <div className="info-card-head">
-                <div className="info-card-icon"><Image src="/ds/icons/caselink-email.svg" alt="An envelope in frosted glass: email the CaseLink team." width={44} height={44} /></div>
+                <div className="info-card-icon"><DsIcon name="caselink-email" size={44} alt="An envelope in frosted glass: email the CaseLink team." /></div>
                 <div><h4>Email</h4><div className="info-sub">For everything</div></div>
               </div>
               <p>The fastest way to reach a real person on our team.</p>
@@ -67,7 +68,7 @@ export default function ContactPage() {
             </div>
             <div className="info-card">
               <div className="info-card-head">
-                <div className="info-card-icon"><Image src="/ds/icons/caselink-call.svg" alt="A handset in frosted glass: call the CaseLink team." width={44} height={44} /></div>
+                <div className="info-card-icon"><DsIcon name="caselink-call" size={44} alt="A handset in frosted glass: call the CaseLink team." /></div>
                 <div><h4>Phone</h4><div className="info-sub">Office hours, ET</div></div>
               </div>
               <p>Prefer a call. Reach our team Monday through Friday, 9 to 5.</p>
@@ -75,7 +76,7 @@ export default function ContactPage() {
             </div>
             <div className="info-card">
               <div className="info-card-head">
-                <div className="info-card-icon"><Image src="/ds/icons/caselink-appointment.svg" alt="A calendar in frosted glass: book a CaseLink overview call." width={44} height={44} /></div>
+                <div className="info-card-icon"><DsIcon name="caselink-appointment" size={44} alt="A calendar in frosted glass: book a CaseLink overview call." /></div>
                 <div><h4>CaseLink Overview</h4><div className="info-sub">15 minutes, online</div></div>
               </div>
               <p>Pick a time that works for you. We will walk through a real referral end to end.</p>

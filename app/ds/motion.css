@@ -76,9 +76,120 @@
     0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
+/* ---- Design system icons --------------------------------------------
+   The icons are glass: a coloured blob of light sitting behind a frosted
+   body, under a white rim. So the motion is the light moving behind the
+   glass, not the badge spinning or bouncing. One rule set drives all 34,
+   because every icon is built from the same four layers.
+
+   Hover only, and it settles. Three of these sit side by side in a card
+   row, and three ambient loops in a row would pull the eye away from the
+   copy they are meant to support. */
+.cl-ai { display: grid; place-items: center; line-height: 0; }
+.cl-ai-svg { display: block; width: 100%; height: 100%; overflow: visible; }
+
+/* Without an explicit reference box each layer transforms around its own
+   bounds, so the blob would pivot about itself instead of about the icon. */
+.cl-ai-blob,
+.cl-ai-glass,
+.cl-ai-accent {
+  transform-box: view-box;
+  transform-origin: center;
+}
+.cl-ai-blob {
+  transition: transform 620ms var(--motion-ease);
+}
+.cl-ai-glass {
+  transition: transform 620ms var(--motion-ease);
+}
+.cl-ai-outline {
+  transition: opacity 380ms ease;
+}
+
+/* The cards that hold an icon, so hovering anywhere on the card drives it.
+   A 38px tile is a mean target to ask anyone to hit, and the icon belongs
+   to the card's content rather than standing on its own. .cl-ai-host is for
+   anything not in this list, and .cl-ai itself keeps the icon responsive
+   where it sits outside a card entirely. */
+:is(.cl-ai-host,
+    .clwho-card,
+    .geo-card,
+    .spec-hub-card,
+    .mission-card,
+    .info-card,
+    .trust-card,
+    .faqhub-group,
+    .res-point):hover .cl-ai-blob,
+.cl-ai:hover .cl-ai-blob {
+  transform: rotate(15deg) scale(1.16);
+}
+:is(.cl-ai-host,
+    .clwho-card,
+    .geo-card,
+    .spec-hub-card,
+    .mission-card,
+    .info-card,
+    .trust-card,
+    .faqhub-group,
+    .res-point):hover .cl-ai-glass,
+.cl-ai:hover .cl-ai-glass {
+  transform: scale(1.035);
+}
+:is(.cl-ai-host,
+    .clwho-card,
+    .geo-card,
+    .spec-hub-card,
+    .mission-card,
+    .info-card,
+    .trust-card,
+    .faqhub-group,
+    .res-point):hover .cl-ai-outline,
+.cl-ai:hover .cl-ai-outline {
+  opacity: 0.72;
+}
+
+@keyframes cl-ai-twinkle {
+  0%   { transform: scale(1) rotate(0deg); opacity: 1; }
+  40%  { transform: scale(1.34) rotate(16deg); opacity: 0.8; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+:is(.cl-ai-host,
+    .clwho-card,
+    .geo-card,
+    .spec-hub-card,
+    .mission-card,
+    .info-card,
+    .trust-card,
+    .faqhub-group,
+    .res-point):hover .cl-ai-accent,
+.cl-ai:hover .cl-ai-accent {
+  animation: cl-ai-twinkle 620ms var(--motion-ease);
+}
+
+/* The box the icon sits in picks up a little more light with it. */
+.cl-ai-host .clw-ibx {
+  transition: box-shadow var(--motion-base) var(--motion-ease);
+}
+.cl-ai-host:hover .clw-ibx {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    inset 0 -1px 0 rgba(116, 189, 245, 0.55),
+    inset 0 0 0 1px rgba(116, 189, 245, 0.3);
+}
+
 /* ---- Reduced motion -------------------------------------------------
    Anyone asking for less motion gets none of it, including the entrance. */
 @media (prefers-reduced-motion: reduce) {
+  .cl-ai-blob,
+  .cl-ai-glass,
+  .cl-ai-outline,
+  .cl-ai-accent { transition: none; animation: none; }
+  .cl-ai-host:hover .cl-ai-blob,
+  .cl-ai-host:hover .cl-ai-glass,
+  .cl-ai:hover .cl-ai-blob,
+  .cl-ai:hover .cl-ai-glass { transform: none; }
+  .cl-ai-host:hover .cl-ai-accent,
+  .cl-ai:hover .cl-ai-accent { animation: none; }
   .reveal {
     opacity: 1;
     transform: none;

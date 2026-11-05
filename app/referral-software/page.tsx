@@ -1,6 +1,6 @@
+import DsIcon from "@/components/DsIcon";
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import CtaBand from "@/components/home/CtaBand";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { ArrowRight } from "@/components/icons";
@@ -82,14 +82,7 @@ export default function ReferralSoftwareHub() {
           <div className="spec-hub-grid">
             {specialties.map((s) => (
               <Link key={s.slug} href={`/referral-software/${s.slug}`} className="geo-card spec-hub-card">
-                <Image
-                  src={`/ds/icons/${SPEC_ICON[s.slug] ?? "caselink-specialist"}.svg`}
-                  alt=""
-                  width={148}
-                  height={148}
-                  className="spec-hub-ico"
-                  aria-hidden="true"
-                />
+                <DsIcon name={SPEC_ICON[s.slug] ?? "caselink-specialist"} size={148} />
                 <span className="eyebrow">{s.field}</span>
                 <h2>{s.metaTitle}</h2>
                 <p>{s.lead}</p>
@@ -100,8 +93,7 @@ export default function ReferralSoftwareHub() {
               </Link>
             ))}
             <Link href="/referral-software/general-dentists" className="geo-card spec-hub-card">
-                              <Image src="/ds/icons/caselink-general-dentist.svg" alt="" width={148} height={148}
-                  className="spec-hub-ico" aria-hidden="true" />
+                              <DsIcon name="caselink-general-dentist" size={148} />
               <span className="eyebrow">General dentists</span>
               <h2>Free for general dentists</h2>
               <p>
@@ -114,8 +106,7 @@ export default function ReferralSoftwareHub() {
               </span>
             </Link>
             <Link href="/referral-software/dso" className="geo-card spec-hub-card">
-                              <Image src="/ds/icons/caselink-multi-location.svg" alt="" width={148} height={148}
-                  className="spec-hub-ico" aria-hidden="true" />
+                              <DsIcon name="caselink-multi-location" size={148} />
               <span className="eyebrow">DSOs and groups</span>
               <h2>Referral management for DSOs</h2>
               <p>
@@ -128,8 +119,7 @@ export default function ReferralSoftwareHub() {
               </span>
             </Link>
             <Link href="/dental-referral-management" className="geo-card spec-hub-card">
-                              <Image src="/ds/icons/caselink-referral-status.svg" alt="" width={148} height={148}
-                  className="spec-hub-ico" aria-hidden="true" />
+                              <DsIcon name="caselink-referral-status" size={148} />
               <span className="eyebrow">Overview</span>
               <h2>How referral management works</h2>
               <p>
@@ -142,8 +132,7 @@ export default function ReferralSoftwareHub() {
               </span>
             </Link>
             <Link href="/resources/how-to-choose-dental-referral-software" className="geo-card spec-hub-card">
-                              <Image src="/ds/icons/caselink-help.svg" alt="" width={148} height={148}
-                  className="spec-hub-ico" aria-hidden="true" />
+                              <DsIcon name="caselink-help" size={148} />
               <span className="eyebrow">Buyer&apos;s guide</span>
               <h2>How to choose referral software</h2>
               <p>

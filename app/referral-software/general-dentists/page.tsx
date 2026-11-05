@@ -1,6 +1,6 @@
+import DsIcon from "@/components/DsIcon";
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import CtaBand from "@/components/home/CtaBand";
 import BookCallButton from "@/components/BookCallButton";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -223,7 +223,7 @@ export default function GeneralDentistsPage() {
           <div className="geo-grid">
             <div className="geo-card geo-card--glass">
               <span className="geo-card-ic" aria-hidden="true">
-                <Image src="/ds/icons/caselink-finance.svg" alt="" width={52} height={52} />
+                <DsIcon name="caselink-finance" size={52} />
               </span>
               <h3>Free for your office</h3>
               <p>
@@ -234,7 +234,7 @@ export default function GeneralDentistsPage() {
             </div>
             <div className="geo-card geo-card--glass">
               <span className="geo-card-ic" aria-hidden="true">
-                <Image src="/ds/icons/caselink-referral-status.svg" alt="" width={52} height={52} />
+                <DsIcon name="caselink-referral-status" size={52} />
               </span>
               <h3>See where each patient stands</h3>
               <p>
@@ -245,7 +245,7 @@ export default function GeneralDentistsPage() {
             </div>
             <div className="geo-card geo-card--glass">
               <span className="geo-card-ic" aria-hidden="true">
-                <Image src="/ds/icons/caselink-notifications.svg" alt="" width={52} height={52} />
+                <DsIcon name="caselink-notifications" size={52} />
               </span>
               <h3>Patients do not slip away</h3>
               <p>

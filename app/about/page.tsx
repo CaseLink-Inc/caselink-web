@@ -1,3 +1,4 @@
+import DsIcon from "@/components/DsIcon";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { ArrowRight, LinkedIn } from "@/components/icons";
@@ -158,19 +159,19 @@ export default function AboutPage() {
           <p className="reveal">Patient continuity first. Simplicity always. Compliance by design.</p>
           <div className="mission-grid">
             <div className="mission-card reveal">
-              <span className="clw-ibx clw-ibx--lg mission-icon"><Image src="/ds/icons/caselink-care-team.svg" alt="A care team around one patient: two practices sharing a single case." width={52} height={52} /></span>
+              <span className="clw-ibx clw-ibx--lg mission-icon"><DsIcon name="caselink-care-team" size={52} alt="A care team around one patient: two practices sharing a single case." /></span>
               <div className="mission-num">01</div>
               <h3>Patient continuity first</h3>
               <p>Every feature is judged by one question. Does it make it easier for a patient to receive seamless care across two practices.</p>
             </div>
             <div className="mission-card reveal" style={{ transitionDelay: ".1s" }}>
-              <span className="clw-ibx clw-ibx--lg mission-icon"><Image src="/ds/icons/caselink-link.svg" alt="Two links joined: the layer between practices rather than inside one." width={52} height={52} /></span>
+              <span className="clw-ibx clw-ibx--lg mission-icon"><DsIcon name="caselink-link" size={52} alt="Two links joined: the layer between practices rather than inside one." /></span>
               <div className="mission-num">02</div>
               <h3>The link, not the replacement</h3>
               <p>CaseLink does not replace your practice management software. We are the layer that connects your practice to the next one.</p>
             </div>
             <div className="mission-card reveal" style={{ transitionDelay: ".2s" }}>
-              <span className="clw-ibx clw-ibx--lg mission-icon"><Image src="/ds/icons/caselink-compliance.svg" alt="A compliance mark: patient data held to HIPAA by design." width={52} height={52} /></span>
+              <span className="clw-ibx clw-ibx--lg mission-icon"><DsIcon name="caselink-compliance" size={52} alt="A compliance mark: patient data held to HIPAA by design." /></span>
               <div className="mission-num">03</div>
               <h3>Compliance you can feel</h3>
               <p>Patient data is sacred. CaseLink is HIPAA compliant by design, audited annually, and every action is traceable.</p>

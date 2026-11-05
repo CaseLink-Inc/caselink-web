@@ -63,9 +63,11 @@
   background: linear-gradient(180deg, rgba(226,238,255,.95), rgba(207,226,250,.85));
   box-shadow: inset 0 1px 0 rgba(255,255,255,.9), inset 0 -1px 0 rgba(116,189,245,.35);
 }
-.clw-ibx img { width: 38px; height: 38px; display: block; }
+.clw-ibx img,
+.clw-ibx .cl-ai { width: 38px; height: 38px; display: block; }
 .clw-ibx--lg { width: 64px; height: 64px; }
-.clw-ibx--lg img { width: 52px; height: 52px; }
+.clw-ibx--lg img,
+.clw-ibx--lg .cl-ai { width: 52px; height: 52px; }
 
 /* .wh2 and .ps from the cards. */
 .clw-cardtitle {

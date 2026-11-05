@@ -1,6 +1,6 @@
+import DsIcon from "@/components/DsIcon";
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import CtaBand from "@/components/home/CtaBand";
 import BookCallButton from "@/components/BookCallButton";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -229,7 +229,7 @@ export default function DentalReferralManagementPage() {
           <div className="geo-grid">
             <div className="geo-card geo-card--glass">
               <span className="geo-card-ic" aria-hidden="true">
-                <Image src="/ds/icons/caselink-send-referral.svg" alt="" width={52} height={52} />
+                <DsIcon name="caselink-send-referral" size={52} />
               </span>
               <h3>Send in under three minutes</h3>
               <p>
@@ -240,7 +240,7 @@ export default function DentalReferralManagementPage() {
             </div>
             <div className="geo-card geo-card--glass">
               <span className="geo-card-ic" aria-hidden="true">
-                <Image src="/ds/icons/caselink-referral-status.svg" alt="" width={52} height={52} />
+                <DsIcon name="caselink-referral-status" size={52} />
               </span>
               <h3>One status, both offices</h3>
               <p>
@@ -251,7 +251,7 @@ export default function DentalReferralManagementPage() {
             </div>
             <div className="geo-card geo-card--glass">
               <span className="geo-card-ic" aria-hidden="true">
-                <Image src="/ds/icons/caselink-notifications.svg" alt="" width={52} height={52} />
+                <DsIcon name="caselink-notifications" size={52} />
               </span>
               <h3>Unbooked cases surface</h3>
               <p>
@@ -262,7 +262,7 @@ export default function DentalReferralManagementPage() {
             </div>
             <div className="geo-card geo-card--glass">
               <span className="geo-card-ic" aria-hidden="true">
-                <Image src="/ds/icons/caselink-messaging.svg" alt="" width={52} height={52} />
+                <DsIcon name="caselink-messaging" size={52} />
               </span>
               <h3>Encrypted messaging</h3>
               <p>
@@ -272,7 +272,7 @@ export default function DentalReferralManagementPage() {
             </div>
             <div className="geo-card geo-card--glass">
               <span className="geo-card-ic" aria-hidden="true">
-                <Image src="/ds/icons/caselink-post-op-report.svg" alt="" width={52} height={52} />
+                <DsIcon name="caselink-post-op-report" size={52} />
               </span>
               <h3>Outcome reports back</h3>
               <p>
@@ -282,7 +282,7 @@ export default function DentalReferralManagementPage() {
             </div>
             <div className="geo-card geo-card--glass">
               <span className="geo-card-ic" aria-hidden="true">
-                <Image src="/ds/icons/caselink-reports.svg" alt="" width={52} height={52} />
+                <DsIcon name="caselink-reports" size={52} />
               </span>
               <h3>Referral source analytics</h3>
               <p>

@@ -1,4 +1,4 @@
-import Image from "next/image";
+import DsIcon from "@/components/DsIcon";
 
 /**
  * The Trust hero object.
@@ -80,12 +80,7 @@ export default function TrustStage() {
       ))}
 
       <span className="ts-core">
-        <Image
-          src="/ds/icons/caselink-hipaa-lock.svg"
-          alt="HIPAA secure: a padlock in frosted glass with patient records circling it, all of them sealed."
-          width={248}
-          height={248}
-        />
+        <DsIcon name="caselink-hipaa-lock" size={248} alt="HIPAA secure: a padlock in frosted glass with patient records circling it, all of them sealed." />
       </span>
     </figure>
   );

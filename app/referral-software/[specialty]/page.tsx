@@ -1,6 +1,6 @@
+import DsIcon from "@/components/DsIcon";
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import CtaBand from "@/components/home/CtaBand";
 import BookCallButton from "@/components/BookCallButton";
@@ -140,13 +140,7 @@ export default async function SpecialtyPage({
       <section className="geo-hero">
         <div className="geo-hero-bg" aria-hidden="true" />
         <span className="geo-hero-medal" aria-hidden="true">
-          <Image
-            src={`/ds/icons/${SPEC_ICON[s.slug] ?? "caselink-specialist"}.svg`}
-            alt=""
-            width={132}
-            height={132}
-            priority
-          />
+          <DsIcon name={SPEC_ICON[s.slug] ?? "caselink-specialist"} size={132} />
         </span>
         <div className="wrap geo-hero-inner">
           <span className="eyebrow">{s.field}</span>
@@ -228,7 +222,7 @@ export default async function SpecialtyPage({
           <div className="geo-grid">
             <div className="geo-card">
               <span className="geo-card-ic" aria-hidden="true">
-                <Image src="/ds/icons/caselink-secure-records.svg" alt="" width={52} height={52} />
+                <DsIcon name="caselink-secure-records" size={52} />
               </span>
               <h3>Cases arrive complete</h3>
               <p>
@@ -239,7 +233,7 @@ export default async function SpecialtyPage({
             </div>
             <div className="geo-card">
               <span className="geo-card-ic" aria-hidden="true">
-                <Image src="/ds/icons/caselink-referral-status.svg" alt="" width={52} height={52} />
+                <DsIcon name="caselink-referral-status" size={52} />
               </span>
               <h3>Both offices see the status</h3>
               <p>
@@ -250,7 +244,7 @@ export default async function SpecialtyPage({
             </div>
             <div className="geo-card">
               <span className="geo-card-ic" aria-hidden="true">
-                <Image src="/ds/icons/caselink-reports.svg" alt="" width={52} height={52} />
+                <DsIcon name="caselink-reports" size={52} />
               </span>
               <h3>Know your referral sources</h3>
               <p>

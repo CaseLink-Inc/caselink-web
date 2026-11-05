@@ -1,4 +1,4 @@
-import Image from "next/image";
+import DsIcon from "@/components/DsIcon";
 import { SIGNUP_URL } from "@/lib/urls";
 
 /**
@@ -13,7 +13,7 @@ import { SIGNUP_URL } from "@/lib/urls";
 export default function ForWho() {
   const cards = [
     {
-      icon: "/ds/icons/caselink-general-dentist.svg",
+      icon: "caselink-general-dentist",
       role: "For general dentists",
       title: "Refer with confidence.",
       body: "Keep your patients and your specialist relationships in one place.",
@@ -26,7 +26,7 @@ export default function ForWho() {
       href: SIGNUP_URL,
     },
     {
-      icon: "/ds/icons/caselink-specialist.svg",
+      icon: "caselink-specialist",
       role: "For specialists",
       title: "Receive without chaos.",
       body: "Triage incoming cases in seconds with full clinical context attached.",
@@ -39,7 +39,7 @@ export default function ForWho() {
       href: SIGNUP_URL,
     },
     {
-      icon: "/ds/icons/caselink-care-team.svg",
+      icon: "caselink-care-team",
       role: "For office managers",
       title: "Coordinate without the calls.",
       body: "Run the daily flow of referrals across the whole practice without chasing anyone.",
@@ -79,12 +79,12 @@ export default function ForWho() {
           {cards.map((c, i) => (
             <div
               key={c.role}
-              className="cl-card cl-card--lg clwho-card reveal"
+              className="cl-card cl-card--lg clwho-card cl-ai-host reveal"
               style={{ transitionDelay: `${i * 0.1}s` }}
             >
               <div>
                 <span className="clw-ibx clw-ibx--lg">
-                  <Image src={c.icon} alt="" width={52} height={52} />
+                  <DsIcon name={c.icon} size={52} />
                 </span>
                 <div className="clwho-role">{c.role}</div>
                 <h3 className="clw-cardtitle">{c.title}</h3>

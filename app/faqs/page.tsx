@@ -1,3 +1,4 @@
+import DsIcon from "@/components/DsIcon";
 import type { Metadata } from "next";
 import CtaBand from "@/components/home/CtaBand";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -105,12 +106,7 @@ export default function FaqsPage() {
             <div key={g.id} id={g.id} className="faqhub-group">
               <div className="faqhub-head">
                 <span className="faqhub-ico" aria-hidden="true">
-                  <Image
-                    src={`/ds/icons/${GROUP_ICON[g.id] ?? "caselink-help"}.svg`}
-                    alt=""
-                    width={38}
-                    height={38}
-                  />
+                  <DsIcon name={GROUP_ICON[g.id] ?? "caselink-help"} size={38} />
                 </span>
                 <h2>{g.title}</h2>
               </div>

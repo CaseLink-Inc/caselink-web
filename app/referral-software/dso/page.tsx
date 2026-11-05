@@ -1,6 +1,6 @@
+import DsIcon from "@/components/DsIcon";
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import CtaBand from "@/components/home/CtaBand";
 import BookCallButton from "@/components/BookCallButton";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -207,7 +207,7 @@ export default function DsoPage() {
           <div className="geo-grid">
             <div className="geo-card geo-card--dark">
               <span className="geo-card-ic" aria-hidden="true">
-                <Image src="/ds/icons/caselink-access-control.svg" alt="" width={52} height={52} />
+                <DsIcon name="caselink-access-control" size={52} />
               </span>
               <h3>Team permissions</h3>
               <p>
@@ -218,7 +218,7 @@ export default function DsoPage() {
             </div>
             <div className="geo-card geo-card--dark">
               <span className="geo-card-ic" aria-hidden="true">
-                <Image src="/ds/icons/caselink-multi-location.svg" alt="" width={52} height={52} />
+                <DsIcon name="caselink-multi-location" size={52} />
               </span>
               <h3>Multi-location analytics</h3>
               <p>
@@ -229,7 +229,7 @@ export default function DsoPage() {
             </div>
             <div className="geo-card geo-card--dark">
               <span className="geo-card-ic" aria-hidden="true">
-                <Image src="/ds/icons/caselink-integrations.svg" alt="" width={52} height={52} />
+                <DsIcon name="caselink-integrations" size={52} />
               </span>
               <h3>API access</h3>
               <p>

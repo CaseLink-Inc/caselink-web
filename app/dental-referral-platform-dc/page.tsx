@@ -1,6 +1,6 @@
+import DsIcon from "@/components/DsIcon";
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import Network from "@/components/home/Network";
 import CtaBand from "@/components/home/CtaBand";
 import BookCallButton from "@/components/BookCallButton";
@@ -168,7 +168,7 @@ export default function DcLandingPage() {
           <div className="geo-grid">
             <div className="geo-card">
               <span className="geo-card-ic" aria-hidden="true">
-                <Image src="/ds/icons/caselink-care-team.svg" alt="" width={52} height={52} />
+                <DsIcon name="caselink-care-team" size={52} />
               </span>
               <h3>The network is already here</h3>
               <p>
@@ -179,7 +179,7 @@ export default function DcLandingPage() {
             </div>
             <div className="geo-card">
               <span className="geo-card-ic" aria-hidden="true">
-                <Image src="/ds/icons/caselink-location.svg" alt="" width={52} height={52} />
+                <DsIcon name="caselink-location" size={52} />
               </span>
               <h3>Built alongside DC pilots</h3>
               <p>
@@ -190,7 +190,7 @@ export default function DcLandingPage() {
             </div>
             <div className="geo-card">
               <span className="geo-card-ic" aria-hidden="true">
-                <Image src="/ds/icons/caselink-practice.svg" alt="" width={52} height={52} />
+                <DsIcon name="caselink-practice" size={52} />
               </span>
               <h3>Founding member terms</h3>
               <p>
