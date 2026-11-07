@@ -16,7 +16,20 @@ export default function RevealInit() {
           }
         });
       },
-      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+      // Release each element shortly BEFORE it reaches the viewport, so it
+      // has finished arriving by the time it is actually looked at.
+      //
+      // The old gate was threshold 0.12 with the root shrunk 40px at the
+      // bottom. On a ~500px card that meant waiting for 60px of it to clear
+      // a 773px line: measured, every card in "Built for both sides" was
+      // released with its top at 714px of an 813px viewport, 99px above the
+      // fold. The 550ms fade then ran while the reader was still scrolling
+      // the card into view, which is what read as the section loading late.
+      //
+      // Any pixel will do now, and the root is grown 20% past the bottom
+      // edge instead of shrunk, so a card is already fading before it can
+      // be seen. Elements that start on screen are handled by scan() below.
+      { threshold: 0, rootMargin: "0px 0px 20% 0px" }
     );
 
     const scan = () => {

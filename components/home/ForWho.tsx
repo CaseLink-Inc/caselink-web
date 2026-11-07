@@ -80,7 +80,10 @@ export default function ForWho() {
             <div
               key={c.role}
               className="cl-card cl-card--lg clwho-card cl-ai-host reveal"
-              style={{ transitionDelay: `${i * 0.1}s` }}
+              /* 60ms, matching .clw-stagger in ds/motion.css, whose own note
+                 asks for "a short offset, not a cascade". At 100ms the third
+                 card landed 200ms behind the first, on top of a 550ms fade. */
+              style={{ transitionDelay: `${i * 0.06}s` }}
             >
               <div>
                 <span className="clw-ibx clw-ibx--lg">
