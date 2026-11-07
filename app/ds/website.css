@@ -304,3 +304,30 @@
 @media (prefers-reduced-motion: reduce) {
   .cl-btn:hover, .cl-btn.is-hover, .cl-btn:active { transform: none; }
 }
+
+/* ---- Frosted field: drop the per-tile backdrop blur -----------------
+   bundle.css gives every .cl-tile-field tile backdrop-filter: blur(14px),
+   and the home page's field is 180 tiles. That is 180 of the 200
+   backdrop-filters on the whole page, and each one makes the compositor
+   snapshot and blur what sits behind it.
+
+   Measured on the live site: the home page reached DOM interactive in
+   106ms and complete in 234ms, but did not paint until 2964ms, with zero
+   long tasks, so nothing was blocking the main thread. /about and
+   /pricing, which carry 7 and 4 backdrop-filters and no tile field,
+   painted at 1036ms and 1068ms.
+
+   The blur buys nothing here. backdrop-filter exists to soften detailed
+   content behind glass, and what sits behind these tiles is
+   --grad-frosted-field, a smooth radial gradient. Blurring a smooth
+   gradient returns the same smooth gradient: screenshots with and
+   without it are indistinguishable. The translucent fill and the inset
+   rim are what make the tile read as glass, and both stay.
+
+   bundle.css is a verbatim design system export and must not be
+   hand-edited, so this overrides it here. Worth reporting upstream: the
+   blur should be on the field, not on every tile in it. */
+.cl-tile-field > i {
+  -webkit-backdrop-filter: none;
+          backdrop-filter: none;
+}
