@@ -251,6 +251,17 @@ is. Colour may vary per piece; the structure may not.
 
 ## Recent significant changes (most recent first)
 
+- **Endo referrer-churn article + article data blocks** (2026-11-12):
+  `why-gps-stop-referring-to-endodontists` (Specialists), drafted from the
+  J Endod 2026 abstract (Karia, Hong and Kim) plus the 2026 AAE referral
+  survey. New insert kinds in `lib/resources.ts`: `compare`, `cards`
+  (numbered or icon tiles), `bars`, `versus`, `meter`, `video` (YouTube via
+  youtube-nocookie.com, now allowed in CSP `frame-src`). Components in
+  `components/resources/ResourceCompare|ResourceDataViz|ResourceVideo.tsx`.
+  Any insert can take `slot: "name"` instead of `before: N`, and a markdown
+  paragraph that is only `{{name}}` renders those inserts in place. A
+  catalog entry with `draft: true` renders in dev only (noindex, not in the
+  list or sitemap, 404 in production).
 - **"Referral management" wording pass** (2026-10-28): ChatGPT left CaseLink
   out for "dental referral management platform for dentists and specialists
   to refer to each other" (it was #1 for "referral software for

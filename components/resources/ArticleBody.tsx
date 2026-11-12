@@ -3,7 +3,8 @@ import { Fragment } from "react";
 import Markdown from "react-markdown";
 
 export type ArticleInsert = {
-  section: number; // 1-based H2 index this insert attaches to
+  section?: number; // 1-based H2 index this insert attaches to
+  slot?: string; // or: replaces a `{{slot}}` paragraph in the markdown
   node: React.ReactNode;
   after?: boolean; // render after the heading (e.g. side images) vs before it
 };
@@ -60,6 +61,26 @@ export default function ArticleBody({
             const first = node?.children?.[0] as
               | { type?: string; tagName?: string }
               | undefined;
+            /* A paragraph that is only `{{name}}` is a placeholder for the
+               inserts with that slot, so a chart can sit mid-section. */
+            const only = node?.children?.length === 1
+              ? (node.children[0] as { type?: string; value?: string })
+              : undefined;
+            const slot =
+              only?.type === "text"
+                ? /^\{\{([\w-]+)\}\}$/.exec(only.value?.trim() ?? "")?.[1]
+                : undefined;
+            if (slot) {
+              return (
+                <>
+                  {inserts
+                    .filter((i) => i.slot === slot)
+                    .map((ins, k) => (
+                      <Fragment key={`s${k}`}>{ins.node}</Fragment>
+                    ))}
+                </>
+              );
+            }
             const isPoint =
               first?.type === "element" && first?.tagName === "strong";
             if (!isPoint) return <p>{children}</p>;

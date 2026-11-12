@@ -3409,6 +3409,162 @@ body.mob-open{overflow:hidden}
   .res-funnel-result-val{font-size:28px}
 }
 
+/* Paired comparison bars: two groups, the same questions. Glass over the
+   lit ground, palette only, Medium never Bold, no shadows. Bars run on a
+   fixed 0 to 100 scale so a minority answer never reads as a majority. */
+.res-compare{clear:both;margin:40px 0;padding:26px 28px 22px;border-radius:24px;
+  background:var(--res-glass);
+  -webkit-backdrop-filter:blur(26px) saturate(1.7);backdrop-filter:blur(26px) saturate(1.7);
+  box-shadow:var(--res-glass-rim)}
+.res-compare-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;
+  gap:10px 24px;margin:0 0 20px}
+.res-compare-title{font:500 19px/1.35 var(--font-sans);letter-spacing:-.015em;color:var(--ink,#10172A)}
+.res-compare-legend{display:flex;gap:18px;flex-wrap:wrap}
+.res-compare-key{display:inline-flex;align-items:center;gap:8px;
+  font:400 13.5px/1.4 var(--font-sans);color:var(--ink-2,#3a4a66)}
+.res-compare-key::before{content:'';width:12px;height:12px;border-radius:4px}
+.res-compare-key.is-a::before,.res-compare-bar.is-a .res-compare-fill{background:var(--blue-deep,#1D5FD8)}
+.res-compare-key.is-b::before,.res-compare-bar.is-b .res-compare-fill{background:#2FBF8F}
+.res-prose ul.res-compare-rows,
+.res-compare-rows{list-style:none;margin:0;padding:0}
+.res-compare-row{display:grid;gap:8px;margin:0;padding:16px 0;
+  border-top:1px solid rgba(184,217,255,.6)}
+.res-compare-row:first-child{border-top:0;padding-top:0}
+.res-compare-label{font:500 15.5px/1.45 var(--font-sans);color:var(--ink,#10172A);margin-bottom:2px}
+.res-compare-bar{display:grid;grid-template-columns:1fr 64px;align-items:center;column-gap:14px}
+.res-compare-track{height:12px;border-radius:999px;overflow:hidden;
+  background:rgba(255,255,255,.55);box-shadow:inset 0 0 0 1px rgba(184,217,255,.8)}
+.res-compare-fill{display:block;height:100%;border-radius:999px}
+.res-compare-val{justify-self:end;font:500 17px/1 var(--font-sans);letter-spacing:-.02em;
+  color:var(--ink,#10172A);font-variant-numeric:tabular-nums}
+.res-compare-source{margin:14px 0 0;font:400 13px/1.5 var(--font-sans);color:var(--ink-muted,#566479)}
+.res-sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+  clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media (max-width:640px){
+  .res-compare{padding:20px 18px 18px;border-radius:20px}
+  .res-compare-title{font-size:17px}
+  .res-compare-bar{grid-template-columns:1fr 54px}
+  .res-compare-val{font-size:15px}
+}
+
+/* ---- Article data and card blocks (ResourceDataViz) ---------------
+   Same rules as the funnel and compare: glass over the lit ground, palette
+   only, Medium never Bold, no drop shadows. Percent scales are 0 to 100. */
+.res-viz-title{display:block;margin:0 0 18px;font:500 19px/1.35 var(--font-sans);
+  letter-spacing:-.015em;color:var(--ink,#10172A)}
+.res-viz-source{margin:14px 0 0;font:400 13px/1.5 var(--font-sans);color:var(--ink-muted,#566479)}
+.res-glass-panel,.res-bars,.res-meter,.res-versus{clear:both;margin:36px 0;padding:26px 28px 22px;
+  border-radius:24px;background:var(--res-glass);
+  -webkit-backdrop-filter:blur(26px) saturate(1.7);backdrop-filter:blur(26px) saturate(1.7);
+  box-shadow:var(--res-glass-rim)}
+
+/* `.res-prose li` adds a bottom margin to every list item. These lists are
+   grids with their own gap, so the margin would double it. */
+.res-prose .res-tile,.res-prose .res-bars-row,.res-prose .res-compare-row{margin:0}
+.res-prose .res-viz-source{margin:16px 0 0}
+
+/* Ring */
+.res-ring{position:relative;display:grid;place-items:center;flex:none}
+.res-ring svg{position:absolute;inset:0}
+.res-ring-track{fill:none;stroke:rgba(184,217,255,.55)}
+.res-ring-fill{fill:none;stroke-linecap:round}
+.res-ring-val{position:relative;font:500 27px/1 var(--font-sans);letter-spacing:-.03em;
+  color:var(--ink,#10172A);font-variant-numeric:tabular-nums}
+
+/* Card grid: the cards are the glass, the grid itself has no ground */
+.res-tiles{clear:both;margin:30px 0 34px}
+/* The reset needs `.res-prose ol` weight to beat the article's list
+   padding. The columns stay on the plain class so the phone rule below
+   can still override them. */
+.res-prose ol.res-tiles-grid{list-style:none;margin:0;padding:0}
+.res-tiles-grid{display:grid;gap:14px;grid-template-columns:repeat(2,minmax(0,1fr))}
+.res-tiles--3 .res-tiles-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.res-tile{display:flex;flex-direction:column;gap:16px;margin:0;padding:22px 22px 24px;
+  border-radius:22px;background:var(--res-glass);
+  -webkit-backdrop-filter:blur(26px) saturate(1.7);backdrop-filter:blur(26px) saturate(1.7);
+  box-shadow:var(--res-glass-rim)}
+/* An odd card out on a two-column grid runs the full width, marker beside
+   the text, so the grid ends on a full row instead of a gap. */
+.res-tiles--2 .res-tile:last-child:nth-child(odd){grid-column:1 / -1;
+  flex-direction:row;align-items:center;gap:20px}
+/* Icon tiles are short checklist items: icon beside the text keeps them
+   compact. Numbered tiles stack, so the numeral leads the card. */
+.res-tile.has-icon{flex-direction:row;align-items:center;gap:16px;padding:20px}
+/* Three across, a tile is ~244px: too narrow to put the icon beside the
+   text, so it stacks. Below 900px the grid drops to two and it sits beside. */
+.res-tiles--3 .res-tile.has-icon{flex-direction:column;align-items:flex-start;gap:14px;padding:20px 20px 22px}
+.res-tile-mark{width:48px;height:48px;border-radius:50%;flex:none;
+  display:grid;place-items:center;
+  background:rgba(255,255,255,.78);
+  box-shadow:inset 0 0 0 1px rgba(184,217,255,.95),inset 0 1px 0 rgba(255,255,255,.95);
+  font:500 19px/1 var(--font-sans);color:var(--blue-deep,#1d5fd8);font-variant-numeric:tabular-nums}
+.res-tile-mark:empty{display:none}
+.res-tile-mark svg,.res-tile-mark img{display:block;width:30px;height:30px}
+.res-tile-text{display:flex;flex-direction:column;min-width:0}
+.res-tile-tag{align-self:flex-start;margin:0 0 10px;padding:4px 10px;border-radius:999px;
+  font:500 12px/1.3 var(--font-sans);letter-spacing:.01em;color:var(--blue-deep,#1d5fd8);
+  background:rgba(255,255,255,.7);box-shadow:inset 0 0 0 1px rgba(184,217,255,.9)}
+.res-tile-title{font:500 17px/1.35 var(--font-sans);letter-spacing:-.015em;color:var(--ink,#10172A)}
+.res-tile-body{margin-top:6px;font:400 15px/1.6 var(--font-sans);color:var(--ink-2,#3a4a66)}
+
+/* Bars */
+.res-bars-sets{display:grid;gap:22px}
+.res-bars-set-title{display:block;margin:0 0 10px;font:400 13.5px/1.4 var(--font-sans);
+  letter-spacing:.01em;color:var(--ink-muted,#566479)}
+.res-prose ul.res-bars-rows,
+.res-bars-rows{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.res-bars-row{display:grid;gap:7px;margin:0}
+.res-bars-label{font:500 15.5px/1.4 var(--font-sans);color:var(--ink,#10172A)}
+.res-bars-line{display:grid;grid-template-columns:1fr 56px;align-items:center;column-gap:14px}
+.res-bars-track{height:14px;border-radius:999px;overflow:hidden;
+  background:rgba(255,255,255,.55);box-shadow:inset 0 0 0 1px rgba(184,217,255,.8)}
+.res-bars-fill{display:block;height:100%;border-radius:999px}
+.res-bars-val{justify-self:end;font:500 18px/1 var(--font-sans);letter-spacing:-.02em;
+  color:var(--ink,#10172A);font-variant-numeric:tabular-nums}
+.res-bars-set + .res-bars-set{padding-top:20px;border-top:1px solid rgba(184,217,255,.6)}
+
+/* Versus: two sides, a frosted "vs" disc on the seam */
+.res-versus-grid{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.res-versus-side{display:flex;flex-direction:column;align-items:center;text-align:center;
+  gap:12px;padding:24px 22px 26px;border-radius:20px;
+  background:rgba(255,255,255,.42);box-shadow:inset 0 0 0 1px rgba(184,217,255,.7)}
+.res-versus-group{font:500 13px/1.3 var(--font-sans);letter-spacing:.06em;text-transform:uppercase;
+  color:var(--ink-muted,#566479)}
+.res-versus-label{font:500 17px/1.35 var(--font-sans);letter-spacing:-.015em;color:var(--ink,#10172A)}
+.res-versus-note{font:400 14.5px/1.6 var(--font-sans);color:var(--ink-2,#3a4a66)}
+.res-versus-vs{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:40px;height:40px;border-radius:50%;display:grid;place-items:center;
+  font:500 13px/1 var(--font-sans);color:var(--blue-deep,#1d5fd8);
+  background:rgba(255,255,255,.92);
+  box-shadow:inset 0 0 0 1px rgba(184,217,255,.95)}
+
+/* Meter */
+.res-meter-row{display:flex;align-items:center;gap:28px}
+.res-meter-text{display:flex;flex-direction:column;gap:8px;min-width:0}
+.res-meter-label{font:500 19px/1.4 var(--font-sans);letter-spacing:-.018em;color:var(--ink,#10172A)}
+.res-meter-note{font:400 15px/1.6 var(--font-sans);color:var(--ink-2,#3a4a66)}
+
+@media (max-width:900px){
+  .res-tiles--3 .res-tiles-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .res-tiles--3 .res-tile.has-icon{flex-direction:row;align-items:center;gap:16px;padding:20px}
+}
+@media (max-width:640px){
+  .res-glass-panel,.res-bars,.res-meter,.res-versus{padding:20px 18px 18px;border-radius:20px}
+  .res-tiles-grid,.res-tiles--3 .res-tiles-grid{grid-template-columns:1fr}
+  .res-tile,.res-tiles--2 .res-tile:last-child:nth-child(odd){flex-direction:row;align-items:flex-start;gap:16px;padding:18px}
+  .res-versus-grid{grid-template-columns:1fr;gap:26px}
+  .res-meter-row{flex-direction:column;align-items:flex-start;gap:18px}
+  .res-bars-line{grid-template-columns:1fr 48px}
+  .res-bars-val{font-size:16px}
+}
+
+/* Article video (ResourceVideo): glass frame, 16:9 player */
+.res-video{clear:both;margin:28px 0 34px;padding:14px;border-radius:24px;
+  background:var(--res-glass);border:1px solid var(--res-glass-rim);
+  -webkit-backdrop-filter:blur(26px);backdrop-filter:blur(26px)}
+.res-video-frame{position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:#0B1B3A}
+.res-video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.res-prose .res-video-caption{margin:12px 6px 2px;font-size:14px;color:var(--res-muted,#5B6B85)}
 .res-prose ol.res-steps{clear:both;list-style:none;margin:0 0 26px;padding:0;counter-reset:resstep}
 .res-steps li{counter-increment:resstep;position:relative;
   margin:0 0 14px;padding:24px 26px;border-radius:22px;

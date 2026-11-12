@@ -23,18 +23,63 @@ export type ResourceLink = { href: string; label: string };
 // template. `stats` decides where the key-number block lands; `inserts` drops
 // editorial devices (pull-quote, side/wide image, card slider) before a given
 // H2 (1-based). Mix these differently per article so no two look alike.
-export type ResourceInsert =
-  | { before: number; kind: "quote"; text: string }
-  | { before: number; kind: "figure"; variant: "wide" | "side"; side?: "left" | "right"; src?: string; alt?: string }
-  | { before: number; kind: "slider"; cards: { title: string; body: string }[] }
-  /** Stage diagram. Every figure must come from the article's own text:
-   *  a stage with no published number carries none and is drawn as a gap. */
-  | {
-      before: number;
-      kind: "funnel";
-      stages: { label: string; figure?: string; note: string; peak?: boolean }[];
-      result?: { figure: string; label: string };
-    };
+/** Where an insert lands: before (or, for side figures, after) the Nth H2,
+ *  or in place of a `{{slot}}` line in the article's markdown, for blocks
+ *  that belong mid-section. */
+export type InsertPlace = { before: number; slot?: never } | { slot: string; before?: never };
+
+export type ResourceInsert = InsertPlace &
+  (
+    | { kind: "quote"; text: string }
+    | { kind: "figure"; variant: "wide" | "side"; side?: "left" | "right"; src?: string; alt?: string }
+    | { kind: "slider"; cards: { title: string; body: string }[] }
+    /** Embedded YouTube video, played from youtube-nocookie.com. `after`
+     *  puts it straight under the H2 instead of before it. */
+    | { kind: "video"; youtubeId: string; title: string; caption?: string; after?: boolean }
+    /** Stage diagram. Every figure must come from the article's own text:
+     *  a stage with no published number carries none and is drawn as a gap. */
+    | {
+        kind: "funnel";
+        stages: { label: string; figure?: string; note: string; peak?: boolean }[];
+        result?: { figure: string; label: string };
+      }
+    /** Paired bars comparing two groups on the same questions. */
+    | {
+        kind: "compare";
+        caption: string;
+        groups: [string, string];
+        rows: { label: string; values: [number, number] }[];
+        source: string;
+      }
+    /** Numbered or icon card grid, for steps and checklists. */
+    | {
+        kind: "cards";
+        caption?: string;
+        numbered?: boolean;
+        columns?: 2 | 3;
+        cards: { title: string; body: string; tag?: string; icon?: string }[];
+        source?: string;
+      }
+    /** Single-series percentage bars, grouped into titled sets. */
+    | {
+        kind: "bars";
+        caption: string;
+        sets: { title: string; rows: { label: string; value: number; tone?: "a" | "b" | "muted" }[] }[];
+        source?: string;
+      }
+    /** Two groups, one headline figure each, drawn as rings side by side. */
+    | {
+        kind: "versus";
+        caption: string;
+        sides: [
+          { group: string; value: number; label: string; note: string },
+          { group: string; value: number; label: string; note: string },
+        ];
+        source?: string;
+      }
+    /** One headline percentage as a ring with its explanation. */
+    | { kind: "meter"; value: number; label: string; note?: string; source?: string }
+  );
 
 export type ResourceLayout = {
   stats: "top" | "beforeFaq" | { beforeSection: number };
@@ -66,6 +111,9 @@ export type Resource = {
   thumbnail?: string;
   /** Descriptive alt text for the card thumbnail. Required when `thumbnail` is set. */
   thumbnailAlt?: string;
+  /** Draft: viewable on the local dev server only. Never listed, never in
+   *  the sitemap, and a 404 in production builds until this flag is removed. */
+  draft?: boolean;
 };
 
 // Accent colour per category, from the design system's palette. The set
@@ -83,7 +131,214 @@ export const CATEGORY_COLOR: Record<ResourceCategory, string> = {
   Policy: "#1D5FD8",
 };
 
-export const resources: Resource[] = [
+const catalog: Resource[] = [
+  {
+    slug: "why-gps-stop-referring-to-endodontists",
+    layout: {
+      stats: { beforeSection: 2 },
+      inserts: [
+        {
+          slot: "actions",
+          kind: "cards",
+          numbered: true,
+          cards: [
+            { title: "List your referrers", body: "Pull your top 20 referring dentists and the date each one last sent a case." },
+            { title: "Call the quiet ones", body: "Phone any GP who has gone 90 days without referring. Ask what their patients said about the visit." },
+            { title: "Write down what comes next", body: "Every patient leaves with the restorative next step in writing. The GP gets the same note." },
+            { title: "Send a referral template", body: "Give referring offices a short template so cases arrive with what you need." },
+            { title: "Move the relationship budget", body: "Shift some of the lunch-and-learn spend to quick phone calls about live cases." },
+          ],
+        },
+        {
+          slot: "aae",
+          kind: "bars",
+          caption: "Growing and leaking at the same time",
+          sets: [
+            {
+              title: "Endodontists who, in recent years",
+              rows: [
+                { label: "Gained new referring dentists", value: 80, tone: "a" },
+                { label: "Lost at least one referring dentist", value: 65, tone: "b" },
+              ],
+            },
+            {
+              title: "Root canal cases referred to an endodontist",
+              rows: [
+                { label: "2012", value: 43, tone: "muted" },
+                { label: "2026", value: 53, tone: "a" },
+              ],
+            },
+          ],
+          source: "American Association of Endodontists, 2026 Endodontist and General Dentist Referral Patterns Survey. Supported by Sonendo. Sample size not published.",
+        },
+        {
+          slot: "reasons",
+          kind: "versus",
+          caption: "Why a referral relationship ends, depending on who you ask",
+          sides: [
+            {
+              group: "Endodontists",
+              value: 40.0,
+              label: "name a divergent treatment philosophy",
+              note: "A disagreement about how a case should be handled, or whether a tooth should be saved.",
+            },
+            {
+              group: "Referring dentists",
+              value: 30.7,
+              label: "name patient dissatisfaction",
+              note: "The GP hears from the patient, usually at the next hygiene visit or crown prep, and decides on that basis.",
+            },
+          ],
+          source: "Karia, Hong and Kim, Journal of Endodontics, 2026. 559 referring dentists, 793 endodontists.",
+        },
+        {
+          before: 4,
+          kind: "quote",
+          text: "The GP rarely sees your work. They hear about it from the patient, weeks later, in their own chair.",
+        },
+        {
+          before: 4,
+          kind: "figure",
+          variant: "side",
+          side: "right",
+          src: "/resources/why-gps-stop-referring-to-endodontists-side.jpg",
+          alt: "A patient sitting in a dental chair talks about her recent visit while her general dentist leans in and listens",
+        },
+        {
+          slot: "letters",
+          kind: "meter",
+          value: 44.2,
+          label: "of endodontists say the referral letters they receive are inadequate more than 30 percent of the time",
+          note: "Referring dentists, asked about the reports endodontists send back, reported high satisfaction. The gap runs one way.",
+          source: "Karia, Hong and Kim, Journal of Endodontics, 2026. 559 referring dentists, 793 endodontists.",
+        },
+        {
+          slot: "template",
+          kind: "cards",
+          columns: 3,
+          caption: "What a complete endodontic referral carries",
+          cards: [
+            { icon: "caselink-endodontics", title: "Tooth and reason", body: "The tooth and why it is being referred, in one line." },
+            { icon: "caselink-secure-records", title: "Recent images", body: "Periapical or CBCT images taken recently." },
+            { icon: "caselink-reports", title: "Pulp testing", body: "Results, if testing was done." },
+            { icon: "caselink-case-timeline", title: "Current state", body: "Whether the tooth is temporized or open." },
+            { icon: "caselink-treatment-plan", title: "Restorative plan", body: "What the GP plans for the tooth afterwards." },
+            { icon: "caselink-care-team", title: "Medical history", body: "Relevant conditions and current medications." },
+          ],
+        },
+        {
+          slot: "channels",
+          kind: "compare",
+          caption: "Where GPs and endodontists see the relationship differently",
+          groups: ["Referring dentists", "Endodontists"],
+          rows: [
+            { label: "Restorability is mainly the endodontist's call", values: [30, 20.6] },
+            { label: "Phone is the best way to keep the relationship", values: [51.4, 25.7] },
+            { label: "Office visits are the best way to keep the relationship", values: [7.4, 18.2] },
+          ],
+          source: "Karia, Hong and Kim, Journal of Endodontics, 2026. 559 referring dentists, 793 endodontists.",
+        },
+        {
+          before: 8,
+          kind: "figure",
+          variant: "wide",
+          src: "/resources/why-gps-stop-referring-to-endodontists-wide.jpg",
+          alt: "A practice manager at a dental office front desk reviews referral activity on her computer, with a list of referring offices beside her",
+        },
+        {
+          before: 9,
+          after: true,
+          kind: "video",
+          youtubeId: "HEGM4fD2BH8",
+          title: "CaseLink: The Simpler Way to Send and Track Dental Referrals",
+        },
+        {
+          slot: "checks",
+          kind: "cards",
+          numbered: true,
+          caption: "Five checks for a referral base",
+          cards: [
+            { tag: "Flag at 90 days", title: "Last referral date", body: "Record when each referring dentist last sent a case, and flag anyone who has gone silent." },
+            { tag: "Count in days", title: "Time to first contact", body: "Measure the days from a referral arriving to the first contact with the patient." },
+            { tag: "Set a window", title: "Report turnaround", body: "Decide how fast the report goes back to the GP, then check you hit it." },
+            { tag: "In writing, to both", title: "Restorative next step", body: "Confirm what happens to the tooth with the patient and with the GP." },
+            { tag: "Monthly, by name", title: "Top ten review", body: "Go through your top ten referring dentists once a month, with the doctor in the room." },
+          ],
+          source: "A working framework from CaseLink. Not drawn from either survey.",
+        },
+        {
+          slot: "caselink",
+          kind: "cards",
+          cards: [
+            { icon: "caselink-send-referral", title: "The referral arrives complete", body: "GPs send a structured referral with the clinical reason, images and notes attached, so your team isn't rebuilding the case at the first visit." },
+            { icon: "caselink-referral-status", title: "Both offices see the same status", body: "Each case moves from sent, to received, to patient notified, to consult scheduled, with timestamps both practices can see." },
+            { icon: "caselink-notifications", title: "Unbooked patients surface", body: "If a consult isn't scheduled inside the follow-up window, a prompt fires, so a referred patient doesn't drift away in silence." },
+            { icon: "caselink-link", title: "GPs join free", body: "Referring dentists use CaseLink at no cost, so asking your GPs to send cases through it doesn't ask them to buy anything." },
+          ],
+        },
+      ],
+    },
+    title: "Why GPs stop referring to endodontists, and why most endodontists guess wrong",
+    metaTitle: "Why GPs stop referring to endodontists · CaseLink",
+    excerpt:
+      "Endodontists say referral relationships end over treatment philosophy. GPs say they end over what the patient tells them afterwards. The gap is where referring dentists quietly leave.",
+    category: "Specialists",
+    author: "CaseLink Team",
+    date: "2026-11-12",
+    readMinutes: 9,
+    thumbnail: "/resources/why-gps-stop-referring-to-endodontists-card.jpg",
+    thumbnailAlt: "A general dentist in scrubs sits at his desk in a bright operatory, looking thoughtfully at his phone, with a list of referring contacts beside him",
+    keyStats: [
+      { value: "90%", label: "of root canals endodontists perform start as a referral (AAE, 2026)" },
+      { value: "65%", label: "of endodontists lost at least one referring dentist recently (AAE, 2026)" },
+      { value: "30.7%", label: "of GPs name patient dissatisfaction as their main reason to stop referring (J Endod, 2026)" },
+    ],
+    faqs: [
+      {
+        q: "Why do general dentists stop referring to an endodontist?",
+        a: "In a 2026 Journal of Endodontics survey of 1,352 dentists, referring dentists most often named patient dissatisfaction (30.7 percent) as the reason they stopped referring to a specialist. Endodontists most often named divergent treatment philosophy (40.0 percent).",
+      },
+      {
+        q: "What should an endodontic referral letter include?",
+        a: "At minimum, the tooth and reason for referral, recent radiographs, pulp testing results, whether the tooth is temporized, the GP's restorative plan and relevant medical history. In the same survey, 44.2 percent of endodontists said referral letters are inadequate more than 30 percent of the time.",
+      },
+      {
+        q: "How should endodontists stay in touch with referring dentists?",
+        a: "Referring dentists favor phone calls. In the 2026 survey, 51.4 percent of GPs chose the phone, compared with 25.7 percent of endodontists. Only 7.4 percent of GPs valued office visits.",
+      },
+      {
+        q: "Do DSOs keep endodontic referrals in-house?",
+        a: "More of them are trying to. Several groups have added specialists inside their own practices and set expectations for general dentists to refer internally, which narrows the pool of outside referrals for independent endodontists.",
+      },
+      {
+        q: "Does CaseLink replace my practice management software?",
+        a: "No. CaseLink handles the referral handoff and shared case status. Charting, imaging and billing stay in Dentrix, Eaglesoft, Open Dental or whichever system you use now.",
+      },
+    ],
+    sources: [
+      {
+        label: "Karia P, Hong HY, Kim JR. “Referral Patterns and Professional Perceptions of Referring Dentists and Endodontists.” Journal of Endodontics 52(9):1404–1414, September 2026",
+        url: "https://doi.org/10.1016/j.joen.2026.04.013",
+      },
+      {
+        label: "American Association of Endodontists, “More Dentists Are Referring to Endodontists, New AAE Survey Finds,” May 4, 2026 (survey supported by Sonendo)",
+        url: "https://newsroom.aae.org/featured-stories/more-dentists-are-referring-to-endodontists-new-aae-survey-finds/",
+      },
+      {
+        label: "Group Dentistry Now, “DSO Executive Leadership Discussion from the 2026 Yankee Multi-Site Summit,” February 11, 2026",
+        url: "https://www.groupdentistrynow.com/?p=31106",
+      },
+      {
+        label: "Group Dentistry Now, “PDS Health Expands Its Reach with New Technology Division and Dental Model,” April 23, 2025",
+        url: "https://www.groupdentistrynow.com/?p=28312",
+      },
+    ],
+    related: [
+      { href: "/referral-software/endodontists", label: "Referral software for endodontists" },
+      { href: "/resources/how-endodontists-track-and-manage-incoming-referrals", label: "How endodontists track and manage incoming referrals" },
+      { href: "/resources/dental-referral-conversion-rate-benchmarks", label: "Referral conversion benchmarks" },
+    ],
+  },
   {
     slug: "paperless-dental-referrals",
     layout: {
@@ -777,12 +1032,23 @@ export const resources: Resource[] = [
   },
 ];
 
+const SHOW_DRAFTS = process.env.NODE_ENV !== "production";
+
+/** Published articles only. Drafts never reach lists or the sitemap. */
+export const resources: Resource[] = catalog.filter((r) => !r.draft);
+
+/** Slugs that get an article route: published ones, plus drafts in dev. */
+export function getRoutableSlugs(): string[] {
+  return catalog.filter((r) => !r.draft || SHOW_DRAFTS).map((r) => r.slug);
+}
+
 export function getResources(): Resource[] {
   return [...resources].sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 
 export function getResource(slug: string): Resource | undefined {
-  return resources.find((r) => r.slug === slug);
+  const r = catalog.find((x) => x.slug === slug);
+  return r && (!r.draft || SHOW_DRAFTS) ? r : undefined;
 }
 
 export function formatResourceDate(iso: string): string {

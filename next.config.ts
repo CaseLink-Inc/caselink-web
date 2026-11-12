@@ -66,7 +66,8 @@ const securityHeaders = [
       "img-src 'self' data: blob: https:",
       // Calendly popup runs in an iframe. hCaptcha challenge also iframed.
       // The live chat widget's Turnstile check renders in a Cloudflare iframe.
-      "frame-src 'self' https://calendly.com https://*.calendly.com https://*.hcaptcha.com https://hcaptcha.com https://challenges.cloudflare.com",
+      // Article videos play from YouTube's privacy-enhanced domain.
+      "frame-src 'self' https://calendly.com https://*.calendly.com https://*.hcaptcha.com https://hcaptcha.com https://challenges.cloudflare.com https://www.youtube-nocookie.com",
       // Web3Forms POST + Calendly tracking + hCaptcha verification + GA4 collect.
       // GA4 beacons go to the bare analytics.google.com apex (not covered by
       // the *.analytics.google.com wildcard), and with Google signals enabled

@@ -12,10 +12,18 @@ import ResourcePullQuote from "@/components/resources/ResourcePullQuote";
 import ResourceSlider from "@/components/resources/ResourceSlider";
 import ResourceFigure from "@/components/resources/ResourceFigure";
 import ResourceFunnel from "@/components/resources/ResourceFunnel";
+import ResourceVideo from "@/components/resources/ResourceVideo";
+import ResourceCompare from "@/components/resources/ResourceCompare";
 import {
-  resources,
+  ResourceCards,
+  ResourceBars,
+  ResourceVersus,
+  ResourceMeter,
+} from "@/components/resources/ResourceDataViz";
+import {
   getResource,
   getResources,
+  getRoutableSlugs,
   formatResourceDate,
   CATEGORY_COLOR,
 } from "@/lib/resources";
@@ -36,7 +44,7 @@ const FEATURED_OG_SLUGS = new Set([
 ]);
 
 export function generateStaticParams() {
-  return resources.map((r) => ({ slug: r.slug }));
+  return getRoutableSlugs().map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
@@ -67,6 +75,8 @@ export async function generateMetadata({
     title: { absolute: r.metaTitle },
     description: r.excerpt,
     alternates: { canonical: `/resources/${r.slug}` },
+    // Drafts only render on the dev server, but never let one be indexed.
+    ...(r.draft ? { robots: { index: false, follow: false } } : {}),
     openGraph: {
       title: r.title,
       description: r.excerpt,
@@ -114,16 +124,19 @@ export default async function ResourceArticlePage({
     if (ins.kind === "quote") {
       inserts.push({
         section: ins.before,
+        slot: ins.slot,
         node: <ResourcePullQuote text={ins.text} accent={accent} />,
       });
     } else if (ins.kind === "slider") {
       inserts.push({
         section: ins.before,
+        slot: ins.slot,
         node: <ResourceSlider cards={ins.cards} accent={accent} />,
       });
     } else if (ins.kind === "funnel") {
       inserts.push({
         section: ins.before,
+        slot: ins.slot,
         node: (
           <ResourceFunnel
             stages={ins.stages}
@@ -132,9 +145,70 @@ export default async function ResourceArticlePage({
           />
         ),
       });
+    } else if (ins.kind === "compare") {
+      inserts.push({
+        section: ins.before,
+        slot: ins.slot,
+        node: (
+          <ResourceCompare
+            caption={ins.caption}
+            groups={ins.groups}
+            rows={ins.rows}
+            source={ins.source}
+            accent={accent}
+          />
+        ),
+      });
+    } else if (ins.kind === "cards") {
+      inserts.push({
+        section: ins.before,
+        slot: ins.slot,
+        node: (
+          <ResourceCards
+            caption={ins.caption}
+            cards={ins.cards}
+            numbered={ins.numbered}
+            columns={ins.columns}
+            source={ins.source}
+          />
+        ),
+      });
+    } else if (ins.kind === "bars") {
+      inserts.push({
+        section: ins.before,
+        slot: ins.slot,
+        node: <ResourceBars caption={ins.caption} sets={ins.sets} source={ins.source} />,
+      });
+    } else if (ins.kind === "versus") {
+      inserts.push({
+        section: ins.before,
+        slot: ins.slot,
+        node: <ResourceVersus caption={ins.caption} sides={ins.sides} source={ins.source} />,
+      });
+    } else if (ins.kind === "meter") {
+      inserts.push({
+        section: ins.before,
+        slot: ins.slot,
+        node: (
+          <ResourceMeter
+            value={ins.value}
+            label={ins.label}
+            note={ins.note}
+            source={ins.source}
+          />
+        ),
+      });
+    } else if (ins.kind === "video") {
+      inserts.push({
+        section: ins.before,
+        slot: ins.slot,
+        after: ins.after,
+        node: <ResourceVideo youtubeId={ins.youtubeId} title={ins.title} caption={ins.caption} />,
+      });
     } else if (ins.kind === "figure") {
       inserts.push({
         section: ins.before,
+        slot: ins.slot,
         after: ins.variant === "side",
         node: (
           <ResourceFigure
