@@ -70,8 +70,8 @@ app/
   terms/page.tsx          Terms of Service (same treatment; pending
                           Nick's legal review)
   resources/page.tsx      Blog index: full-bleed hero + category filter
-                          tabs + card grid. HIDDEN from nav/footer until
-                          Nick calls it complete (URLs are live/indexed).
+                          tabs + card grid. In the top nav and footer
+                          since 2026-10-31 (commit e930478).
   resources/[slug]/       Article template, LOCKED 2026-10-30 (see
                           "Article template" below): lit ground + glass
                           panels, callout/step cards, stat strip, lens
@@ -387,8 +387,8 @@ is. Colour may vary per piece; the structure may not.
   google-analytics domains. Privacy policy cookie section names GA4.
   Verified collecting.
 - **Resources section (blog) built** at `/resources` + 6 articles —
-  currently **hidden from nav/footer** (URLs live, indexed, in sitemap
-  + llms.txt) until Nick calls it complete. Gapstars-style index:
+  hidden from nav/footer at first, back in the top nav and footer since
+  2026-10-31 (commit `e930478`). Gapstars-style index:
   full-bleed dark hero (photo drops into `.res-hero-img`, placeholder
   gradient until then) + category filter tabs. Articles: markdown
   bodies in `content/resources/`, catalog in `lib/resources.ts`,
@@ -615,12 +615,9 @@ is. Colour may vary per piece; the structure may not.
   article card has a real photo as of 2026-10-30. Endodontists has no
   wide slot configured (intentional). Optionally sharper 1200x630
   social images per article later.
-- **Make Resources public**: re-add "Resources" to Nav and Footer
-  (removed in commit `a57b63d`, one line each) when Nick calls the
-  section complete — likely once the remaining images are in. Then do
-  the **cross-linking pass** (contextual links from home sections into
-  matching articles) which is deliberately parked until the section is
-  public.
+- **Cross-linking pass**: Resources is public (nav + footer since
+  2026-10-31), so the parked pass is unblocked: contextual links from home
+  sections into matching articles.
 - **Terms of Service legal review**: `/terms` is live but Nick should
   have counsel check governing law/venue (Virginia/Arlington), the
   liability cap, and the jury-trial waiver.
