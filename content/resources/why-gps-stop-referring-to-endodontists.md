@@ -1,4 +1,4 @@
-Most endodontists have picked up a new referring dentist in the last few years. Most have also lost one. A 2026 survey of 1,352 dentists suggests that when a GP goes quiet, the endodontist usually looks for the cause in the wrong place.
+Most endodontists have picked up a new referring dentist in the last few years. Most have also lost one. A 2026 survey of 1,352 dentists suggests that when a GP stops referring, the endodontist usually looks for the cause in the wrong place.
 
 ## Your action items
 
@@ -78,7 +78,7 @@ Endodontics is moving the same way. PDS Health has built endodontic and periodon
 
 An independent practice can't win on convenience against an endodontist down the hall. What it can control is how the patient feels about the visit and how little effort the GP has to spend finding out what happened. Those are the two things the *J Endod* data says GPs care about when they decide to stay or go.
 
-## How can an endo practice spot a GP going quiet?
+## How can an endo practice tell when a GP stops referring?
 
 Most practices track total referrals. Fewer track referrals by GP over time, and that's where a leak first shows. The five checks below are a working framework we'd suggest. They aren't drawn from either survey.
 

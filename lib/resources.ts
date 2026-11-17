@@ -143,7 +143,7 @@ const catalog: Resource[] = [
           numbered: true,
           cards: [
             { title: "List your referrers", body: "Pull your top 20 referring dentists and the date each one last sent a case." },
-            { title: "Call the quiet ones", body: "Phone any GP who has gone 90 days without referring. Ask what their patients said about the visit." },
+            { title: "Call the GPs who stopped", body: "Phone any GP who has gone 90 days without referring. Ask what their patients said about the visit." },
             { title: "Write down what comes next", body: "Every patient leaves with the restorative next step in writing. The GP gets the same note." },
             { title: "Send a referral template", body: "Give referring offices a short template so cases arrive with what you need." },
             { title: "Move the relationship budget", body: "Shift some of the lunch-and-learn spend to quick phone calls about live cases." },
@@ -281,7 +281,7 @@ const catalog: Resource[] = [
     title: "Why GPs stop referring to endodontists, and why most endodontists guess wrong",
     metaTitle: "Why GPs stop referring to endodontists · CaseLink",
     excerpt:
-      "Endodontists say referral relationships end over treatment philosophy. GPs say they end over what the patient tells them afterwards. The gap is where referring dentists quietly leave.",
+      "Endodontists say referral relationships end over treatment philosophy. GPs say they end over what the patient tells them afterwards. Practices that act on the wrong reason keep losing referrers.",
     category: "Specialists",
     author: "CaseLink Team",
     date: "2026-11-12",
