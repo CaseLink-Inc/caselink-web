@@ -209,7 +209,7 @@ const catalog: Resource[] = [
           kind: "meter",
           value: 44.2,
           label: "of endodontists say the referral letters they receive are inadequate more than 30 percent of the time",
-          note: "Referring dentists, asked about the reports endodontists send back, reported high satisfaction. The gap runs one way.",
+          note: "Referring dentists, asked about the reports endodontists send back, reported high satisfaction. The frustration runs one way.",
           source: "Karia, Hong and Kim, Journal of Endodontics, 2026. 559 referring dentists, 793 endodontists.",
         },
         {

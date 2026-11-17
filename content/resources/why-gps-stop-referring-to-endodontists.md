@@ -28,7 +28,7 @@ On why a referral relationship ends, they didn't agree at all. Endodontists most
 
 {{reasons}}
 
-That gap matters. An endodontist who thinks GPs leave over clinical disagreement will respond with clinical arguments. Case presentations, CE evenings, a lunch to talk through retreatment criteria. All reasonable things. None of them reach the problem the GP actually named.
+The difference matters. An endodontist who thinks GPs leave over clinical disagreement will respond with clinical arguments. Case presentations, CE evenings, a lunch to talk through retreatment criteria. All reasonable things. None of them reach the problem the GP actually named.
 
 One caveat. The survey went out through professional networks and social media, so respondents chose to take part. It's the best recent dual-perspective data on this question, and its sample is large, but it isn't a random draw of every US dentist.
 
@@ -56,7 +56,7 @@ The study's other recommendation is a standard referral template. An endo practi
 
 {{template}}
 
-That list is our own checklist, built from the gaps the study describes. It isn't taken from the paper. We covered the wider case for moving referrals off paper in [Paperless dental referrals: replacing the fax and the referral pad](/resources/paperless-dental-referrals).
+That list is our own checklist, built from the problems the study describes. It isn't taken from the paper. We covered the wider case for moving referrals off paper in [Paperless dental referrals: replacing the fax and the referral pad](/resources/paperless-dental-referrals).
 
 ## How do GPs want to hear from you?
 
@@ -90,7 +90,7 @@ For where the bigger losses sit across the whole referral funnel, see [What a he
 
 ## Where does CaseLink fit?
 
-CaseLink is a referral and case-collaboration platform for dental practices. It sits alongside the practice software you already use. It doesn't replace your PMS, and it doesn't book appointments. What it does is close the specific gaps this study describes.
+CaseLink is a referral and case-collaboration platform for dental practices. It sits alongside the practice software you already use. It doesn't replace your PMS, and it doesn't book appointments. What it does is fix the specific problems this study describes.
 
 {{caselink}}
 
